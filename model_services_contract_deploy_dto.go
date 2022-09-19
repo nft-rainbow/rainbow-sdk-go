@@ -18,6 +18,7 @@ import (
 type ServicesContractDeployDto struct {
 	BaseUri *string `json:"base_uri,omitempty"`
 	Chain string `json:"chain"`
+	IsSponsorForAllUser bool `json:"is_sponsor_for_all_user"`
 	Name string `json:"name"`
 	OwnerAddress string `json:"owner_address"`
 	RoyaltiesAddress *string `json:"royalties_address,omitempty"`
@@ -36,9 +37,10 @@ type _ServicesContractDeployDto ServicesContractDeployDto
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServicesContractDeployDto(chain string, name string, ownerAddress string, symbol string, type_ string) *ServicesContractDeployDto {
+func NewServicesContractDeployDto(chain string, isSponsorForAllUser bool, name string, ownerAddress string, symbol string, type_ string) *ServicesContractDeployDto {
 	this := ServicesContractDeployDto{}
 	this.Chain = chain
+	this.IsSponsorForAllUser = isSponsorForAllUser
 	this.Name = name
 	this.OwnerAddress = ownerAddress
 	this.Symbol = symbol
@@ -108,6 +110,30 @@ func (o *ServicesContractDeployDto) GetChainOk() (*string, bool) {
 // SetChain sets field value
 func (o *ServicesContractDeployDto) SetChain(v string) {
 	o.Chain = v
+}
+
+// GetIsSponsorForAllUser returns the IsSponsorForAllUser field value
+func (o *ServicesContractDeployDto) GetIsSponsorForAllUser() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsSponsorForAllUser
+}
+
+// GetIsSponsorForAllUserOk returns a tuple with the IsSponsorForAllUser field value
+// and a boolean to check if the value has been set.
+func (o *ServicesContractDeployDto) GetIsSponsorForAllUserOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsSponsorForAllUser, true
+}
+
+// SetIsSponsorForAllUser sets field value
+func (o *ServicesContractDeployDto) SetIsSponsorForAllUser(v bool) {
+	o.IsSponsorForAllUser = v
 }
 
 // GetName returns the Name field value
@@ -375,6 +401,9 @@ func (o ServicesContractDeployDto) MarshalJSON() ([]byte, error) {
 		toSerialize["chain"] = o.Chain
 	}
 	if true {
+		toSerialize["is_sponsor_for_all_user"] = o.IsSponsorForAllUser
+	}
+	if true {
 		toSerialize["name"] = o.Name
 	}
 	if true {
@@ -421,6 +450,7 @@ func (o *ServicesContractDeployDto) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "base_uri")
 		delete(additionalProperties, "chain")
+		delete(additionalProperties, "is_sponsor_for_all_user")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "owner_address")
 		delete(additionalProperties, "royalties_address")

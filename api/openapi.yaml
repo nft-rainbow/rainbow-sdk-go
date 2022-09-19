@@ -94,6 +94,147 @@ paths:
       tags:
       - Contract
       x-codegen-request-body-name: contract_info
+  /contracts/:address/sponsor/whitelist:
+    delete:
+      description: "Remove contract sponsored whitelist, only work on conflux chain"
+      operationId: RemoveContractSponsorWhitelist
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.SendTxResp'
+          description: Transaction id
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Remove contract sponsored whitelist
+      tags:
+      - Contract
+    get:
+      description: "Get contract sponsored whitelist, only work on conflux chain"
+      operationId: GetContractSponsoredWhitelist
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Contract sponsored whitelist
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Get contract sponsored whitelist
+      tags:
+      - Contract
+    post:
+      description: "Add contract sponsored whitelist, only work on conflux chain"
+      operationId: AddContractSponsorWhitelist
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.SendTxResp'
+          description: Transaction id
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Add contract sponsored whitelist
+      tags:
+      - Contract
   /contracts/detail/{id}:
     get:
       description: Get Contract info
@@ -135,6 +276,107 @@ paths:
       summary: Contract detail
       tags:
       - Contract
+  /contracts/{address}/admin:
+    get:
+      description: Get Contract Admin
+      operationId: GetContractAdmin
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Admin address
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: "Get administrator of contract, only work on conflux chain"
+      tags:
+      - Contract
+    put:
+      description: "Update administrator of contract, only work on conflux chain"
+      operationId: UpdateContractAdmin
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/services.ContractAdminUpdateDto'
+        description: contract admin update info
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.SendTxResp'
+          description: Transaction id
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Update administrator of contract
+      tags:
+      - Contract
+      x-codegen-request-body-name: admin_info
   /contracts/{address}/sponsor:
     get:
       description: Get the sponsor of the specified contract according to address.
@@ -330,6 +572,34 @@ paths:
       summary: Upload file to OSS
       tags:
       - Files
+  /login:
+    post:
+      description: Login the app to get the JWT according to the app_id and app_secret
+      operationId: LoginApp
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+        description: app_secret
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: auth token
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Unauthorized
+      summary: App login
+      tags:
+      - Login
+      x-codegen-request-body-name: app_secret
   /metadata/:
     get:
       description: Get the metadata list containing the info of the metadata created
@@ -385,7 +655,7 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/models.Metadata'
+              $ref: '#/components/schemas/services.MetadataDto'
         description: metadata_info
         required: true
       responses:
@@ -706,6 +976,82 @@ paths:
       summary: Mint NFT detail
       tags:
       - Mints
+  /nft/{address}/{token_id}:
+    get:
+      description: "Get NFT info, mainly owner and metadata"
+      operationId: NFTInfo
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      - description: token_id
+        in: path
+        name: token_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.NFT'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: "Get NFT info, mainly owner and metadata"
+      tags:
+      - NFTs
+  /refresh_token:
+    get:
+      description: Obtain a new JWT
+      operationId: RefreshAuth
+      parameters:
+      - description: Bearer openapi_token
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: refreshed auth token
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Unauthorized
+      security:
+      - ApiKeyAuth: []
+      summary: Refresh JWT
+      tags:
+      - Login
   /transfers/:
     get:
       description: Get the NFT list containing the transferred NFT information.
@@ -874,6 +1220,53 @@ paths:
       summary: Transfer NFT detail
       tags:
       - Transfers
+  /tx/{id}:
+    get:
+      description: Get transaction informantion by ID
+      operationId: GetTransactionByID
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.TxResp'
+          description: Transaction informantion
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Get transaction informantion by ID
+      tags:
+      - Transaction
 components:
   schemas:
     gorm.DeletedAt:
@@ -1019,10 +1412,20 @@ components:
     models.ExposedFile:
       example:
         file_url: file_url
+        updated_at: updated_at
         file_name: file_name
         file_type: file_type
+        created_at: created_at
+        id: 1
+        deleted_at:
+          valid: true
+          time: time
         file_size: 6
       properties:
+        created_at:
+          type: string
+        deleted_at:
+          $ref: '#/components/schemas/gorm.DeletedAt'
         file_name:
           type: string
         file_size:
@@ -1031,12 +1434,18 @@ components:
           type: string
         file_url:
           type: string
+        id:
+          type: integer
+        updated_at:
+          type: string
       type: object
     models.ExposedMetadata:
       example:
         image: image
+        updated_at: updated_at
         metadata_id: metadata_id
         name: name
+        created_at: created_at
         description: description
         attributes:
         - display_type: display_type
@@ -1047,6 +1456,10 @@ components:
           attribute_name: attribute_name
           value: value
           trait_type: trait_type
+        id: 6
+        deleted_at:
+          valid: true
+          time: time
         uri: uri
         external_link: external_link
       properties:
@@ -1054,15 +1467,23 @@ components:
           items:
             $ref: '#/components/schemas/models.ExposedMetadataAttribute'
           type: array
+        created_at:
+          type: string
+        deleted_at:
+          $ref: '#/components/schemas/gorm.DeletedAt'
         description:
           type: string
         external_link:
           type: string
+        id:
+          type: integer
         image:
           type: string
         metadata_id:
           type: string
         name:
+          type: string
+        updated_at:
           type: string
         uri:
           type: string
@@ -1092,8 +1513,10 @@ components:
         count: 0
         items:
         - image: image
+          updated_at: updated_at
           metadata_id: metadata_id
           name: name
+          created_at: created_at
           description: description
           attributes:
           - display_type: display_type
@@ -1104,11 +1527,17 @@ components:
             attribute_name: attribute_name
             value: value
             trait_type: trait_type
+          id: 6
+          deleted_at:
+            valid: true
+            time: time
           uri: uri
           external_link: external_link
         - image: image
+          updated_at: updated_at
           metadata_id: metadata_id
           name: name
+          created_at: created_at
           description: description
           attributes:
           - display_type: display_type
@@ -1119,6 +1548,10 @@ components:
             attribute_name: attribute_name
             value: value
             trait_type: trait_type
+          id: 6
+          deleted_at:
+            valid: true
+            time: time
           uri: uri
           external_link: external_link
       properties:
@@ -1134,12 +1567,24 @@ components:
         count: 0
         items:
         - file_url: file_url
+          updated_at: updated_at
           file_name: file_name
           file_type: file_type
+          created_at: created_at
+          id: 1
+          deleted_at:
+            valid: true
+            time: time
           file_size: 6
         - file_url: file_url
+          updated_at: updated_at
           file_name: file_name
           file_type: file_type
+          created_at: created_at
+          id: 1
+          deleted_at:
+            valid: true
+            time: time
           file_size: 6
       properties:
         count:
@@ -1148,60 +1593,6 @@ components:
           items:
             $ref: '#/components/schemas/models.ExposedFile'
           type: array
-      type: object
-    models.Metadata:
-      properties:
-        app_id:
-          type: integer
-        attributes:
-          items:
-            $ref: '#/components/schemas/models.MetadataAttribute'
-          type: array
-        created_at:
-          type: string
-        deleted_at:
-          $ref: '#/components/schemas/gorm.DeletedAt'
-        description:
-          type: string
-        external_link:
-          type: string
-        id:
-          type: integer
-        image:
-          type: string
-        metadata_id:
-          type: string
-        name:
-          type: string
-        updated_at:
-          type: string
-        uri:
-          type: string
-      required:
-      - description
-      - image
-      - name
-      type: object
-    models.MetadataAttribute:
-      properties:
-        attribute_name:
-          type: string
-        created_at:
-          type: string
-        deleted_at:
-          $ref: '#/components/schemas/gorm.DeletedAt'
-        display_type:
-          type: string
-        id:
-          type: integer
-        metadataId:
-          type: integer
-        trait_type:
-          type: string
-        updated_at:
-          type: string
-        value:
-          type: string
       type: object
     models.MintTask:
       example:
@@ -1444,6 +1835,16 @@ components:
         message:
           type: string
       type: object
+    services.ContractAdminUpdateDto:
+      properties:
+        admin_address:
+          description: "Chain           string `form:\"chain\" json:\"chain\" binding:\"\
+            required,oneof=conflux conflux_test\"`\nContractAddress string `form:\"\
+            contract_address\" json:\"contract_address\" binding:\"required\"`"
+          type: string
+      required:
+      - admin_address
+      type: object
     services.ContractDeployDto:
       properties:
         base_uri:
@@ -1453,6 +1854,8 @@ components:
           - conflux
           - conflux_test
           type: string
+        is_sponsor_for_all_user:
+          type: boolean
         name:
           type: string
         owner_address:
@@ -1476,6 +1879,7 @@ components:
           type: string
       required:
       - chain
+      - is_sponsor_for_all_user
       - name
       - owner_address
       - symbol
@@ -1553,6 +1957,25 @@ components:
       - mint_to_address
       - name
       type: object
+    services.MetadataDto:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/models.ExposedMetadataAttribute'
+          type: array
+        description:
+          type: string
+        external_link:
+          type: string
+        image:
+          type: string
+        name:
+          type: string
+      required:
+      - description
+      - image
+      - name
+      type: object
     services.MintItemDto:
       properties:
         amount:
@@ -1566,6 +1989,26 @@ components:
       required:
       - metadata_uri
       - mint_to_address
+      type: object
+    services.NFT:
+      example:
+        owner: owner
+        token_id: token_id
+        contract_address: contract_address
+      properties:
+        contract_address:
+          type: string
+        owner:
+          type: string
+        token_id:
+          type: string
+      type: object
+    services.SendTxResp:
+      example:
+        tx_id: 0
+      properties:
+        tx_id:
+          type: integer
       type: object
     services.SponsorInfo:
       example:
@@ -1657,6 +2100,28 @@ components:
       - token_id
       - transfer_from_address
       - transfer_to_address
+      type: object
+    services.TxResp:
+      example:
+        is_finalized: true
+        error_msg: error_msg
+        state_msg: state_msg
+        is_success: true
+        state_code: 0
+        hash: hash
+      properties:
+        error_msg:
+          type: string
+        hash:
+          type: string
+        is_finalized:
+          type: boolean
+        is_success:
+          type: boolean
+        state_code:
+          type: integer
+        state_msg:
+          type: string
       type: object
     services.UploadFilesResponse:
       example:

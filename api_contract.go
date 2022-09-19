@@ -23,6 +23,21 @@ import (
 type ContractApi interface {
 
 	/*
+	AddContractSponsorWhitelist Add contract sponsored whitelist
+
+	Add contract sponsored whitelist, only work on conflux chain
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param address contract address
+	@return ApiAddContractSponsorWhitelistRequest
+	*/
+	AddContractSponsorWhitelist(ctx context.Context, address string) ApiAddContractSponsorWhitelistRequest
+
+	// AddContractSponsorWhitelistExecute executes the request
+	//  @return ServicesSendTxResp
+	AddContractSponsorWhitelistExecute(r ApiAddContractSponsorWhitelistRequest) (*ServicesSendTxResp, *http.Response, error)
+
+	/*
 	DeployContract Deploy contract
 
 	Deploy a ERC721 or ERC1155 contract.
@@ -35,6 +50,21 @@ type ContractApi interface {
 	// DeployContractExecute executes the request
 	//  @return ModelsContract
 	DeployContractExecute(r ApiDeployContractRequest) (*ModelsContract, *http.Response, error)
+
+	/*
+	GetContractAdmin Get administrator of contract, only work on conflux chain
+
+	Get Contract Admin
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param address contract address
+	@return ApiGetContractAdminRequest
+	*/
+	GetContractAdmin(ctx context.Context, address string) ApiGetContractAdminRequest
+
+	// GetContractAdminExecute executes the request
+	//  @return string
+	GetContractAdminExecute(r ApiGetContractAdminRequest) (string, *http.Response, error)
 
 	/*
 	GetContractInfo Contract detail
@@ -67,6 +97,21 @@ type ContractApi interface {
 	GetContractSponsorInfoExecute(r ApiGetContractSponsorInfoRequest) (*ServicesSponsorInfo, *http.Response, error)
 
 	/*
+	GetContractSponsoredWhitelist Get contract sponsored whitelist
+
+	Get contract sponsored whitelist, only work on conflux chain
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param address contract address
+	@return ApiGetContractSponsoredWhitelistRequest
+	*/
+	GetContractSponsoredWhitelist(ctx context.Context, address string) ApiGetContractSponsoredWhitelistRequest
+
+	// GetContractSponsoredWhitelistExecute executes the request
+	//  @return []string
+	GetContractSponsoredWhitelistExecute(r ApiGetContractSponsoredWhitelistRequest) ([]string, *http.Response, error)
+
+	/*
 	ListContracts Obtain contract list
 
 	Get the contract list containing the contracts deployed through the specified app.
@@ -79,6 +124,21 @@ type ContractApi interface {
 	// ListContractsExecute executes the request
 	//  @return ModelsContractTaskQueryResult
 	ListContractsExecute(r ApiListContractsRequest) (*ModelsContractTaskQueryResult, *http.Response, error)
+
+	/*
+	RemoveContractSponsorWhitelist Remove contract sponsored whitelist
+
+	Remove contract sponsored whitelist, only work on conflux chain
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param address contract address
+	@return ApiRemoveContractSponsorWhitelistRequest
+	*/
+	RemoveContractSponsorWhitelist(ctx context.Context, address string) ApiRemoveContractSponsorWhitelistRequest
+
+	// RemoveContractSponsorWhitelistExecute executes the request
+	//  @return ServicesSendTxResp
+	RemoveContractSponsorWhitelistExecute(r ApiRemoveContractSponsorWhitelistRequest) (*ServicesSendTxResp, *http.Response, error)
 
 	/*
 	SetContractSponsor Set sponsor
@@ -94,10 +154,168 @@ type ContractApi interface {
 	// SetContractSponsorExecute executes the request
 	//  @return string
 	SetContractSponsorExecute(r ApiSetContractSponsorRequest) (string, *http.Response, error)
+
+	/*
+	UpdateContractAdmin Update administrator of contract
+
+	Update administrator of contract, only work on conflux chain
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param address contract address
+	@return ApiUpdateContractAdminRequest
+	*/
+	UpdateContractAdmin(ctx context.Context, address string) ApiUpdateContractAdminRequest
+
+	// UpdateContractAdminExecute executes the request
+	//  @return ServicesSendTxResp
+	UpdateContractAdminExecute(r ApiUpdateContractAdminRequest) (*ServicesSendTxResp, *http.Response, error)
 }
 
 // ContractApiService ContractApi service
 type ContractApiService service
+
+type ApiAddContractSponsorWhitelistRequest struct {
+	ctx context.Context
+	ApiService ContractApi
+	authorization *string
+	address string
+}
+
+// Bearer Open_JWT
+func (r ApiAddContractSponsorWhitelistRequest) Authorization(authorization string) ApiAddContractSponsorWhitelistRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiAddContractSponsorWhitelistRequest) Execute() (*ServicesSendTxResp, *http.Response, error) {
+	return r.ApiService.AddContractSponsorWhitelistExecute(r)
+}
+
+/*
+AddContractSponsorWhitelist Add contract sponsored whitelist
+
+Add contract sponsored whitelist, only work on conflux chain
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param address contract address
+ @return ApiAddContractSponsorWhitelistRequest
+*/
+func (a *ContractApiService) AddContractSponsorWhitelist(ctx context.Context, address string) ApiAddContractSponsorWhitelistRequest {
+	return ApiAddContractSponsorWhitelistRequest{
+		ApiService: a,
+		ctx: ctx,
+		address: address,
+	}
+}
+
+// Execute executes the request
+//  @return ServicesSendTxResp
+func (a *ContractApiService) AddContractSponsorWhitelistExecute(r ApiAddContractSponsorWhitelistRequest) (*ServicesSendTxResp, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServicesSendTxResp
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractApiService.AddContractSponsorWhitelist")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/contracts/:address/sponsor/whitelist"
+	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 599 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiDeployContractRequest struct {
 	ctx context.Context
@@ -217,6 +435,149 @@ func (a *ContractApiService) DeployContractExecute(r ApiDeployContractRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetContractAdminRequest struct {
+	ctx context.Context
+	ApiService ContractApi
+	authorization *string
+	address string
+}
+
+// Bearer Open_JWT
+func (r ApiGetContractAdminRequest) Authorization(authorization string) ApiGetContractAdminRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetContractAdminRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.GetContractAdminExecute(r)
+}
+
+/*
+GetContractAdmin Get administrator of contract, only work on conflux chain
+
+Get Contract Admin
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param address contract address
+ @return ApiGetContractAdminRequest
+*/
+func (a *ContractApiService) GetContractAdmin(ctx context.Context, address string) ApiGetContractAdminRequest {
+	return ApiGetContractAdminRequest{
+		ApiService: a,
+		ctx: ctx,
+		address: address,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *ContractApiService) GetContractAdminExecute(r ApiGetContractAdminRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractApiService.GetContractAdmin")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/contracts/{address}/admin"
+	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 599 {
 			var v RainbowErrorsRainbowErrorDetailInfo
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -516,6 +877,149 @@ func (a *ContractApiService) GetContractSponsorInfoExecute(r ApiGetContractSpons
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetContractSponsoredWhitelistRequest struct {
+	ctx context.Context
+	ApiService ContractApi
+	authorization *string
+	address string
+}
+
+// Bearer Open_JWT
+func (r ApiGetContractSponsoredWhitelistRequest) Authorization(authorization string) ApiGetContractSponsoredWhitelistRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetContractSponsoredWhitelistRequest) Execute() ([]string, *http.Response, error) {
+	return r.ApiService.GetContractSponsoredWhitelistExecute(r)
+}
+
+/*
+GetContractSponsoredWhitelist Get contract sponsored whitelist
+
+Get contract sponsored whitelist, only work on conflux chain
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param address contract address
+ @return ApiGetContractSponsoredWhitelistRequest
+*/
+func (a *ContractApiService) GetContractSponsoredWhitelist(ctx context.Context, address string) ApiGetContractSponsoredWhitelistRequest {
+	return ApiGetContractSponsoredWhitelistRequest{
+		ApiService: a,
+		ctx: ctx,
+		address: address,
+	}
+}
+
+// Execute executes the request
+//  @return []string
+func (a *ContractApiService) GetContractSponsoredWhitelistExecute(r ApiGetContractSponsoredWhitelistRequest) ([]string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractApiService.GetContractSponsoredWhitelist")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/contracts/:address/sponsor/whitelist"
+	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 599 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiListContractsRequest struct {
 	ctx context.Context
 	ApiService ContractApi
@@ -655,6 +1159,149 @@ func (a *ContractApiService) ListContractsExecute(r ApiListContractsRequest) (*M
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiRemoveContractSponsorWhitelistRequest struct {
+	ctx context.Context
+	ApiService ContractApi
+	authorization *string
+	address string
+}
+
+// Bearer Open_JWT
+func (r ApiRemoveContractSponsorWhitelistRequest) Authorization(authorization string) ApiRemoveContractSponsorWhitelistRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiRemoveContractSponsorWhitelistRequest) Execute() (*ServicesSendTxResp, *http.Response, error) {
+	return r.ApiService.RemoveContractSponsorWhitelistExecute(r)
+}
+
+/*
+RemoveContractSponsorWhitelist Remove contract sponsored whitelist
+
+Remove contract sponsored whitelist, only work on conflux chain
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param address contract address
+ @return ApiRemoveContractSponsorWhitelistRequest
+*/
+func (a *ContractApiService) RemoveContractSponsorWhitelist(ctx context.Context, address string) ApiRemoveContractSponsorWhitelistRequest {
+	return ApiRemoveContractSponsorWhitelistRequest{
+		ApiService: a,
+		ctx: ctx,
+		address: address,
+	}
+}
+
+// Execute executes the request
+//  @return ServicesSendTxResp
+func (a *ContractApiService) RemoveContractSponsorWhitelistExecute(r ApiRemoveContractSponsorWhitelistRequest) (*ServicesSendTxResp, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServicesSendTxResp
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractApiService.RemoveContractSponsorWhitelist")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/contracts/:address/sponsor/whitelist"
+	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 599 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiSetContractSponsorRequest struct {
 	ctx context.Context
 	ApiService ContractApi
@@ -765,6 +1412,161 @@ func (a *ContractApiService) SetContractSponsorExecute(r ApiSetContractSponsorRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateContractAdminRequest struct {
+	ctx context.Context
+	ApiService ContractApi
+	authorization *string
+	address string
+	adminInfo *ServicesContractAdminUpdateDto
+}
+
+// Bearer Open_JWT
+func (r ApiUpdateContractAdminRequest) Authorization(authorization string) ApiUpdateContractAdminRequest {
+	r.authorization = &authorization
+	return r
+}
+
+// contract admin update info
+func (r ApiUpdateContractAdminRequest) AdminInfo(adminInfo ServicesContractAdminUpdateDto) ApiUpdateContractAdminRequest {
+	r.adminInfo = &adminInfo
+	return r
+}
+
+func (r ApiUpdateContractAdminRequest) Execute() (*ServicesSendTxResp, *http.Response, error) {
+	return r.ApiService.UpdateContractAdminExecute(r)
+}
+
+/*
+UpdateContractAdmin Update administrator of contract
+
+Update administrator of contract, only work on conflux chain
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param address contract address
+ @return ApiUpdateContractAdminRequest
+*/
+func (a *ContractApiService) UpdateContractAdmin(ctx context.Context, address string) ApiUpdateContractAdminRequest {
+	return ApiUpdateContractAdminRequest{
+		ApiService: a,
+		ctx: ctx,
+		address: address,
+	}
+}
+
+// Execute executes the request
+//  @return ServicesSendTxResp
+func (a *ContractApiService) UpdateContractAdminExecute(r ApiUpdateContractAdminRequest) (*ServicesSendTxResp, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServicesSendTxResp
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractApiService.UpdateContractAdmin")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/contracts/{address}/admin"
+	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if r.adminInfo == nil {
+		return localVarReturnValue, nil, reportError("adminInfo is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.adminInfo
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 599 {
 			var v RainbowErrorsRainbowErrorDetailInfo
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

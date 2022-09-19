@@ -73,7 +73,7 @@ type ApiCreateMetadataRequest struct {
 	ctx context.Context
 	ApiService MetadataApi
 	authorization *string
-	metadataInfo *ModelsMetadata
+	metadataInfo *ServicesMetadataDto
 }
 
 // Bearer openapi_token
@@ -83,7 +83,7 @@ func (r ApiCreateMetadataRequest) Authorization(authorization string) ApiCreateM
 }
 
 // metadata_info
-func (r ApiCreateMetadataRequest) MetadataInfo(metadataInfo ModelsMetadata) ApiCreateMetadataRequest {
+func (r ApiCreateMetadataRequest) MetadataInfo(metadataInfo ServicesMetadataDto) ApiCreateMetadataRequest {
 	r.metadataInfo = &metadataInfo
 	return r
 }

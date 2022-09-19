@@ -16,10 +16,14 @@ import (
 
 // ModelsExposedFile struct for ModelsExposedFile
 type ModelsExposedFile struct {
+	CreatedAt *string `json:"created_at,omitempty"`
+	DeletedAt *GormDeletedAt `json:"deleted_at,omitempty"`
 	FileName *string `json:"file_name,omitempty"`
 	FileSize *int32 `json:"file_size,omitempty"`
 	FileType *string `json:"file_type,omitempty"`
 	FileUrl *string `json:"file_url,omitempty"`
+	Id *int32 `json:"id,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,6 +44,70 @@ func NewModelsExposedFile() *ModelsExposedFile {
 func NewModelsExposedFileWithDefaults() *ModelsExposedFile {
 	this := ModelsExposedFile{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *ModelsExposedFile) GetCreatedAt() string {
+	if o == nil || o.CreatedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsExposedFile) GetCreatedAtOk() (*string, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *ModelsExposedFile) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
+func (o *ModelsExposedFile) SetCreatedAt(v string) {
+	o.CreatedAt = &v
+}
+
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
+func (o *ModelsExposedFile) GetDeletedAt() GormDeletedAt {
+	if o == nil || o.DeletedAt == nil {
+		var ret GormDeletedAt
+		return ret
+	}
+	return *o.DeletedAt
+}
+
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsExposedFile) GetDeletedAtOk() (*GormDeletedAt, bool) {
+	if o == nil || o.DeletedAt == nil {
+		return nil, false
+	}
+	return o.DeletedAt, true
+}
+
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *ModelsExposedFile) HasDeletedAt() bool {
+	if o != nil && o.DeletedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given GormDeletedAt and assigns it to the DeletedAt field.
+func (o *ModelsExposedFile) SetDeletedAt(v GormDeletedAt) {
+	o.DeletedAt = &v
 }
 
 // GetFileName returns the FileName field value if set, zero value otherwise.
@@ -170,8 +238,78 @@ func (o *ModelsExposedFile) SetFileUrl(v string) {
 	o.FileUrl = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ModelsExposedFile) GetId() int32 {
+	if o == nil || o.Id == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsExposedFile) GetIdOk() (*int32, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *ModelsExposedFile) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
+func (o *ModelsExposedFile) SetId(v int32) {
+	o.Id = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *ModelsExposedFile) GetUpdatedAt() string {
+	if o == nil || o.UpdatedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsExposedFile) GetUpdatedAtOk() (*string, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *ModelsExposedFile) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
+func (o *ModelsExposedFile) SetUpdatedAt(v string) {
+	o.UpdatedAt = &v
+}
+
 func (o ModelsExposedFile) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.DeletedAt != nil {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
 	if o.FileName != nil {
 		toSerialize["file_name"] = o.FileName
 	}
@@ -183,6 +321,12 @@ func (o ModelsExposedFile) MarshalJSON() ([]byte, error) {
 	}
 	if o.FileUrl != nil {
 		toSerialize["file_url"] = o.FileUrl
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -202,10 +346,14 @@ func (o *ModelsExposedFile) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "deleted_at")
 		delete(additionalProperties, "file_name")
 		delete(additionalProperties, "file_size")
 		delete(additionalProperties, "file_type")
 		delete(additionalProperties, "file_url")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}
 

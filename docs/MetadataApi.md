@@ -32,7 +32,7 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | Bearer openapi_token
-    metadataInfo := *openapiclient.NewModelsMetadata("Description_example", "Image_example", "Name_example") // ModelsMetadata | metadata_info
+    metadataInfo := *openapiclient.NewServicesMetadataDto("Description_example", "Image_example", "Name_example") // ServicesMetadataDto | metadata_info
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateMetadataRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer openapi_token | 
- **metadataInfo** | [**ModelsMetadata**](ModelsMetadata.md) | metadata_info | 
+ **metadataInfo** | [**ServicesMetadataDto**](ServicesMetadataDto.md) | metadata_info | 
 
 ### Return type
 

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BaseUri** | Pointer to **string** |  | [optional] 
 **Chain** | **string** |  | 
+**IsSponsorForAllUser** | **bool** |  | 
 **Name** | **string** |  | 
 **OwnerAddress** | **string** |  | 
 **RoyaltiesAddress** | Pointer to **string** |  | [optional] 
@@ -20,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewServicesContractDeployDto
 
-`func NewServicesContractDeployDto(chain string, name string, ownerAddress string, symbol string, type_ string, ) *ServicesContractDeployDto`
+`func NewServicesContractDeployDto(chain string, isSponsorForAllUser bool, name string, ownerAddress string, symbol string, type_ string, ) *ServicesContractDeployDto`
 
 NewServicesContractDeployDto instantiates a new ServicesContractDeployDto object
 This constructor will assign default values to properties that have it defined,
@@ -78,6 +79,26 @@ and a boolean to check if the value has been set.
 `func (o *ServicesContractDeployDto) SetChain(v string)`
 
 SetChain sets Chain field to given value.
+
+
+### GetIsSponsorForAllUser
+
+`func (o *ServicesContractDeployDto) GetIsSponsorForAllUser() bool`
+
+GetIsSponsorForAllUser returns the IsSponsorForAllUser field if non-nil, zero value otherwise.
+
+### GetIsSponsorForAllUserOk
+
+`func (o *ServicesContractDeployDto) GetIsSponsorForAllUserOk() (*bool, bool)`
+
+GetIsSponsorForAllUserOk returns a tuple with the IsSponsorForAllUser field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsSponsorForAllUser
+
+`func (o *ServicesContractDeployDto) SetIsSponsorForAllUser(v bool)`
+
+SetIsSponsorForAllUser sets IsSponsorForAllUser field to given value.
 
 
 ### GetName

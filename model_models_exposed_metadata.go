@@ -17,11 +17,15 @@ import (
 // ModelsExposedMetadata struct for ModelsExposedMetadata
 type ModelsExposedMetadata struct {
 	Attributes []ModelsExposedMetadataAttribute `json:"attributes,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	DeletedAt *GormDeletedAt `json:"deleted_at,omitempty"`
 	Description string `json:"description"`
 	ExternalLink *string `json:"external_link,omitempty"`
+	Id *int32 `json:"id,omitempty"`
 	Image string `json:"image"`
 	MetadataId *string `json:"metadata_id,omitempty"`
 	Name string `json:"name"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
 	Uri *string `json:"uri,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -80,6 +84,70 @@ func (o *ModelsExposedMetadata) SetAttributes(v []ModelsExposedMetadataAttribute
 	o.Attributes = v
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *ModelsExposedMetadata) GetCreatedAt() string {
+	if o == nil || o.CreatedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsExposedMetadata) GetCreatedAtOk() (*string, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *ModelsExposedMetadata) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
+func (o *ModelsExposedMetadata) SetCreatedAt(v string) {
+	o.CreatedAt = &v
+}
+
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
+func (o *ModelsExposedMetadata) GetDeletedAt() GormDeletedAt {
+	if o == nil || o.DeletedAt == nil {
+		var ret GormDeletedAt
+		return ret
+	}
+	return *o.DeletedAt
+}
+
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsExposedMetadata) GetDeletedAtOk() (*GormDeletedAt, bool) {
+	if o == nil || o.DeletedAt == nil {
+		return nil, false
+	}
+	return o.DeletedAt, true
+}
+
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *ModelsExposedMetadata) HasDeletedAt() bool {
+	if o != nil && o.DeletedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given GormDeletedAt and assigns it to the DeletedAt field.
+func (o *ModelsExposedMetadata) SetDeletedAt(v GormDeletedAt) {
+	o.DeletedAt = &v
+}
+
 // GetDescription returns the Description field value
 func (o *ModelsExposedMetadata) GetDescription() string {
 	if o == nil {
@@ -134,6 +202,38 @@ func (o *ModelsExposedMetadata) HasExternalLink() bool {
 // SetExternalLink gets a reference to the given string and assigns it to the ExternalLink field.
 func (o *ModelsExposedMetadata) SetExternalLink(v string) {
 	o.ExternalLink = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ModelsExposedMetadata) GetId() int32 {
+	if o == nil || o.Id == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsExposedMetadata) GetIdOk() (*int32, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *ModelsExposedMetadata) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
+func (o *ModelsExposedMetadata) SetId(v int32) {
+	o.Id = &v
 }
 
 // GetImage returns the Image field value
@@ -216,6 +316,38 @@ func (o *ModelsExposedMetadata) SetName(v string) {
 	o.Name = v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *ModelsExposedMetadata) GetUpdatedAt() string {
+	if o == nil || o.UpdatedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsExposedMetadata) GetUpdatedAtOk() (*string, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *ModelsExposedMetadata) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
+func (o *ModelsExposedMetadata) SetUpdatedAt(v string) {
+	o.UpdatedAt = &v
+}
+
 // GetUri returns the Uri field value if set, zero value otherwise.
 func (o *ModelsExposedMetadata) GetUri() string {
 	if o == nil || o.Uri == nil {
@@ -253,11 +385,20 @@ func (o ModelsExposedMetadata) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.DeletedAt != nil {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
 	if true {
 		toSerialize["description"] = o.Description
 	}
 	if o.ExternalLink != nil {
 		toSerialize["external_link"] = o.ExternalLink
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if true {
 		toSerialize["image"] = o.Image
@@ -267,6 +408,9 @@ func (o ModelsExposedMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["name"] = o.Name
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	if o.Uri != nil {
 		toSerialize["uri"] = o.Uri
@@ -290,11 +434,15 @@ func (o *ModelsExposedMetadata) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "attributes")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "deleted_at")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "external_link")
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "image")
 		delete(additionalProperties, "metadata_id")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "uri")
 		o.AdditionalProperties = additionalProperties
 	}

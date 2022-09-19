@@ -53,9 +53,15 @@ type APIClient struct {
 
 	FilesApi FilesApi
 
+	LoginApi LoginApi
+
 	MetadataApi MetadataApi
 
 	MintsApi MintsApi
+
+	NFTsApi NFTsApi
+
+	TransactionApi TransactionApi
 
 	TransfersApi TransfersApi
 }
@@ -78,8 +84,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.ContractApi = (*ContractApiService)(&c.common)
 	c.FilesApi = (*FilesApiService)(&c.common)
+	c.LoginApi = (*LoginApiService)(&c.common)
 	c.MetadataApi = (*MetadataApiService)(&c.common)
 	c.MintsApi = (*MintsApiService)(&c.common)
+	c.NFTsApi = (*NFTsApiService)(&c.common)
+	c.TransactionApi = (*TransactionApiService)(&c.common)
 	c.TransfersApi = (*TransfersApiService)(&c.common)
 
 	return c

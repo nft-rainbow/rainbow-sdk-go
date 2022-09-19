@@ -5,11 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**[]ModelsExposedMetadataAttribute**](ModelsExposedMetadataAttribute.md) |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**DeletedAt** | Pointer to [**GormDeletedAt**](GormDeletedAt.md) |  | [optional] 
 **Description** | **string** |  | 
 **ExternalLink** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int32** |  | [optional] 
 **Image** | **string** |  | 
 **MetadataId** | Pointer to **string** |  | [optional] 
 **Name** | **string** |  | 
+**UpdatedAt** | Pointer to **string** |  | [optional] 
 **Uri** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -56,6 +60,56 @@ SetAttributes sets Attributes field to given value.
 
 HasAttributes returns a boolean if a field has been set.
 
+### GetCreatedAt
+
+`func (o *ModelsExposedMetadata) GetCreatedAt() string`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *ModelsExposedMetadata) GetCreatedAtOk() (*string, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *ModelsExposedMetadata) SetCreatedAt(v string)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *ModelsExposedMetadata) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetDeletedAt
+
+`func (o *ModelsExposedMetadata) GetDeletedAt() GormDeletedAt`
+
+GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+
+### GetDeletedAtOk
+
+`func (o *ModelsExposedMetadata) GetDeletedAtOk() (*GormDeletedAt, bool)`
+
+GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedAt
+
+`func (o *ModelsExposedMetadata) SetDeletedAt(v GormDeletedAt)`
+
+SetDeletedAt sets DeletedAt field to given value.
+
+### HasDeletedAt
+
+`func (o *ModelsExposedMetadata) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
+
 ### GetDescription
 
 `func (o *ModelsExposedMetadata) GetDescription() string`
@@ -100,6 +154,31 @@ SetExternalLink sets ExternalLink field to given value.
 `func (o *ModelsExposedMetadata) HasExternalLink() bool`
 
 HasExternalLink returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *ModelsExposedMetadata) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ModelsExposedMetadata) GetIdOk() (*int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ModelsExposedMetadata) SetId(v int32)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *ModelsExposedMetadata) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetImage
 
@@ -165,6 +244,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetUpdatedAt
+
+`func (o *ModelsExposedMetadata) GetUpdatedAt() string`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *ModelsExposedMetadata) GetUpdatedAtOk() (*string, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *ModelsExposedMetadata) SetUpdatedAt(v string)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *ModelsExposedMetadata) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetUri
 

@@ -78,14 +78,21 @@ All URIs are relative to *http://api.nftrainbow.xyz/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ContractApi* | [**AddContractSponsorWhitelist**](docs/ContractApi.md#addcontractsponsorwhitelist) | **Post** /contracts/:address/sponsor/whitelist | Add contract sponsored whitelist
 *ContractApi* | [**DeployContract**](docs/ContractApi.md#deploycontract) | **Post** /contracts/ | Deploy contract
+*ContractApi* | [**GetContractAdmin**](docs/ContractApi.md#getcontractadmin) | **Get** /contracts/{address}/admin | Get administrator of contract, only work on conflux chain
 *ContractApi* | [**GetContractInfo**](docs/ContractApi.md#getcontractinfo) | **Get** /contracts/detail/{id} | Contract detail
 *ContractApi* | [**GetContractSponsorInfo**](docs/ContractApi.md#getcontractsponsorinfo) | **Get** /contracts/{address}/sponsor | Query sponsor
+*ContractApi* | [**GetContractSponsoredWhitelist**](docs/ContractApi.md#getcontractsponsoredwhitelist) | **Get** /contracts/:address/sponsor/whitelist | Get contract sponsored whitelist
 *ContractApi* | [**ListContracts**](docs/ContractApi.md#listcontracts) | **Get** /contracts/ | Obtain contract list
+*ContractApi* | [**RemoveContractSponsorWhitelist**](docs/ContractApi.md#removecontractsponsorwhitelist) | **Delete** /contracts/:address/sponsor/whitelist | Remove contract sponsored whitelist
 *ContractApi* | [**SetContractSponsor**](docs/ContractApi.md#setcontractsponsor) | **Post** /contracts/{address}/sponsor | Set sponsor
+*ContractApi* | [**UpdateContractAdmin**](docs/ContractApi.md#updatecontractadmin) | **Put** /contracts/{address}/admin | Update administrator of contract
 *FilesApi* | [**ListFiles**](docs/FilesApi.md#listfiles) | **Get** /files/ | Obtain file list
 *FilesApi* | [**UploadFile**](docs/FilesApi.md#uploadfile) | **Post** /files/ | Upload file
 *FilesApi* | [**UploadFileToOss**](docs/FilesApi.md#uploadfiletooss) | **Post** /files/oss | Upload file to OSS
+*LoginApi* | [**LoginApp**](docs/LoginApi.md#loginapp) | **Post** /login | App login
+*LoginApi* | [**RefreshAuth**](docs/LoginApi.md#refreshauth) | **Get** /refresh_token | Refresh JWT
 *MetadataApi* | [**CreateMetadata**](docs/MetadataApi.md#createmetadata) | **Post** /metadata/ | Create NFT metadata
 *MetadataApi* | [**GetMetadatInfo**](docs/MetadataApi.md#getmetadatinfo) | **Get** /metadata/{metadata_id} | Query metadata
 *MetadataApi* | [**ListMetadatas**](docs/MetadataApi.md#listmetadatas) | **Get** /metadata/ | Obtain metadata list
@@ -95,6 +102,8 @@ Class | Method | HTTP request | Description
 *MintsApi* | [**EasyMintByMetadata**](docs/MintsApi.md#easymintbymetadata) | **Post** /mints/easy/urls | Mint NFT with metadata
 *MintsApi* | [**GetMintDetail**](docs/MintsApi.md#getmintdetail) | **Get** /mints/{id} | Mint NFT detail
 *MintsApi* | [**ListMints**](docs/MintsApi.md#listmints) | **Get** /mints/ | Obtain NFT list
+*NFTsApi* | [**NFTInfo**](docs/NFTsApi.md#nftinfo) | **Get** /nft/{address}/{token_id} | Get NFT info, mainly owner and metadata
+*TransactionApi* | [**GetTransactionByID**](docs/TransactionApi.md#gettransactionbyid) | **Get** /tx/{id} | Get transaction informantion by ID
 *TransfersApi* | [**BatchTransferNft**](docs/TransfersApi.md#batchtransfernft) | **Post** /transfers/customizable/batch | Batch Transfer NFTs
 *TransfersApi* | [**GetTransferDetail**](docs/TransfersApi.md#gettransferdetail) | **Get** /transfers/{id} | Transfer NFT detail
 *TransfersApi* | [**ListTransfer**](docs/TransfersApi.md#listtransfer) | **Get** /transfers/ | Obtain the transferred NFTs list
@@ -111,23 +120,26 @@ Class | Method | HTTP request | Description
  - [ModelsExposedMetadataAttribute](docs/ModelsExposedMetadataAttribute.md)
  - [ModelsExposedMetadataQueryResult](docs/ModelsExposedMetadataQueryResult.md)
  - [ModelsFilesQueryResult](docs/ModelsFilesQueryResult.md)
- - [ModelsMetadata](docs/ModelsMetadata.md)
- - [ModelsMetadataAttribute](docs/ModelsMetadataAttribute.md)
  - [ModelsMintTask](docs/ModelsMintTask.md)
  - [ModelsMintTaskQueryResult](docs/ModelsMintTaskQueryResult.md)
  - [ModelsTransferTask](docs/ModelsTransferTask.md)
  - [ModelsTransferTaskQueryResult](docs/ModelsTransferTaskQueryResult.md)
  - [MultipartFileHeader](docs/MultipartFileHeader.md)
  - [RainbowErrorsRainbowErrorDetailInfo](docs/RainbowErrorsRainbowErrorDetailInfo.md)
+ - [ServicesContractAdminUpdateDto](docs/ServicesContractAdminUpdateDto.md)
  - [ServicesContractDeployDto](docs/ServicesContractDeployDto.md)
  - [ServicesCustomMintBatchDto](docs/ServicesCustomMintBatchDto.md)
  - [ServicesCustomMintDto](docs/ServicesCustomMintDto.md)
  - [ServicesEasyMintMetaDto](docs/ServicesEasyMintMetaDto.md)
+ - [ServicesMetadataDto](docs/ServicesMetadataDto.md)
  - [ServicesMintItemDto](docs/ServicesMintItemDto.md)
+ - [ServicesNFT](docs/ServicesNFT.md)
+ - [ServicesSendTxResp](docs/ServicesSendTxResp.md)
  - [ServicesSponsorInfo](docs/ServicesSponsorInfo.md)
  - [ServicesTransferBatchDto](docs/ServicesTransferBatchDto.md)
  - [ServicesTransferDto](docs/ServicesTransferDto.md)
  - [ServicesTransferItemDto](docs/ServicesTransferItemDto.md)
+ - [ServicesTxResp](docs/ServicesTxResp.md)
  - [ServicesUploadFilesResponse](docs/ServicesUploadFilesResponse.md)
 
 
