@@ -94,147 +94,6 @@ paths:
       tags:
       - Contract
       x-codegen-request-body-name: contract_info
-  /contracts/:address/sponsor/whitelist:
-    delete:
-      description: "Remove contract sponsored whitelist, only work on conflux chain"
-      operationId: RemoveContractSponsorWhitelist
-      parameters:
-      - description: Bearer Open_JWT
-        in: header
-        name: Authorization
-        required: true
-        schema:
-          type: string
-      - description: contract address
-        in: path
-        name: address
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/services.SendTxResp'
-          description: Transaction id
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Invalid request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Internal Server error
-        "599":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Businesss error
-      security:
-      - ApiKeyAuth: []
-      summary: Remove contract sponsored whitelist
-      tags:
-      - Contract
-    get:
-      description: "Get contract sponsored whitelist, only work on conflux chain"
-      operationId: GetContractSponsoredWhitelist
-      parameters:
-      - description: Bearer Open_JWT
-        in: header
-        name: Authorization
-        required: true
-        schema:
-          type: string
-      - description: contract address
-        in: path
-        name: address
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  type: string
-                type: array
-          description: Contract sponsored whitelist
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Invalid request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Internal Server error
-        "599":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Businesss error
-      security:
-      - ApiKeyAuth: []
-      summary: Get contract sponsored whitelist
-      tags:
-      - Contract
-    post:
-      description: "Add contract sponsored whitelist, only work on conflux chain"
-      operationId: AddContractSponsorWhitelist
-      parameters:
-      - description: Bearer Open_JWT
-        in: header
-        name: Authorization
-        required: true
-        schema:
-          type: string
-      - description: contract address
-        in: path
-        name: address
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/services.SendTxResp'
-          description: Transaction id
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Invalid request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Internal Server error
-        "599":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Businesss error
-      security:
-      - ApiKeyAuth: []
-      summary: Add contract sponsored whitelist
-      tags:
-      - Contract
   /contracts/detail/{id}:
     get:
       description: Get Contract info
@@ -463,6 +322,167 @@ paths:
       summary: Set sponsor
       tags:
       - Contract
+  /contracts/{address}/sponsor/whitelist:
+    delete:
+      description: "Remove contract sponsored whitelist, only work on conflux chain"
+      operationId: RemoveContractSponsorWhitelist
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              items:
+                type: string
+              type: array
+        description: Removing sponsor whitelist
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.SendTxResp'
+          description: Transaction id
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Remove contract sponsored whitelist
+      tags:
+      - Contract
+      x-codegen-request-body-name: users
+    get:
+      description: "Get contract sponsored whitelist, only work on conflux chain"
+      operationId: GetContractSponsoredWhitelist
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Contract sponsored whitelist
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Get contract sponsored whitelist
+      tags:
+      - Contract
+    post:
+      description: "Add contract sponsored whitelist, only work on conflux chain"
+      operationId: AddContractSponsorWhitelist
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              items:
+                type: string
+              type: array
+        description: Adding sponsor whitelist
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.SendTxResp'
+          description: Transaction id
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Add contract sponsored whitelist
+      tags:
+      - Contract
+      x-codegen-request-body-name: users
   /files/:
     get:
       description: Get the file list containing the info of the files uploaded in

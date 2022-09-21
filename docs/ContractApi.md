@@ -4,14 +4,14 @@ All URIs are relative to *http://api.nftrainbow.xyz/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddContractSponsorWhitelist**](ContractApi.md#AddContractSponsorWhitelist) | **Post** /contracts/:address/sponsor/whitelist | Add contract sponsored whitelist
+[**AddContractSponsorWhitelist**](ContractApi.md#AddContractSponsorWhitelist) | **Post** /contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist
 [**DeployContract**](ContractApi.md#DeployContract) | **Post** /contracts/ | Deploy contract
 [**GetContractAdmin**](ContractApi.md#GetContractAdmin) | **Get** /contracts/{address}/admin | Get administrator of contract, only work on conflux chain
 [**GetContractInfo**](ContractApi.md#GetContractInfo) | **Get** /contracts/detail/{id} | Contract detail
 [**GetContractSponsorInfo**](ContractApi.md#GetContractSponsorInfo) | **Get** /contracts/{address}/sponsor | Query sponsor
-[**GetContractSponsoredWhitelist**](ContractApi.md#GetContractSponsoredWhitelist) | **Get** /contracts/:address/sponsor/whitelist | Get contract sponsored whitelist
+[**GetContractSponsoredWhitelist**](ContractApi.md#GetContractSponsoredWhitelist) | **Get** /contracts/{address}/sponsor/whitelist | Get contract sponsored whitelist
 [**ListContracts**](ContractApi.md#ListContracts) | **Get** /contracts/ | Obtain contract list
-[**RemoveContractSponsorWhitelist**](ContractApi.md#RemoveContractSponsorWhitelist) | **Delete** /contracts/:address/sponsor/whitelist | Remove contract sponsored whitelist
+[**RemoveContractSponsorWhitelist**](ContractApi.md#RemoveContractSponsorWhitelist) | **Delete** /contracts/{address}/sponsor/whitelist | Remove contract sponsored whitelist
 [**SetContractSponsor**](ContractApi.md#SetContractSponsor) | **Post** /contracts/{address}/sponsor | Set sponsor
 [**UpdateContractAdmin**](ContractApi.md#UpdateContractAdmin) | **Put** /contracts/{address}/admin | Update administrator of contract
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## AddContractSponsorWhitelist
 
-> ServicesSendTxResp AddContractSponsorWhitelist(ctx, address).Authorization(authorization).Execute()
+> ServicesSendTxResp AddContractSponsorWhitelist(ctx, address).Authorization(authorization).Users(users).Execute()
 
 Add contract sponsored whitelist
 
@@ -40,10 +40,11 @@ import (
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
     address := "address_example" // string | contract address
+    users := []string{"Property_example"} // []string | Adding sponsor whitelist
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractApi.AddContractSponsorWhitelist(context.Background(), address).Authorization(authorization).Execute()
+    resp, r, err := apiClient.ContractApi.AddContractSponsorWhitelist(context.Background(), address).Authorization(authorization).Users(users).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContractApi.AddContractSponsorWhitelist``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
 
+ **users** | **[]string** | Adding sponsor whitelist | 
 
 ### Return type
 
@@ -519,7 +521,7 @@ No authorization required
 
 ## RemoveContractSponsorWhitelist
 
-> ServicesSendTxResp RemoveContractSponsorWhitelist(ctx, address).Authorization(authorization).Execute()
+> ServicesSendTxResp RemoveContractSponsorWhitelist(ctx, address).Authorization(authorization).Users(users).Execute()
 
 Remove contract sponsored whitelist
 
@@ -540,10 +542,11 @@ import (
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
     address := "address_example" // string | contract address
+    users := []string{"Property_example"} // []string | Removing sponsor whitelist
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractApi.RemoveContractSponsorWhitelist(context.Background(), address).Authorization(authorization).Execute()
+    resp, r, err := apiClient.ContractApi.RemoveContractSponsorWhitelist(context.Background(), address).Authorization(authorization).Users(users).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContractApi.RemoveContractSponsorWhitelist``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -570,6 +573,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
 
+ **users** | **[]string** | Removing sponsor whitelist | 
 
 ### Return type
 

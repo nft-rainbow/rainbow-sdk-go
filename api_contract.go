@@ -179,11 +179,18 @@ type ApiAddContractSponsorWhitelistRequest struct {
 	ApiService ContractApi
 	authorization *string
 	address string
+	users *[]string
 }
 
 // Bearer Open_JWT
 func (r ApiAddContractSponsorWhitelistRequest) Authorization(authorization string) ApiAddContractSponsorWhitelistRequest {
 	r.authorization = &authorization
+	return r
+}
+
+// Adding sponsor whitelist
+func (r ApiAddContractSponsorWhitelistRequest) Users(users []string) ApiAddContractSponsorWhitelistRequest {
+	r.users = &users
 	return r
 }
 
@@ -223,7 +230,7 @@ func (a *ContractApiService) AddContractSponsorWhitelistExecute(r ApiAddContract
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/:address/sponsor/whitelist"
+	localVarPath := localBasePath + "/contracts/{address}/sponsor/whitelist"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -231,6 +238,9 @@ func (a *ContractApiService) AddContractSponsorWhitelistExecute(r ApiAddContract
 	localVarFormParams := url.Values{}
 	if r.authorization == nil {
 		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if r.users == nil {
+		return localVarReturnValue, nil, reportError("users is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -251,6 +261,8 @@ func (a *ContractApiService) AddContractSponsorWhitelistExecute(r ApiAddContract
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.users
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -926,7 +938,7 @@ func (a *ContractApiService) GetContractSponsoredWhitelistExecute(r ApiGetContra
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/:address/sponsor/whitelist"
+	localVarPath := localBasePath + "/contracts/{address}/sponsor/whitelist"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1164,11 +1176,18 @@ type ApiRemoveContractSponsorWhitelistRequest struct {
 	ApiService ContractApi
 	authorization *string
 	address string
+	users *[]string
 }
 
 // Bearer Open_JWT
 func (r ApiRemoveContractSponsorWhitelistRequest) Authorization(authorization string) ApiRemoveContractSponsorWhitelistRequest {
 	r.authorization = &authorization
+	return r
+}
+
+// Removing sponsor whitelist
+func (r ApiRemoveContractSponsorWhitelistRequest) Users(users []string) ApiRemoveContractSponsorWhitelistRequest {
+	r.users = &users
 	return r
 }
 
@@ -1208,7 +1227,7 @@ func (a *ContractApiService) RemoveContractSponsorWhitelistExecute(r ApiRemoveCo
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/:address/sponsor/whitelist"
+	localVarPath := localBasePath + "/contracts/{address}/sponsor/whitelist"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1216,6 +1235,9 @@ func (a *ContractApiService) RemoveContractSponsorWhitelistExecute(r ApiRemoveCo
 	localVarFormParams := url.Values{}
 	if r.authorization == nil {
 		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if r.users == nil {
+		return localVarReturnValue, nil, reportError("users is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1236,6 +1258,8 @@ func (a *ContractApiService) RemoveContractSponsorWhitelistExecute(r ApiRemoveCo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.users
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

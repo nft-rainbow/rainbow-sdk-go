@@ -78,14 +78,14 @@ All URIs are relative to *http://api.nftrainbow.xyz/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ContractApi* | [**AddContractSponsorWhitelist**](docs/ContractApi.md#addcontractsponsorwhitelist) | **Post** /contracts/:address/sponsor/whitelist | Add contract sponsored whitelist
+*ContractApi* | [**AddContractSponsorWhitelist**](docs/ContractApi.md#addcontractsponsorwhitelist) | **Post** /contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist
 *ContractApi* | [**DeployContract**](docs/ContractApi.md#deploycontract) | **Post** /contracts/ | Deploy contract
 *ContractApi* | [**GetContractAdmin**](docs/ContractApi.md#getcontractadmin) | **Get** /contracts/{address}/admin | Get administrator of contract, only work on conflux chain
 *ContractApi* | [**GetContractInfo**](docs/ContractApi.md#getcontractinfo) | **Get** /contracts/detail/{id} | Contract detail
 *ContractApi* | [**GetContractSponsorInfo**](docs/ContractApi.md#getcontractsponsorinfo) | **Get** /contracts/{address}/sponsor | Query sponsor
-*ContractApi* | [**GetContractSponsoredWhitelist**](docs/ContractApi.md#getcontractsponsoredwhitelist) | **Get** /contracts/:address/sponsor/whitelist | Get contract sponsored whitelist
+*ContractApi* | [**GetContractSponsoredWhitelist**](docs/ContractApi.md#getcontractsponsoredwhitelist) | **Get** /contracts/{address}/sponsor/whitelist | Get contract sponsored whitelist
 *ContractApi* | [**ListContracts**](docs/ContractApi.md#listcontracts) | **Get** /contracts/ | Obtain contract list
-*ContractApi* | [**RemoveContractSponsorWhitelist**](docs/ContractApi.md#removecontractsponsorwhitelist) | **Delete** /contracts/:address/sponsor/whitelist | Remove contract sponsored whitelist
+*ContractApi* | [**RemoveContractSponsorWhitelist**](docs/ContractApi.md#removecontractsponsorwhitelist) | **Delete** /contracts/{address}/sponsor/whitelist | Remove contract sponsored whitelist
 *ContractApi* | [**SetContractSponsor**](docs/ContractApi.md#setcontractsponsor) | **Post** /contracts/{address}/sponsor | Set sponsor
 *ContractApi* | [**UpdateContractAdmin**](docs/ContractApi.md#updatecontractadmin) | **Put** /contracts/{address}/admin | Update administrator of contract
 *FilesApi* | [**ListFiles**](docs/FilesApi.md#listfiles) | **Get** /files/ | Obtain file list
