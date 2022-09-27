@@ -17,6 +17,7 @@ docs/FilesApi.md
 docs/GormDeletedAt.md
 docs/LoginApi.md
 docs/MetadataApi.md
+docs/MiddlewaresAppLogin.md
 docs/MintsApi.md
 docs/ModelsContract.md
 docs/ModelsContractTaskQueryResult.md
@@ -41,6 +42,7 @@ docs/ServicesMetadataDto.md
 docs/ServicesMintItemDto.md
 docs/ServicesNFT.md
 docs/ServicesSendTxResp.md
+docs/ServicesSetSponsorResp.md
 docs/ServicesSponsorInfo.md
 docs/ServicesTransferBatchDto.md
 docs/ServicesTransferDto.md
@@ -53,6 +55,7 @@ git_push.sh
 go.mod
 go.sum
 model_gorm_deleted_at.go
+model_middlewares_app_login.go
 model_models_contract.go
 model_models_contract_task_query_result.go
 model_models_exposed_file.go
@@ -75,6 +78,7 @@ model_services_metadata_dto.go
 model_services_mint_item_dto.go
 model_services_nft.go
 model_services_send_tx_resp.go
+model_services_set_sponsor_resp.go
 model_services_sponsor_info.go
 model_services_transfer_batch_dto.go
 model_services_transfer_dto.go
