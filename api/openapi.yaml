@@ -601,7 +601,7 @@ paths:
           '*/*':
             schema:
               $ref: '#/components/schemas/middlewares.appLogin'
-        description: app_secret
+        description: "login info, contain app_id and app_secret"
         required: true
       responses:
         "200":

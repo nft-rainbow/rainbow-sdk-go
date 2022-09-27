@@ -59,7 +59,7 @@ type ApiLoginAppRequest struct {
 	appLoginInfo *MiddlewaresAppLogin
 }
 
-// app_secret
+// login info, contain app_id and app_secret
 func (r ApiLoginAppRequest) AppLoginInfo(appLoginInfo MiddlewaresAppLogin) ApiLoginAppRequest {
 	r.appLoginInfo = &appLoginInfo
 	return r

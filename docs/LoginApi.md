@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-    appLoginInfo := *openapiclient.NewMiddlewaresAppLogin("AppId_example", "AppSecret_example") // MiddlewaresAppLogin | app_secret
+    appLoginInfo := *openapiclient.NewMiddlewaresAppLogin("AppId_example", "AppSecret_example") // MiddlewaresAppLogin | login info, contain app_id and app_secret
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -55,7 +55,7 @@ Other parameters are passed through a pointer to a apiLoginAppRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appLoginInfo** | [**MiddlewaresAppLogin**](MiddlewaresAppLogin.md) | app_secret | 
+ **appLoginInfo** | [**MiddlewaresAppLogin**](MiddlewaresAppLogin.md) | login info, contain app_id and app_secret | 
 
 ### Return type
 
