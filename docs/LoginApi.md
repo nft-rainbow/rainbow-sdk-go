@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## LoginApp
 
-> string LoginApp(ctx).AppSecret(appSecret).Execute()
+> string LoginApp(ctx).AppLoginInfo(appLoginInfo).Execute()
 
 App login
 
@@ -30,11 +30,11 @@ import (
 )
 
 func main() {
-    appSecret := "appSecret_example" // string | app_secret
+    appLoginInfo := *openapiclient.NewMiddlewaresAppLogin("AppId_example", "AppSecret_example") // MiddlewaresAppLogin | app_secret
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LoginApi.LoginApp(context.Background()).AppSecret(appSecret).Execute()
+    resp, r, err := apiClient.LoginApi.LoginApp(context.Background()).AppLoginInfo(appLoginInfo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.LoginApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +55,7 @@ Other parameters are passed through a pointer to a apiLoginAppRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appSecret** | **string** | app_secret | 
+ **appLoginInfo** | [**MiddlewaresAppLogin**](MiddlewaresAppLogin.md) | app_secret | 
 
 ### Return type
 

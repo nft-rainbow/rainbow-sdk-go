@@ -20,7 +20,7 @@ type ServicesCustomMintDto struct {
 	Chain string `json:"chain"`
 	ContractAddress string `json:"contract_address"`
 	ContractType string `json:"contract_type"`
-	MetadataUri string `json:"metadata_uri"`
+	MetadataUri *string `json:"metadata_uri,omitempty"`
 	MintToAddress string `json:"mint_to_address"`
 	TokenId *string `json:"token_id,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -32,12 +32,11 @@ type _ServicesCustomMintDto ServicesCustomMintDto
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServicesCustomMintDto(chain string, contractAddress string, contractType string, metadataUri string, mintToAddress string) *ServicesCustomMintDto {
+func NewServicesCustomMintDto(chain string, contractAddress string, contractType string, mintToAddress string) *ServicesCustomMintDto {
 	this := ServicesCustomMintDto{}
 	this.Chain = chain
 	this.ContractAddress = contractAddress
 	this.ContractType = contractType
-	this.MetadataUri = metadataUri
 	this.MintToAddress = mintToAddress
 	return &this
 }
@@ -154,28 +153,36 @@ func (o *ServicesCustomMintDto) SetContractType(v string) {
 	o.ContractType = v
 }
 
-// GetMetadataUri returns the MetadataUri field value
+// GetMetadataUri returns the MetadataUri field value if set, zero value otherwise.
 func (o *ServicesCustomMintDto) GetMetadataUri() string {
-	if o == nil {
+	if o == nil || o.MetadataUri == nil {
 		var ret string
 		return ret
 	}
-
-	return o.MetadataUri
+	return *o.MetadataUri
 }
 
-// GetMetadataUriOk returns a tuple with the MetadataUri field value
+// GetMetadataUriOk returns a tuple with the MetadataUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetMetadataUriOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.MetadataUri == nil {
 		return nil, false
 	}
-	return &o.MetadataUri, true
+	return o.MetadataUri, true
 }
 
-// SetMetadataUri sets field value
+// HasMetadataUri returns a boolean if a field has been set.
+func (o *ServicesCustomMintDto) HasMetadataUri() bool {
+	if o != nil && o.MetadataUri != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadataUri gets a reference to the given string and assigns it to the MetadataUri field.
 func (o *ServicesCustomMintDto) SetMetadataUri(v string) {
-	o.MetadataUri = v
+	o.MetadataUri = &v
 }
 
 // GetMintToAddress returns the MintToAddress field value
@@ -248,7 +255,7 @@ func (o ServicesCustomMintDto) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["contract_type"] = o.ContractType
 	}
-	if true {
+	if o.MetadataUri != nil {
 		toSerialize["metadata_uri"] = o.MetadataUri
 	}
 	if true {

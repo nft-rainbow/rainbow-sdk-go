@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [GormDeletedAt](docs/GormDeletedAt.md)
+ - [MiddlewaresAppLogin](docs/MiddlewaresAppLogin.md)
  - [ModelsContract](docs/ModelsContract.md)
  - [ModelsContractTaskQueryResult](docs/ModelsContractTaskQueryResult.md)
  - [ModelsExposedFile](docs/ModelsExposedFile.md)
@@ -135,6 +136,7 @@ Class | Method | HTTP request | Description
  - [ServicesMintItemDto](docs/ServicesMintItemDto.md)
  - [ServicesNFT](docs/ServicesNFT.md)
  - [ServicesSendTxResp](docs/ServicesSendTxResp.md)
+ - [ServicesSetSponsorResp](docs/ServicesSetSponsorResp.md)
  - [ServicesSponsorInfo](docs/ServicesSponsorInfo.md)
  - [ServicesTransferBatchDto](docs/ServicesTransferBatchDto.md)
  - [ServicesTransferDto](docs/ServicesTransferDto.md)

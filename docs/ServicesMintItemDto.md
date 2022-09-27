@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **int32** |  | [optional] 
-**MetadataUri** | **string** |  | 
+**MetadataUri** | Pointer to **string** |  | [optional] 
 **MintToAddress** | **string** |  | 
 **TokenId** | Pointer to **string** |  | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewServicesMintItemDto
 
-`func NewServicesMintItemDto(metadataUri string, mintToAddress string, ) *ServicesMintItemDto`
+`func NewServicesMintItemDto(mintToAddress string, ) *ServicesMintItemDto`
 
 NewServicesMintItemDto instantiates a new ServicesMintItemDto object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetMetadataUri sets MetadataUri field to given value.
 
+### HasMetadataUri
+
+`func (o *ServicesMintItemDto) HasMetadataUri() bool`
+
+HasMetadataUri returns a boolean if a field has been set.
 
 ### GetMintToAddress
 

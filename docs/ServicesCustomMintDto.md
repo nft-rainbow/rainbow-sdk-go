@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Chain** | **string** |  | 
 **ContractAddress** | **string** |  | 
 **ContractType** | **string** |  | 
-**MetadataUri** | **string** |  | 
+**MetadataUri** | Pointer to **string** |  | [optional] 
 **MintToAddress** | **string** |  | 
 **TokenId** | Pointer to **string** |  | [optional] 
 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewServicesCustomMintDto
 
-`func NewServicesCustomMintDto(chain string, contractAddress string, contractType string, metadataUri string, mintToAddress string, ) *ServicesCustomMintDto`
+`func NewServicesCustomMintDto(chain string, contractAddress string, contractType string, mintToAddress string, ) *ServicesCustomMintDto`
 
 NewServicesCustomMintDto instantiates a new ServicesCustomMintDto object
 This constructor will assign default values to properties that have it defined,
@@ -135,6 +135,11 @@ and a boolean to check if the value has been set.
 
 SetMetadataUri sets MetadataUri field to given value.
 
+### HasMetadataUri
+
+`func (o *ServicesCustomMintDto) HasMetadataUri() bool`
+
+HasMetadataUri returns a boolean if a field has been set.
 
 ### GetMintToAddress
 

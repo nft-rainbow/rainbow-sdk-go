@@ -303,8 +303,8 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-          description: success
+                $ref: '#/components/schemas/services.SetSponsorResp'
+          description: Transaction id"                             "success
         "400":
           content:
             application/json:
@@ -600,7 +600,7 @@ paths:
         content:
           '*/*':
             schema:
-              type: string
+              $ref: '#/components/schemas/middlewares.appLogin'
         description: app_secret
         required: true
       responses:
@@ -619,7 +619,7 @@ paths:
       summary: App login
       tags:
       - Login
-      x-codegen-request-body-name: app_secret
+      x-codegen-request-body-name: appLoginInfo
   /metadata/:
     get:
       description: Get the metadata list containing the info of the metadata created
@@ -1300,6 +1300,16 @@ components:
           description: Valid is true if Time is not NULL
           type: boolean
       type: object
+    middlewares.appLogin:
+      properties:
+        app_id:
+          type: string
+        app_secret:
+          type: string
+      required:
+      - app_id
+      - app_secret
+      type: object
     models.Contract:
       example:
         symbol: symbol
@@ -1955,7 +1965,6 @@ components:
       - chain
       - contract_address
       - contract_type
-      - metadata_uri
       - mint_to_address
       type: object
     services.EasyMintMetaDto:
@@ -2007,7 +2016,6 @@ components:
         token_id:
           type: string
       required:
-      - metadata_uri
       - mint_to_address
       type: object
     services.NFT:
@@ -2028,6 +2036,16 @@ components:
         tx_id: 0
       properties:
         tx_id:
+          type: integer
+      type: object
+    services.SetSponsorResp:
+      example:
+        sponsor_gas_tx_id: 6
+        sponsor_collateral_tx_id: 0
+      properties:
+        sponsor_collateral_tx_id:
+          type: integer
+        sponsor_gas_tx_id:
           type: integer
       type: object
     services.SponsorInfo:

@@ -17,7 +17,7 @@ import (
 // ServicesMintItemDto struct for ServicesMintItemDto
 type ServicesMintItemDto struct {
 	Amount *int32 `json:"amount,omitempty"`
-	MetadataUri string `json:"metadata_uri"`
+	MetadataUri *string `json:"metadata_uri,omitempty"`
 	MintToAddress string `json:"mint_to_address"`
 	TokenId *string `json:"token_id,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -29,9 +29,8 @@ type _ServicesMintItemDto ServicesMintItemDto
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServicesMintItemDto(metadataUri string, mintToAddress string) *ServicesMintItemDto {
+func NewServicesMintItemDto(mintToAddress string) *ServicesMintItemDto {
 	this := ServicesMintItemDto{}
-	this.MetadataUri = metadataUri
 	this.MintToAddress = mintToAddress
 	return &this
 }
@@ -76,28 +75,36 @@ func (o *ServicesMintItemDto) SetAmount(v int32) {
 	o.Amount = &v
 }
 
-// GetMetadataUri returns the MetadataUri field value
+// GetMetadataUri returns the MetadataUri field value if set, zero value otherwise.
 func (o *ServicesMintItemDto) GetMetadataUri() string {
-	if o == nil {
+	if o == nil || o.MetadataUri == nil {
 		var ret string
 		return ret
 	}
-
-	return o.MetadataUri
+	return *o.MetadataUri
 }
 
-// GetMetadataUriOk returns a tuple with the MetadataUri field value
+// GetMetadataUriOk returns a tuple with the MetadataUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMintItemDto) GetMetadataUriOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.MetadataUri == nil {
 		return nil, false
 	}
-	return &o.MetadataUri, true
+	return o.MetadataUri, true
 }
 
-// SetMetadataUri sets field value
+// HasMetadataUri returns a boolean if a field has been set.
+func (o *ServicesMintItemDto) HasMetadataUri() bool {
+	if o != nil && o.MetadataUri != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadataUri gets a reference to the given string and assigns it to the MetadataUri field.
 func (o *ServicesMintItemDto) SetMetadataUri(v string) {
-	o.MetadataUri = v
+	o.MetadataUri = &v
 }
 
 // GetMintToAddress returns the MintToAddress field value
@@ -161,7 +168,7 @@ func (o ServicesMintItemDto) MarshalJSON() ([]byte, error) {
 	if o.Amount != nil {
 		toSerialize["amount"] = o.Amount
 	}
-	if true {
+	if o.MetadataUri != nil {
 		toSerialize["metadata_uri"] = o.MetadataUri
 	}
 	if true {

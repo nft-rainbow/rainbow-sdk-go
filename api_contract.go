@@ -152,8 +152,8 @@ type ContractApi interface {
 	SetContractSponsor(ctx context.Context, address string) ApiSetContractSponsorRequest
 
 	// SetContractSponsorExecute executes the request
-	//  @return string
-	SetContractSponsorExecute(r ApiSetContractSponsorRequest) (string, *http.Response, error)
+	//  @return ServicesSetSponsorResp
+	SetContractSponsorExecute(r ApiSetContractSponsorRequest) (*ServicesSetSponsorResp, *http.Response, error)
 
 	/*
 	UpdateContractAdmin Update administrator of contract
@@ -1339,7 +1339,7 @@ func (r ApiSetContractSponsorRequest) Authorization(authorization string) ApiSet
 	return r
 }
 
-func (r ApiSetContractSponsorRequest) Execute() (string, *http.Response, error) {
+func (r ApiSetContractSponsorRequest) Execute() (*ServicesSetSponsorResp, *http.Response, error) {
 	return r.ApiService.SetContractSponsorExecute(r)
 }
 
@@ -1361,13 +1361,13 @@ func (a *ContractApiService) SetContractSponsor(ctx context.Context, address str
 }
 
 // Execute executes the request
-//  @return string
-func (a *ContractApiService) SetContractSponsorExecute(r ApiSetContractSponsorRequest) (string, *http.Response, error) {
+//  @return ServicesSetSponsorResp
+func (a *ContractApiService) SetContractSponsorExecute(r ApiSetContractSponsorRequest) (*ServicesSetSponsorResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  string
+		localVarReturnValue  *ServicesSetSponsorResp
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractApiService.SetContractSponsor")

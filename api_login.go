@@ -56,12 +56,12 @@ type LoginApiService service
 type ApiLoginAppRequest struct {
 	ctx context.Context
 	ApiService LoginApi
-	appSecret *string
+	appLoginInfo *MiddlewaresAppLogin
 }
 
 // app_secret
-func (r ApiLoginAppRequest) AppSecret(appSecret string) ApiLoginAppRequest {
-	r.appSecret = &appSecret
+func (r ApiLoginAppRequest) AppLoginInfo(appLoginInfo MiddlewaresAppLogin) ApiLoginAppRequest {
+	r.appLoginInfo = &appLoginInfo
 	return r
 }
 
@@ -104,8 +104,8 @@ func (a *LoginApiService) LoginAppExecute(r ApiLoginAppRequest) (string, *http.R
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.appSecret == nil {
-		return localVarReturnValue, nil, reportError("appSecret is required and must be specified")
+	if r.appLoginInfo == nil {
+		return localVarReturnValue, nil, reportError("appLoginInfo is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -126,7 +126,7 @@ func (a *LoginApiService) LoginAppExecute(r ApiLoginAppRequest) (string, *http.R
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.appSecret
+	localVarPostBody = r.appLoginInfo
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

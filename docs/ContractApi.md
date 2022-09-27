@@ -595,7 +595,7 @@ No authorization required
 
 ## SetContractSponsor
 
-> string SetContractSponsor(ctx, address).Authorization(authorization).Execute()
+> ServicesSetSponsorResp SetContractSponsor(ctx, address).Authorization(authorization).Execute()
 
 Set sponsor
 
@@ -624,7 +624,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ContractApi.SetContractSponsor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SetContractSponsor`: string
+    // response from `SetContractSponsor`: ServicesSetSponsorResp
     fmt.Fprintf(os.Stdout, "Response from `ContractApi.SetContractSponsor`: %v\n", resp)
 }
 ```
@@ -649,7 +649,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**string**
+[**ServicesSetSponsorResp**](ServicesSetSponsorResp.md)
 
 ### Authorization
 
