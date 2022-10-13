@@ -2,6 +2,7 @@
 .travis.yml
 README.md
 api/openapi.yaml
+api_burns.go
 api_contract.go
 api_files.go
 api_login.go
@@ -12,6 +13,7 @@ api_transaction.go
 api_transfers.go
 client.go
 configuration.go
+docs/BurnsApi.md
 docs/ContractApi.md
 docs/FilesApi.md
 docs/GormDeletedAt.md
@@ -19,6 +21,8 @@ docs/LoginApi.md
 docs/MetadataApi.md
 docs/MiddlewaresAppLogin.md
 docs/MintsApi.md
+docs/ModelsBurnTask.md
+docs/ModelsBurnTaskQueryResult.md
 docs/ModelsContract.md
 docs/ModelsContractTaskQueryResult.md
 docs/ModelsExposedFile.md
@@ -33,6 +37,7 @@ docs/ModelsTransferTaskQueryResult.md
 docs/MultipartFileHeader.md
 docs/NFTsApi.md
 docs/RainbowErrorsRainbowErrorDetailInfo.md
+docs/ServicesBurnDto.md
 docs/ServicesContractAdminUpdateDto.md
 docs/ServicesContractDeployDto.md
 docs/ServicesCustomMintBatchDto.md
@@ -56,6 +61,8 @@ go.mod
 go.sum
 model_gorm_deleted_at.go
 model_middlewares_app_login.go
+model_models_burn_task.go
+model_models_burn_task_query_result.go
 model_models_contract.go
 model_models_contract_task_query_result.go
 model_models_exposed_file.go
@@ -69,6 +76,7 @@ model_models_transfer_task.go
 model_models_transfer_task_query_result.go
 model_multipart_file_header.go
 model_rainbow_errors_rainbow_error_detail_info.go
+model_services_burn_dto.go
 model_services_contract_admin_update_dto.go
 model_services_contract_deploy_dto.go
 model_services_custom_mint_batch_dto.go

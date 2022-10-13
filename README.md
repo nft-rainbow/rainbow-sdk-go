@@ -74,10 +74,13 @@ ctx = context.WithValue(context.Background(), rainbowsdk.ContextOperationServerV
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://api.nftrainbow.xyz/v1*
+All URIs are relative to *http://api.nftrainbow.cn/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*BurnsApi* | [**BurnNft**](docs/BurnsApi.md#burnnft) | **Post** /burns | Burn NFT
+*BurnsApi* | [**GetBurnDetail**](docs/BurnsApi.md#getburndetail) | **Get** /burns/{id} | Burn NFT detail
+*BurnsApi* | [**GetBurnList**](docs/BurnsApi.md#getburnlist) | **Get** /burns | Obtain the burned NFTs list
 *ContractApi* | [**AddContractSponsorWhitelist**](docs/ContractApi.md#addcontractsponsorwhitelist) | **Post** /contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist
 *ContractApi* | [**DeployContract**](docs/ContractApi.md#deploycontract) | **Post** /contracts/ | Deploy contract
 *ContractApi* | [**GetContractAdmin**](docs/ContractApi.md#getcontractadmin) | **Get** /contracts/{address}/admin | Get administrator of contract, only work on conflux chain
@@ -114,6 +117,8 @@ Class | Method | HTTP request | Description
 
  - [GormDeletedAt](docs/GormDeletedAt.md)
  - [MiddlewaresAppLogin](docs/MiddlewaresAppLogin.md)
+ - [ModelsBurnTask](docs/ModelsBurnTask.md)
+ - [ModelsBurnTaskQueryResult](docs/ModelsBurnTaskQueryResult.md)
  - [ModelsContract](docs/ModelsContract.md)
  - [ModelsContractTaskQueryResult](docs/ModelsContractTaskQueryResult.md)
  - [ModelsExposedFile](docs/ModelsExposedFile.md)
@@ -127,6 +132,7 @@ Class | Method | HTTP request | Description
  - [ModelsTransferTaskQueryResult](docs/ModelsTransferTaskQueryResult.md)
  - [MultipartFileHeader](docs/MultipartFileHeader.md)
  - [RainbowErrorsRainbowErrorDetailInfo](docs/RainbowErrorsRainbowErrorDetailInfo.md)
+ - [ServicesBurnDto](docs/ServicesBurnDto.md)
  - [ServicesContractAdminUpdateDto](docs/ServicesContractAdminUpdateDto.md)
  - [ServicesContractDeployDto](docs/ServicesContractDeployDto.md)
  - [ServicesCustomMintBatchDto](docs/ServicesCustomMintBatchDto.md)

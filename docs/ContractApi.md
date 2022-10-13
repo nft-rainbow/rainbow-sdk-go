@@ -1,6 +1,6 @@
 # \ContractApi
 
-All URIs are relative to *http://api.nftrainbow.xyz/v1*
+All URIs are relative to *http://api.nftrainbow.cn/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

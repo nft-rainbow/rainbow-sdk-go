@@ -9,9 +9,133 @@ info:
   title: Rainbow-API
   version: "1.0"
 servers:
-- url: http://api.nftrainbow.xyz/v1
-- url: https://api.nftrainbow.xyz/v1
+- url: http://api.nftrainbow.cn/v1
+- url: https://api.nftrainbow.cn/v1
 paths:
+  /burns:
+    get:
+      description: Get the NFT burned list information.
+      operationId: GetBurnList
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.BurnTaskQueryResult'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Obtain the burned NFTs list
+      tags:
+      - Burns
+    post:
+      description: Burn NFT by admin
+      operationId: BurnNft
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/services.BurnDto'
+        description: burn_dto
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.BurnTask'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Burn NFT
+      tags:
+      - Burns
+      x-codegen-request-body-name: burn_dto
+  /burns/{id}:
+    get:
+      description: Get NFT Burn detail info
+      operationId: GetBurnDetail
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.BurnTask'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Burn NFT detail
+      tags:
+      - Burns
   /contracts/:
     get:
       description: Get the contract list containing the contracts deployed through
@@ -1310,6 +1434,109 @@ components:
       - app_id
       - app_secret
       type: object
+    models.BurnTask:
+      example:
+        amount: 6
+        chain_type: 5
+        chain_id: 5
+        contract: contract
+        created_at: created_at
+        error: error
+        tx_id: 3
+        deleted_at:
+          valid: true
+          time: time
+        contract_type: 2
+        token_id: token_id
+        updated_at: updated_at
+        id: 7
+        app_id: 1
+        user: user
+        hash: hash
+        status: 9
+      properties:
+        amount:
+          type: integer
+        app_id:
+          type: integer
+        chain_id:
+          type: integer
+        chain_type:
+          type: integer
+        contract:
+          type: string
+        contract_type:
+          type: integer
+        created_at:
+          type: string
+        deleted_at:
+          $ref: '#/components/schemas/gorm.DeletedAt'
+        error:
+          type: string
+        hash:
+          type: string
+        id:
+          type: integer
+        status:
+          description: "0-pending, 1-success, 2-failed"
+          type: integer
+        token_id:
+          type: string
+        tx_id:
+          type: integer
+        updated_at:
+          type: string
+        user:
+          type: string
+      type: object
+    models.BurnTaskQueryResult:
+      example:
+        count: 0
+        items:
+        - amount: 6
+          chain_type: 5
+          chain_id: 5
+          contract: contract
+          created_at: created_at
+          error: error
+          tx_id: 3
+          deleted_at:
+            valid: true
+            time: time
+          contract_type: 2
+          token_id: token_id
+          updated_at: updated_at
+          id: 7
+          app_id: 1
+          user: user
+          hash: hash
+          status: 9
+        - amount: 6
+          chain_type: 5
+          chain_id: 5
+          contract: contract
+          created_at: created_at
+          error: error
+          tx_id: 3
+          deleted_at:
+            valid: true
+            time: time
+          contract_type: 2
+          token_id: token_id
+          updated_at: updated_at
+          id: 7
+          app_id: 1
+          user: user
+          hash: hash
+          status: 9
+      properties:
+        count:
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/models.BurnTask'
+          type: array
+      type: object
     models.Contract:
       example:
         symbol: symbol
@@ -1864,6 +2091,32 @@ components:
           type: integer
         message:
           type: string
+      type: object
+    services.BurnDto:
+      properties:
+        amount:
+          type: integer
+        chain:
+          enum:
+          - conflux
+          - conflux_test
+          type: string
+        contract_address:
+          type: string
+        contract_type:
+          enum:
+          - erc721
+          - erc1155
+          type: string
+        token_id:
+          type: string
+        user:
+          type: string
+      required:
+      - chain
+      - contract_address
+      - contract_type
+      - token_id
       type: object
     services.ContractAdminUpdateDto:
       properties:
