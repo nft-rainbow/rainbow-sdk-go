@@ -13,7 +13,8 @@ Name | Type | Description | Notes
 **RoyaltiesBps** | Pointer to **int32** |  | [optional] 
 **Symbol** | **string** |  | 
 **TokensBurnable** | Pointer to **bool** |  | [optional] 
-**TokensTransferable** | Pointer to **bool** |  | [optional] 
+**TokensTransferableByAdmin** | Pointer to **bool** |  | [optional] 
+**TokensTransferableByUser** | Pointer to **bool** |  | [optional] 
 **TransferCooldownTime** | Pointer to **int32** |  | [optional] 
 **Type** | **string** |  | 
 
@@ -236,30 +237,55 @@ SetTokensBurnable sets TokensBurnable field to given value.
 
 HasTokensBurnable returns a boolean if a field has been set.
 
-### GetTokensTransferable
+### GetTokensTransferableByAdmin
 
-`func (o *ServicesContractDeployDto) GetTokensTransferable() bool`
+`func (o *ServicesContractDeployDto) GetTokensTransferableByAdmin() bool`
 
-GetTokensTransferable returns the TokensTransferable field if non-nil, zero value otherwise.
+GetTokensTransferableByAdmin returns the TokensTransferableByAdmin field if non-nil, zero value otherwise.
 
-### GetTokensTransferableOk
+### GetTokensTransferableByAdminOk
 
-`func (o *ServicesContractDeployDto) GetTokensTransferableOk() (*bool, bool)`
+`func (o *ServicesContractDeployDto) GetTokensTransferableByAdminOk() (*bool, bool)`
 
-GetTokensTransferableOk returns a tuple with the TokensTransferable field if it's non-nil, zero value otherwise
+GetTokensTransferableByAdminOk returns a tuple with the TokensTransferableByAdmin field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTokensTransferable
+### SetTokensTransferableByAdmin
 
-`func (o *ServicesContractDeployDto) SetTokensTransferable(v bool)`
+`func (o *ServicesContractDeployDto) SetTokensTransferableByAdmin(v bool)`
 
-SetTokensTransferable sets TokensTransferable field to given value.
+SetTokensTransferableByAdmin sets TokensTransferableByAdmin field to given value.
 
-### HasTokensTransferable
+### HasTokensTransferableByAdmin
 
-`func (o *ServicesContractDeployDto) HasTokensTransferable() bool`
+`func (o *ServicesContractDeployDto) HasTokensTransferableByAdmin() bool`
 
-HasTokensTransferable returns a boolean if a field has been set.
+HasTokensTransferableByAdmin returns a boolean if a field has been set.
+
+### GetTokensTransferableByUser
+
+`func (o *ServicesContractDeployDto) GetTokensTransferableByUser() bool`
+
+GetTokensTransferableByUser returns the TokensTransferableByUser field if non-nil, zero value otherwise.
+
+### GetTokensTransferableByUserOk
+
+`func (o *ServicesContractDeployDto) GetTokensTransferableByUserOk() (*bool, bool)`
+
+GetTokensTransferableByUserOk returns a tuple with the TokensTransferableByUser field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokensTransferableByUser
+
+`func (o *ServicesContractDeployDto) SetTokensTransferableByUser(v bool)`
+
+SetTokensTransferableByUser sets TokensTransferableByUser field to given value.
+
+### HasTokensTransferableByUser
+
+`func (o *ServicesContractDeployDto) HasTokensTransferableByUser() bool`
+
+HasTokensTransferableByUser returns a boolean if a field has been set.
 
 ### GetTransferCooldownTime
 

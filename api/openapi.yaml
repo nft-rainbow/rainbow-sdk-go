@@ -1541,10 +1541,10 @@ components:
       example:
         symbol: symbol
         chain_type: 5
+        tokens_transferable_by_admin: true
         address: address
         chain_id: 1
         tokens_burnable: true
-        tokens_transferable: true
         transfer_cooldown_time: 9
         created_at: created_at
         owner_address: owner_address
@@ -1559,6 +1559,7 @@ components:
         base_uri: base_uri
         name: name
         id: 5
+        tokens_transferable_by_user: true
         app_id: 6
         hash: hash
         status: 7
@@ -1596,7 +1597,9 @@ components:
           type: string
         tokens_burnable:
           type: boolean
-        tokens_transferable:
+        tokens_transferable_by_admin:
+          type: boolean
+        tokens_transferable_by_user:
           type: boolean
         transfer_cooldown_time:
           type: integer
@@ -1614,10 +1617,10 @@ components:
         items:
         - symbol: symbol
           chain_type: 5
+          tokens_transferable_by_admin: true
           address: address
           chain_id: 1
           tokens_burnable: true
-          tokens_transferable: true
           transfer_cooldown_time: 9
           created_at: created_at
           owner_address: owner_address
@@ -1632,15 +1635,16 @@ components:
           base_uri: base_uri
           name: name
           id: 5
+          tokens_transferable_by_user: true
           app_id: 6
           hash: hash
           status: 7
         - symbol: symbol
           chain_type: 5
+          tokens_transferable_by_admin: true
           address: address
           chain_id: 1
           tokens_burnable: true
-          tokens_transferable: true
           transfer_cooldown_time: 9
           created_at: created_at
           owner_address: owner_address
@@ -1655,6 +1659,7 @@ components:
           base_uri: base_uri
           name: name
           id: 5
+          tokens_transferable_by_user: true
           app_id: 6
           hash: hash
           status: 7
@@ -2151,7 +2156,9 @@ components:
           type: string
         tokens_burnable:
           type: boolean
-        tokens_transferable:
+        tokens_transferable_by_admin:
+          type: boolean
+        tokens_transferable_by_user:
           type: boolean
         transfer_cooldown_time:
           type: integer

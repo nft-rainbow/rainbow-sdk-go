@@ -25,7 +25,8 @@ type ServicesContractDeployDto struct {
 	RoyaltiesBps *int32 `json:"royalties_bps,omitempty"`
 	Symbol string `json:"symbol"`
 	TokensBurnable *bool `json:"tokens_burnable,omitempty"`
-	TokensTransferable *bool `json:"tokens_transferable,omitempty"`
+	TokensTransferableByAdmin *bool `json:"tokens_transferable_by_admin,omitempty"`
+	TokensTransferableByUser *bool `json:"tokens_transferable_by_user,omitempty"`
 	TransferCooldownTime *int32 `json:"transfer_cooldown_time,omitempty"`
 	Type string `json:"type"`
 	AdditionalProperties map[string]interface{}
@@ -304,36 +305,68 @@ func (o *ServicesContractDeployDto) SetTokensBurnable(v bool) {
 	o.TokensBurnable = &v
 }
 
-// GetTokensTransferable returns the TokensTransferable field value if set, zero value otherwise.
-func (o *ServicesContractDeployDto) GetTokensTransferable() bool {
-	if o == nil || o.TokensTransferable == nil {
+// GetTokensTransferableByAdmin returns the TokensTransferableByAdmin field value if set, zero value otherwise.
+func (o *ServicesContractDeployDto) GetTokensTransferableByAdmin() bool {
+	if o == nil || o.TokensTransferableByAdmin == nil {
 		var ret bool
 		return ret
 	}
-	return *o.TokensTransferable
+	return *o.TokensTransferableByAdmin
 }
 
-// GetTokensTransferableOk returns a tuple with the TokensTransferable field value if set, nil otherwise
+// GetTokensTransferableByAdminOk returns a tuple with the TokensTransferableByAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServicesContractDeployDto) GetTokensTransferableOk() (*bool, bool) {
-	if o == nil || o.TokensTransferable == nil {
+func (o *ServicesContractDeployDto) GetTokensTransferableByAdminOk() (*bool, bool) {
+	if o == nil || o.TokensTransferableByAdmin == nil {
 		return nil, false
 	}
-	return o.TokensTransferable, true
+	return o.TokensTransferableByAdmin, true
 }
 
-// HasTokensTransferable returns a boolean if a field has been set.
-func (o *ServicesContractDeployDto) HasTokensTransferable() bool {
-	if o != nil && o.TokensTransferable != nil {
+// HasTokensTransferableByAdmin returns a boolean if a field has been set.
+func (o *ServicesContractDeployDto) HasTokensTransferableByAdmin() bool {
+	if o != nil && o.TokensTransferableByAdmin != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTokensTransferable gets a reference to the given bool and assigns it to the TokensTransferable field.
-func (o *ServicesContractDeployDto) SetTokensTransferable(v bool) {
-	o.TokensTransferable = &v
+// SetTokensTransferableByAdmin gets a reference to the given bool and assigns it to the TokensTransferableByAdmin field.
+func (o *ServicesContractDeployDto) SetTokensTransferableByAdmin(v bool) {
+	o.TokensTransferableByAdmin = &v
+}
+
+// GetTokensTransferableByUser returns the TokensTransferableByUser field value if set, zero value otherwise.
+func (o *ServicesContractDeployDto) GetTokensTransferableByUser() bool {
+	if o == nil || o.TokensTransferableByUser == nil {
+		var ret bool
+		return ret
+	}
+	return *o.TokensTransferableByUser
+}
+
+// GetTokensTransferableByUserOk returns a tuple with the TokensTransferableByUser field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesContractDeployDto) GetTokensTransferableByUserOk() (*bool, bool) {
+	if o == nil || o.TokensTransferableByUser == nil {
+		return nil, false
+	}
+	return o.TokensTransferableByUser, true
+}
+
+// HasTokensTransferableByUser returns a boolean if a field has been set.
+func (o *ServicesContractDeployDto) HasTokensTransferableByUser() bool {
+	if o != nil && o.TokensTransferableByUser != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTokensTransferableByUser gets a reference to the given bool and assigns it to the TokensTransferableByUser field.
+func (o *ServicesContractDeployDto) SetTokensTransferableByUser(v bool) {
+	o.TokensTransferableByUser = &v
 }
 
 // GetTransferCooldownTime returns the TransferCooldownTime field value if set, zero value otherwise.
@@ -421,8 +454,11 @@ func (o ServicesContractDeployDto) MarshalJSON() ([]byte, error) {
 	if o.TokensBurnable != nil {
 		toSerialize["tokens_burnable"] = o.TokensBurnable
 	}
-	if o.TokensTransferable != nil {
-		toSerialize["tokens_transferable"] = o.TokensTransferable
+	if o.TokensTransferableByAdmin != nil {
+		toSerialize["tokens_transferable_by_admin"] = o.TokensTransferableByAdmin
+	}
+	if o.TokensTransferableByUser != nil {
+		toSerialize["tokens_transferable_by_user"] = o.TokensTransferableByUser
 	}
 	if o.TransferCooldownTime != nil {
 		toSerialize["transfer_cooldown_time"] = o.TransferCooldownTime
@@ -457,7 +493,8 @@ func (o *ServicesContractDeployDto) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "royalties_bps")
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "tokens_burnable")
-		delete(additionalProperties, "tokens_transferable")
+		delete(additionalProperties, "tokens_transferable_by_admin")
+		delete(additionalProperties, "tokens_transferable_by_user")
 		delete(additionalProperties, "transfer_cooldown_time")
 		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties

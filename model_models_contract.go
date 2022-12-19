@@ -33,7 +33,8 @@ type ModelsContract struct {
 	Status *int32 `json:"status,omitempty"`
 	Symbol *string `json:"symbol,omitempty"`
 	TokensBurnable *bool `json:"tokens_burnable,omitempty"`
-	TokensTransferable *bool `json:"tokens_transferable,omitempty"`
+	TokensTransferableByAdmin *bool `json:"tokens_transferable_by_admin,omitempty"`
+	TokensTransferableByUser *bool `json:"tokens_transferable_by_user,omitempty"`
 	TransferCooldownTime *int32 `json:"transfer_cooldown_time,omitempty"`
 	TxId *int32 `json:"tx_id,omitempty"`
 	// 1-ERC721, 2-ERC1155
@@ -573,36 +574,68 @@ func (o *ModelsContract) SetTokensBurnable(v bool) {
 	o.TokensBurnable = &v
 }
 
-// GetTokensTransferable returns the TokensTransferable field value if set, zero value otherwise.
-func (o *ModelsContract) GetTokensTransferable() bool {
-	if o == nil || o.TokensTransferable == nil {
+// GetTokensTransferableByAdmin returns the TokensTransferableByAdmin field value if set, zero value otherwise.
+func (o *ModelsContract) GetTokensTransferableByAdmin() bool {
+	if o == nil || o.TokensTransferableByAdmin == nil {
 		var ret bool
 		return ret
 	}
-	return *o.TokensTransferable
+	return *o.TokensTransferableByAdmin
 }
 
-// GetTokensTransferableOk returns a tuple with the TokensTransferable field value if set, nil otherwise
+// GetTokensTransferableByAdminOk returns a tuple with the TokensTransferableByAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelsContract) GetTokensTransferableOk() (*bool, bool) {
-	if o == nil || o.TokensTransferable == nil {
+func (o *ModelsContract) GetTokensTransferableByAdminOk() (*bool, bool) {
+	if o == nil || o.TokensTransferableByAdmin == nil {
 		return nil, false
 	}
-	return o.TokensTransferable, true
+	return o.TokensTransferableByAdmin, true
 }
 
-// HasTokensTransferable returns a boolean if a field has been set.
-func (o *ModelsContract) HasTokensTransferable() bool {
-	if o != nil && o.TokensTransferable != nil {
+// HasTokensTransferableByAdmin returns a boolean if a field has been set.
+func (o *ModelsContract) HasTokensTransferableByAdmin() bool {
+	if o != nil && o.TokensTransferableByAdmin != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTokensTransferable gets a reference to the given bool and assigns it to the TokensTransferable field.
-func (o *ModelsContract) SetTokensTransferable(v bool) {
-	o.TokensTransferable = &v
+// SetTokensTransferableByAdmin gets a reference to the given bool and assigns it to the TokensTransferableByAdmin field.
+func (o *ModelsContract) SetTokensTransferableByAdmin(v bool) {
+	o.TokensTransferableByAdmin = &v
+}
+
+// GetTokensTransferableByUser returns the TokensTransferableByUser field value if set, zero value otherwise.
+func (o *ModelsContract) GetTokensTransferableByUser() bool {
+	if o == nil || o.TokensTransferableByUser == nil {
+		var ret bool
+		return ret
+	}
+	return *o.TokensTransferableByUser
+}
+
+// GetTokensTransferableByUserOk returns a tuple with the TokensTransferableByUser field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsContract) GetTokensTransferableByUserOk() (*bool, bool) {
+	if o == nil || o.TokensTransferableByUser == nil {
+		return nil, false
+	}
+	return o.TokensTransferableByUser, true
+}
+
+// HasTokensTransferableByUser returns a boolean if a field has been set.
+func (o *ModelsContract) HasTokensTransferableByUser() bool {
+	if o != nil && o.TokensTransferableByUser != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTokensTransferableByUser gets a reference to the given bool and assigns it to the TokensTransferableByUser field.
+func (o *ModelsContract) SetTokensTransferableByUser(v bool) {
+	o.TokensTransferableByUser = &v
 }
 
 // GetTransferCooldownTime returns the TransferCooldownTime field value if set, zero value otherwise.
@@ -783,8 +816,11 @@ func (o ModelsContract) MarshalJSON() ([]byte, error) {
 	if o.TokensBurnable != nil {
 		toSerialize["tokens_burnable"] = o.TokensBurnable
 	}
-	if o.TokensTransferable != nil {
-		toSerialize["tokens_transferable"] = o.TokensTransferable
+	if o.TokensTransferableByAdmin != nil {
+		toSerialize["tokens_transferable_by_admin"] = o.TokensTransferableByAdmin
+	}
+	if o.TokensTransferableByUser != nil {
+		toSerialize["tokens_transferable_by_user"] = o.TokensTransferableByUser
 	}
 	if o.TransferCooldownTime != nil {
 		toSerialize["transfer_cooldown_time"] = o.TransferCooldownTime
@@ -832,7 +868,8 @@ func (o *ModelsContract) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "symbol")
 		delete(additionalProperties, "tokens_burnable")
-		delete(additionalProperties, "tokens_transferable")
+		delete(additionalProperties, "tokens_transferable_by_admin")
+		delete(additionalProperties, "tokens_transferable_by_user")
 		delete(additionalProperties, "transfer_cooldown_time")
 		delete(additionalProperties, "tx_id")
 		delete(additionalProperties, "type")
