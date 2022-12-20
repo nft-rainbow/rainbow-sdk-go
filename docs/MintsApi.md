@@ -35,7 +35,7 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
-    customMintBatchDto := *openapiclient.NewServicesCustomMintBatchDto("Chain_example", "ContractAddress_example", "ContractType_example", []openapiclient.ServicesMintItemDto{*openapiclient.NewServicesMintItemDto("MintToAddress_example")}) // ServicesCustomMintBatchDto | custom_mint_batch_dto
+    customMintBatchDto := *openapiclient.NewServicesCustomMintBatchDto("Chain_example", "ContractAddress_example", []openapiclient.ServicesMintItemDto{*openapiclient.NewServicesMintItemDto("MintToAddress_example")}) // ServicesCustomMintBatchDto | custom_mint_batch_dto
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -103,7 +103,7 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
-    customMintDto := *openapiclient.NewServicesCustomMintDto("Chain_example", "ContractAddress_example", "ContractType_example", "MintToAddress_example") // ServicesCustomMintDto | custom_mint_dto
+    customMintDto := *openapiclient.NewServicesCustomMintDto("Chain_example", "ContractAddress_example", "MintToAddress_example") // ServicesCustomMintDto | custom_mint_dto
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Amount** | Pointer to **int32** |  | [optional] 
 **Chain** | **string** |  | 
 **ContractAddress** | **string** |  | 
-**ContractType** | **string** |  | 
 **MetadataUri** | Pointer to **string** |  | [optional] 
 **MintToAddress** | **string** |  | 
 **TokenId** | Pointer to **string** |  | [optional] 
@@ -16,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewServicesCustomMintDto
 
-`func NewServicesCustomMintDto(chain string, contractAddress string, contractType string, mintToAddress string, ) *ServicesCustomMintDto`
+`func NewServicesCustomMintDto(chain string, contractAddress string, mintToAddress string, ) *ServicesCustomMintDto`
 
 NewServicesCustomMintDto instantiates a new ServicesCustomMintDto object
 This constructor will assign default values to properties that have it defined,
@@ -94,26 +93,6 @@ and a boolean to check if the value has been set.
 `func (o *ServicesCustomMintDto) SetContractAddress(v string)`
 
 SetContractAddress sets ContractAddress field to given value.
-
-
-### GetContractType
-
-`func (o *ServicesCustomMintDto) GetContractType() string`
-
-GetContractType returns the ContractType field if non-nil, zero value otherwise.
-
-### GetContractTypeOk
-
-`func (o *ServicesCustomMintDto) GetContractTypeOk() (*string, bool)`
-
-GetContractTypeOk returns a tuple with the ContractType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContractType
-
-`func (o *ServicesCustomMintDto) SetContractType(v string)`
-
-SetContractType sets ContractType field to given value.
 
 
 ### GetMetadataUri

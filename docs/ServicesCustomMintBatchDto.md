@@ -6,14 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Chain** | **string** |  | 
 **ContractAddress** | **string** |  | 
-**ContractType** | **string** |  | 
 **MintItems** | [**[]ServicesMintItemDto**](ServicesMintItemDto.md) |  | 
 
 ## Methods
 
 ### NewServicesCustomMintBatchDto
 
-`func NewServicesCustomMintBatchDto(chain string, contractAddress string, contractType string, mintItems []ServicesMintItemDto, ) *ServicesCustomMintBatchDto`
+`func NewServicesCustomMintBatchDto(chain string, contractAddress string, mintItems []ServicesMintItemDto, ) *ServicesCustomMintBatchDto`
 
 NewServicesCustomMintBatchDto instantiates a new ServicesCustomMintBatchDto object
 This constructor will assign default values to properties that have it defined,
@@ -66,26 +65,6 @@ and a boolean to check if the value has been set.
 `func (o *ServicesCustomMintBatchDto) SetContractAddress(v string)`
 
 SetContractAddress sets ContractAddress field to given value.
-
-
-### GetContractType
-
-`func (o *ServicesCustomMintBatchDto) GetContractType() string`
-
-GetContractType returns the ContractType field if non-nil, zero value otherwise.
-
-### GetContractTypeOk
-
-`func (o *ServicesCustomMintBatchDto) GetContractTypeOk() (*string, bool)`
-
-GetContractTypeOk returns a tuple with the ContractType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContractType
-
-`func (o *ServicesCustomMintBatchDto) SetContractType(v string)`
-
-SetContractType sets ContractType field to given value.
 
 
 ### GetMintItems

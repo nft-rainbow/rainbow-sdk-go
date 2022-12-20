@@ -18,7 +18,6 @@ import (
 type ServicesCustomMintBatchDto struct {
 	Chain string `json:"chain"`
 	ContractAddress string `json:"contract_address"`
-	ContractType string `json:"contract_type"`
 	MintItems []ServicesMintItemDto `json:"mint_items"`
 	AdditionalProperties map[string]interface{}
 }
@@ -29,11 +28,10 @@ type _ServicesCustomMintBatchDto ServicesCustomMintBatchDto
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServicesCustomMintBatchDto(chain string, contractAddress string, contractType string, mintItems []ServicesMintItemDto) *ServicesCustomMintBatchDto {
+func NewServicesCustomMintBatchDto(chain string, contractAddress string, mintItems []ServicesMintItemDto) *ServicesCustomMintBatchDto {
 	this := ServicesCustomMintBatchDto{}
 	this.Chain = chain
 	this.ContractAddress = contractAddress
-	this.ContractType = contractType
 	this.MintItems = mintItems
 	return &this
 }
@@ -94,30 +92,6 @@ func (o *ServicesCustomMintBatchDto) SetContractAddress(v string) {
 	o.ContractAddress = v
 }
 
-// GetContractType returns the ContractType field value
-func (o *ServicesCustomMintBatchDto) GetContractType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ContractType
-}
-
-// GetContractTypeOk returns a tuple with the ContractType field value
-// and a boolean to check if the value has been set.
-func (o *ServicesCustomMintBatchDto) GetContractTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ContractType, true
-}
-
-// SetContractType sets field value
-func (o *ServicesCustomMintBatchDto) SetContractType(v string) {
-	o.ContractType = v
-}
-
 // GetMintItems returns the MintItems field value
 func (o *ServicesCustomMintBatchDto) GetMintItems() []ServicesMintItemDto {
 	if o == nil {
@@ -151,9 +125,6 @@ func (o ServicesCustomMintBatchDto) MarshalJSON() ([]byte, error) {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
 	if true {
-		toSerialize["contract_type"] = o.ContractType
-	}
-	if true {
 		toSerialize["mint_items"] = o.MintItems
 	}
 
@@ -176,7 +147,6 @@ func (o *ServicesCustomMintBatchDto) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "chain")
 		delete(additionalProperties, "contract_address")
-		delete(additionalProperties, "contract_type")
 		delete(additionalProperties, "mint_items")
 		o.AdditionalProperties = additionalProperties
 	}

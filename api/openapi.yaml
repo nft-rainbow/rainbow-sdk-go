@@ -2184,11 +2184,6 @@ components:
           type: string
         contract_address:
           type: string
-        contract_type:
-          enum:
-          - erc721
-          - erc1155
-          type: string
         mint_items:
           items:
             $ref: '#/components/schemas/services.MintItemDto'
@@ -2196,7 +2191,6 @@ components:
       required:
       - chain
       - contract_address
-      - contract_type
       - mint_items
       type: object
     services.CustomMintDto:
@@ -2210,11 +2204,6 @@ components:
           type: string
         contract_address:
           type: string
-        contract_type:
-          enum:
-          - erc721
-          - erc1155
-          type: string
         metadata_uri:
           type: string
         mint_to_address:
@@ -2224,7 +2213,6 @@ components:
       required:
       - chain
       - contract_address
-      - contract_type
       - mint_to_address
       type: object
     services.EasyMintMetaDto:

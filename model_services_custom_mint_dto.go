@@ -19,7 +19,6 @@ type ServicesCustomMintDto struct {
 	Amount *int32 `json:"amount,omitempty"`
 	Chain string `json:"chain"`
 	ContractAddress string `json:"contract_address"`
-	ContractType string `json:"contract_type"`
 	MetadataUri *string `json:"metadata_uri,omitempty"`
 	MintToAddress string `json:"mint_to_address"`
 	TokenId *string `json:"token_id,omitempty"`
@@ -32,11 +31,10 @@ type _ServicesCustomMintDto ServicesCustomMintDto
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServicesCustomMintDto(chain string, contractAddress string, contractType string, mintToAddress string) *ServicesCustomMintDto {
+func NewServicesCustomMintDto(chain string, contractAddress string, mintToAddress string) *ServicesCustomMintDto {
 	this := ServicesCustomMintDto{}
 	this.Chain = chain
 	this.ContractAddress = contractAddress
-	this.ContractType = contractType
 	this.MintToAddress = mintToAddress
 	return &this
 }
@@ -127,30 +125,6 @@ func (o *ServicesCustomMintDto) GetContractAddressOk() (*string, bool) {
 // SetContractAddress sets field value
 func (o *ServicesCustomMintDto) SetContractAddress(v string) {
 	o.ContractAddress = v
-}
-
-// GetContractType returns the ContractType field value
-func (o *ServicesCustomMintDto) GetContractType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ContractType
-}
-
-// GetContractTypeOk returns a tuple with the ContractType field value
-// and a boolean to check if the value has been set.
-func (o *ServicesCustomMintDto) GetContractTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ContractType, true
-}
-
-// SetContractType sets field value
-func (o *ServicesCustomMintDto) SetContractType(v string) {
-	o.ContractType = v
 }
 
 // GetMetadataUri returns the MetadataUri field value if set, zero value otherwise.
@@ -252,9 +226,6 @@ func (o ServicesCustomMintDto) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
-	if true {
-		toSerialize["contract_type"] = o.ContractType
-	}
 	if o.MetadataUri != nil {
 		toSerialize["metadata_uri"] = o.MetadataUri
 	}
@@ -285,7 +256,6 @@ func (o *ServicesCustomMintDto) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "amount")
 		delete(additionalProperties, "chain")
 		delete(additionalProperties, "contract_address")
-		delete(additionalProperties, "contract_type")
 		delete(additionalProperties, "metadata_uri")
 		delete(additionalProperties, "mint_to_address")
 		delete(additionalProperties, "token_id")
