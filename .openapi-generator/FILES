@@ -20,6 +20,7 @@ docs/GormDeletedAt.md
 docs/LoginApi.md
 docs/MetadataApi.md
 docs/MiddlewaresAppLogin.md
+docs/MiddlewaresLoginResp.md
 docs/MintsApi.md
 docs/ModelsBurnTask.md
 docs/ModelsBurnTaskQueryResult.md
@@ -42,6 +43,7 @@ docs/ServicesContractAdminUpdateDto.md
 docs/ServicesContractDeployDto.md
 docs/ServicesCustomMintBatchDto.md
 docs/ServicesCustomMintDto.md
+docs/ServicesEasyMintFileDto.md
 docs/ServicesEasyMintMetaDto.md
 docs/ServicesMetadataDto.md
 docs/ServicesMintItemDto.md
@@ -61,6 +63,7 @@ go.mod
 go.sum
 model_gorm_deleted_at.go
 model_middlewares_app_login.go
+model_middlewares_login_resp.go
 model_models_burn_task.go
 model_models_burn_task_query_result.go
 model_models_contract.go
@@ -81,6 +84,7 @@ model_services_contract_admin_update_dto.go
 model_services_contract_deploy_dto.go
 model_services_custom_mint_batch_dto.go
 model_services_custom_mint_dto.go
+model_services_easy_mint_file_dto.go
 model_services_easy_mint_meta_dto.go
 model_services_metadata_dto.go
 model_services_mint_item_dto.go
