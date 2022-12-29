@@ -732,7 +732,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/middlewares.LoginResp'
           description: auth token
         "401":
           content:
@@ -1036,6 +1036,7 @@ paths:
       summary: Mint NFT with file
       tags:
       - Mints
+      x-codegen-request-body-name: easy_mint_file_info
   /mints/easy/urls:
     post:
       description: Mint a NFT by providing a file url to create the metadata
@@ -1183,7 +1184,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/middlewares.LoginResp'
           description: refreshed auth token
         "401":
           content:
@@ -1423,6 +1424,16 @@ components:
         valid:
           description: Valid is true if Time is not NULL
           type: boolean
+      type: object
+    middlewares.LoginResp:
+      example:
+        expire: expire
+        token: token
+      properties:
+        expire:
+          type: string
+        token:
+          type: string
       type: object
     middlewares.appLogin:
       properties:
@@ -1704,6 +1715,7 @@ components:
     models.ExposedMetadata:
       example:
         image: image
+        animation_url: animation_url
         updated_at: updated_at
         metadata_id: metadata_id
         name: name
@@ -1725,6 +1737,8 @@ components:
         uri: uri
         external_link: external_link
       properties:
+        animation_url:
+          type: string
         attributes:
           items:
             $ref: '#/components/schemas/models.ExposedMetadataAttribute'
@@ -1775,6 +1789,7 @@ components:
         count: 0
         items:
         - image: image
+          animation_url: animation_url
           updated_at: updated_at
           metadata_id: metadata_id
           name: name
@@ -1796,6 +1811,7 @@ components:
           uri: uri
           external_link: external_link
         - image: image
+          animation_url: animation_url
           updated_at: updated_at
           metadata_id: metadata_id
           name: name
@@ -2215,6 +2231,25 @@ components:
       - contract_address
       - mint_to_address
       type: object
+    services.EasyMintFileDto:
+      properties:
+        chain:
+          type: string
+        description:
+          type: string
+        file:
+          $ref: '#/components/schemas/multipart.FileHeader'
+        mint_to_address:
+          type: string
+        name:
+          type: string
+      required:
+      - chain
+      - description
+      - file
+      - mint_to_address
+      - name
+      type: object
     services.EasyMintMetaDto:
       properties:
         chain:
@@ -2236,6 +2271,8 @@ components:
       type: object
     services.MetadataDto:
       properties:
+        animation_url:
+          type: string
         attributes:
           items:
             $ref: '#/components/schemas/models.ExposedMetadataAttribute'
@@ -2445,18 +2482,6 @@ components:
           description: file
           format: binary
           type: string
-        chain:
-          type: string
-        description:
-          type: string
-        mint_to_address:
-          type: string
-        name:
-          type: string
       required:
-      - chain
-      - description
       - file
-      - mint_to_address
-      - name
 x-original-swagger-version: "2.0"

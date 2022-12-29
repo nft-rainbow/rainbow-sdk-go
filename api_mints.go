@@ -399,10 +399,6 @@ type ApiEasyMintByFileRequest struct {
 	ApiService MintsApi
 	authorization *string
 	file **os.File
-	chain *string
-	description *string
-	mintToAddress *string
-	name *string
 }
 
 // Bearer Open_JWT
@@ -414,26 +410,6 @@ func (r ApiEasyMintByFileRequest) Authorization(authorization string) ApiEasyMin
 // file
 func (r ApiEasyMintByFileRequest) File(file *os.File) ApiEasyMintByFileRequest {
 	r.file = &file
-	return r
-}
-
-func (r ApiEasyMintByFileRequest) Chain(chain string) ApiEasyMintByFileRequest {
-	r.chain = &chain
-	return r
-}
-
-func (r ApiEasyMintByFileRequest) Description(description string) ApiEasyMintByFileRequest {
-	r.description = &description
-	return r
-}
-
-func (r ApiEasyMintByFileRequest) MintToAddress(mintToAddress string) ApiEasyMintByFileRequest {
-	r.mintToAddress = &mintToAddress
-	return r
-}
-
-func (r ApiEasyMintByFileRequest) Name(name string) ApiEasyMintByFileRequest {
-	r.name = &name
 	return r
 }
 
@@ -482,18 +458,6 @@ func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 	if r.file == nil {
 		return localVarReturnValue, nil, reportError("file is required and must be specified")
 	}
-	if r.chain == nil {
-		return localVarReturnValue, nil, reportError("chain is required and must be specified")
-	}
-	if r.description == nil {
-		return localVarReturnValue, nil, reportError("description is required and must be specified")
-	}
-	if r.mintToAddress == nil {
-		return localVarReturnValue, nil, reportError("mintToAddress is required and must be specified")
-	}
-	if r.name == nil {
-		return localVarReturnValue, nil, reportError("name is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}
@@ -527,10 +491,6 @@ func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 		fileLocalVarFile.Close()
 	}
 	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
-	localVarFormParams.Add("chain", parameterToString(*r.chain, ""))
-	localVarFormParams.Add("description", parameterToString(*r.description, ""))
-	localVarFormParams.Add("mint_to_address", parameterToString(*r.mintToAddress, ""))
-	localVarFormParams.Add("name", parameterToString(*r.name, ""))
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

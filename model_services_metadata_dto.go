@@ -16,6 +16,7 @@ import (
 
 // ServicesMetadataDto struct for ServicesMetadataDto
 type ServicesMetadataDto struct {
+	AnimationUrl *string `json:"animation_url,omitempty"`
 	Attributes []ModelsExposedMetadataAttribute `json:"attributes,omitempty"`
 	Description string `json:"description"`
 	ExternalLink *string `json:"external_link,omitempty"`
@@ -44,6 +45,38 @@ func NewServicesMetadataDto(description string, image string, name string) *Serv
 func NewServicesMetadataDtoWithDefaults() *ServicesMetadataDto {
 	this := ServicesMetadataDto{}
 	return &this
+}
+
+// GetAnimationUrl returns the AnimationUrl field value if set, zero value otherwise.
+func (o *ServicesMetadataDto) GetAnimationUrl() string {
+	if o == nil || o.AnimationUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.AnimationUrl
+}
+
+// GetAnimationUrlOk returns a tuple with the AnimationUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesMetadataDto) GetAnimationUrlOk() (*string, bool) {
+	if o == nil || o.AnimationUrl == nil {
+		return nil, false
+	}
+	return o.AnimationUrl, true
+}
+
+// HasAnimationUrl returns a boolean if a field has been set.
+func (o *ServicesMetadataDto) HasAnimationUrl() bool {
+	if o != nil && o.AnimationUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAnimationUrl gets a reference to the given string and assigns it to the AnimationUrl field.
+func (o *ServicesMetadataDto) SetAnimationUrl(v string) {
+	o.AnimationUrl = &v
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
@@ -184,6 +217,9 @@ func (o *ServicesMetadataDto) SetName(v string) {
 
 func (o ServicesMetadataDto) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AnimationUrl != nil {
+		toSerialize["animation_url"] = o.AnimationUrl
+	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -217,6 +253,7 @@ func (o *ServicesMetadataDto) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "animation_url")
 		delete(additionalProperties, "attributes")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "external_link")

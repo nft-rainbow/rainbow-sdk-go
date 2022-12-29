@@ -32,8 +32,8 @@ type LoginApi interface {
 	LoginApp(ctx context.Context) ApiLoginAppRequest
 
 	// LoginAppExecute executes the request
-	//  @return string
-	LoginAppExecute(r ApiLoginAppRequest) (string, *http.Response, error)
+	//  @return MiddlewaresLoginResp
+	LoginAppExecute(r ApiLoginAppRequest) (*MiddlewaresLoginResp, *http.Response, error)
 
 	/*
 	RefreshAuth Refresh JWT
@@ -46,8 +46,8 @@ type LoginApi interface {
 	RefreshAuth(ctx context.Context) ApiRefreshAuthRequest
 
 	// RefreshAuthExecute executes the request
-	//  @return string
-	RefreshAuthExecute(r ApiRefreshAuthRequest) (string, *http.Response, error)
+	//  @return MiddlewaresLoginResp
+	RefreshAuthExecute(r ApiRefreshAuthRequest) (*MiddlewaresLoginResp, *http.Response, error)
 }
 
 // LoginApiService LoginApi service
@@ -65,7 +65,7 @@ func (r ApiLoginAppRequest) AppLoginInfo(appLoginInfo MiddlewaresAppLogin) ApiLo
 	return r
 }
 
-func (r ApiLoginAppRequest) Execute() (string, *http.Response, error) {
+func (r ApiLoginAppRequest) Execute() (*MiddlewaresLoginResp, *http.Response, error) {
 	return r.ApiService.LoginAppExecute(r)
 }
 
@@ -85,13 +85,13 @@ func (a *LoginApiService) LoginApp(ctx context.Context) ApiLoginAppRequest {
 }
 
 // Execute executes the request
-//  @return string
-func (a *LoginApiService) LoginAppExecute(r ApiLoginAppRequest) (string, *http.Response, error) {
+//  @return MiddlewaresLoginResp
+func (a *LoginApiService) LoginAppExecute(r ApiLoginAppRequest) (*MiddlewaresLoginResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  string
+		localVarReturnValue  *MiddlewaresLoginResp
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginApiService.LoginApp")
@@ -185,7 +185,7 @@ func (r ApiRefreshAuthRequest) Authorization(authorization string) ApiRefreshAut
 	return r
 }
 
-func (r ApiRefreshAuthRequest) Execute() (string, *http.Response, error) {
+func (r ApiRefreshAuthRequest) Execute() (*MiddlewaresLoginResp, *http.Response, error) {
 	return r.ApiService.RefreshAuthExecute(r)
 }
 
@@ -205,13 +205,13 @@ func (a *LoginApiService) RefreshAuth(ctx context.Context) ApiRefreshAuthRequest
 }
 
 // Execute executes the request
-//  @return string
-func (a *LoginApiService) RefreshAuthExecute(r ApiRefreshAuthRequest) (string, *http.Response, error) {
+//  @return MiddlewaresLoginResp
+func (a *LoginApiService) RefreshAuthExecute(r ApiRefreshAuthRequest) (*MiddlewaresLoginResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  string
+		localVarReturnValue  *MiddlewaresLoginResp
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginApiService.RefreshAuth")

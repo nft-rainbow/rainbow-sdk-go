@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AnimationUrl** | Pointer to **string** |  | [optional] 
 **Attributes** | Pointer to [**[]ModelsExposedMetadataAttribute**](ModelsExposedMetadataAttribute.md) |  | [optional] 
 **Description** | **string** |  | 
 **ExternalLink** | Pointer to **string** |  | [optional] 
@@ -28,6 +29,31 @@ will change when the set of required properties is changed
 NewServicesMetadataDtoWithDefaults instantiates a new ServicesMetadataDto object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAnimationUrl
+
+`func (o *ServicesMetadataDto) GetAnimationUrl() string`
+
+GetAnimationUrl returns the AnimationUrl field if non-nil, zero value otherwise.
+
+### GetAnimationUrlOk
+
+`func (o *ServicesMetadataDto) GetAnimationUrlOk() (*string, bool)`
+
+GetAnimationUrlOk returns a tuple with the AnimationUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAnimationUrl
+
+`func (o *ServicesMetadataDto) SetAnimationUrl(v string)`
+
+SetAnimationUrl sets AnimationUrl field to given value.
+
+### HasAnimationUrl
+
+`func (o *ServicesMetadataDto) HasAnimationUrl() bool`
+
+HasAnimationUrl returns a boolean if a field has been set.
 
 ### GetAttributes
 

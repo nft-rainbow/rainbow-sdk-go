@@ -117,6 +117,7 @@ Class | Method | HTTP request | Description
 
  - [GormDeletedAt](docs/GormDeletedAt.md)
  - [MiddlewaresAppLogin](docs/MiddlewaresAppLogin.md)
+ - [MiddlewaresLoginResp](docs/MiddlewaresLoginResp.md)
  - [ModelsBurnTask](docs/ModelsBurnTask.md)
  - [ModelsBurnTaskQueryResult](docs/ModelsBurnTaskQueryResult.md)
  - [ModelsContract](docs/ModelsContract.md)
@@ -137,6 +138,7 @@ Class | Method | HTTP request | Description
  - [ServicesContractDeployDto](docs/ServicesContractDeployDto.md)
  - [ServicesCustomMintBatchDto](docs/ServicesCustomMintBatchDto.md)
  - [ServicesCustomMintDto](docs/ServicesCustomMintDto.md)
+ - [ServicesEasyMintFileDto](docs/ServicesEasyMintFileDto.md)
  - [ServicesEasyMintMetaDto](docs/ServicesEasyMintMetaDto.md)
  - [ServicesMetadataDto](docs/ServicesMetadataDto.md)
  - [ServicesMintItemDto](docs/ServicesMintItemDto.md)

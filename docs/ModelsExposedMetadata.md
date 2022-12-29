@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AnimationUrl** | Pointer to **string** |  | [optional] 
 **Attributes** | Pointer to [**[]ModelsExposedMetadataAttribute**](ModelsExposedMetadataAttribute.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **DeletedAt** | Pointer to [**GormDeletedAt**](GormDeletedAt.md) |  | [optional] 
@@ -34,6 +35,31 @@ will change when the set of required properties is changed
 NewModelsExposedMetadataWithDefaults instantiates a new ModelsExposedMetadata object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAnimationUrl
+
+`func (o *ModelsExposedMetadata) GetAnimationUrl() string`
+
+GetAnimationUrl returns the AnimationUrl field if non-nil, zero value otherwise.
+
+### GetAnimationUrlOk
+
+`func (o *ModelsExposedMetadata) GetAnimationUrlOk() (*string, bool)`
+
+GetAnimationUrlOk returns a tuple with the AnimationUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAnimationUrl
+
+`func (o *ModelsExposedMetadata) SetAnimationUrl(v string)`
+
+SetAnimationUrl sets AnimationUrl field to given value.
+
+### HasAnimationUrl
+
+`func (o *ModelsExposedMetadata) HasAnimationUrl() bool`
+
+HasAnimationUrl returns a boolean if a field has been set.
 
 ### GetAttributes
 

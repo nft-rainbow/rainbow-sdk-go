@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## LoginApp
 
-> string LoginApp(ctx).AppLoginInfo(appLoginInfo).Execute()
+> MiddlewaresLoginResp LoginApp(ctx).AppLoginInfo(appLoginInfo).Execute()
 
 App login
 
@@ -39,7 +39,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.LoginApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LoginApp`: string
+    // response from `LoginApp`: MiddlewaresLoginResp
     fmt.Fprintf(os.Stdout, "Response from `LoginApi.LoginApp`: %v\n", resp)
 }
 ```
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**string**
+[**MiddlewaresLoginResp**](MiddlewaresLoginResp.md)
 
 ### Authorization
 
@@ -77,7 +77,7 @@ No authorization required
 
 ## RefreshAuth
 
-> string RefreshAuth(ctx).Authorization(authorization).Execute()
+> MiddlewaresLoginResp RefreshAuth(ctx).Authorization(authorization).Execute()
 
 Refresh JWT
 
@@ -105,7 +105,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.RefreshAuth``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RefreshAuth`: string
+    // response from `RefreshAuth`: MiddlewaresLoginResp
     fmt.Fprintf(os.Stdout, "Response from `LoginApi.RefreshAuth`: %v\n", resp)
 }
 ```
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**string**
+[**MiddlewaresLoginResp**](MiddlewaresLoginResp.md)
 
 ### Authorization
 
