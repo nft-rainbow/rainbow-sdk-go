@@ -98,13 +98,4 @@ model_services_transfer_item_dto.go
 model_services_tx_resp.go
 model_services_upload_files_response.go
 response.go
-test/api_burns_test.go
-test/api_contract_test.go
-test/api_files_test.go
-test/api_login_test.go
-test/api_metadata_test.go
-test/api_mints_test.go
-test/api_nfts_test.go
-test/api_transaction_test.go
-test/api_transfers_test.go
 utils.go
