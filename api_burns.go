@@ -57,10 +57,9 @@ type BurnsApi interface {
 	Get the NFT burned list information.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id id
 	@return ApiGetBurnListRequest
 	*/
-	GetBurnList(ctx context.Context, id int32) ApiGetBurnListRequest
+	GetBurnList(ctx context.Context) ApiGetBurnListRequest
 
 	// GetBurnListExecute executes the request
 	//  @return ModelsBurnTaskQueryResult
@@ -184,7 +183,8 @@ func (a *BurnsApiService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -194,7 +194,8 @@ func (a *BurnsApiService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -317,7 +318,8 @@ func (a *BurnsApiService) GetBurnDetailExecute(r ApiGetBurnDetailRequest) (*Mode
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -327,7 +329,8 @@ func (a *BurnsApiService) GetBurnDetailExecute(r ApiGetBurnDetailRequest) (*Mode
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -348,7 +351,6 @@ type ApiGetBurnListRequest struct {
 	ctx context.Context
 	ApiService BurnsApi
 	authorization *string
-	id int32
 }
 
 // Bearer Open_JWT
@@ -367,14 +369,12 @@ GetBurnList Obtain the burned NFTs list
 Get the NFT burned list information.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id id
  @return ApiGetBurnListRequest
 */
-func (a *BurnsApiService) GetBurnList(ctx context.Context, id int32) ApiGetBurnListRequest {
+func (a *BurnsApiService) GetBurnList(ctx context.Context) ApiGetBurnListRequest {
 	return ApiGetBurnListRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
 	}
 }
 
@@ -394,7 +394,6 @@ func (a *BurnsApiService) GetBurnListExecute(r ApiGetBurnListRequest) (*ModelsBu
 	}
 
 	localVarPath := localBasePath + "/burns"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -450,7 +449,8 @@ func (a *BurnsApiService) GetBurnListExecute(r ApiGetBurnListRequest) (*ModelsBu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -460,7 +460,8 @@ func (a *BurnsApiService) GetBurnListExecute(r ApiGetBurnListRequest) (*ModelsBu
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

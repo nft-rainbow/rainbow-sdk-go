@@ -53,7 +53,7 @@ func NewServicesTransferDtoWithDefaults() *ServicesTransferDto {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *ServicesTransferDto) GetAmount() int32 {
-	if o == nil || o.Amount == nil {
+	if o == nil || isNil(o.Amount) {
 		var ret int32
 		return ret
 	}
@@ -63,15 +63,15 @@ func (o *ServicesTransferDto) GetAmount() int32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferDto) GetAmountOk() (*int32, bool) {
-	if o == nil || o.Amount == nil {
-		return nil, false
+	if o == nil || isNil(o.Amount) {
+    return nil, false
 	}
 	return o.Amount, true
 }
 
 // HasAmount returns a boolean if a field has been set.
 func (o *ServicesTransferDto) HasAmount() bool {
-	if o != nil && o.Amount != nil {
+	if o != nil && !isNil(o.Amount) {
 		return true
 	}
 
@@ -97,7 +97,7 @@ func (o *ServicesTransferDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferDto) GetChainOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Chain, true
 }
@@ -121,7 +121,7 @@ func (o *ServicesTransferDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferDto) GetContractAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ContractAddress, true
 }
@@ -145,7 +145,7 @@ func (o *ServicesTransferDto) GetContractType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferDto) GetContractTypeOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ContractType, true
 }
@@ -169,7 +169,7 @@ func (o *ServicesTransferDto) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferDto) GetTokenIdOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenId, true
 }
@@ -193,7 +193,7 @@ func (o *ServicesTransferDto) GetTransferFromAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferDto) GetTransferFromAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TransferFromAddress, true
 }
@@ -217,7 +217,7 @@ func (o *ServicesTransferDto) GetTransferToAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferDto) GetTransferToAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TransferToAddress, true
 }
@@ -229,7 +229,7 @@ func (o *ServicesTransferDto) SetTransferToAddress(v string) {
 
 func (o ServicesTransferDto) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Amount != nil {
+	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
 	if true {

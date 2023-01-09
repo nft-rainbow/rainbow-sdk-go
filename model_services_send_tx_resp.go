@@ -41,7 +41,7 @@ func NewServicesSendTxRespWithDefaults() *ServicesSendTxResp {
 
 // GetTxId returns the TxId field value if set, zero value otherwise.
 func (o *ServicesSendTxResp) GetTxId() int32 {
-	if o == nil || o.TxId == nil {
+	if o == nil || isNil(o.TxId) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +51,15 @@ func (o *ServicesSendTxResp) GetTxId() int32 {
 // GetTxIdOk returns a tuple with the TxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesSendTxResp) GetTxIdOk() (*int32, bool) {
-	if o == nil || o.TxId == nil {
-		return nil, false
+	if o == nil || isNil(o.TxId) {
+    return nil, false
 	}
 	return o.TxId, true
 }
 
 // HasTxId returns a boolean if a field has been set.
 func (o *ServicesSendTxResp) HasTxId() bool {
-	if o != nil && o.TxId != nil {
+	if o != nil && !isNil(o.TxId) {
 		return true
 	}
 
@@ -73,7 +73,7 @@ func (o *ServicesSendTxResp) SetTxId(v int32) {
 
 func (o ServicesSendTxResp) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.TxId != nil {
+	if !isNil(o.TxId) {
 		toSerialize["tx_id"] = o.TxId
 	}
 

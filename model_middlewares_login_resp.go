@@ -42,7 +42,7 @@ func NewMiddlewaresLoginRespWithDefaults() *MiddlewaresLoginResp {
 
 // GetExpire returns the Expire field value if set, zero value otherwise.
 func (o *MiddlewaresLoginResp) GetExpire() string {
-	if o == nil || o.Expire == nil {
+	if o == nil || isNil(o.Expire) {
 		var ret string
 		return ret
 	}
@@ -52,15 +52,15 @@ func (o *MiddlewaresLoginResp) GetExpire() string {
 // GetExpireOk returns a tuple with the Expire field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresLoginResp) GetExpireOk() (*string, bool) {
-	if o == nil || o.Expire == nil {
-		return nil, false
+	if o == nil || isNil(o.Expire) {
+    return nil, false
 	}
 	return o.Expire, true
 }
 
 // HasExpire returns a boolean if a field has been set.
 func (o *MiddlewaresLoginResp) HasExpire() bool {
-	if o != nil && o.Expire != nil {
+	if o != nil && !isNil(o.Expire) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *MiddlewaresLoginResp) SetExpire(v string) {
 
 // GetToken returns the Token field value if set, zero value otherwise.
 func (o *MiddlewaresLoginResp) GetToken() string {
-	if o == nil || o.Token == nil {
+	if o == nil || isNil(o.Token) {
 		var ret string
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *MiddlewaresLoginResp) GetToken() string {
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresLoginResp) GetTokenOk() (*string, bool) {
-	if o == nil || o.Token == nil {
-		return nil, false
+	if o == nil || isNil(o.Token) {
+    return nil, false
 	}
 	return o.Token, true
 }
 
 // HasToken returns a boolean if a field has been set.
 func (o *MiddlewaresLoginResp) HasToken() bool {
-	if o != nil && o.Token != nil {
+	if o != nil && !isNil(o.Token) {
 		return true
 	}
 
@@ -106,10 +106,10 @@ func (o *MiddlewaresLoginResp) SetToken(v string) {
 
 func (o MiddlewaresLoginResp) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Expire != nil {
+	if !isNil(o.Expire) {
 		toSerialize["expire"] = o.Expire
 	}
-	if o.Token != nil {
+	if !isNil(o.Token) {
 		toSerialize["token"] = o.Token
 	}
 

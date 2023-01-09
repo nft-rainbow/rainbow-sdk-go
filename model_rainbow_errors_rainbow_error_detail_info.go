@@ -42,7 +42,7 @@ func NewRainbowErrorsRainbowErrorDetailInfoWithDefaults() *RainbowErrorsRainbowE
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetCode() int32 {
-	if o == nil || o.Code == nil {
+	if o == nil || isNil(o.Code) {
 		var ret int32
 		return ret
 	}
@@ -52,15 +52,15 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetCode() int32 {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetCodeOk() (*int32, bool) {
-	if o == nil || o.Code == nil {
-		return nil, false
+	if o == nil || isNil(o.Code) {
+    return nil, false
 	}
 	return o.Code, true
 }
 
 // HasCode returns a boolean if a field has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) HasCode() bool {
-	if o != nil && o.Code != nil {
+	if o != nil && !isNil(o.Code) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) SetCode(v int32) {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil || isNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
-		return nil, false
+	if o == nil || isNil(o.Message) {
+    return nil, false
 	}
 	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) HasMessage() bool {
-	if o != nil && o.Message != nil {
+	if o != nil && !isNil(o.Message) {
 		return true
 	}
 
@@ -106,10 +106,10 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) SetMessage(v string) {
 
 func (o RainbowErrorsRainbowErrorDetailInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
+	if !isNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if o.Message != nil {
+	if !isNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
 

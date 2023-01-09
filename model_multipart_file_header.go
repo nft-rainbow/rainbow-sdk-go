@@ -43,7 +43,7 @@ func NewMultipartFileHeaderWithDefaults() *MultipartFileHeader {
 
 // GetFilename returns the Filename field value if set, zero value otherwise.
 func (o *MultipartFileHeader) GetFilename() string {
-	if o == nil || o.Filename == nil {
+	if o == nil || isNil(o.Filename) {
 		var ret string
 		return ret
 	}
@@ -53,15 +53,15 @@ func (o *MultipartFileHeader) GetFilename() string {
 // GetFilenameOk returns a tuple with the Filename field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MultipartFileHeader) GetFilenameOk() (*string, bool) {
-	if o == nil || o.Filename == nil {
-		return nil, false
+	if o == nil || isNil(o.Filename) {
+    return nil, false
 	}
 	return o.Filename, true
 }
 
 // HasFilename returns a boolean if a field has been set.
 func (o *MultipartFileHeader) HasFilename() bool {
-	if o != nil && o.Filename != nil {
+	if o != nil && !isNil(o.Filename) {
 		return true
 	}
 
@@ -75,7 +75,7 @@ func (o *MultipartFileHeader) SetFilename(v string) {
 
 // GetHeader returns the Header field value if set, zero value otherwise.
 func (o *MultipartFileHeader) GetHeader() map[string][]string {
-	if o == nil || o.Header == nil {
+	if o == nil || isNil(o.Header) {
 		var ret map[string][]string
 		return ret
 	}
@@ -85,15 +85,15 @@ func (o *MultipartFileHeader) GetHeader() map[string][]string {
 // GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MultipartFileHeader) GetHeaderOk() (*map[string][]string, bool) {
-	if o == nil || o.Header == nil {
-		return nil, false
+	if o == nil || isNil(o.Header) {
+    return nil, false
 	}
 	return o.Header, true
 }
 
 // HasHeader returns a boolean if a field has been set.
 func (o *MultipartFileHeader) HasHeader() bool {
-	if o != nil && o.Header != nil {
+	if o != nil && !isNil(o.Header) {
 		return true
 	}
 
@@ -107,7 +107,7 @@ func (o *MultipartFileHeader) SetHeader(v map[string][]string) {
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *MultipartFileHeader) GetSize() int32 {
-	if o == nil || o.Size == nil {
+	if o == nil || isNil(o.Size) {
 		var ret int32
 		return ret
 	}
@@ -117,15 +117,15 @@ func (o *MultipartFileHeader) GetSize() int32 {
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MultipartFileHeader) GetSizeOk() (*int32, bool) {
-	if o == nil || o.Size == nil {
-		return nil, false
+	if o == nil || isNil(o.Size) {
+    return nil, false
 	}
 	return o.Size, true
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *MultipartFileHeader) HasSize() bool {
-	if o != nil && o.Size != nil {
+	if o != nil && !isNil(o.Size) {
 		return true
 	}
 
@@ -139,13 +139,13 @@ func (o *MultipartFileHeader) SetSize(v int32) {
 
 func (o MultipartFileHeader) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Filename != nil {
+	if !isNil(o.Filename) {
 		toSerialize["filename"] = o.Filename
 	}
-	if o.Header != nil {
+	if !isNil(o.Header) {
 		toSerialize["header"] = o.Header
 	}
-	if o.Size != nil {
+	if !isNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
 

@@ -46,7 +46,7 @@ func NewServicesSponsorInfoWithDefaults() *ServicesSponsorInfo {
 
 // GetCollateralSponsor returns the CollateralSponsor field value if set, zero value otherwise.
 func (o *ServicesSponsorInfo) GetCollateralSponsor() string {
-	if o == nil || o.CollateralSponsor == nil {
+	if o == nil || isNil(o.CollateralSponsor) {
 		var ret string
 		return ret
 	}
@@ -56,15 +56,15 @@ func (o *ServicesSponsorInfo) GetCollateralSponsor() string {
 // GetCollateralSponsorOk returns a tuple with the CollateralSponsor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetCollateralSponsorOk() (*string, bool) {
-	if o == nil || o.CollateralSponsor == nil {
-		return nil, false
+	if o == nil || isNil(o.CollateralSponsor) {
+    return nil, false
 	}
 	return o.CollateralSponsor, true
 }
 
 // HasCollateralSponsor returns a boolean if a field has been set.
 func (o *ServicesSponsorInfo) HasCollateralSponsor() bool {
-	if o != nil && o.CollateralSponsor != nil {
+	if o != nil && !isNil(o.CollateralSponsor) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *ServicesSponsorInfo) SetCollateralSponsor(v string) {
 
 // GetCollateralSponsorBalance returns the CollateralSponsorBalance field value if set, zero value otherwise.
 func (o *ServicesSponsorInfo) GetCollateralSponsorBalance() string {
-	if o == nil || o.CollateralSponsorBalance == nil {
+	if o == nil || isNil(o.CollateralSponsorBalance) {
 		var ret string
 		return ret
 	}
@@ -88,15 +88,15 @@ func (o *ServicesSponsorInfo) GetCollateralSponsorBalance() string {
 // GetCollateralSponsorBalanceOk returns a tuple with the CollateralSponsorBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetCollateralSponsorBalanceOk() (*string, bool) {
-	if o == nil || o.CollateralSponsorBalance == nil {
-		return nil, false
+	if o == nil || isNil(o.CollateralSponsorBalance) {
+    return nil, false
 	}
 	return o.CollateralSponsorBalance, true
 }
 
 // HasCollateralSponsorBalance returns a boolean if a field has been set.
 func (o *ServicesSponsorInfo) HasCollateralSponsorBalance() bool {
-	if o != nil && o.CollateralSponsorBalance != nil {
+	if o != nil && !isNil(o.CollateralSponsorBalance) {
 		return true
 	}
 
@@ -110,7 +110,7 @@ func (o *ServicesSponsorInfo) SetCollateralSponsorBalance(v string) {
 
 // GetGasSponsor returns the GasSponsor field value if set, zero value otherwise.
 func (o *ServicesSponsorInfo) GetGasSponsor() string {
-	if o == nil || o.GasSponsor == nil {
+	if o == nil || isNil(o.GasSponsor) {
 		var ret string
 		return ret
 	}
@@ -120,15 +120,15 @@ func (o *ServicesSponsorInfo) GetGasSponsor() string {
 // GetGasSponsorOk returns a tuple with the GasSponsor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetGasSponsorOk() (*string, bool) {
-	if o == nil || o.GasSponsor == nil {
-		return nil, false
+	if o == nil || isNil(o.GasSponsor) {
+    return nil, false
 	}
 	return o.GasSponsor, true
 }
 
 // HasGasSponsor returns a boolean if a field has been set.
 func (o *ServicesSponsorInfo) HasGasSponsor() bool {
-	if o != nil && o.GasSponsor != nil {
+	if o != nil && !isNil(o.GasSponsor) {
 		return true
 	}
 
@@ -142,7 +142,7 @@ func (o *ServicesSponsorInfo) SetGasSponsor(v string) {
 
 // GetGasSponsorBalance returns the GasSponsorBalance field value if set, zero value otherwise.
 func (o *ServicesSponsorInfo) GetGasSponsorBalance() string {
-	if o == nil || o.GasSponsorBalance == nil {
+	if o == nil || isNil(o.GasSponsorBalance) {
 		var ret string
 		return ret
 	}
@@ -152,15 +152,15 @@ func (o *ServicesSponsorInfo) GetGasSponsorBalance() string {
 // GetGasSponsorBalanceOk returns a tuple with the GasSponsorBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetGasSponsorBalanceOk() (*string, bool) {
-	if o == nil || o.GasSponsorBalance == nil {
-		return nil, false
+	if o == nil || isNil(o.GasSponsorBalance) {
+    return nil, false
 	}
 	return o.GasSponsorBalance, true
 }
 
 // HasGasSponsorBalance returns a boolean if a field has been set.
 func (o *ServicesSponsorInfo) HasGasSponsorBalance() bool {
-	if o != nil && o.GasSponsorBalance != nil {
+	if o != nil && !isNil(o.GasSponsorBalance) {
 		return true
 	}
 
@@ -174,7 +174,7 @@ func (o *ServicesSponsorInfo) SetGasSponsorBalance(v string) {
 
 // GetGasUpperBound returns the GasUpperBound field value if set, zero value otherwise.
 func (o *ServicesSponsorInfo) GetGasUpperBound() string {
-	if o == nil || o.GasUpperBound == nil {
+	if o == nil || isNil(o.GasUpperBound) {
 		var ret string
 		return ret
 	}
@@ -184,15 +184,15 @@ func (o *ServicesSponsorInfo) GetGasUpperBound() string {
 // GetGasUpperBoundOk returns a tuple with the GasUpperBound field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetGasUpperBoundOk() (*string, bool) {
-	if o == nil || o.GasUpperBound == nil {
-		return nil, false
+	if o == nil || isNil(o.GasUpperBound) {
+    return nil, false
 	}
 	return o.GasUpperBound, true
 }
 
 // HasGasUpperBound returns a boolean if a field has been set.
 func (o *ServicesSponsorInfo) HasGasUpperBound() bool {
-	if o != nil && o.GasUpperBound != nil {
+	if o != nil && !isNil(o.GasUpperBound) {
 		return true
 	}
 
@@ -206,7 +206,7 @@ func (o *ServicesSponsorInfo) SetGasUpperBound(v string) {
 
 // GetIsAllWhiteListed returns the IsAllWhiteListed field value if set, zero value otherwise.
 func (o *ServicesSponsorInfo) GetIsAllWhiteListed() bool {
-	if o == nil || o.IsAllWhiteListed == nil {
+	if o == nil || isNil(o.IsAllWhiteListed) {
 		var ret bool
 		return ret
 	}
@@ -216,15 +216,15 @@ func (o *ServicesSponsorInfo) GetIsAllWhiteListed() bool {
 // GetIsAllWhiteListedOk returns a tuple with the IsAllWhiteListed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetIsAllWhiteListedOk() (*bool, bool) {
-	if o == nil || o.IsAllWhiteListed == nil {
-		return nil, false
+	if o == nil || isNil(o.IsAllWhiteListed) {
+    return nil, false
 	}
 	return o.IsAllWhiteListed, true
 }
 
 // HasIsAllWhiteListed returns a boolean if a field has been set.
 func (o *ServicesSponsorInfo) HasIsAllWhiteListed() bool {
-	if o != nil && o.IsAllWhiteListed != nil {
+	if o != nil && !isNil(o.IsAllWhiteListed) {
 		return true
 	}
 
@@ -238,22 +238,22 @@ func (o *ServicesSponsorInfo) SetIsAllWhiteListed(v bool) {
 
 func (o ServicesSponsorInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CollateralSponsor != nil {
+	if !isNil(o.CollateralSponsor) {
 		toSerialize["collateral_sponsor"] = o.CollateralSponsor
 	}
-	if o.CollateralSponsorBalance != nil {
+	if !isNil(o.CollateralSponsorBalance) {
 		toSerialize["collateral_sponsor_balance"] = o.CollateralSponsorBalance
 	}
-	if o.GasSponsor != nil {
+	if !isNil(o.GasSponsor) {
 		toSerialize["gas_sponsor"] = o.GasSponsor
 	}
-	if o.GasSponsorBalance != nil {
+	if !isNil(o.GasSponsorBalance) {
 		toSerialize["gas_sponsor_balance"] = o.GasSponsorBalance
 	}
-	if o.GasUpperBound != nil {
+	if !isNil(o.GasUpperBound) {
 		toSerialize["gas_upper_bound"] = o.GasUpperBound
 	}
-	if o.IsAllWhiteListed != nil {
+	if !isNil(o.IsAllWhiteListed) {
 		toSerialize["is_all_white_listed"] = o.IsAllWhiteListed
 	}
 

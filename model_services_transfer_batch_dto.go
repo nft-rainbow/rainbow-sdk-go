@@ -60,7 +60,7 @@ func (o *ServicesTransferBatchDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferBatchDto) GetChainOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Chain, true
 }
@@ -84,7 +84,7 @@ func (o *ServicesTransferBatchDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferBatchDto) GetContractAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ContractAddress, true
 }
@@ -108,7 +108,7 @@ func (o *ServicesTransferBatchDto) GetContractType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferBatchDto) GetContractTypeOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ContractType, true
 }
@@ -132,7 +132,7 @@ func (o *ServicesTransferBatchDto) GetItems() []ServicesTransferItemDto {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferBatchDto) GetItemsOk() ([]ServicesTransferItemDto, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.Items, true
 }

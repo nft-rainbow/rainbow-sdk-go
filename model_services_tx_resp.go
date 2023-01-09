@@ -46,7 +46,7 @@ func NewServicesTxRespWithDefaults() *ServicesTxResp {
 
 // GetErrorMsg returns the ErrorMsg field value if set, zero value otherwise.
 func (o *ServicesTxResp) GetErrorMsg() string {
-	if o == nil || o.ErrorMsg == nil {
+	if o == nil || isNil(o.ErrorMsg) {
 		var ret string
 		return ret
 	}
@@ -56,15 +56,15 @@ func (o *ServicesTxResp) GetErrorMsg() string {
 // GetErrorMsgOk returns a tuple with the ErrorMsg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetErrorMsgOk() (*string, bool) {
-	if o == nil || o.ErrorMsg == nil {
-		return nil, false
+	if o == nil || isNil(o.ErrorMsg) {
+    return nil, false
 	}
 	return o.ErrorMsg, true
 }
 
 // HasErrorMsg returns a boolean if a field has been set.
 func (o *ServicesTxResp) HasErrorMsg() bool {
-	if o != nil && o.ErrorMsg != nil {
+	if o != nil && !isNil(o.ErrorMsg) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *ServicesTxResp) SetErrorMsg(v string) {
 
 // GetHash returns the Hash field value if set, zero value otherwise.
 func (o *ServicesTxResp) GetHash() string {
-	if o == nil || o.Hash == nil {
+	if o == nil || isNil(o.Hash) {
 		var ret string
 		return ret
 	}
@@ -88,15 +88,15 @@ func (o *ServicesTxResp) GetHash() string {
 // GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetHashOk() (*string, bool) {
-	if o == nil || o.Hash == nil {
-		return nil, false
+	if o == nil || isNil(o.Hash) {
+    return nil, false
 	}
 	return o.Hash, true
 }
 
 // HasHash returns a boolean if a field has been set.
 func (o *ServicesTxResp) HasHash() bool {
-	if o != nil && o.Hash != nil {
+	if o != nil && !isNil(o.Hash) {
 		return true
 	}
 
@@ -110,7 +110,7 @@ func (o *ServicesTxResp) SetHash(v string) {
 
 // GetIsFinalized returns the IsFinalized field value if set, zero value otherwise.
 func (o *ServicesTxResp) GetIsFinalized() bool {
-	if o == nil || o.IsFinalized == nil {
+	if o == nil || isNil(o.IsFinalized) {
 		var ret bool
 		return ret
 	}
@@ -120,15 +120,15 @@ func (o *ServicesTxResp) GetIsFinalized() bool {
 // GetIsFinalizedOk returns a tuple with the IsFinalized field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetIsFinalizedOk() (*bool, bool) {
-	if o == nil || o.IsFinalized == nil {
-		return nil, false
+	if o == nil || isNil(o.IsFinalized) {
+    return nil, false
 	}
 	return o.IsFinalized, true
 }
 
 // HasIsFinalized returns a boolean if a field has been set.
 func (o *ServicesTxResp) HasIsFinalized() bool {
-	if o != nil && o.IsFinalized != nil {
+	if o != nil && !isNil(o.IsFinalized) {
 		return true
 	}
 
@@ -142,7 +142,7 @@ func (o *ServicesTxResp) SetIsFinalized(v bool) {
 
 // GetIsSuccess returns the IsSuccess field value if set, zero value otherwise.
 func (o *ServicesTxResp) GetIsSuccess() bool {
-	if o == nil || o.IsSuccess == nil {
+	if o == nil || isNil(o.IsSuccess) {
 		var ret bool
 		return ret
 	}
@@ -152,15 +152,15 @@ func (o *ServicesTxResp) GetIsSuccess() bool {
 // GetIsSuccessOk returns a tuple with the IsSuccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetIsSuccessOk() (*bool, bool) {
-	if o == nil || o.IsSuccess == nil {
-		return nil, false
+	if o == nil || isNil(o.IsSuccess) {
+    return nil, false
 	}
 	return o.IsSuccess, true
 }
 
 // HasIsSuccess returns a boolean if a field has been set.
 func (o *ServicesTxResp) HasIsSuccess() bool {
-	if o != nil && o.IsSuccess != nil {
+	if o != nil && !isNil(o.IsSuccess) {
 		return true
 	}
 
@@ -174,7 +174,7 @@ func (o *ServicesTxResp) SetIsSuccess(v bool) {
 
 // GetStateCode returns the StateCode field value if set, zero value otherwise.
 func (o *ServicesTxResp) GetStateCode() int32 {
-	if o == nil || o.StateCode == nil {
+	if o == nil || isNil(o.StateCode) {
 		var ret int32
 		return ret
 	}
@@ -184,15 +184,15 @@ func (o *ServicesTxResp) GetStateCode() int32 {
 // GetStateCodeOk returns a tuple with the StateCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetStateCodeOk() (*int32, bool) {
-	if o == nil || o.StateCode == nil {
-		return nil, false
+	if o == nil || isNil(o.StateCode) {
+    return nil, false
 	}
 	return o.StateCode, true
 }
 
 // HasStateCode returns a boolean if a field has been set.
 func (o *ServicesTxResp) HasStateCode() bool {
-	if o != nil && o.StateCode != nil {
+	if o != nil && !isNil(o.StateCode) {
 		return true
 	}
 
@@ -206,7 +206,7 @@ func (o *ServicesTxResp) SetStateCode(v int32) {
 
 // GetStateMsg returns the StateMsg field value if set, zero value otherwise.
 func (o *ServicesTxResp) GetStateMsg() string {
-	if o == nil || o.StateMsg == nil {
+	if o == nil || isNil(o.StateMsg) {
 		var ret string
 		return ret
 	}
@@ -216,15 +216,15 @@ func (o *ServicesTxResp) GetStateMsg() string {
 // GetStateMsgOk returns a tuple with the StateMsg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetStateMsgOk() (*string, bool) {
-	if o == nil || o.StateMsg == nil {
-		return nil, false
+	if o == nil || isNil(o.StateMsg) {
+    return nil, false
 	}
 	return o.StateMsg, true
 }
 
 // HasStateMsg returns a boolean if a field has been set.
 func (o *ServicesTxResp) HasStateMsg() bool {
-	if o != nil && o.StateMsg != nil {
+	if o != nil && !isNil(o.StateMsg) {
 		return true
 	}
 
@@ -238,22 +238,22 @@ func (o *ServicesTxResp) SetStateMsg(v string) {
 
 func (o ServicesTxResp) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ErrorMsg != nil {
+	if !isNil(o.ErrorMsg) {
 		toSerialize["error_msg"] = o.ErrorMsg
 	}
-	if o.Hash != nil {
+	if !isNil(o.Hash) {
 		toSerialize["hash"] = o.Hash
 	}
-	if o.IsFinalized != nil {
+	if !isNil(o.IsFinalized) {
 		toSerialize["is_finalized"] = o.IsFinalized
 	}
-	if o.IsSuccess != nil {
+	if !isNil(o.IsSuccess) {
 		toSerialize["is_success"] = o.IsSuccess
 	}
-	if o.StateCode != nil {
+	if !isNil(o.StateCode) {
 		toSerialize["state_code"] = o.StateCode
 	}
-	if o.StateMsg != nil {
+	if !isNil(o.StateMsg) {
 		toSerialize["state_msg"] = o.StateMsg
 	}
 

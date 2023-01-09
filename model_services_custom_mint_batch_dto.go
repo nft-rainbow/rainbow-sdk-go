@@ -58,7 +58,7 @@ func (o *ServicesCustomMintBatchDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintBatchDto) GetChainOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Chain, true
 }
@@ -82,7 +82,7 @@ func (o *ServicesCustomMintBatchDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintBatchDto) GetContractAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ContractAddress, true
 }
@@ -106,7 +106,7 @@ func (o *ServicesCustomMintBatchDto) GetMintItems() []ServicesMintItemDto {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintBatchDto) GetMintItemsOk() ([]ServicesMintItemDto, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return o.MintItems, true
 }

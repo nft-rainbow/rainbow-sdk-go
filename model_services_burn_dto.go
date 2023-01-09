@@ -50,7 +50,7 @@ func NewServicesBurnDtoWithDefaults() *ServicesBurnDto {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *ServicesBurnDto) GetAmount() int32 {
-	if o == nil || o.Amount == nil {
+	if o == nil || isNil(o.Amount) {
 		var ret int32
 		return ret
 	}
@@ -60,15 +60,15 @@ func (o *ServicesBurnDto) GetAmount() int32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetAmountOk() (*int32, bool) {
-	if o == nil || o.Amount == nil {
-		return nil, false
+	if o == nil || isNil(o.Amount) {
+    return nil, false
 	}
 	return o.Amount, true
 }
 
 // HasAmount returns a boolean if a field has been set.
 func (o *ServicesBurnDto) HasAmount() bool {
-	if o != nil && o.Amount != nil {
+	if o != nil && !isNil(o.Amount) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *ServicesBurnDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetChainOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Chain, true
 }
@@ -118,7 +118,7 @@ func (o *ServicesBurnDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetContractAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ContractAddress, true
 }
@@ -142,7 +142,7 @@ func (o *ServicesBurnDto) GetContractType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetContractTypeOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ContractType, true
 }
@@ -166,7 +166,7 @@ func (o *ServicesBurnDto) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetTokenIdOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenId, true
 }
@@ -178,7 +178,7 @@ func (o *ServicesBurnDto) SetTokenId(v string) {
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *ServicesBurnDto) GetUser() string {
-	if o == nil || o.User == nil {
+	if o == nil || isNil(o.User) {
 		var ret string
 		return ret
 	}
@@ -188,15 +188,15 @@ func (o *ServicesBurnDto) GetUser() string {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetUserOk() (*string, bool) {
-	if o == nil || o.User == nil {
-		return nil, false
+	if o == nil || isNil(o.User) {
+    return nil, false
 	}
 	return o.User, true
 }
 
 // HasUser returns a boolean if a field has been set.
 func (o *ServicesBurnDto) HasUser() bool {
-	if o != nil && o.User != nil {
+	if o != nil && !isNil(o.User) {
 		return true
 	}
 
@@ -210,7 +210,7 @@ func (o *ServicesBurnDto) SetUser(v string) {
 
 func (o ServicesBurnDto) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Amount != nil {
+	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
 	if true {
@@ -225,7 +225,7 @@ func (o ServicesBurnDto) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["token_id"] = o.TokenId
 	}
-	if o.User != nil {
+	if !isNil(o.User) {
 		toSerialize["user"] = o.User
 	}
 

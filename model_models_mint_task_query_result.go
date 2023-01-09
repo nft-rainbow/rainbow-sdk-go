@@ -42,7 +42,7 @@ func NewModelsMintTaskQueryResultWithDefaults() *ModelsMintTaskQueryResult {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ModelsMintTaskQueryResult) GetCount() int32 {
-	if o == nil || o.Count == nil {
+	if o == nil || isNil(o.Count) {
 		var ret int32
 		return ret
 	}
@@ -52,15 +52,15 @@ func (o *ModelsMintTaskQueryResult) GetCount() int32 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTaskQueryResult) GetCountOk() (*int32, bool) {
-	if o == nil || o.Count == nil {
-		return nil, false
+	if o == nil || isNil(o.Count) {
+    return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *ModelsMintTaskQueryResult) HasCount() bool {
-	if o != nil && o.Count != nil {
+	if o != nil && !isNil(o.Count) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *ModelsMintTaskQueryResult) SetCount(v int32) {
 
 // GetItems returns the Items field value if set, zero value otherwise.
 func (o *ModelsMintTaskQueryResult) GetItems() []ModelsMintTask {
-	if o == nil || o.Items == nil {
+	if o == nil || isNil(o.Items) {
 		var ret []ModelsMintTask
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *ModelsMintTaskQueryResult) GetItems() []ModelsMintTask {
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTaskQueryResult) GetItemsOk() ([]ModelsMintTask, bool) {
-	if o == nil || o.Items == nil {
-		return nil, false
+	if o == nil || isNil(o.Items) {
+    return nil, false
 	}
 	return o.Items, true
 }
 
 // HasItems returns a boolean if a field has been set.
 func (o *ModelsMintTaskQueryResult) HasItems() bool {
-	if o != nil && o.Items != nil {
+	if o != nil && !isNil(o.Items) {
 		return true
 	}
 
@@ -106,10 +106,10 @@ func (o *ModelsMintTaskQueryResult) SetItems(v []ModelsMintTask) {
 
 func (o ModelsMintTaskQueryResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Count != nil {
+	if !isNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
-	if o.Items != nil {
+	if !isNil(o.Items) {
 		toSerialize["items"] = o.Items
 	}
 

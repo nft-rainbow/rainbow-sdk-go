@@ -42,7 +42,7 @@ func NewServicesSetSponsorRespWithDefaults() *ServicesSetSponsorResp {
 
 // GetSponsorCollateralTxId returns the SponsorCollateralTxId field value if set, zero value otherwise.
 func (o *ServicesSetSponsorResp) GetSponsorCollateralTxId() int32 {
-	if o == nil || o.SponsorCollateralTxId == nil {
+	if o == nil || isNil(o.SponsorCollateralTxId) {
 		var ret int32
 		return ret
 	}
@@ -52,15 +52,15 @@ func (o *ServicesSetSponsorResp) GetSponsorCollateralTxId() int32 {
 // GetSponsorCollateralTxIdOk returns a tuple with the SponsorCollateralTxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesSetSponsorResp) GetSponsorCollateralTxIdOk() (*int32, bool) {
-	if o == nil || o.SponsorCollateralTxId == nil {
-		return nil, false
+	if o == nil || isNil(o.SponsorCollateralTxId) {
+    return nil, false
 	}
 	return o.SponsorCollateralTxId, true
 }
 
 // HasSponsorCollateralTxId returns a boolean if a field has been set.
 func (o *ServicesSetSponsorResp) HasSponsorCollateralTxId() bool {
-	if o != nil && o.SponsorCollateralTxId != nil {
+	if o != nil && !isNil(o.SponsorCollateralTxId) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *ServicesSetSponsorResp) SetSponsorCollateralTxId(v int32) {
 
 // GetSponsorGasTxId returns the SponsorGasTxId field value if set, zero value otherwise.
 func (o *ServicesSetSponsorResp) GetSponsorGasTxId() int32 {
-	if o == nil || o.SponsorGasTxId == nil {
+	if o == nil || isNil(o.SponsorGasTxId) {
 		var ret int32
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *ServicesSetSponsorResp) GetSponsorGasTxId() int32 {
 // GetSponsorGasTxIdOk returns a tuple with the SponsorGasTxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesSetSponsorResp) GetSponsorGasTxIdOk() (*int32, bool) {
-	if o == nil || o.SponsorGasTxId == nil {
-		return nil, false
+	if o == nil || isNil(o.SponsorGasTxId) {
+    return nil, false
 	}
 	return o.SponsorGasTxId, true
 }
 
 // HasSponsorGasTxId returns a boolean if a field has been set.
 func (o *ServicesSetSponsorResp) HasSponsorGasTxId() bool {
-	if o != nil && o.SponsorGasTxId != nil {
+	if o != nil && !isNil(o.SponsorGasTxId) {
 		return true
 	}
 
@@ -106,10 +106,10 @@ func (o *ServicesSetSponsorResp) SetSponsorGasTxId(v int32) {
 
 func (o ServicesSetSponsorResp) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.SponsorCollateralTxId != nil {
+	if !isNil(o.SponsorCollateralTxId) {
 		toSerialize["sponsor_collateral_tx_id"] = o.SponsorCollateralTxId
 	}
-	if o.SponsorGasTxId != nil {
+	if !isNil(o.SponsorGasTxId) {
 		toSerialize["sponsor_gas_tx_id"] = o.SponsorGasTxId
 	}
 

@@ -152,7 +152,7 @@ No authorization required
 
 ## GetBurnList
 
-> ModelsBurnTaskQueryResult GetBurnList(ctx, id).Authorization(authorization).Execute()
+> ModelsBurnTaskQueryResult GetBurnList(ctx).Authorization(authorization).Execute()
 
 Obtain the burned NFTs list
 
@@ -172,11 +172,10 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
-    id := int32(56) // int32 | id
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BurnsApi.GetBurnList(context.Background(), id).Authorization(authorization).Execute()
+    resp, r, err := apiClient.BurnsApi.GetBurnList(context.Background()).Authorization(authorization).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BurnsApi.GetBurnList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -189,10 +188,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int32** | id | 
 
 ### Other Parameters
 
@@ -202,7 +197,6 @@ Other parameters are passed through a pointer to a apiGetBurnListRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
-
 
 ### Return type
 

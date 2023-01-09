@@ -359,7 +359,7 @@ No authorization required
 
 ## ListMints
 
-> ModelsMintTaskQueryResult ListMints(ctx).Authorization(authorization).Page(page).Limit(limit).Execute()
+> ModelsMintTaskQueryResult ListMints(ctx).Authorization(authorization).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Execute()
 
 Obtain NFT list
 
@@ -381,10 +381,12 @@ func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
     page := int32(56) // int32 | page (optional)
     limit := int32(56) // int32 | limit (optional)
+    contract := "contract_example" // string | contract (optional)
+    mintTo := "mintTo_example" // string | mint_to (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MintsApi.ListMints(context.Background()).Authorization(authorization).Page(page).Limit(limit).Execute()
+    resp, r, err := apiClient.MintsApi.ListMints(context.Background()).Authorization(authorization).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MintsApi.ListMints``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -408,6 +410,8 @@ Name | Type | Description  | Notes
  **authorization** | **string** | Bearer Open_JWT | 
  **page** | **int32** | page | 
  **limit** | **int32** | limit | 
+ **contract** | **string** | contract | 
+ **mintTo** | **string** | mint_to | 
 
 ### Return type
 

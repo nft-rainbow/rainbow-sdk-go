@@ -113,7 +113,7 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
-    contractInfo := *openapiclient.NewServicesContractDeployDto("Chain_example", false, "Name_example", "OwnerAddress_example", "Symbol_example", "Type_example") // ServicesContractDeployDto | contract_info
+    contractInfo := *openapiclient.NewServicesContractDeployDto("Chain_example", "Name_example", "Symbol_example", "Type_example") // ServicesContractDeployDto | contract_info
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

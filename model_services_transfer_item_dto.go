@@ -47,7 +47,7 @@ func NewServicesTransferItemDtoWithDefaults() *ServicesTransferItemDto {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *ServicesTransferItemDto) GetAmount() int32 {
-	if o == nil || o.Amount == nil {
+	if o == nil || isNil(o.Amount) {
 		var ret int32
 		return ret
 	}
@@ -57,15 +57,15 @@ func (o *ServicesTransferItemDto) GetAmount() int32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferItemDto) GetAmountOk() (*int32, bool) {
-	if o == nil || o.Amount == nil {
-		return nil, false
+	if o == nil || isNil(o.Amount) {
+    return nil, false
 	}
 	return o.Amount, true
 }
 
 // HasAmount returns a boolean if a field has been set.
 func (o *ServicesTransferItemDto) HasAmount() bool {
-	if o != nil && o.Amount != nil {
+	if o != nil && !isNil(o.Amount) {
 		return true
 	}
 
@@ -91,7 +91,7 @@ func (o *ServicesTransferItemDto) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferItemDto) GetTokenIdOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenId, true
 }
@@ -115,7 +115,7 @@ func (o *ServicesTransferItemDto) GetTransferFromAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferItemDto) GetTransferFromAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TransferFromAddress, true
 }
@@ -139,7 +139,7 @@ func (o *ServicesTransferItemDto) GetTransferToAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferItemDto) GetTransferToAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TransferToAddress, true
 }
@@ -151,7 +151,7 @@ func (o *ServicesTransferItemDto) SetTransferToAddress(v string) {
 
 func (o ServicesTransferItemDto) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Amount != nil {
+	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
 	if true {

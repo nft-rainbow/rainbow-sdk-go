@@ -48,7 +48,7 @@ func NewModelsExposedFileWithDefaults() *ModelsExposedFile {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ModelsExposedFile) GetCreatedAt() string {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
@@ -58,15 +58,15 @@ func (o *ModelsExposedFile) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetCreatedAtOk() (*string, bool) {
-	if o == nil || o.CreatedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.CreatedAt) {
+    return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *ModelsExposedFile) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *ModelsExposedFile) SetCreatedAt(v string) {
 
 // GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
 func (o *ModelsExposedFile) GetDeletedAt() GormDeletedAt {
-	if o == nil || o.DeletedAt == nil {
+	if o == nil || isNil(o.DeletedAt) {
 		var ret GormDeletedAt
 		return ret
 	}
@@ -90,15 +90,15 @@ func (o *ModelsExposedFile) GetDeletedAt() GormDeletedAt {
 // GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetDeletedAtOk() (*GormDeletedAt, bool) {
-	if o == nil || o.DeletedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.DeletedAt) {
+    return nil, false
 	}
 	return o.DeletedAt, true
 }
 
 // HasDeletedAt returns a boolean if a field has been set.
 func (o *ModelsExposedFile) HasDeletedAt() bool {
-	if o != nil && o.DeletedAt != nil {
+	if o != nil && !isNil(o.DeletedAt) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *ModelsExposedFile) SetDeletedAt(v GormDeletedAt) {
 
 // GetFileName returns the FileName field value if set, zero value otherwise.
 func (o *ModelsExposedFile) GetFileName() string {
-	if o == nil || o.FileName == nil {
+	if o == nil || isNil(o.FileName) {
 		var ret string
 		return ret
 	}
@@ -122,15 +122,15 @@ func (o *ModelsExposedFile) GetFileName() string {
 // GetFileNameOk returns a tuple with the FileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetFileNameOk() (*string, bool) {
-	if o == nil || o.FileName == nil {
-		return nil, false
+	if o == nil || isNil(o.FileName) {
+    return nil, false
 	}
 	return o.FileName, true
 }
 
 // HasFileName returns a boolean if a field has been set.
 func (o *ModelsExposedFile) HasFileName() bool {
-	if o != nil && o.FileName != nil {
+	if o != nil && !isNil(o.FileName) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *ModelsExposedFile) SetFileName(v string) {
 
 // GetFileSize returns the FileSize field value if set, zero value otherwise.
 func (o *ModelsExposedFile) GetFileSize() int32 {
-	if o == nil || o.FileSize == nil {
+	if o == nil || isNil(o.FileSize) {
 		var ret int32
 		return ret
 	}
@@ -154,15 +154,15 @@ func (o *ModelsExposedFile) GetFileSize() int32 {
 // GetFileSizeOk returns a tuple with the FileSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetFileSizeOk() (*int32, bool) {
-	if o == nil || o.FileSize == nil {
-		return nil, false
+	if o == nil || isNil(o.FileSize) {
+    return nil, false
 	}
 	return o.FileSize, true
 }
 
 // HasFileSize returns a boolean if a field has been set.
 func (o *ModelsExposedFile) HasFileSize() bool {
-	if o != nil && o.FileSize != nil {
+	if o != nil && !isNil(o.FileSize) {
 		return true
 	}
 
@@ -176,7 +176,7 @@ func (o *ModelsExposedFile) SetFileSize(v int32) {
 
 // GetFileType returns the FileType field value if set, zero value otherwise.
 func (o *ModelsExposedFile) GetFileType() string {
-	if o == nil || o.FileType == nil {
+	if o == nil || isNil(o.FileType) {
 		var ret string
 		return ret
 	}
@@ -186,15 +186,15 @@ func (o *ModelsExposedFile) GetFileType() string {
 // GetFileTypeOk returns a tuple with the FileType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetFileTypeOk() (*string, bool) {
-	if o == nil || o.FileType == nil {
-		return nil, false
+	if o == nil || isNil(o.FileType) {
+    return nil, false
 	}
 	return o.FileType, true
 }
 
 // HasFileType returns a boolean if a field has been set.
 func (o *ModelsExposedFile) HasFileType() bool {
-	if o != nil && o.FileType != nil {
+	if o != nil && !isNil(o.FileType) {
 		return true
 	}
 
@@ -208,7 +208,7 @@ func (o *ModelsExposedFile) SetFileType(v string) {
 
 // GetFileUrl returns the FileUrl field value if set, zero value otherwise.
 func (o *ModelsExposedFile) GetFileUrl() string {
-	if o == nil || o.FileUrl == nil {
+	if o == nil || isNil(o.FileUrl) {
 		var ret string
 		return ret
 	}
@@ -218,15 +218,15 @@ func (o *ModelsExposedFile) GetFileUrl() string {
 // GetFileUrlOk returns a tuple with the FileUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetFileUrlOk() (*string, bool) {
-	if o == nil || o.FileUrl == nil {
-		return nil, false
+	if o == nil || isNil(o.FileUrl) {
+    return nil, false
 	}
 	return o.FileUrl, true
 }
 
 // HasFileUrl returns a boolean if a field has been set.
 func (o *ModelsExposedFile) HasFileUrl() bool {
-	if o != nil && o.FileUrl != nil {
+	if o != nil && !isNil(o.FileUrl) {
 		return true
 	}
 
@@ -240,7 +240,7 @@ func (o *ModelsExposedFile) SetFileUrl(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ModelsExposedFile) GetId() int32 {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret int32
 		return ret
 	}
@@ -250,15 +250,15 @@ func (o *ModelsExposedFile) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetIdOk() (*int32, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
+	if o == nil || isNil(o.Id) {
+    return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *ModelsExposedFile) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -272,7 +272,7 @@ func (o *ModelsExposedFile) SetId(v int32) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *ModelsExposedFile) GetUpdatedAt() string {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
@@ -282,15 +282,15 @@ func (o *ModelsExposedFile) GetUpdatedAt() string {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetUpdatedAtOk() (*string, bool) {
-	if o == nil || o.UpdatedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.UpdatedAt) {
+    return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *ModelsExposedFile) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -304,28 +304,28 @@ func (o *ModelsExposedFile) SetUpdatedAt(v string) {
 
 func (o ModelsExposedFile) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.DeletedAt != nil {
+	if !isNil(o.DeletedAt) {
 		toSerialize["deleted_at"] = o.DeletedAt
 	}
-	if o.FileName != nil {
+	if !isNil(o.FileName) {
 		toSerialize["file_name"] = o.FileName
 	}
-	if o.FileSize != nil {
+	if !isNil(o.FileSize) {
 		toSerialize["file_size"] = o.FileSize
 	}
-	if o.FileType != nil {
+	if !isNil(o.FileType) {
 		toSerialize["file_type"] = o.FileType
 	}
-	if o.FileUrl != nil {
+	if !isNil(o.FileUrl) {
 		toSerialize["file_url"] = o.FileUrl
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 

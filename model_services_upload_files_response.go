@@ -44,7 +44,7 @@ func NewServicesUploadFilesResponseWithDefaults() *ServicesUploadFilesResponse {
 
 // GetFileName returns the FileName field value if set, zero value otherwise.
 func (o *ServicesUploadFilesResponse) GetFileName() string {
-	if o == nil || o.FileName == nil {
+	if o == nil || isNil(o.FileName) {
 		var ret string
 		return ret
 	}
@@ -54,15 +54,15 @@ func (o *ServicesUploadFilesResponse) GetFileName() string {
 // GetFileNameOk returns a tuple with the FileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileNameOk() (*string, bool) {
-	if o == nil || o.FileName == nil {
-		return nil, false
+	if o == nil || isNil(o.FileName) {
+    return nil, false
 	}
 	return o.FileName, true
 }
 
 // HasFileName returns a boolean if a field has been set.
 func (o *ServicesUploadFilesResponse) HasFileName() bool {
-	if o != nil && o.FileName != nil {
+	if o != nil && !isNil(o.FileName) {
 		return true
 	}
 
@@ -76,7 +76,7 @@ func (o *ServicesUploadFilesResponse) SetFileName(v string) {
 
 // GetFileSize returns the FileSize field value if set, zero value otherwise.
 func (o *ServicesUploadFilesResponse) GetFileSize() int32 {
-	if o == nil || o.FileSize == nil {
+	if o == nil || isNil(o.FileSize) {
 		var ret int32
 		return ret
 	}
@@ -86,15 +86,15 @@ func (o *ServicesUploadFilesResponse) GetFileSize() int32 {
 // GetFileSizeOk returns a tuple with the FileSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileSizeOk() (*int32, bool) {
-	if o == nil || o.FileSize == nil {
-		return nil, false
+	if o == nil || isNil(o.FileSize) {
+    return nil, false
 	}
 	return o.FileSize, true
 }
 
 // HasFileSize returns a boolean if a field has been set.
 func (o *ServicesUploadFilesResponse) HasFileSize() bool {
-	if o != nil && o.FileSize != nil {
+	if o != nil && !isNil(o.FileSize) {
 		return true
 	}
 
@@ -108,7 +108,7 @@ func (o *ServicesUploadFilesResponse) SetFileSize(v int32) {
 
 // GetFileType returns the FileType field value if set, zero value otherwise.
 func (o *ServicesUploadFilesResponse) GetFileType() string {
-	if o == nil || o.FileType == nil {
+	if o == nil || isNil(o.FileType) {
 		var ret string
 		return ret
 	}
@@ -118,15 +118,15 @@ func (o *ServicesUploadFilesResponse) GetFileType() string {
 // GetFileTypeOk returns a tuple with the FileType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileTypeOk() (*string, bool) {
-	if o == nil || o.FileType == nil {
-		return nil, false
+	if o == nil || isNil(o.FileType) {
+    return nil, false
 	}
 	return o.FileType, true
 }
 
 // HasFileType returns a boolean if a field has been set.
 func (o *ServicesUploadFilesResponse) HasFileType() bool {
-	if o != nil && o.FileType != nil {
+	if o != nil && !isNil(o.FileType) {
 		return true
 	}
 
@@ -140,7 +140,7 @@ func (o *ServicesUploadFilesResponse) SetFileType(v string) {
 
 // GetFileUrl returns the FileUrl field value if set, zero value otherwise.
 func (o *ServicesUploadFilesResponse) GetFileUrl() string {
-	if o == nil || o.FileUrl == nil {
+	if o == nil || isNil(o.FileUrl) {
 		var ret string
 		return ret
 	}
@@ -150,15 +150,15 @@ func (o *ServicesUploadFilesResponse) GetFileUrl() string {
 // GetFileUrlOk returns a tuple with the FileUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileUrlOk() (*string, bool) {
-	if o == nil || o.FileUrl == nil {
-		return nil, false
+	if o == nil || isNil(o.FileUrl) {
+    return nil, false
 	}
 	return o.FileUrl, true
 }
 
 // HasFileUrl returns a boolean if a field has been set.
 func (o *ServicesUploadFilesResponse) HasFileUrl() bool {
-	if o != nil && o.FileUrl != nil {
+	if o != nil && !isNil(o.FileUrl) {
 		return true
 	}
 
@@ -172,16 +172,16 @@ func (o *ServicesUploadFilesResponse) SetFileUrl(v string) {
 
 func (o ServicesUploadFilesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.FileName != nil {
+	if !isNil(o.FileName) {
 		toSerialize["file_name"] = o.FileName
 	}
-	if o.FileSize != nil {
+	if !isNil(o.FileSize) {
 		toSerialize["file_size"] = o.FileSize
 	}
-	if o.FileType != nil {
+	if !isNil(o.FileType) {
 		toSerialize["file_type"] = o.FileType
 	}
-	if o.FileUrl != nil {
+	if !isNil(o.FileUrl) {
 		toSerialize["file_url"] = o.FileUrl
 	}
 

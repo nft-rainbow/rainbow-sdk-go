@@ -18,9 +18,10 @@ import (
 type ServicesContractDeployDto struct {
 	BaseUri *string `json:"base_uri,omitempty"`
 	Chain string `json:"chain"`
-	IsSponsorForAllUser bool `json:"is_sponsor_for_all_user"`
+	// default: true
+	IsSponsorForAllUser *bool `json:"is_sponsor_for_all_user,omitempty"`
 	Name string `json:"name"`
-	OwnerAddress string `json:"owner_address"`
+	OwnerAddress *string `json:"owner_address,omitempty"`
 	RoyaltiesAddress *string `json:"royalties_address,omitempty"`
 	RoyaltiesBps *int32 `json:"royalties_bps,omitempty"`
 	Symbol string `json:"symbol"`
@@ -38,12 +39,10 @@ type _ServicesContractDeployDto ServicesContractDeployDto
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServicesContractDeployDto(chain string, isSponsorForAllUser bool, name string, ownerAddress string, symbol string, type_ string) *ServicesContractDeployDto {
+func NewServicesContractDeployDto(chain string, name string, symbol string, type_ string) *ServicesContractDeployDto {
 	this := ServicesContractDeployDto{}
 	this.Chain = chain
-	this.IsSponsorForAllUser = isSponsorForAllUser
 	this.Name = name
-	this.OwnerAddress = ownerAddress
 	this.Symbol = symbol
 	this.Type = type_
 	return &this
@@ -59,7 +58,7 @@ func NewServicesContractDeployDtoWithDefaults() *ServicesContractDeployDto {
 
 // GetBaseUri returns the BaseUri field value if set, zero value otherwise.
 func (o *ServicesContractDeployDto) GetBaseUri() string {
-	if o == nil || o.BaseUri == nil {
+	if o == nil || isNil(o.BaseUri) {
 		var ret string
 		return ret
 	}
@@ -69,15 +68,15 @@ func (o *ServicesContractDeployDto) GetBaseUri() string {
 // GetBaseUriOk returns a tuple with the BaseUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetBaseUriOk() (*string, bool) {
-	if o == nil || o.BaseUri == nil {
-		return nil, false
+	if o == nil || isNil(o.BaseUri) {
+    return nil, false
 	}
 	return o.BaseUri, true
 }
 
 // HasBaseUri returns a boolean if a field has been set.
 func (o *ServicesContractDeployDto) HasBaseUri() bool {
-	if o != nil && o.BaseUri != nil {
+	if o != nil && !isNil(o.BaseUri) {
 		return true
 	}
 
@@ -103,7 +102,7 @@ func (o *ServicesContractDeployDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetChainOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Chain, true
 }
@@ -113,28 +112,36 @@ func (o *ServicesContractDeployDto) SetChain(v string) {
 	o.Chain = v
 }
 
-// GetIsSponsorForAllUser returns the IsSponsorForAllUser field value
+// GetIsSponsorForAllUser returns the IsSponsorForAllUser field value if set, zero value otherwise.
 func (o *ServicesContractDeployDto) GetIsSponsorForAllUser() bool {
-	if o == nil {
+	if o == nil || isNil(o.IsSponsorForAllUser) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsSponsorForAllUser
+	return *o.IsSponsorForAllUser
 }
 
-// GetIsSponsorForAllUserOk returns a tuple with the IsSponsorForAllUser field value
+// GetIsSponsorForAllUserOk returns a tuple with the IsSponsorForAllUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetIsSponsorForAllUserOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
+	if o == nil || isNil(o.IsSponsorForAllUser) {
+    return nil, false
 	}
-	return &o.IsSponsorForAllUser, true
+	return o.IsSponsorForAllUser, true
 }
 
-// SetIsSponsorForAllUser sets field value
+// HasIsSponsorForAllUser returns a boolean if a field has been set.
+func (o *ServicesContractDeployDto) HasIsSponsorForAllUser() bool {
+	if o != nil && !isNil(o.IsSponsorForAllUser) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsSponsorForAllUser gets a reference to the given bool and assigns it to the IsSponsorForAllUser field.
 func (o *ServicesContractDeployDto) SetIsSponsorForAllUser(v bool) {
-	o.IsSponsorForAllUser = v
+	o.IsSponsorForAllUser = &v
 }
 
 // GetName returns the Name field value
@@ -151,7 +158,7 @@ func (o *ServicesContractDeployDto) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -161,33 +168,41 @@ func (o *ServicesContractDeployDto) SetName(v string) {
 	o.Name = v
 }
 
-// GetOwnerAddress returns the OwnerAddress field value
+// GetOwnerAddress returns the OwnerAddress field value if set, zero value otherwise.
 func (o *ServicesContractDeployDto) GetOwnerAddress() string {
-	if o == nil {
+	if o == nil || isNil(o.OwnerAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.OwnerAddress
+	return *o.OwnerAddress
 }
 
-// GetOwnerAddressOk returns a tuple with the OwnerAddress field value
+// GetOwnerAddressOk returns a tuple with the OwnerAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetOwnerAddressOk() (*string, bool) {
-	if o == nil {
-		return nil, false
+	if o == nil || isNil(o.OwnerAddress) {
+    return nil, false
 	}
-	return &o.OwnerAddress, true
+	return o.OwnerAddress, true
 }
 
-// SetOwnerAddress sets field value
+// HasOwnerAddress returns a boolean if a field has been set.
+func (o *ServicesContractDeployDto) HasOwnerAddress() bool {
+	if o != nil && !isNil(o.OwnerAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnerAddress gets a reference to the given string and assigns it to the OwnerAddress field.
 func (o *ServicesContractDeployDto) SetOwnerAddress(v string) {
-	o.OwnerAddress = v
+	o.OwnerAddress = &v
 }
 
 // GetRoyaltiesAddress returns the RoyaltiesAddress field value if set, zero value otherwise.
 func (o *ServicesContractDeployDto) GetRoyaltiesAddress() string {
-	if o == nil || o.RoyaltiesAddress == nil {
+	if o == nil || isNil(o.RoyaltiesAddress) {
 		var ret string
 		return ret
 	}
@@ -197,15 +212,15 @@ func (o *ServicesContractDeployDto) GetRoyaltiesAddress() string {
 // GetRoyaltiesAddressOk returns a tuple with the RoyaltiesAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetRoyaltiesAddressOk() (*string, bool) {
-	if o == nil || o.RoyaltiesAddress == nil {
-		return nil, false
+	if o == nil || isNil(o.RoyaltiesAddress) {
+    return nil, false
 	}
 	return o.RoyaltiesAddress, true
 }
 
 // HasRoyaltiesAddress returns a boolean if a field has been set.
 func (o *ServicesContractDeployDto) HasRoyaltiesAddress() bool {
-	if o != nil && o.RoyaltiesAddress != nil {
+	if o != nil && !isNil(o.RoyaltiesAddress) {
 		return true
 	}
 
@@ -219,7 +234,7 @@ func (o *ServicesContractDeployDto) SetRoyaltiesAddress(v string) {
 
 // GetRoyaltiesBps returns the RoyaltiesBps field value if set, zero value otherwise.
 func (o *ServicesContractDeployDto) GetRoyaltiesBps() int32 {
-	if o == nil || o.RoyaltiesBps == nil {
+	if o == nil || isNil(o.RoyaltiesBps) {
 		var ret int32
 		return ret
 	}
@@ -229,15 +244,15 @@ func (o *ServicesContractDeployDto) GetRoyaltiesBps() int32 {
 // GetRoyaltiesBpsOk returns a tuple with the RoyaltiesBps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetRoyaltiesBpsOk() (*int32, bool) {
-	if o == nil || o.RoyaltiesBps == nil {
-		return nil, false
+	if o == nil || isNil(o.RoyaltiesBps) {
+    return nil, false
 	}
 	return o.RoyaltiesBps, true
 }
 
 // HasRoyaltiesBps returns a boolean if a field has been set.
 func (o *ServicesContractDeployDto) HasRoyaltiesBps() bool {
-	if o != nil && o.RoyaltiesBps != nil {
+	if o != nil && !isNil(o.RoyaltiesBps) {
 		return true
 	}
 
@@ -263,7 +278,7 @@ func (o *ServicesContractDeployDto) GetSymbol() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetSymbolOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Symbol, true
 }
@@ -275,7 +290,7 @@ func (o *ServicesContractDeployDto) SetSymbol(v string) {
 
 // GetTokensBurnable returns the TokensBurnable field value if set, zero value otherwise.
 func (o *ServicesContractDeployDto) GetTokensBurnable() bool {
-	if o == nil || o.TokensBurnable == nil {
+	if o == nil || isNil(o.TokensBurnable) {
 		var ret bool
 		return ret
 	}
@@ -285,15 +300,15 @@ func (o *ServicesContractDeployDto) GetTokensBurnable() bool {
 // GetTokensBurnableOk returns a tuple with the TokensBurnable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetTokensBurnableOk() (*bool, bool) {
-	if o == nil || o.TokensBurnable == nil {
-		return nil, false
+	if o == nil || isNil(o.TokensBurnable) {
+    return nil, false
 	}
 	return o.TokensBurnable, true
 }
 
 // HasTokensBurnable returns a boolean if a field has been set.
 func (o *ServicesContractDeployDto) HasTokensBurnable() bool {
-	if o != nil && o.TokensBurnable != nil {
+	if o != nil && !isNil(o.TokensBurnable) {
 		return true
 	}
 
@@ -307,7 +322,7 @@ func (o *ServicesContractDeployDto) SetTokensBurnable(v bool) {
 
 // GetTokensTransferableByAdmin returns the TokensTransferableByAdmin field value if set, zero value otherwise.
 func (o *ServicesContractDeployDto) GetTokensTransferableByAdmin() bool {
-	if o == nil || o.TokensTransferableByAdmin == nil {
+	if o == nil || isNil(o.TokensTransferableByAdmin) {
 		var ret bool
 		return ret
 	}
@@ -317,15 +332,15 @@ func (o *ServicesContractDeployDto) GetTokensTransferableByAdmin() bool {
 // GetTokensTransferableByAdminOk returns a tuple with the TokensTransferableByAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetTokensTransferableByAdminOk() (*bool, bool) {
-	if o == nil || o.TokensTransferableByAdmin == nil {
-		return nil, false
+	if o == nil || isNil(o.TokensTransferableByAdmin) {
+    return nil, false
 	}
 	return o.TokensTransferableByAdmin, true
 }
 
 // HasTokensTransferableByAdmin returns a boolean if a field has been set.
 func (o *ServicesContractDeployDto) HasTokensTransferableByAdmin() bool {
-	if o != nil && o.TokensTransferableByAdmin != nil {
+	if o != nil && !isNil(o.TokensTransferableByAdmin) {
 		return true
 	}
 
@@ -339,7 +354,7 @@ func (o *ServicesContractDeployDto) SetTokensTransferableByAdmin(v bool) {
 
 // GetTokensTransferableByUser returns the TokensTransferableByUser field value if set, zero value otherwise.
 func (o *ServicesContractDeployDto) GetTokensTransferableByUser() bool {
-	if o == nil || o.TokensTransferableByUser == nil {
+	if o == nil || isNil(o.TokensTransferableByUser) {
 		var ret bool
 		return ret
 	}
@@ -349,15 +364,15 @@ func (o *ServicesContractDeployDto) GetTokensTransferableByUser() bool {
 // GetTokensTransferableByUserOk returns a tuple with the TokensTransferableByUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetTokensTransferableByUserOk() (*bool, bool) {
-	if o == nil || o.TokensTransferableByUser == nil {
-		return nil, false
+	if o == nil || isNil(o.TokensTransferableByUser) {
+    return nil, false
 	}
 	return o.TokensTransferableByUser, true
 }
 
 // HasTokensTransferableByUser returns a boolean if a field has been set.
 func (o *ServicesContractDeployDto) HasTokensTransferableByUser() bool {
-	if o != nil && o.TokensTransferableByUser != nil {
+	if o != nil && !isNil(o.TokensTransferableByUser) {
 		return true
 	}
 
@@ -371,7 +386,7 @@ func (o *ServicesContractDeployDto) SetTokensTransferableByUser(v bool) {
 
 // GetTransferCooldownTime returns the TransferCooldownTime field value if set, zero value otherwise.
 func (o *ServicesContractDeployDto) GetTransferCooldownTime() int32 {
-	if o == nil || o.TransferCooldownTime == nil {
+	if o == nil || isNil(o.TransferCooldownTime) {
 		var ret int32
 		return ret
 	}
@@ -381,15 +396,15 @@ func (o *ServicesContractDeployDto) GetTransferCooldownTime() int32 {
 // GetTransferCooldownTimeOk returns a tuple with the TransferCooldownTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetTransferCooldownTimeOk() (*int32, bool) {
-	if o == nil || o.TransferCooldownTime == nil {
-		return nil, false
+	if o == nil || isNil(o.TransferCooldownTime) {
+    return nil, false
 	}
 	return o.TransferCooldownTime, true
 }
 
 // HasTransferCooldownTime returns a boolean if a field has been set.
 func (o *ServicesContractDeployDto) HasTransferCooldownTime() bool {
-	if o != nil && o.TransferCooldownTime != nil {
+	if o != nil && !isNil(o.TransferCooldownTime) {
 		return true
 	}
 
@@ -415,7 +430,7 @@ func (o *ServicesContractDeployDto) GetType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetTypeOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Type, true
 }
@@ -427,40 +442,40 @@ func (o *ServicesContractDeployDto) SetType(v string) {
 
 func (o ServicesContractDeployDto) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.BaseUri != nil {
+	if !isNil(o.BaseUri) {
 		toSerialize["base_uri"] = o.BaseUri
 	}
 	if true {
 		toSerialize["chain"] = o.Chain
 	}
-	if true {
+	if !isNil(o.IsSponsorForAllUser) {
 		toSerialize["is_sponsor_for_all_user"] = o.IsSponsorForAllUser
 	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
-	if true {
+	if !isNil(o.OwnerAddress) {
 		toSerialize["owner_address"] = o.OwnerAddress
 	}
-	if o.RoyaltiesAddress != nil {
+	if !isNil(o.RoyaltiesAddress) {
 		toSerialize["royalties_address"] = o.RoyaltiesAddress
 	}
-	if o.RoyaltiesBps != nil {
+	if !isNil(o.RoyaltiesBps) {
 		toSerialize["royalties_bps"] = o.RoyaltiesBps
 	}
 	if true {
 		toSerialize["symbol"] = o.Symbol
 	}
-	if o.TokensBurnable != nil {
+	if !isNil(o.TokensBurnable) {
 		toSerialize["tokens_burnable"] = o.TokensBurnable
 	}
-	if o.TokensTransferableByAdmin != nil {
+	if !isNil(o.TokensTransferableByAdmin) {
 		toSerialize["tokens_transferable_by_admin"] = o.TokensTransferableByAdmin
 	}
-	if o.TokensTransferableByUser != nil {
+	if !isNil(o.TokensTransferableByUser) {
 		toSerialize["tokens_transferable_by_user"] = o.TokensTransferableByUser
 	}
-	if o.TransferCooldownTime != nil {
+	if !isNil(o.TransferCooldownTime) {
 		toSerialize["transfer_cooldown_time"] = o.TransferCooldownTime
 	}
 	if true {

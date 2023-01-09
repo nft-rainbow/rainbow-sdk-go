@@ -226,7 +226,8 @@ func (a *MintsApiService) BatchCustomMintExecute(r ApiBatchCustomMintRequest) ([
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -236,7 +237,8 @@ func (a *MintsApiService) BatchCustomMintExecute(r ApiBatchCustomMintRequest) ([
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -367,7 +369,8 @@ func (a *MintsApiService) CustomMintExecute(r ApiCustomMintRequest) (*ModelsMint
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -377,7 +380,8 @@ func (a *MintsApiService) CustomMintExecute(r ApiCustomMintRequest) (*ModelsMint
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -520,7 +524,8 @@ func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -530,7 +535,8 @@ func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -661,7 +667,8 @@ func (a *MintsApiService) EasyMintByMetadataExecute(r ApiEasyMintByMetadataReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -671,7 +678,8 @@ func (a *MintsApiService) EasyMintByMetadataExecute(r ApiEasyMintByMetadataReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -794,7 +802,8 @@ func (a *MintsApiService) GetMintDetailExecute(r ApiGetMintDetailRequest) (*Mode
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -804,7 +813,8 @@ func (a *MintsApiService) GetMintDetailExecute(r ApiGetMintDetailRequest) (*Mode
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -827,6 +837,8 @@ type ApiListMintsRequest struct {
 	authorization *string
 	page *int32
 	limit *int32
+	contract *string
+	mintTo *string
 }
 
 // Bearer Open_JWT
@@ -844,6 +856,18 @@ func (r ApiListMintsRequest) Page(page int32) ApiListMintsRequest {
 // limit
 func (r ApiListMintsRequest) Limit(limit int32) ApiListMintsRequest {
 	r.limit = &limit
+	return r
+}
+
+// contract
+func (r ApiListMintsRequest) Contract(contract string) ApiListMintsRequest {
+	r.contract = &contract
+	return r
+}
+
+// mint_to
+func (r ApiListMintsRequest) MintTo(mintTo string) ApiListMintsRequest {
+	r.mintTo = &mintTo
 	return r
 }
 
@@ -896,6 +920,12 @@ func (a *MintsApiService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTa
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
+	if r.contract != nil {
+		localVarQueryParams.Add("contract", parameterToString(*r.contract, ""))
+	}
+	if r.mintTo != nil {
+		localVarQueryParams.Add("mint_to", parameterToString(*r.mintTo, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -943,7 +973,8 @@ func (a *MintsApiService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

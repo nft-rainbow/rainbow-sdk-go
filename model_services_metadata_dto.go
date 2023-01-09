@@ -49,7 +49,7 @@ func NewServicesMetadataDtoWithDefaults() *ServicesMetadataDto {
 
 // GetAnimationUrl returns the AnimationUrl field value if set, zero value otherwise.
 func (o *ServicesMetadataDto) GetAnimationUrl() string {
-	if o == nil || o.AnimationUrl == nil {
+	if o == nil || isNil(o.AnimationUrl) {
 		var ret string
 		return ret
 	}
@@ -59,15 +59,15 @@ func (o *ServicesMetadataDto) GetAnimationUrl() string {
 // GetAnimationUrlOk returns a tuple with the AnimationUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetAnimationUrlOk() (*string, bool) {
-	if o == nil || o.AnimationUrl == nil {
-		return nil, false
+	if o == nil || isNil(o.AnimationUrl) {
+    return nil, false
 	}
 	return o.AnimationUrl, true
 }
 
 // HasAnimationUrl returns a boolean if a field has been set.
 func (o *ServicesMetadataDto) HasAnimationUrl() bool {
-	if o != nil && o.AnimationUrl != nil {
+	if o != nil && !isNil(o.AnimationUrl) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *ServicesMetadataDto) SetAnimationUrl(v string) {
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *ServicesMetadataDto) GetAttributes() []ModelsExposedMetadataAttribute {
-	if o == nil || o.Attributes == nil {
+	if o == nil || isNil(o.Attributes) {
 		var ret []ModelsExposedMetadataAttribute
 		return ret
 	}
@@ -91,15 +91,15 @@ func (o *ServicesMetadataDto) GetAttributes() []ModelsExposedMetadataAttribute {
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetAttributesOk() ([]ModelsExposedMetadataAttribute, bool) {
-	if o == nil || o.Attributes == nil {
-		return nil, false
+	if o == nil || isNil(o.Attributes) {
+    return nil, false
 	}
 	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *ServicesMetadataDto) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
+	if o != nil && !isNil(o.Attributes) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *ServicesMetadataDto) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Description, true
 }
@@ -137,7 +137,7 @@ func (o *ServicesMetadataDto) SetDescription(v string) {
 
 // GetExternalLink returns the ExternalLink field value if set, zero value otherwise.
 func (o *ServicesMetadataDto) GetExternalLink() string {
-	if o == nil || o.ExternalLink == nil {
+	if o == nil || isNil(o.ExternalLink) {
 		var ret string
 		return ret
 	}
@@ -147,15 +147,15 @@ func (o *ServicesMetadataDto) GetExternalLink() string {
 // GetExternalLinkOk returns a tuple with the ExternalLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetExternalLinkOk() (*string, bool) {
-	if o == nil || o.ExternalLink == nil {
-		return nil, false
+	if o == nil || isNil(o.ExternalLink) {
+    return nil, false
 	}
 	return o.ExternalLink, true
 }
 
 // HasExternalLink returns a boolean if a field has been set.
 func (o *ServicesMetadataDto) HasExternalLink() bool {
-	if o != nil && o.ExternalLink != nil {
+	if o != nil && !isNil(o.ExternalLink) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *ServicesMetadataDto) GetImage() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetImageOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Image, true
 }
@@ -205,7 +205,7 @@ func (o *ServicesMetadataDto) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -217,16 +217,16 @@ func (o *ServicesMetadataDto) SetName(v string) {
 
 func (o ServicesMetadataDto) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AnimationUrl != nil {
+	if !isNil(o.AnimationUrl) {
 		toSerialize["animation_url"] = o.AnimationUrl
 	}
-	if o.Attributes != nil {
+	if !isNil(o.Attributes) {
 		toSerialize["attributes"] = o.Attributes
 	}
 	if true {
 		toSerialize["description"] = o.Description
 	}
-	if o.ExternalLink != nil {
+	if !isNil(o.ExternalLink) {
 		toSerialize["external_link"] = o.ExternalLink
 	}
 	if true {

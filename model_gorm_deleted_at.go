@@ -43,7 +43,7 @@ func NewGormDeletedAtWithDefaults() *GormDeletedAt {
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *GormDeletedAt) GetTime() string {
-	if o == nil || o.Time == nil {
+	if o == nil || isNil(o.Time) {
 		var ret string
 		return ret
 	}
@@ -53,15 +53,15 @@ func (o *GormDeletedAt) GetTime() string {
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GormDeletedAt) GetTimeOk() (*string, bool) {
-	if o == nil || o.Time == nil {
-		return nil, false
+	if o == nil || isNil(o.Time) {
+    return nil, false
 	}
 	return o.Time, true
 }
 
 // HasTime returns a boolean if a field has been set.
 func (o *GormDeletedAt) HasTime() bool {
-	if o != nil && o.Time != nil {
+	if o != nil && !isNil(o.Time) {
 		return true
 	}
 
@@ -75,7 +75,7 @@ func (o *GormDeletedAt) SetTime(v string) {
 
 // GetValid returns the Valid field value if set, zero value otherwise.
 func (o *GormDeletedAt) GetValid() bool {
-	if o == nil || o.Valid == nil {
+	if o == nil || isNil(o.Valid) {
 		var ret bool
 		return ret
 	}
@@ -85,15 +85,15 @@ func (o *GormDeletedAt) GetValid() bool {
 // GetValidOk returns a tuple with the Valid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GormDeletedAt) GetValidOk() (*bool, bool) {
-	if o == nil || o.Valid == nil {
-		return nil, false
+	if o == nil || isNil(o.Valid) {
+    return nil, false
 	}
 	return o.Valid, true
 }
 
 // HasValid returns a boolean if a field has been set.
 func (o *GormDeletedAt) HasValid() bool {
-	if o != nil && o.Valid != nil {
+	if o != nil && !isNil(o.Valid) {
 		return true
 	}
 
@@ -107,10 +107,10 @@ func (o *GormDeletedAt) SetValid(v bool) {
 
 func (o GormDeletedAt) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Time != nil {
+	if !isNil(o.Time) {
 		toSerialize["time"] = o.Time
 	}
-	if o.Valid != nil {
+	if !isNil(o.Valid) {
 		toSerialize["valid"] = o.Valid
 	}
 

@@ -23,12 +23,6 @@ paths:
         required: true
         schema:
           type: string
-      - description: id
-        in: path
-        name: id
-        required: true
-        schema:
-          type: integer
       responses:
         "200":
           content:
@@ -889,6 +883,16 @@ paths:
         name: limit
         schema:
           type: integer
+      - description: contract
+        in: query
+        name: contract
+        schema:
+          type: string
+      - description: mint_to
+        in: query
+        name: mint_to
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -2142,9 +2146,9 @@ components:
     services.ContractAdminUpdateDto:
       properties:
         admin_address:
-          description: "Chain           string `form:\"chain\" json:\"chain\" binding:\"\
-            required,oneof=conflux conflux_test\"`\nContractAddress string `form:\"\
-            contract_address\" json:\"contract_address\" binding:\"required\"`"
+          description: |-
+            Chain           string `form:"chain" json:"chain" binding:"required,oneof=conflux conflux_test"`
+            ContractAddress string `form:"contract_address" json:"contract_address" binding:"required"`
           type: string
       required:
       - admin_address
@@ -2159,6 +2163,7 @@ components:
           - conflux_test
           type: string
         is_sponsor_for_all_user:
+          description: "default: true"
           type: boolean
         name:
           type: string
@@ -2185,9 +2190,7 @@ components:
           type: string
       required:
       - chain
-      - is_sponsor_for_all_user
       - name
-      - owner_address
       - symbol
       - type
       type: object
@@ -2476,6 +2479,7 @@ components:
           type: string
       required:
       - file
+      type: object
     EasyMintByFile_request:
       properties:
         file:
@@ -2484,4 +2488,5 @@ components:
           type: string
       required:
       - file
+      type: object
 x-original-swagger-version: "2.0"

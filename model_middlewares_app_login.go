@@ -56,7 +56,7 @@ func (o *MiddlewaresAppLogin) GetAppId() string {
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresAppLogin) GetAppIdOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.AppId, true
 }
@@ -80,7 +80,7 @@ func (o *MiddlewaresAppLogin) GetAppSecret() string {
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresAppLogin) GetAppSecretOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.AppSecret, true
 }

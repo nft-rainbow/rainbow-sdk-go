@@ -62,7 +62,7 @@ func (o *ServicesEasyMintFileDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintFileDto) GetChainOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Chain, true
 }
@@ -86,7 +86,7 @@ func (o *ServicesEasyMintFileDto) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintFileDto) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Description, true
 }
@@ -110,7 +110,7 @@ func (o *ServicesEasyMintFileDto) GetFile() MultipartFileHeader {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintFileDto) GetFileOk() (*MultipartFileHeader, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.File, true
 }
@@ -134,7 +134,7 @@ func (o *ServicesEasyMintFileDto) GetMintToAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintFileDto) GetMintToAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.MintToAddress, true
 }
@@ -158,7 +158,7 @@ func (o *ServicesEasyMintFileDto) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintFileDto) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }

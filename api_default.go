@@ -16,88 +16,78 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
 )
 
 
-type TransactionApi interface {
+type DefaultApi interface {
 
 	/*
-	GetTransactionByID Get transaction informantion by ID
-
-	Get transaction informantion by ID
+	MintsEasyFilesPost Method for MintsEasyFilesPost
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id Transaction ID
-	@return ApiGetTransactionByIDRequest
+	@return ApiMintsEasyFilesPostRequest
 	*/
-	GetTransactionByID(ctx context.Context, id string) ApiGetTransactionByIDRequest
+	MintsEasyFilesPost(ctx context.Context) ApiMintsEasyFilesPostRequest
 
-	// GetTransactionByIDExecute executes the request
-	//  @return ServicesTxResp
-	GetTransactionByIDExecute(r ApiGetTransactionByIDRequest) (*ServicesTxResp, *http.Response, error)
+	// MintsEasyFilesPostExecute executes the request
+	//  @return ModelsMintTask
+	MintsEasyFilesPostExecute(r ApiMintsEasyFilesPostRequest) (*ModelsMintTask, *http.Response, error)
 }
 
-// TransactionApiService TransactionApi service
-type TransactionApiService service
+// DefaultApiService DefaultApi service
+type DefaultApiService service
 
-type ApiGetTransactionByIDRequest struct {
+type ApiMintsEasyFilesPostRequest struct {
 	ctx context.Context
-	ApiService TransactionApi
-	authorization *string
-	id string
+	ApiService DefaultApi
+	easyMintFileInfo *ServicesEasyMintFileDto
 }
 
-// Bearer Open_JWT
-func (r ApiGetTransactionByIDRequest) Authorization(authorization string) ApiGetTransactionByIDRequest {
-	r.authorization = &authorization
+// easy_mint_file_info
+func (r ApiMintsEasyFilesPostRequest) EasyMintFileInfo(easyMintFileInfo ServicesEasyMintFileDto) ApiMintsEasyFilesPostRequest {
+	r.easyMintFileInfo = &easyMintFileInfo
 	return r
 }
 
-func (r ApiGetTransactionByIDRequest) Execute() (*ServicesTxResp, *http.Response, error) {
-	return r.ApiService.GetTransactionByIDExecute(r)
+func (r ApiMintsEasyFilesPostRequest) Execute() (*ModelsMintTask, *http.Response, error) {
+	return r.ApiService.MintsEasyFilesPostExecute(r)
 }
 
 /*
-GetTransactionByID Get transaction informantion by ID
-
-Get transaction informantion by ID
+MintsEasyFilesPost Method for MintsEasyFilesPost
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Transaction ID
- @return ApiGetTransactionByIDRequest
+ @return ApiMintsEasyFilesPostRequest
 */
-func (a *TransactionApiService) GetTransactionByID(ctx context.Context, id string) ApiGetTransactionByIDRequest {
-	return ApiGetTransactionByIDRequest{
+func (a *DefaultApiService) MintsEasyFilesPost(ctx context.Context) ApiMintsEasyFilesPostRequest {
+	return ApiMintsEasyFilesPostRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
 	}
 }
 
 // Execute executes the request
-//  @return ServicesTxResp
-func (a *TransactionApiService) GetTransactionByIDExecute(r ApiGetTransactionByIDRequest) (*ServicesTxResp, *http.Response, error) {
+//  @return ModelsMintTask
+func (a *DefaultApiService) MintsEasyFilesPostExecute(r ApiMintsEasyFilesPostRequest) (*ModelsMintTask, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServicesTxResp
+		localVarReturnValue  *ModelsMintTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionApiService.GetTransactionByID")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.MintsEasyFilesPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/tx/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath := localBasePath + "/mints/easy/files"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.authorization == nil {
-		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	if r.easyMintFileInfo == nil {
+		return localVarReturnValue, nil, reportError("easyMintFileInfo is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -110,14 +100,15 @@ func (a *TransactionApiService) GetTransactionByIDExecute(r ApiGetTransactionByI
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.easyMintFileInfo
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -147,8 +138,7 @@ func (a *TransactionApiService) GetTransactionByIDExecute(r ApiGetTransactionByI
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -158,19 +148,7 @@ func (a *TransactionApiService) GetTransactionByIDExecute(r ApiGetTransactionByI
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 599 {
-			var v RainbowErrorsRainbowErrorDetailInfo
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

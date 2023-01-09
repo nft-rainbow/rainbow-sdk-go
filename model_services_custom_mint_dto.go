@@ -49,7 +49,7 @@ func NewServicesCustomMintDtoWithDefaults() *ServicesCustomMintDto {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *ServicesCustomMintDto) GetAmount() int32 {
-	if o == nil || o.Amount == nil {
+	if o == nil || isNil(o.Amount) {
 		var ret int32
 		return ret
 	}
@@ -59,15 +59,15 @@ func (o *ServicesCustomMintDto) GetAmount() int32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetAmountOk() (*int32, bool) {
-	if o == nil || o.Amount == nil {
-		return nil, false
+	if o == nil || isNil(o.Amount) {
+    return nil, false
 	}
 	return o.Amount, true
 }
 
 // HasAmount returns a boolean if a field has been set.
 func (o *ServicesCustomMintDto) HasAmount() bool {
-	if o != nil && o.Amount != nil {
+	if o != nil && !isNil(o.Amount) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *ServicesCustomMintDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetChainOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Chain, true
 }
@@ -117,7 +117,7 @@ func (o *ServicesCustomMintDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetContractAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ContractAddress, true
 }
@@ -129,7 +129,7 @@ func (o *ServicesCustomMintDto) SetContractAddress(v string) {
 
 // GetMetadataUri returns the MetadataUri field value if set, zero value otherwise.
 func (o *ServicesCustomMintDto) GetMetadataUri() string {
-	if o == nil || o.MetadataUri == nil {
+	if o == nil || isNil(o.MetadataUri) {
 		var ret string
 		return ret
 	}
@@ -139,15 +139,15 @@ func (o *ServicesCustomMintDto) GetMetadataUri() string {
 // GetMetadataUriOk returns a tuple with the MetadataUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetMetadataUriOk() (*string, bool) {
-	if o == nil || o.MetadataUri == nil {
-		return nil, false
+	if o == nil || isNil(o.MetadataUri) {
+    return nil, false
 	}
 	return o.MetadataUri, true
 }
 
 // HasMetadataUri returns a boolean if a field has been set.
 func (o *ServicesCustomMintDto) HasMetadataUri() bool {
-	if o != nil && o.MetadataUri != nil {
+	if o != nil && !isNil(o.MetadataUri) {
 		return true
 	}
 
@@ -173,7 +173,7 @@ func (o *ServicesCustomMintDto) GetMintToAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetMintToAddressOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.MintToAddress, true
 }
@@ -185,7 +185,7 @@ func (o *ServicesCustomMintDto) SetMintToAddress(v string) {
 
 // GetTokenId returns the TokenId field value if set, zero value otherwise.
 func (o *ServicesCustomMintDto) GetTokenId() string {
-	if o == nil || o.TokenId == nil {
+	if o == nil || isNil(o.TokenId) {
 		var ret string
 		return ret
 	}
@@ -195,15 +195,15 @@ func (o *ServicesCustomMintDto) GetTokenId() string {
 // GetTokenIdOk returns a tuple with the TokenId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetTokenIdOk() (*string, bool) {
-	if o == nil || o.TokenId == nil {
-		return nil, false
+	if o == nil || isNil(o.TokenId) {
+    return nil, false
 	}
 	return o.TokenId, true
 }
 
 // HasTokenId returns a boolean if a field has been set.
 func (o *ServicesCustomMintDto) HasTokenId() bool {
-	if o != nil && o.TokenId != nil {
+	if o != nil && !isNil(o.TokenId) {
 		return true
 	}
 
@@ -217,7 +217,7 @@ func (o *ServicesCustomMintDto) SetTokenId(v string) {
 
 func (o ServicesCustomMintDto) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Amount != nil {
+	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
 	if true {
@@ -226,13 +226,13 @@ func (o ServicesCustomMintDto) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
-	if o.MetadataUri != nil {
+	if !isNil(o.MetadataUri) {
 		toSerialize["metadata_uri"] = o.MetadataUri
 	}
 	if true {
 		toSerialize["mint_to_address"] = o.MintToAddress
 	}
-	if o.TokenId != nil {
+	if !isNil(o.TokenId) {
 		toSerialize["token_id"] = o.TokenId
 	}
 

@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BaseUri** | Pointer to **string** |  | [optional] 
 **Chain** | **string** |  | 
-**IsSponsorForAllUser** | **bool** |  | 
+**IsSponsorForAllUser** | Pointer to **bool** | default: true | [optional] 
 **Name** | **string** |  | 
-**OwnerAddress** | **string** |  | 
+**OwnerAddress** | Pointer to **string** |  | [optional] 
 **RoyaltiesAddress** | Pointer to **string** |  | [optional] 
 **RoyaltiesBps** | Pointer to **int32** |  | [optional] 
 **Symbol** | **string** |  | 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewServicesContractDeployDto
 
-`func NewServicesContractDeployDto(chain string, isSponsorForAllUser bool, name string, ownerAddress string, symbol string, type_ string, ) *ServicesContractDeployDto`
+`func NewServicesContractDeployDto(chain string, name string, symbol string, type_ string, ) *ServicesContractDeployDto`
 
 NewServicesContractDeployDto instantiates a new ServicesContractDeployDto object
 This constructor will assign default values to properties that have it defined,
@@ -101,6 +101,11 @@ and a boolean to check if the value has been set.
 
 SetIsSponsorForAllUser sets IsSponsorForAllUser field to given value.
 
+### HasIsSponsorForAllUser
+
+`func (o *ServicesContractDeployDto) HasIsSponsorForAllUser() bool`
+
+HasIsSponsorForAllUser returns a boolean if a field has been set.
 
 ### GetName
 
@@ -141,6 +146,11 @@ and a boolean to check if the value has been set.
 
 SetOwnerAddress sets OwnerAddress field to given value.
 
+### HasOwnerAddress
+
+`func (o *ServicesContractDeployDto) HasOwnerAddress() bool`
+
+HasOwnerAddress returns a boolean if a field has been set.
 
 ### GetRoyaltiesAddress
 

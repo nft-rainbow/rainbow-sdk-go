@@ -64,7 +64,7 @@ func NewModelsContractWithDefaults() *ModelsContract {
 
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *ModelsContract) GetAddress() string {
-	if o == nil || o.Address == nil {
+	if o == nil || isNil(o.Address) {
 		var ret string
 		return ret
 	}
@@ -74,15 +74,15 @@ func (o *ModelsContract) GetAddress() string {
 // GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetAddressOk() (*string, bool) {
-	if o == nil || o.Address == nil {
-		return nil, false
+	if o == nil || isNil(o.Address) {
+    return nil, false
 	}
 	return o.Address, true
 }
 
 // HasAddress returns a boolean if a field has been set.
 func (o *ModelsContract) HasAddress() bool {
-	if o != nil && o.Address != nil {
+	if o != nil && !isNil(o.Address) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *ModelsContract) SetAddress(v string) {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *ModelsContract) GetAppId() int32 {
-	if o == nil || o.AppId == nil {
+	if o == nil || isNil(o.AppId) {
 		var ret int32
 		return ret
 	}
@@ -106,15 +106,15 @@ func (o *ModelsContract) GetAppId() int32 {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetAppIdOk() (*int32, bool) {
-	if o == nil || o.AppId == nil {
-		return nil, false
+	if o == nil || isNil(o.AppId) {
+    return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *ModelsContract) HasAppId() bool {
-	if o != nil && o.AppId != nil {
+	if o != nil && !isNil(o.AppId) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *ModelsContract) SetAppId(v int32) {
 
 // GetBaseUri returns the BaseUri field value if set, zero value otherwise.
 func (o *ModelsContract) GetBaseUri() string {
-	if o == nil || o.BaseUri == nil {
+	if o == nil || isNil(o.BaseUri) {
 		var ret string
 		return ret
 	}
@@ -138,15 +138,15 @@ func (o *ModelsContract) GetBaseUri() string {
 // GetBaseUriOk returns a tuple with the BaseUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetBaseUriOk() (*string, bool) {
-	if o == nil || o.BaseUri == nil {
-		return nil, false
+	if o == nil || isNil(o.BaseUri) {
+    return nil, false
 	}
 	return o.BaseUri, true
 }
 
 // HasBaseUri returns a boolean if a field has been set.
 func (o *ModelsContract) HasBaseUri() bool {
-	if o != nil && o.BaseUri != nil {
+	if o != nil && !isNil(o.BaseUri) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *ModelsContract) SetBaseUri(v string) {
 
 // GetChainId returns the ChainId field value if set, zero value otherwise.
 func (o *ModelsContract) GetChainId() int32 {
-	if o == nil || o.ChainId == nil {
+	if o == nil || isNil(o.ChainId) {
 		var ret int32
 		return ret
 	}
@@ -170,15 +170,15 @@ func (o *ModelsContract) GetChainId() int32 {
 // GetChainIdOk returns a tuple with the ChainId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetChainIdOk() (*int32, bool) {
-	if o == nil || o.ChainId == nil {
-		return nil, false
+	if o == nil || isNil(o.ChainId) {
+    return nil, false
 	}
 	return o.ChainId, true
 }
 
 // HasChainId returns a boolean if a field has been set.
 func (o *ModelsContract) HasChainId() bool {
-	if o != nil && o.ChainId != nil {
+	if o != nil && !isNil(o.ChainId) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *ModelsContract) SetChainId(v int32) {
 
 // GetChainType returns the ChainType field value if set, zero value otherwise.
 func (o *ModelsContract) GetChainType() int32 {
-	if o == nil || o.ChainType == nil {
+	if o == nil || isNil(o.ChainType) {
 		var ret int32
 		return ret
 	}
@@ -202,15 +202,15 @@ func (o *ModelsContract) GetChainType() int32 {
 // GetChainTypeOk returns a tuple with the ChainType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetChainTypeOk() (*int32, bool) {
-	if o == nil || o.ChainType == nil {
-		return nil, false
+	if o == nil || isNil(o.ChainType) {
+    return nil, false
 	}
 	return o.ChainType, true
 }
 
 // HasChainType returns a boolean if a field has been set.
 func (o *ModelsContract) HasChainType() bool {
-	if o != nil && o.ChainType != nil {
+	if o != nil && !isNil(o.ChainType) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *ModelsContract) SetChainType(v int32) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ModelsContract) GetCreatedAt() string {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
@@ -234,15 +234,15 @@ func (o *ModelsContract) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetCreatedAtOk() (*string, bool) {
-	if o == nil || o.CreatedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.CreatedAt) {
+    return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *ModelsContract) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -256,7 +256,7 @@ func (o *ModelsContract) SetCreatedAt(v string) {
 
 // GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
 func (o *ModelsContract) GetDeletedAt() GormDeletedAt {
-	if o == nil || o.DeletedAt == nil {
+	if o == nil || isNil(o.DeletedAt) {
 		var ret GormDeletedAt
 		return ret
 	}
@@ -266,15 +266,15 @@ func (o *ModelsContract) GetDeletedAt() GormDeletedAt {
 // GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetDeletedAtOk() (*GormDeletedAt, bool) {
-	if o == nil || o.DeletedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.DeletedAt) {
+    return nil, false
 	}
 	return o.DeletedAt, true
 }
 
 // HasDeletedAt returns a boolean if a field has been set.
 func (o *ModelsContract) HasDeletedAt() bool {
-	if o != nil && o.DeletedAt != nil {
+	if o != nil && !isNil(o.DeletedAt) {
 		return true
 	}
 
@@ -288,7 +288,7 @@ func (o *ModelsContract) SetDeletedAt(v GormDeletedAt) {
 
 // GetHash returns the Hash field value if set, zero value otherwise.
 func (o *ModelsContract) GetHash() string {
-	if o == nil || o.Hash == nil {
+	if o == nil || isNil(o.Hash) {
 		var ret string
 		return ret
 	}
@@ -298,15 +298,15 @@ func (o *ModelsContract) GetHash() string {
 // GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetHashOk() (*string, bool) {
-	if o == nil || o.Hash == nil {
-		return nil, false
+	if o == nil || isNil(o.Hash) {
+    return nil, false
 	}
 	return o.Hash, true
 }
 
 // HasHash returns a boolean if a field has been set.
 func (o *ModelsContract) HasHash() bool {
-	if o != nil && o.Hash != nil {
+	if o != nil && !isNil(o.Hash) {
 		return true
 	}
 
@@ -320,7 +320,7 @@ func (o *ModelsContract) SetHash(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ModelsContract) GetId() int32 {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret int32
 		return ret
 	}
@@ -330,15 +330,15 @@ func (o *ModelsContract) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetIdOk() (*int32, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
+	if o == nil || isNil(o.Id) {
+    return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *ModelsContract) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -352,7 +352,7 @@ func (o *ModelsContract) SetId(v int32) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ModelsContract) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -362,15 +362,15 @@ func (o *ModelsContract) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
+	if o == nil || isNil(o.Name) {
+    return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ModelsContract) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !isNil(o.Name) {
 		return true
 	}
 
@@ -384,7 +384,7 @@ func (o *ModelsContract) SetName(v string) {
 
 // GetOwnerAddress returns the OwnerAddress field value if set, zero value otherwise.
 func (o *ModelsContract) GetOwnerAddress() string {
-	if o == nil || o.OwnerAddress == nil {
+	if o == nil || isNil(o.OwnerAddress) {
 		var ret string
 		return ret
 	}
@@ -394,15 +394,15 @@ func (o *ModelsContract) GetOwnerAddress() string {
 // GetOwnerAddressOk returns a tuple with the OwnerAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetOwnerAddressOk() (*string, bool) {
-	if o == nil || o.OwnerAddress == nil {
-		return nil, false
+	if o == nil || isNil(o.OwnerAddress) {
+    return nil, false
 	}
 	return o.OwnerAddress, true
 }
 
 // HasOwnerAddress returns a boolean if a field has been set.
 func (o *ModelsContract) HasOwnerAddress() bool {
-	if o != nil && o.OwnerAddress != nil {
+	if o != nil && !isNil(o.OwnerAddress) {
 		return true
 	}
 
@@ -416,7 +416,7 @@ func (o *ModelsContract) SetOwnerAddress(v string) {
 
 // GetRoyaltiesAddress returns the RoyaltiesAddress field value if set, zero value otherwise.
 func (o *ModelsContract) GetRoyaltiesAddress() string {
-	if o == nil || o.RoyaltiesAddress == nil {
+	if o == nil || isNil(o.RoyaltiesAddress) {
 		var ret string
 		return ret
 	}
@@ -426,15 +426,15 @@ func (o *ModelsContract) GetRoyaltiesAddress() string {
 // GetRoyaltiesAddressOk returns a tuple with the RoyaltiesAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetRoyaltiesAddressOk() (*string, bool) {
-	if o == nil || o.RoyaltiesAddress == nil {
-		return nil, false
+	if o == nil || isNil(o.RoyaltiesAddress) {
+    return nil, false
 	}
 	return o.RoyaltiesAddress, true
 }
 
 // HasRoyaltiesAddress returns a boolean if a field has been set.
 func (o *ModelsContract) HasRoyaltiesAddress() bool {
-	if o != nil && o.RoyaltiesAddress != nil {
+	if o != nil && !isNil(o.RoyaltiesAddress) {
 		return true
 	}
 
@@ -448,7 +448,7 @@ func (o *ModelsContract) SetRoyaltiesAddress(v string) {
 
 // GetRoyaltiesBps returns the RoyaltiesBps field value if set, zero value otherwise.
 func (o *ModelsContract) GetRoyaltiesBps() int32 {
-	if o == nil || o.RoyaltiesBps == nil {
+	if o == nil || isNil(o.RoyaltiesBps) {
 		var ret int32
 		return ret
 	}
@@ -458,15 +458,15 @@ func (o *ModelsContract) GetRoyaltiesBps() int32 {
 // GetRoyaltiesBpsOk returns a tuple with the RoyaltiesBps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetRoyaltiesBpsOk() (*int32, bool) {
-	if o == nil || o.RoyaltiesBps == nil {
-		return nil, false
+	if o == nil || isNil(o.RoyaltiesBps) {
+    return nil, false
 	}
 	return o.RoyaltiesBps, true
 }
 
 // HasRoyaltiesBps returns a boolean if a field has been set.
 func (o *ModelsContract) HasRoyaltiesBps() bool {
-	if o != nil && o.RoyaltiesBps != nil {
+	if o != nil && !isNil(o.RoyaltiesBps) {
 		return true
 	}
 
@@ -480,7 +480,7 @@ func (o *ModelsContract) SetRoyaltiesBps(v int32) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ModelsContract) GetStatus() int32 {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret int32
 		return ret
 	}
@@ -490,15 +490,15 @@ func (o *ModelsContract) GetStatus() int32 {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetStatusOk() (*int32, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
+	if o == nil || isNil(o.Status) {
+    return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ModelsContract) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -512,7 +512,7 @@ func (o *ModelsContract) SetStatus(v int32) {
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
 func (o *ModelsContract) GetSymbol() string {
-	if o == nil || o.Symbol == nil {
+	if o == nil || isNil(o.Symbol) {
 		var ret string
 		return ret
 	}
@@ -522,15 +522,15 @@ func (o *ModelsContract) GetSymbol() string {
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetSymbolOk() (*string, bool) {
-	if o == nil || o.Symbol == nil {
-		return nil, false
+	if o == nil || isNil(o.Symbol) {
+    return nil, false
 	}
 	return o.Symbol, true
 }
 
 // HasSymbol returns a boolean if a field has been set.
 func (o *ModelsContract) HasSymbol() bool {
-	if o != nil && o.Symbol != nil {
+	if o != nil && !isNil(o.Symbol) {
 		return true
 	}
 
@@ -544,7 +544,7 @@ func (o *ModelsContract) SetSymbol(v string) {
 
 // GetTokensBurnable returns the TokensBurnable field value if set, zero value otherwise.
 func (o *ModelsContract) GetTokensBurnable() bool {
-	if o == nil || o.TokensBurnable == nil {
+	if o == nil || isNil(o.TokensBurnable) {
 		var ret bool
 		return ret
 	}
@@ -554,15 +554,15 @@ func (o *ModelsContract) GetTokensBurnable() bool {
 // GetTokensBurnableOk returns a tuple with the TokensBurnable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTokensBurnableOk() (*bool, bool) {
-	if o == nil || o.TokensBurnable == nil {
-		return nil, false
+	if o == nil || isNil(o.TokensBurnable) {
+    return nil, false
 	}
 	return o.TokensBurnable, true
 }
 
 // HasTokensBurnable returns a boolean if a field has been set.
 func (o *ModelsContract) HasTokensBurnable() bool {
-	if o != nil && o.TokensBurnable != nil {
+	if o != nil && !isNil(o.TokensBurnable) {
 		return true
 	}
 
@@ -576,7 +576,7 @@ func (o *ModelsContract) SetTokensBurnable(v bool) {
 
 // GetTokensTransferableByAdmin returns the TokensTransferableByAdmin field value if set, zero value otherwise.
 func (o *ModelsContract) GetTokensTransferableByAdmin() bool {
-	if o == nil || o.TokensTransferableByAdmin == nil {
+	if o == nil || isNil(o.TokensTransferableByAdmin) {
 		var ret bool
 		return ret
 	}
@@ -586,15 +586,15 @@ func (o *ModelsContract) GetTokensTransferableByAdmin() bool {
 // GetTokensTransferableByAdminOk returns a tuple with the TokensTransferableByAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTokensTransferableByAdminOk() (*bool, bool) {
-	if o == nil || o.TokensTransferableByAdmin == nil {
-		return nil, false
+	if o == nil || isNil(o.TokensTransferableByAdmin) {
+    return nil, false
 	}
 	return o.TokensTransferableByAdmin, true
 }
 
 // HasTokensTransferableByAdmin returns a boolean if a field has been set.
 func (o *ModelsContract) HasTokensTransferableByAdmin() bool {
-	if o != nil && o.TokensTransferableByAdmin != nil {
+	if o != nil && !isNil(o.TokensTransferableByAdmin) {
 		return true
 	}
 
@@ -608,7 +608,7 @@ func (o *ModelsContract) SetTokensTransferableByAdmin(v bool) {
 
 // GetTokensTransferableByUser returns the TokensTransferableByUser field value if set, zero value otherwise.
 func (o *ModelsContract) GetTokensTransferableByUser() bool {
-	if o == nil || o.TokensTransferableByUser == nil {
+	if o == nil || isNil(o.TokensTransferableByUser) {
 		var ret bool
 		return ret
 	}
@@ -618,15 +618,15 @@ func (o *ModelsContract) GetTokensTransferableByUser() bool {
 // GetTokensTransferableByUserOk returns a tuple with the TokensTransferableByUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTokensTransferableByUserOk() (*bool, bool) {
-	if o == nil || o.TokensTransferableByUser == nil {
-		return nil, false
+	if o == nil || isNil(o.TokensTransferableByUser) {
+    return nil, false
 	}
 	return o.TokensTransferableByUser, true
 }
 
 // HasTokensTransferableByUser returns a boolean if a field has been set.
 func (o *ModelsContract) HasTokensTransferableByUser() bool {
-	if o != nil && o.TokensTransferableByUser != nil {
+	if o != nil && !isNil(o.TokensTransferableByUser) {
 		return true
 	}
 
@@ -640,7 +640,7 @@ func (o *ModelsContract) SetTokensTransferableByUser(v bool) {
 
 // GetTransferCooldownTime returns the TransferCooldownTime field value if set, zero value otherwise.
 func (o *ModelsContract) GetTransferCooldownTime() int32 {
-	if o == nil || o.TransferCooldownTime == nil {
+	if o == nil || isNil(o.TransferCooldownTime) {
 		var ret int32
 		return ret
 	}
@@ -650,15 +650,15 @@ func (o *ModelsContract) GetTransferCooldownTime() int32 {
 // GetTransferCooldownTimeOk returns a tuple with the TransferCooldownTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTransferCooldownTimeOk() (*int32, bool) {
-	if o == nil || o.TransferCooldownTime == nil {
-		return nil, false
+	if o == nil || isNil(o.TransferCooldownTime) {
+    return nil, false
 	}
 	return o.TransferCooldownTime, true
 }
 
 // HasTransferCooldownTime returns a boolean if a field has been set.
 func (o *ModelsContract) HasTransferCooldownTime() bool {
-	if o != nil && o.TransferCooldownTime != nil {
+	if o != nil && !isNil(o.TransferCooldownTime) {
 		return true
 	}
 
@@ -672,7 +672,7 @@ func (o *ModelsContract) SetTransferCooldownTime(v int32) {
 
 // GetTxId returns the TxId field value if set, zero value otherwise.
 func (o *ModelsContract) GetTxId() int32 {
-	if o == nil || o.TxId == nil {
+	if o == nil || isNil(o.TxId) {
 		var ret int32
 		return ret
 	}
@@ -682,15 +682,15 @@ func (o *ModelsContract) GetTxId() int32 {
 // GetTxIdOk returns a tuple with the TxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTxIdOk() (*int32, bool) {
-	if o == nil || o.TxId == nil {
-		return nil, false
+	if o == nil || isNil(o.TxId) {
+    return nil, false
 	}
 	return o.TxId, true
 }
 
 // HasTxId returns a boolean if a field has been set.
 func (o *ModelsContract) HasTxId() bool {
-	if o != nil && o.TxId != nil {
+	if o != nil && !isNil(o.TxId) {
 		return true
 	}
 
@@ -704,7 +704,7 @@ func (o *ModelsContract) SetTxId(v int32) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ModelsContract) GetType() int32 {
-	if o == nil || o.Type == nil {
+	if o == nil || isNil(o.Type) {
 		var ret int32
 		return ret
 	}
@@ -714,15 +714,15 @@ func (o *ModelsContract) GetType() int32 {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTypeOk() (*int32, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
+	if o == nil || isNil(o.Type) {
+    return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *ModelsContract) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !isNil(o.Type) {
 		return true
 	}
 
@@ -736,7 +736,7 @@ func (o *ModelsContract) SetType(v int32) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *ModelsContract) GetUpdatedAt() string {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
@@ -746,15 +746,15 @@ func (o *ModelsContract) GetUpdatedAt() string {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetUpdatedAtOk() (*string, bool) {
-	if o == nil || o.UpdatedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.UpdatedAt) {
+    return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *ModelsContract) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -768,70 +768,70 @@ func (o *ModelsContract) SetUpdatedAt(v string) {
 
 func (o ModelsContract) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Address != nil {
+	if !isNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
-	if o.AppId != nil {
+	if !isNil(o.AppId) {
 		toSerialize["app_id"] = o.AppId
 	}
-	if o.BaseUri != nil {
+	if !isNil(o.BaseUri) {
 		toSerialize["base_uri"] = o.BaseUri
 	}
-	if o.ChainId != nil {
+	if !isNil(o.ChainId) {
 		toSerialize["chain_id"] = o.ChainId
 	}
-	if o.ChainType != nil {
+	if !isNil(o.ChainType) {
 		toSerialize["chain_type"] = o.ChainType
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.DeletedAt != nil {
+	if !isNil(o.DeletedAt) {
 		toSerialize["deleted_at"] = o.DeletedAt
 	}
-	if o.Hash != nil {
+	if !isNil(o.Hash) {
 		toSerialize["hash"] = o.Hash
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name != nil {
+	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.OwnerAddress != nil {
+	if !isNil(o.OwnerAddress) {
 		toSerialize["owner_address"] = o.OwnerAddress
 	}
-	if o.RoyaltiesAddress != nil {
+	if !isNil(o.RoyaltiesAddress) {
 		toSerialize["royalties_address"] = o.RoyaltiesAddress
 	}
-	if o.RoyaltiesBps != nil {
+	if !isNil(o.RoyaltiesBps) {
 		toSerialize["royalties_bps"] = o.RoyaltiesBps
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if o.Symbol != nil {
+	if !isNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
 	}
-	if o.TokensBurnable != nil {
+	if !isNil(o.TokensBurnable) {
 		toSerialize["tokens_burnable"] = o.TokensBurnable
 	}
-	if o.TokensTransferableByAdmin != nil {
+	if !isNil(o.TokensTransferableByAdmin) {
 		toSerialize["tokens_transferable_by_admin"] = o.TokensTransferableByAdmin
 	}
-	if o.TokensTransferableByUser != nil {
+	if !isNil(o.TokensTransferableByUser) {
 		toSerialize["tokens_transferable_by_user"] = o.TokensTransferableByUser
 	}
-	if o.TransferCooldownTime != nil {
+	if !isNil(o.TransferCooldownTime) {
 		toSerialize["transfer_cooldown_time"] = o.TransferCooldownTime
 	}
-	if o.TxId != nil {
+	if !isNil(o.TxId) {
 		toSerialize["tx_id"] = o.TxId
 	}
-	if o.Type != nil {
+	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 
