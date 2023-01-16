@@ -43,7 +43,6 @@ docs/ServicesContractAdminUpdateDto.md
 docs/ServicesContractDeployDto.md
 docs/ServicesCustomMintBatchDto.md
 docs/ServicesCustomMintDto.md
-docs/ServicesEasyMintFileDto.md
 docs/ServicesEasyMintMetaDto.md
 docs/ServicesMetadataDto.md
 docs/ServicesMintItemDto.md
@@ -84,7 +83,6 @@ model_services_contract_admin_update_dto.go
 model_services_contract_deploy_dto.go
 model_services_custom_mint_batch_dto.go
 model_services_custom_mint_dto.go
-model_services_easy_mint_file_dto.go
 model_services_easy_mint_meta_dto.go
 model_services_metadata_dto.go
 model_services_mint_item_dto.go
@@ -98,4 +96,13 @@ model_services_transfer_item_dto.go
 model_services_tx_resp.go
 model_services_upload_files_response.go
 response.go
+test/api_burns_test.go
+test/api_contract_test.go
+test/api_files_test.go
+test/api_login_test.go
+test/api_metadata_test.go
+test/api_mints_test.go
+test/api_nfts_test.go
+test/api_transaction_test.go
+test/api_transfers_test.go
 utils.go
