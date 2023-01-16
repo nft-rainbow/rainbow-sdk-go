@@ -151,7 +151,7 @@ No authorization required
 
 ## EasyMintByFile
 
-> ModelsMintTask EasyMintByFile(ctx).Authorization(authorization).File(file).Execute()
+> ModelsMintTask EasyMintByFile(ctx).Authorization(authorization).Chain(chain).Description(description).MintToAddress(mintToAddress).Name(name).File(file).Execute()
 
 Mint NFT with file
 
@@ -171,11 +171,15 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
+    chain := "chain_example" // string | 
+    description := "description_example" // string | 
+    mintToAddress := "mintToAddress_example" // string | 
+    name := "name_example" // string | 
     file := os.NewFile(1234, "some_file") // *os.File | file
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MintsApi.EasyMintByFile(context.Background()).Authorization(authorization).File(file).Execute()
+    resp, r, err := apiClient.MintsApi.EasyMintByFile(context.Background()).Authorization(authorization).Chain(chain).Description(description).MintToAddress(mintToAddress).Name(name).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MintsApi.EasyMintByFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -197,6 +201,10 @@ Other parameters are passed through a pointer to a apiEasyMintByFileRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
+ **chain** | **string** |  | 
+ **description** | **string** |  | 
+ **mintToAddress** | **string** |  | 
+ **name** | **string** |  | 
  **file** | ***os.File** | file | 
 
 ### Return type

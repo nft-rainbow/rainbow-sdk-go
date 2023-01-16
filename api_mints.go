@@ -402,12 +402,36 @@ type ApiEasyMintByFileRequest struct {
 	ctx context.Context
 	ApiService MintsApi
 	authorization *string
+	chain *string
+	description *string
+	mintToAddress *string
+	name *string
 	file **os.File
 }
 
 // Bearer Open_JWT
 func (r ApiEasyMintByFileRequest) Authorization(authorization string) ApiEasyMintByFileRequest {
 	r.authorization = &authorization
+	return r
+}
+
+func (r ApiEasyMintByFileRequest) Chain(chain string) ApiEasyMintByFileRequest {
+	r.chain = &chain
+	return r
+}
+
+func (r ApiEasyMintByFileRequest) Description(description string) ApiEasyMintByFileRequest {
+	r.description = &description
+	return r
+}
+
+func (r ApiEasyMintByFileRequest) MintToAddress(mintToAddress string) ApiEasyMintByFileRequest {
+	r.mintToAddress = &mintToAddress
+	return r
+}
+
+func (r ApiEasyMintByFileRequest) Name(name string) ApiEasyMintByFileRequest {
+	r.name = &name
 	return r
 }
 
@@ -459,6 +483,18 @@ func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 	if r.authorization == nil {
 		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
 	}
+	if r.chain == nil {
+		return localVarReturnValue, nil, reportError("chain is required and must be specified")
+	}
+	if r.description == nil {
+		return localVarReturnValue, nil, reportError("description is required and must be specified")
+	}
+	if r.mintToAddress == nil {
+		return localVarReturnValue, nil, reportError("mintToAddress is required and must be specified")
+	}
+	if r.name == nil {
+		return localVarReturnValue, nil, reportError("name is required and must be specified")
+	}
 	if r.file == nil {
 		return localVarReturnValue, nil, reportError("file is required and must be specified")
 	}
@@ -481,6 +517,10 @@ func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	localVarFormParams.Add("chain", parameterToString(*r.chain, ""))
+	localVarFormParams.Add("description", parameterToString(*r.description, ""))
+	localVarFormParams.Add("mint_to_address", parameterToString(*r.mintToAddress, ""))
+	localVarFormParams.Add("name", parameterToString(*r.name, ""))
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
 	var fileLocalVarFileBytes    []byte

@@ -138,7 +138,6 @@ Class | Method | HTTP request | Description
  - [ServicesContractDeployDto](docs/ServicesContractDeployDto.md)
  - [ServicesCustomMintBatchDto](docs/ServicesCustomMintBatchDto.md)
  - [ServicesCustomMintDto](docs/ServicesCustomMintDto.md)
- - [ServicesEasyMintFileDto](docs/ServicesEasyMintFileDto.md)
  - [ServicesEasyMintMetaDto](docs/ServicesEasyMintMetaDto.md)
  - [ServicesMetadataDto](docs/ServicesMetadataDto.md)
  - [ServicesMintItemDto](docs/ServicesMintItemDto.md)

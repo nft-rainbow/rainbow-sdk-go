@@ -1040,7 +1040,6 @@ paths:
       summary: Mint NFT with file
       tags:
       - Mints
-      x-codegen-request-body-name: easy_mint_file_info
   /mints/easy/urls:
     post:
       description: Mint a NFT by providing a file url to create the metadata
@@ -2234,25 +2233,6 @@ components:
       - contract_address
       - mint_to_address
       type: object
-    services.EasyMintFileDto:
-      properties:
-        chain:
-          type: string
-        description:
-          type: string
-        file:
-          $ref: '#/components/schemas/multipart.FileHeader'
-        mint_to_address:
-          type: string
-        name:
-          type: string
-      required:
-      - chain
-      - description
-      - file
-      - mint_to_address
-      - name
-      type: object
     services.EasyMintMetaDto:
       properties:
         chain:
@@ -2482,11 +2462,23 @@ components:
       type: object
     EasyMintByFile_request:
       properties:
+        chain:
+          type: string
+        description:
+          type: string
+        mint_to_address:
+          type: string
+        name:
+          type: string
         file:
           description: file
           format: binary
           type: string
       required:
+      - chain
+      - description
       - file
+      - mint_to_address
+      - name
       type: object
 x-original-swagger-version: "2.0"
