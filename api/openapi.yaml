@@ -48,7 +48,50 @@ paths:
       tags:
       - Burns
     post:
-      description: Burn batch NFT by admin
+      description: Burn NFT by admin
+      operationId: BurnNft
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/services.BurnDto'
+        description: burn_dto
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.BurnTask'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Burn NFT
+      tags:
+      - Burns
+      x-codegen-request-body-name: burn_dto
+  /burns/customizable/batch:
+    post:
+      description: Batch burn NFT by admin
       operationId: BurnBatch
       parameters:
       - description: Bearer Open_JWT
@@ -87,7 +130,7 @@ paths:
           description: Internal Server error
       security:
       - ApiKeyAuth: []
-      summary: Burn batch NFT
+      summary: Batch burn NFT
       tags:
       - Burns
       x-codegen-request-body-name: burn_batch_dto

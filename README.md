@@ -78,7 +78,8 @@ All URIs are relative to *http://api.nftrainbow.cn/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BurnsApi* | [**BurnBatch**](docs/BurnsApi.md#burnbatch) | **Post** /burns | Burn batch NFT
+*BurnsApi* | [**BurnBatch**](docs/BurnsApi.md#burnbatch) | **Post** /burns/customizable/batch | Batch burn NFT
+*BurnsApi* | [**BurnNft**](docs/BurnsApi.md#burnnft) | **Post** /burns | Burn NFT
 *BurnsApi* | [**GetBurnDetail**](docs/BurnsApi.md#getburndetail) | **Get** /burns/{id} | Burn NFT detail
 *BurnsApi* | [**GetBurnList**](docs/BurnsApi.md#getburnlist) | **Get** /burns | Obtain the burned NFTs list
 *ContractApi* | [**AddContractSponsorWhitelist**](docs/ContractApi.md#addcontractsponsorwhitelist) | **Post** /contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist

@@ -23,9 +23,9 @@ import (
 type BurnsApi interface {
 
 	/*
-	BurnBatch Burn batch NFT
+	BurnBatch Batch burn NFT
 
-	Burn batch NFT by admin
+	Batch burn NFT by admin
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiBurnBatchRequest
@@ -35,6 +35,20 @@ type BurnsApi interface {
 	// BurnBatchExecute executes the request
 	//  @return []ModelsBurnTask
 	BurnBatchExecute(r ApiBurnBatchRequest) ([]ModelsBurnTask, *http.Response, error)
+
+	/*
+	BurnNft Burn NFT
+
+	Burn NFT by admin
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBurnNftRequest
+	*/
+	BurnNft(ctx context.Context) ApiBurnNftRequest
+
+	// BurnNftExecute executes the request
+	//  @return ModelsBurnTask
+	BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, *http.Response, error)
 
 	/*
 	GetBurnDetail Burn NFT detail
@@ -93,9 +107,9 @@ func (r ApiBurnBatchRequest) Execute() ([]ModelsBurnTask, *http.Response, error)
 }
 
 /*
-BurnBatch Burn batch NFT
+BurnBatch Batch burn NFT
 
-Burn batch NFT by admin
+Batch burn NFT by admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBurnBatchRequest
@@ -122,7 +136,7 @@ func (a *BurnsApiService) BurnBatchExecute(r ApiBurnBatchRequest) ([]ModelsBurnT
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/burns"
+	localVarPath := localBasePath + "/burns/customizable/batch"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -154,6 +168,149 @@ func (a *BurnsApiService) BurnBatchExecute(r ApiBurnBatchRequest) ([]ModelsBurnT
 	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
 	// body params
 	localVarPostBody = r.burnBatchDto
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiBurnNftRequest struct {
+	ctx context.Context
+	ApiService BurnsApi
+	authorization *string
+	burnDto *ServicesBurnDto
+}
+
+// Bearer Open_JWT
+func (r ApiBurnNftRequest) Authorization(authorization string) ApiBurnNftRequest {
+	r.authorization = &authorization
+	return r
+}
+
+// burn_dto
+func (r ApiBurnNftRequest) BurnDto(burnDto ServicesBurnDto) ApiBurnNftRequest {
+	r.burnDto = &burnDto
+	return r
+}
+
+func (r ApiBurnNftRequest) Execute() (*ModelsBurnTask, *http.Response, error) {
+	return r.ApiService.BurnNftExecute(r)
+}
+
+/*
+BurnNft Burn NFT
+
+Burn NFT by admin
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiBurnNftRequest
+*/
+func (a *BurnsApiService) BurnNft(ctx context.Context) ApiBurnNftRequest {
+	return ApiBurnNftRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ModelsBurnTask
+func (a *BurnsApiService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ModelsBurnTask
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsApiService.BurnNft")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/burns"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if r.burnDto == nil {
+		return localVarReturnValue, nil, reportError("burnDto is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.burnDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
