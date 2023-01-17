@@ -4,17 +4,17 @@ All URIs are relative to *http://api.nftrainbow.cn/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BurnNft**](BurnsApi.md#BurnNft) | **Post** /burns | Burn NFT
+[**BurnBatch**](BurnsApi.md#BurnBatch) | **Post** /burns | Burn batch NFT
 [**GetBurnDetail**](BurnsApi.md#GetBurnDetail) | **Get** /burns/{id} | Burn NFT detail
 [**GetBurnList**](BurnsApi.md#GetBurnList) | **Get** /burns | Obtain the burned NFTs list
 
 
 
-## BurnNft
+## BurnBatch
 
-> ModelsBurnTask BurnNft(ctx).Authorization(authorization).BurnDto(burnDto).Execute()
+> []ModelsBurnTask BurnBatch(ctx).Authorization(authorization).BurnBatchDto(burnBatchDto).Execute()
 
-Burn NFT
+Burn batch NFT
 
 
 
@@ -32,17 +32,17 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
-    burnDto := *openapiclient.NewServicesBurnDto("Chain_example", "ContractAddress_example", "ContractType_example", "TokenId_example") // ServicesBurnDto | burn_dto
+    burnBatchDto := *openapiclient.NewServicesBurnBatchDto("Chain_example", "ContractAddress_example", "ContractType_example", []openapiclient.ServicesBurnItemDto{*openapiclient.NewServicesBurnItemDto("TokenId_example")}) // ServicesBurnBatchDto | burn_batch_dto
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BurnsApi.BurnNft(context.Background()).Authorization(authorization).BurnDto(burnDto).Execute()
+    resp, r, err := apiClient.BurnsApi.BurnBatch(context.Background()).Authorization(authorization).BurnBatchDto(burnBatchDto).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BurnsApi.BurnNft``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `BurnsApi.BurnBatch``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `BurnNft`: ModelsBurnTask
-    fmt.Fprintf(os.Stdout, "Response from `BurnsApi.BurnNft`: %v\n", resp)
+    // response from `BurnBatch`: []ModelsBurnTask
+    fmt.Fprintf(os.Stdout, "Response from `BurnsApi.BurnBatch`: %v\n", resp)
 }
 ```
 
@@ -52,17 +52,17 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiBurnNftRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiBurnBatchRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
- **burnDto** | [**ServicesBurnDto**](ServicesBurnDto.md) | burn_dto | 
+ **burnBatchDto** | [**ServicesBurnBatchDto**](ServicesBurnBatchDto.md) | burn_batch_dto | 
 
 ### Return type
 
-[**ModelsBurnTask**](ModelsBurnTask.md)
+[**[]ModelsBurnTask**](ModelsBurnTask.md)
 
 ### Authorization
 

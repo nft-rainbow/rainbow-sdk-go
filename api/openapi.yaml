@@ -48,8 +48,8 @@ paths:
       tags:
       - Burns
     post:
-      description: Burn NFT by admin
-      operationId: BurnNft
+      description: Burn batch NFT by admin
+      operationId: BurnBatch
       parameters:
       - description: Bearer Open_JWT
         in: header
@@ -61,15 +61,17 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/services.BurnDto'
-        description: burn_dto
+              $ref: '#/components/schemas/services.BurnBatchDto'
+        description: burn_batch_dto
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/models.BurnTask'
+                items:
+                  $ref: '#/components/schemas/models.BurnTask'
+                type: array
           description: OK
         "400":
           content:
@@ -85,10 +87,10 @@ paths:
           description: Internal Server error
       security:
       - ApiKeyAuth: []
-      summary: Burn NFT
+      summary: Burn batch NFT
       tags:
       - Burns
-      x-codegen-request-body-name: burn_dto
+      x-codegen-request-body-name: burn_batch_dto
   /burns/{id}:
     get:
       description: Get NFT Burn detail info
@@ -401,7 +403,8 @@ paths:
       tags:
       - Contract
     post:
-      description: Set the sponsor for a specified contract according to the address
+      description: "Set the sponsor for a contract according to the address with specified\
+        \ value(gas-1, storage-50)"
       operationId: SetContractSponsor
       parameters:
       - description: Bearer Open_JWT
@@ -410,12 +413,23 @@ paths:
         required: true
         schema:
           type: string
-      - description: address
+      - description: Contract address
         in: path
         name: address
         required: true
         schema:
           type: string
+      - description: chain
+        in: query
+        name: chain
+        schema:
+          type: string
+      - description: "Open auto sponsor or not, for mainnet contract keep user account\
+          \ have enough balance"
+        in: query
+        name: auto_sponsor
+        schema:
+          type: boolean
       responses:
         "200":
           content:
@@ -2116,6 +2130,32 @@ components:
         message:
           type: string
       type: object
+    services.BurnBatchDto:
+      properties:
+        chain:
+          enum:
+          - conflux
+          - conflux_test
+          type: string
+        contract_address:
+          type: string
+        contract_type:
+          enum:
+          - erc721
+          - erc1155
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/services.BurnItemDto'
+          type: array
+        user:
+          type: string
+      required:
+      - chain
+      - contract_address
+      - contract_type
+      - items
+      type: object
     services.BurnDto:
       properties:
         amount:
@@ -2140,6 +2180,15 @@ components:
       - chain
       - contract_address
       - contract_type
+      - token_id
+      type: object
+    services.BurnItemDto:
+      properties:
+        amount:
+          type: integer
+        token_id:
+          type: string
+      required:
       - token_id
       type: object
     services.ContractAdminUpdateDto:

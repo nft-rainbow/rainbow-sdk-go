@@ -78,7 +78,7 @@ All URIs are relative to *http://api.nftrainbow.cn/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BurnsApi* | [**BurnNft**](docs/BurnsApi.md#burnnft) | **Post** /burns | Burn NFT
+*BurnsApi* | [**BurnBatch**](docs/BurnsApi.md#burnbatch) | **Post** /burns | Burn batch NFT
 *BurnsApi* | [**GetBurnDetail**](docs/BurnsApi.md#getburndetail) | **Get** /burns/{id} | Burn NFT detail
 *BurnsApi* | [**GetBurnList**](docs/BurnsApi.md#getburnlist) | **Get** /burns | Obtain the burned NFTs list
 *ContractApi* | [**AddContractSponsorWhitelist**](docs/ContractApi.md#addcontractsponsorwhitelist) | **Post** /contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist
@@ -133,7 +133,9 @@ Class | Method | HTTP request | Description
  - [ModelsTransferTaskQueryResult](docs/ModelsTransferTaskQueryResult.md)
  - [MultipartFileHeader](docs/MultipartFileHeader.md)
  - [RainbowErrorsRainbowErrorDetailInfo](docs/RainbowErrorsRainbowErrorDetailInfo.md)
+ - [ServicesBurnBatchDto](docs/ServicesBurnBatchDto.md)
  - [ServicesBurnDto](docs/ServicesBurnDto.md)
+ - [ServicesBurnItemDto](docs/ServicesBurnItemDto.md)
  - [ServicesContractAdminUpdateDto](docs/ServicesContractAdminUpdateDto.md)
  - [ServicesContractDeployDto](docs/ServicesContractDeployDto.md)
  - [ServicesCustomMintBatchDto](docs/ServicesCustomMintBatchDto.md)

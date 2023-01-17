@@ -23,18 +23,18 @@ import (
 type BurnsApi interface {
 
 	/*
-	BurnNft Burn NFT
+	BurnBatch Burn batch NFT
 
-	Burn NFT by admin
+	Burn batch NFT by admin
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiBurnNftRequest
+	@return ApiBurnBatchRequest
 	*/
-	BurnNft(ctx context.Context) ApiBurnNftRequest
+	BurnBatch(ctx context.Context) ApiBurnBatchRequest
 
-	// BurnNftExecute executes the request
-	//  @return ModelsBurnTask
-	BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, *http.Response, error)
+	// BurnBatchExecute executes the request
+	//  @return []ModelsBurnTask
+	BurnBatchExecute(r ApiBurnBatchRequest) ([]ModelsBurnTask, *http.Response, error)
 
 	/*
 	GetBurnDetail Burn NFT detail
@@ -69,55 +69,55 @@ type BurnsApi interface {
 // BurnsApiService BurnsApi service
 type BurnsApiService service
 
-type ApiBurnNftRequest struct {
+type ApiBurnBatchRequest struct {
 	ctx context.Context
 	ApiService BurnsApi
 	authorization *string
-	burnDto *ServicesBurnDto
+	burnBatchDto *ServicesBurnBatchDto
 }
 
 // Bearer Open_JWT
-func (r ApiBurnNftRequest) Authorization(authorization string) ApiBurnNftRequest {
+func (r ApiBurnBatchRequest) Authorization(authorization string) ApiBurnBatchRequest {
 	r.authorization = &authorization
 	return r
 }
 
-// burn_dto
-func (r ApiBurnNftRequest) BurnDto(burnDto ServicesBurnDto) ApiBurnNftRequest {
-	r.burnDto = &burnDto
+// burn_batch_dto
+func (r ApiBurnBatchRequest) BurnBatchDto(burnBatchDto ServicesBurnBatchDto) ApiBurnBatchRequest {
+	r.burnBatchDto = &burnBatchDto
 	return r
 }
 
-func (r ApiBurnNftRequest) Execute() (*ModelsBurnTask, *http.Response, error) {
-	return r.ApiService.BurnNftExecute(r)
+func (r ApiBurnBatchRequest) Execute() ([]ModelsBurnTask, *http.Response, error) {
+	return r.ApiService.BurnBatchExecute(r)
 }
 
 /*
-BurnNft Burn NFT
+BurnBatch Burn batch NFT
 
-Burn NFT by admin
+Burn batch NFT by admin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBurnNftRequest
+ @return ApiBurnBatchRequest
 */
-func (a *BurnsApiService) BurnNft(ctx context.Context) ApiBurnNftRequest {
-	return ApiBurnNftRequest{
+func (a *BurnsApiService) BurnBatch(ctx context.Context) ApiBurnBatchRequest {
+	return ApiBurnBatchRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ModelsBurnTask
-func (a *BurnsApiService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, *http.Response, error) {
+//  @return []ModelsBurnTask
+func (a *BurnsApiService) BurnBatchExecute(r ApiBurnBatchRequest) ([]ModelsBurnTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ModelsBurnTask
+		localVarReturnValue  []ModelsBurnTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsApiService.BurnNft")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsApiService.BurnBatch")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -130,8 +130,8 @@ func (a *BurnsApiService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, 
 	if r.authorization == nil {
 		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
 	}
-	if r.burnDto == nil {
-		return localVarReturnValue, nil, reportError("burnDto is required and must be specified")
+	if r.burnBatchDto == nil {
+		return localVarReturnValue, nil, reportError("burnBatchDto is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -153,7 +153,7 @@ func (a *BurnsApiService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, 
 	}
 	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
 	// body params
-	localVarPostBody = r.burnDto
+	localVarPostBody = r.burnBatchDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

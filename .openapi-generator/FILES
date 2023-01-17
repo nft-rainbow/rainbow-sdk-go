@@ -38,7 +38,9 @@ docs/ModelsTransferTaskQueryResult.md
 docs/MultipartFileHeader.md
 docs/NFTsApi.md
 docs/RainbowErrorsRainbowErrorDetailInfo.md
+docs/ServicesBurnBatchDto.md
 docs/ServicesBurnDto.md
+docs/ServicesBurnItemDto.md
 docs/ServicesContractAdminUpdateDto.md
 docs/ServicesContractDeployDto.md
 docs/ServicesCustomMintBatchDto.md
@@ -78,7 +80,9 @@ model_models_transfer_task.go
 model_models_transfer_task_query_result.go
 model_multipart_file_header.go
 model_rainbow_errors_rainbow_error_detail_info.go
+model_services_burn_batch_dto.go
 model_services_burn_dto.go
+model_services_burn_item_dto.go
 model_services_contract_admin_update_dto.go
 model_services_contract_deploy_dto.go
 model_services_custom_mint_batch_dto.go

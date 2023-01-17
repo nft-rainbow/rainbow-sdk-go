@@ -143,10 +143,10 @@ type ContractApi interface {
 	/*
 	SetContractSponsor Set sponsor
 
-	Set the sponsor for a specified contract according to the address
+	Set the sponsor for a contract according to the address with specified value(gas-1, storage-50)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param address address
+	@param address Contract address
 	@return ApiSetContractSponsorRequest
 	*/
 	SetContractSponsor(ctx context.Context, address string) ApiSetContractSponsorRequest
@@ -1350,11 +1350,25 @@ type ApiSetContractSponsorRequest struct {
 	ApiService ContractApi
 	authorization *string
 	address string
+	chain *string
+	autoSponsor *bool
 }
 
 // Bearer Open_JWT
 func (r ApiSetContractSponsorRequest) Authorization(authorization string) ApiSetContractSponsorRequest {
 	r.authorization = &authorization
+	return r
+}
+
+// chain
+func (r ApiSetContractSponsorRequest) Chain(chain string) ApiSetContractSponsorRequest {
+	r.chain = &chain
+	return r
+}
+
+// Open auto sponsor or not, for mainnet contract keep user account have enough balance
+func (r ApiSetContractSponsorRequest) AutoSponsor(autoSponsor bool) ApiSetContractSponsorRequest {
+	r.autoSponsor = &autoSponsor
 	return r
 }
 
@@ -1365,10 +1379,10 @@ func (r ApiSetContractSponsorRequest) Execute() (*ServicesSetSponsorResp, *http.
 /*
 SetContractSponsor Set sponsor
 
-Set the sponsor for a specified contract according to the address
+Set the sponsor for a contract according to the address with specified value(gas-1, storage-50)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param address address
+ @param address Contract address
  @return ApiSetContractSponsorRequest
 */
 func (a *ContractApiService) SetContractSponsor(ctx context.Context, address string) ApiSetContractSponsorRequest {
@@ -1404,6 +1418,12 @@ func (a *ContractApiService) SetContractSponsorExecute(r ApiSetContractSponsorRe
 		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
 	}
 
+	if r.chain != nil {
+		localVarQueryParams.Add("chain", parameterToString(*r.chain, ""))
+	}
+	if r.autoSponsor != nil {
+		localVarQueryParams.Add("auto_sponsor", parameterToString(*r.autoSponsor, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

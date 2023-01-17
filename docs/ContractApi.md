@@ -595,7 +595,7 @@ No authorization required
 
 ## SetContractSponsor
 
-> ServicesSetSponsorResp SetContractSponsor(ctx, address).Authorization(authorization).Execute()
+> ServicesSetSponsorResp SetContractSponsor(ctx, address).Authorization(authorization).Chain(chain).AutoSponsor(autoSponsor).Execute()
 
 Set sponsor
 
@@ -615,11 +615,13 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
-    address := "address_example" // string | address
+    address := "address_example" // string | Contract address
+    chain := "chain_example" // string | chain (optional)
+    autoSponsor := true // bool | Open auto sponsor or not, for mainnet contract keep user account have enough balance (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractApi.SetContractSponsor(context.Background(), address).Authorization(authorization).Execute()
+    resp, r, err := apiClient.ContractApi.SetContractSponsor(context.Background(), address).Authorization(authorization).Chain(chain).AutoSponsor(autoSponsor).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContractApi.SetContractSponsor``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -635,7 +637,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**address** | **string** | address | 
+**address** | **string** | Contract address | 
 
 ### Other Parameters
 
@@ -646,6 +648,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
 
+ **chain** | **string** | chain | 
+ **autoSponsor** | **bool** | Open auto sponsor or not, for mainnet contract keep user account have enough balance | 
 
 ### Return type
 
