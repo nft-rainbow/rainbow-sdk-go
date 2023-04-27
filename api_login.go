@@ -36,18 +36,46 @@ type LoginApi interface {
 	LoginAppExecute(r ApiLoginAppRequest) (*MiddlewaresLoginResp, *http.Response, error)
 
 	/*
-	RefreshAuth Refresh JWT
+	RefreshAppAuth Refresh JWT
 
 	Obtain a new JWT
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiRefreshAuthRequest
+	@return ApiRefreshAppAuthRequest
 	*/
-	RefreshAuth(ctx context.Context) ApiRefreshAuthRequest
+	RefreshAppAuth(ctx context.Context) ApiRefreshAppAuthRequest
 
-	// RefreshAuthExecute executes the request
+	// RefreshAppAuthExecute executes the request
 	//  @return MiddlewaresLoginResp
-	RefreshAuthExecute(r ApiRefreshAuthRequest) (*MiddlewaresLoginResp, *http.Response, error)
+	RefreshAppAuthExecute(r ApiRefreshAppAuthRequest) (*MiddlewaresLoginResp, *http.Response, error)
+
+	/*
+	RefreshUserAuth Refresh JWT
+
+	Obtain a new JWT
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRefreshUserAuthRequest
+	*/
+	RefreshUserAuth(ctx context.Context) ApiRefreshUserAuthRequest
+
+	// RefreshUserAuthExecute executes the request
+	//  @return MiddlewaresLoginResp
+	RefreshUserAuthExecute(r ApiRefreshUserAuthRequest) (*MiddlewaresLoginResp, *http.Response, error)
+
+	/*
+	UserLogin User login
+
+	User login to get the JWT according to the email and password
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUserLoginRequest
+	*/
+	UserLogin(ctx context.Context) ApiUserLoginRequest
+
+	// UserLoginExecute executes the request
+	//  @return MiddlewaresLoginResp
+	UserLoginExecute(r ApiUserLoginRequest) (*MiddlewaresLoginResp, *http.Response, error)
 }
 
 // LoginApiService LoginApi service
@@ -56,11 +84,11 @@ type LoginApiService service
 type ApiLoginAppRequest struct {
 	ctx context.Context
 	ApiService LoginApi
-	appLoginInfo *MiddlewaresAppLogin
+	appLoginInfo *MiddlewaresAppLoginInfo
 }
 
 // login info, contain app_id and app_secret
-func (r ApiLoginAppRequest) AppLoginInfo(appLoginInfo MiddlewaresAppLogin) ApiLoginAppRequest {
+func (r ApiLoginAppRequest) AppLoginInfo(appLoginInfo MiddlewaresAppLoginInfo) ApiLoginAppRequest {
 	r.appLoginInfo = &appLoginInfo
 	return r
 }
@@ -99,7 +127,7 @@ func (a *LoginApiService) LoginAppExecute(r ApiLoginAppRequest) (*MiddlewaresLog
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/login"
+	localVarPath := localBasePath + "/v1/login"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -174,32 +202,32 @@ func (a *LoginApiService) LoginAppExecute(r ApiLoginAppRequest) (*MiddlewaresLog
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRefreshAuthRequest struct {
+type ApiRefreshAppAuthRequest struct {
 	ctx context.Context
 	ApiService LoginApi
 	authorization *string
 }
 
 // Bearer openapi_token
-func (r ApiRefreshAuthRequest) Authorization(authorization string) ApiRefreshAuthRequest {
+func (r ApiRefreshAppAuthRequest) Authorization(authorization string) ApiRefreshAppAuthRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiRefreshAuthRequest) Execute() (*MiddlewaresLoginResp, *http.Response, error) {
-	return r.ApiService.RefreshAuthExecute(r)
+func (r ApiRefreshAppAuthRequest) Execute() (*MiddlewaresLoginResp, *http.Response, error) {
+	return r.ApiService.RefreshAppAuthExecute(r)
 }
 
 /*
-RefreshAuth Refresh JWT
+RefreshAppAuth Refresh JWT
 
 Obtain a new JWT
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRefreshAuthRequest
+ @return ApiRefreshAppAuthRequest
 */
-func (a *LoginApiService) RefreshAuth(ctx context.Context) ApiRefreshAuthRequest {
-	return ApiRefreshAuthRequest{
+func (a *LoginApiService) RefreshAppAuth(ctx context.Context) ApiRefreshAppAuthRequest {
+	return ApiRefreshAppAuthRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -207,7 +235,7 @@ func (a *LoginApiService) RefreshAuth(ctx context.Context) ApiRefreshAuthRequest
 
 // Execute executes the request
 //  @return MiddlewaresLoginResp
-func (a *LoginApiService) RefreshAuthExecute(r ApiRefreshAuthRequest) (*MiddlewaresLoginResp, *http.Response, error) {
+func (a *LoginApiService) RefreshAppAuthExecute(r ApiRefreshAppAuthRequest) (*MiddlewaresLoginResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -215,12 +243,12 @@ func (a *LoginApiService) RefreshAuthExecute(r ApiRefreshAuthRequest) (*Middlewa
 		localVarReturnValue  *MiddlewaresLoginResp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginApiService.RefreshAuth")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginApiService.RefreshAppAuth")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/refresh_token"
+	localVarPath := localBasePath + "/v1/refresh_token"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -247,6 +275,247 @@ func (a *LoginApiService) RefreshAuthExecute(r ApiRefreshAuthRequest) (*Middlewa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiRefreshUserAuthRequest struct {
+	ctx context.Context
+	ApiService LoginApi
+	authorization *string
+}
+
+// Bearer openapi_token
+func (r ApiRefreshUserAuthRequest) Authorization(authorization string) ApiRefreshUserAuthRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiRefreshUserAuthRequest) Execute() (*MiddlewaresLoginResp, *http.Response, error) {
+	return r.ApiService.RefreshUserAuthExecute(r)
+}
+
+/*
+RefreshUserAuth Refresh JWT
+
+Obtain a new JWT
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiRefreshUserAuthRequest
+*/
+func (a *LoginApiService) RefreshUserAuth(ctx context.Context) ApiRefreshUserAuthRequest {
+	return ApiRefreshUserAuthRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return MiddlewaresLoginResp
+func (a *LoginApiService) RefreshUserAuthExecute(r ApiRefreshUserAuthRequest) (*MiddlewaresLoginResp, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MiddlewaresLoginResp
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginApiService.RefreshUserAuth")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/dashboard/refresh_token"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUserLoginRequest struct {
+	ctx context.Context
+	ApiService LoginApi
+	userLoginInfo *MiddlewaresUserLoginInfo
+}
+
+// login info, contain app_id and app_secret
+func (r ApiUserLoginRequest) UserLoginInfo(userLoginInfo MiddlewaresUserLoginInfo) ApiUserLoginRequest {
+	r.userLoginInfo = &userLoginInfo
+	return r
+}
+
+func (r ApiUserLoginRequest) Execute() (*MiddlewaresLoginResp, *http.Response, error) {
+	return r.ApiService.UserLoginExecute(r)
+}
+
+/*
+UserLogin User login
+
+User login to get the JWT according to the email and password
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiUserLoginRequest
+*/
+func (a *LoginApiService) UserLogin(ctx context.Context) ApiUserLoginRequest {
+	return ApiUserLoginRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return MiddlewaresLoginResp
+func (a *LoginApiService) UserLoginExecute(r ApiUserLoginRequest) (*MiddlewaresLoginResp, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MiddlewaresLoginResp
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginApiService.UserLogin")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/dashboard/login"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.userLoginInfo == nil {
+		return localVarReturnValue, nil, reportError("userLoginInfo is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.userLoginInfo
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

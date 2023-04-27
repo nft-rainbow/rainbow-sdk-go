@@ -6,11 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **int32** |  | [optional] 
+**AutoSponsor** | Pointer to **bool** |  | [optional] 
 **BaseUri** | Pointer to **string** |  | [optional] 
 **ChainId** | Pointer to **int32** |  | [optional] 
 **ChainType** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **DeletedAt** | Pointer to [**GormDeletedAt**](GormDeletedAt.md) |  | [optional] 
+**Error** | Pointer to **string** |  | [optional] 
 **Hash** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **int32** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
@@ -95,6 +97,31 @@ SetAppId sets AppId field to given value.
 `func (o *ModelsContract) HasAppId() bool`
 
 HasAppId returns a boolean if a field has been set.
+
+### GetAutoSponsor
+
+`func (o *ModelsContract) GetAutoSponsor() bool`
+
+GetAutoSponsor returns the AutoSponsor field if non-nil, zero value otherwise.
+
+### GetAutoSponsorOk
+
+`func (o *ModelsContract) GetAutoSponsorOk() (*bool, bool)`
+
+GetAutoSponsorOk returns a tuple with the AutoSponsor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoSponsor
+
+`func (o *ModelsContract) SetAutoSponsor(v bool)`
+
+SetAutoSponsor sets AutoSponsor field to given value.
+
+### HasAutoSponsor
+
+`func (o *ModelsContract) HasAutoSponsor() bool`
+
+HasAutoSponsor returns a boolean if a field has been set.
 
 ### GetBaseUri
 
@@ -220,6 +247,31 @@ SetDeletedAt sets DeletedAt field to given value.
 `func (o *ModelsContract) HasDeletedAt() bool`
 
 HasDeletedAt returns a boolean if a field has been set.
+
+### GetError
+
+`func (o *ModelsContract) GetError() string`
+
+GetError returns the Error field if non-nil, zero value otherwise.
+
+### GetErrorOk
+
+`func (o *ModelsContract) GetErrorOk() (*string, bool)`
+
+GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetError
+
+`func (o *ModelsContract) SetError(v string)`
+
+SetError sets Error field to given value.
+
+### HasError
+
+`func (o *ModelsContract) HasError() bool`
+
+HasError returns a boolean if a field has been set.
 
 ### GetHash
 

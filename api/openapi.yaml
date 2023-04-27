@@ -9,10 +9,214 @@ info:
   title: Rainbow-API
   version: "1.0"
 servers:
-- url: http://api.nftrainbow.cn/v1
-- url: https://api.nftrainbow.cn/v1
+- url: http://api.nftrainbow.cn/
+- url: https://api.nftrainbow.cn/
 paths:
-  /burns:
+  /dashboard/apps/{id}/nft/batch/by-meta-parts:
+    post:
+      description: Batch Mint a NFT by providing a file url to create the metadata
+      operationId: AppBatchMintNFT
+      parameters:
+      - description: Bearer JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              items:
+                $ref: '#/components/schemas/services.AppMintByMetaPartsDto'
+              type: array
+        description: mint_meta
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/models.MintTask'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Batch Mint NFT with metadata parts
+      tags:
+      - Mints
+      x-codegen-request-body-name: app_batch_mint_meta_info
+  /dashboard/apps/{id}/nft/batch/by-meta-uri:
+    post:
+      description: Batch Mint a NFT by providing tokenIds and metadata urls to create
+        the metadata
+      operationId: AppBatchMintByMetaUri
+      parameters:
+      - description: Bearer JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/services.AppBatchMintByMetaUriDto'
+        description: batch_mint_request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: integer
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Batch Mint NFT with metadata uri
+      tags:
+      - Mints
+      x-codegen-request-body-name: batch_mint_request
+  /dashboard/login:
+    post:
+      description: User login to get the JWT according to the email and password
+      operationId: UserLogin
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/middlewares.UserLoginInfo'
+        description: "login info, contain app_id and app_secret"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/middlewares.LoginResp'
+          description: auth token
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Unauthorized
+      summary: User login
+      tags:
+      - Login
+      x-codegen-request-body-name: userLoginInfo
+  /dashboard/refresh_token:
+    get:
+      description: Obtain a new JWT
+      operationId: RefreshUserAuth
+      parameters:
+      - description: Bearer openapi_token
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/middlewares.LoginResp'
+          description: refreshed auth token
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Unauthorized
+      security:
+      - ApiKeyAuth: []
+      summary: Refresh JWT
+      tags:
+      - Login
+  /v1/:address/profile:
+    get:
+      description: "Get contract runtime profile, contains contract info and currently\
+        \ minted/minting max token id"
+      operationId: GetContractProfile
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.ContractRuntimeProfile'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Get contract runtime profile
+      tags:
+      - Contract
+  /v1/burns:
     get:
       description: Get the NFT burned list information.
       operationId: GetBurnList
@@ -89,7 +293,7 @@ paths:
       tags:
       - Burns
       x-codegen-request-body-name: burn_dto
-  /burns/customizable/batch:
+  /v1/burns/customizable/batch:
     post:
       description: Batch burn NFT by admin
       operationId: BurnBatch
@@ -134,7 +338,7 @@ paths:
       tags:
       - Burns
       x-codegen-request-body-name: burn_batch_dto
-  /burns/{id}:
+  /v1/burns/{id}:
     get:
       description: Get NFT Burn detail info
       operationId: GetBurnDetail
@@ -175,7 +379,7 @@ paths:
       summary: Burn NFT detail
       tags:
       - Burns
-  /contracts/:
+  /v1/contracts/:
     get:
       description: Get the contract list containing the contracts deployed through
         the specified app.
@@ -257,7 +461,7 @@ paths:
       tags:
       - Contract
       x-codegen-request-body-name: contract_info
-  /contracts/detail/{id}:
+  /v1/contracts/detail/{id}:
     get:
       description: Get Contract info
       operationId: GetContractInfo
@@ -298,7 +502,7 @@ paths:
       summary: Contract detail
       tags:
       - Contract
-  /contracts/{address}/admin:
+  /v1/contracts/{address}/admin:
     get:
       description: Get Contract Admin
       operationId: GetContractAdmin
@@ -399,7 +603,7 @@ paths:
       tags:
       - Contract
       x-codegen-request-body-name: admin_info
-  /contracts/{address}/sponsor:
+  /v1/contracts/{address}/sponsor:
     get:
       description: Get the sponsor of the specified contract according to address.
       operationId: GetContractSponsorInfo
@@ -479,7 +683,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/services.SetSponsorResp'
-          description: Transaction id"                             "success
+          description: Transaction id" "success
         "400":
           content:
             application/json:
@@ -497,7 +701,7 @@ paths:
       summary: Set sponsor
       tags:
       - Contract
-  /contracts/{address}/sponsor/whitelist:
+  /v1/contracts/{address}/sponsor/whitelist:
     delete:
       description: "Remove contract sponsored whitelist, only work on conflux chain"
       operationId: RemoveContractSponsorWhitelist
@@ -658,7 +862,7 @@ paths:
       tags:
       - Contract
       x-codegen-request-body-name: users
-  /files/:
+  /v1/files/:
     get:
       description: Get the file list containing the info of the files uploaded in
         the specified app
@@ -732,7 +936,79 @@ paths:
       summary: Upload file
       tags:
       - Files
-  /files/oss:
+  /v1/files/folder:
+    post:
+      description: "Upload a folder containing the files which can be a video, an\
+        \ image and so on"
+      operationId: UploadFolder
+      parameters:
+      - description: Bearer openapi_token
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UploadFolder_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.UploadFolderResponse'
+          description: OK
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Upload folder
+      tags:
+      - Files
+  /v1/files/folder/oss:
+    post:
+      description: "Upload a folder containing the files which can be a video, an\
+        \ image and so on, to oss"
+      operationId: UploadFolderToOSS
+      parameters:
+      - description: Bearer openapi_token
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UploadFolder_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.UploadFolderResponse'
+          description: OK
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Upload folder to oss
+      tags:
+      - Files
+  /v1/files/oss:
     post:
       description: "Upload a file to OSS, which can be a video, an image and so on"
       operationId: UploadFileToOss
@@ -767,7 +1043,7 @@ paths:
       summary: Upload file to OSS
       tags:
       - Files
-  /login:
+  /v1/login:
     post:
       description: Login the app to get the JWT according to the app_id and app_secret
       operationId: LoginApp
@@ -775,7 +1051,7 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/middlewares.appLogin'
+              $ref: '#/components/schemas/middlewares.AppLoginInfo'
         description: "login info, contain app_id and app_secret"
         required: true
       responses:
@@ -795,7 +1071,7 @@ paths:
       tags:
       - Login
       x-codegen-request-body-name: appLoginInfo
-  /metadata/:
+  /v1/metadata/:
     get:
       description: Get the metadata list containing the info of the metadata created
         in the specified app
@@ -878,7 +1154,7 @@ paths:
       tags:
       - Metadata
       x-codegen-request-body-name: metadata_info
-  /metadata/{metadata_id}:
+  /v1/metadata/{metadata_id}:
     get:
       description: Query the metadata according to metadata_id
       operationId: GetMetadatInfo
@@ -919,7 +1195,7 @@ paths:
       summary: Query metadata
       tags:
       - Metadata
-  /mints/:
+  /v1/mints/:
     get:
       description: Get the NFT list containing the NFTs minted in the specified app
       operationId: ListMints
@@ -948,6 +1224,16 @@ paths:
       - description: mint_to
         in: query
         name: mint_to
+        schema:
+          type: string
+      - description: status
+        in: query
+        name: status
+        schema:
+          type: integer
+      - description: chain
+        in: query
+        name: chain
         schema:
           type: string
       responses:
@@ -1010,7 +1296,7 @@ paths:
       tags:
       - Mints
       x-codegen-request-body-name: custom_mint_dto
-  /mints/customizable/batch:
+  /v1/mints/customizable/batch:
     post:
       description: Mint several NFTs once
       operationId: BatchCustomMint
@@ -1055,7 +1341,7 @@ paths:
       tags:
       - Mints
       x-codegen-request-body-name: custom_mint_batch_dto
-  /mints/easy/files:
+  /v1/mints/easy/files:
     post:
       description: "Mint a NFT by uploading a file which can be a video, image and\
         \ so on"
@@ -1097,7 +1383,7 @@ paths:
       summary: Mint NFT with file
       tags:
       - Mints
-  /mints/easy/urls:
+  /v1/mints/easy/urls:
     post:
       description: Mint a NFT by providing a file url to create the metadata
       operationId: EasyMintByMetadata
@@ -1112,7 +1398,7 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/services.EasyMintMetaDto'
+              $ref: '#/components/schemas/services.EasyMintMetaPartsDto'
         description: easy_mint_meta_info
         required: true
       responses:
@@ -1140,7 +1426,7 @@ paths:
       tags:
       - Mints
       x-codegen-request-body-name: easy_mint_meta_info
-  /mints/{id}:
+  /v1/mints/{id}:
     get:
       description: Get NFT detail info
       operationId: GetMintDetail
@@ -1181,10 +1467,51 @@ paths:
       summary: Mint NFT detail
       tags:
       - Mints
-  /nft/{address}/{token_id}:
+  /v1/mints/{id}/reMint:
+    post:
+      description: Reset mint task status to init so that it can be minted again
+      operationId: ReMintNFT
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.MintTask'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Reset mint task status to init so that it can be minted again
+      tags:
+      - Mints
+  /v1/nft/{address}/{token_id}:
     get:
       description: "Get NFT info, mainly owner and metadata"
-      operationId: NFTInfo
+      operationId: NftInfo
       parameters:
       - description: Bearer Open_JWT
         in: header
@@ -1228,10 +1555,59 @@ paths:
       summary: "Get NFT info, mainly owner and metadata"
       tags:
       - NFTs
-  /refresh_token:
+  /v1/nft/{address}/{token_id}/tokenUri:
+    put:
+      description: Update NFT token uri
+      operationId: UpdateNftTokenUri
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      - description: token_id
+        in: path
+        name: token_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/routers.UpdateTokenUriReq'
+        description: req
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.Transaction'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+      security:
+      - ApiKeyAuth: []
+      summary: Update NFT token uri
+      tags:
+      - NFTs
+      x-codegen-request-body-name: req
+  /v1/refresh_token:
     get:
       description: Obtain a new JWT
-      operationId: RefreshAuth
+      operationId: RefreshAppAuth
       parameters:
       - description: Bearer openapi_token
         in: header
@@ -1257,7 +1633,7 @@ paths:
       summary: Refresh JWT
       tags:
       - Login
-  /transfers/:
+  /v1/transfers/:
     get:
       description: Get the NFT list containing the transferred NFT information.
       operationId: ListTransfer
@@ -1296,7 +1672,7 @@ paths:
       summary: Obtain the transferred NFTs list
       tags:
       - Transfers
-  /transfers/customizable:
+  /v1/transfers/customizable:
     post:
       description: Transfer NFT by admin
       operationId: TransferNft
@@ -1339,7 +1715,7 @@ paths:
       tags:
       - Transfers
       x-codegen-request-body-name: transfer_dto
-  /transfers/customizable/batch:
+  /v1/transfers/customizable/batch:
     post:
       description: Transfer several NFTs once
       operationId: BatchTransferNft
@@ -1384,7 +1760,7 @@ paths:
       tags:
       - Transfers
       x-codegen-request-body-name: transfer_batch_dto
-  /transfers/{id}:
+  /v1/transfers/{id}:
     get:
       description: Get NFT Transfer detail info
       operationId: GetTransferDetail
@@ -1425,7 +1801,7 @@ paths:
       summary: Transfer NFT detail
       tags:
       - Transfers
-  /tx/{id}:
+  /v1/tx/{id}:
     get:
       description: Get transaction informantion by ID
       operationId: GetTransactionByID
@@ -1485,6 +1861,16 @@ components:
           description: Valid is true if Time is not NULL
           type: boolean
       type: object
+    middlewares.AppLoginInfo:
+      properties:
+        app_id:
+          type: string
+        app_secret:
+          type: string
+      required:
+      - app_id
+      - app_secret
+      type: object
     middlewares.LoginResp:
       example:
         expire: expire
@@ -1495,15 +1881,15 @@ components:
         token:
           type: string
       type: object
-    middlewares.appLogin:
+    middlewares.UserLoginInfo:
       properties:
-        app_id:
+        email:
           type: string
-        app_secret:
+        password:
           type: string
       required:
-      - app_id
-      - app_secret
+      - email
+      - password
       type: object
     models.BurnTask:
       example:
@@ -1611,34 +1997,38 @@ components:
     models.Contract:
       example:
         symbol: symbol
-        chain_type: 5
+        chain_type: 1
         tokens_transferable_by_admin: true
         address: address
-        chain_id: 1
+        chain_id: 6
         tokens_burnable: true
-        transfer_cooldown_time: 9
+        transfer_cooldown_time: 7
         created_at: created_at
         owner_address: owner_address
         royalties_address: royalties_address
-        royalties_bps: 2
-        tx_id: 3
-        type: 2
+        error: error
+        royalties_bps: 5
+        tx_id: 9
+        type: 3
         deleted_at:
           valid: true
           time: time
         updated_at: updated_at
         base_uri: base_uri
         name: name
+        auto_sponsor: true
         id: 5
         tokens_transferable_by_user: true
-        app_id: 6
+        app_id: 0
         hash: hash
-        status: 7
+        status: 2
       properties:
         address:
           type: string
         app_id:
           type: integer
+        auto_sponsor:
+          type: boolean
         base_uri:
           type: string
         chain_id:
@@ -1649,6 +2039,8 @@ components:
           type: string
         deleted_at:
           $ref: '#/components/schemas/gorm.DeletedAt'
+        error:
+          type: string
         hash:
           type: string
         id:
@@ -1682,58 +2074,98 @@ components:
         updated_at:
           type: string
       type: object
+    models.ContractRuntimeProfile:
+      example:
+        contract:
+          symbol: symbol
+          chain_type: 1
+          tokens_transferable_by_admin: true
+          address: address
+          chain_id: 6
+          tokens_burnable: true
+          transfer_cooldown_time: 7
+          created_at: created_at
+          owner_address: owner_address
+          royalties_address: royalties_address
+          error: error
+          royalties_bps: 5
+          tx_id: 9
+          type: 3
+          deleted_at:
+            valid: true
+            time: time
+          updated_at: updated_at
+          base_uri: base_uri
+          name: name
+          auto_sponsor: true
+          id: 5
+          tokens_transferable_by_user: true
+          app_id: 0
+          hash: hash
+          status: 2
+        max_token_id: 2
+      properties:
+        contract:
+          $ref: '#/components/schemas/models.Contract'
+        max_token_id:
+          type: integer
+      type: object
     models.ContractTaskQueryResult:
       example:
         count: 0
         items:
         - symbol: symbol
-          chain_type: 5
+          chain_type: 1
           tokens_transferable_by_admin: true
           address: address
-          chain_id: 1
+          chain_id: 6
           tokens_burnable: true
-          transfer_cooldown_time: 9
+          transfer_cooldown_time: 7
           created_at: created_at
           owner_address: owner_address
           royalties_address: royalties_address
-          royalties_bps: 2
-          tx_id: 3
-          type: 2
+          error: error
+          royalties_bps: 5
+          tx_id: 9
+          type: 3
           deleted_at:
             valid: true
             time: time
           updated_at: updated_at
           base_uri: base_uri
           name: name
+          auto_sponsor: true
           id: 5
           tokens_transferable_by_user: true
-          app_id: 6
+          app_id: 0
           hash: hash
-          status: 7
+          status: 2
         - symbol: symbol
-          chain_type: 5
+          chain_type: 1
           tokens_transferable_by_admin: true
           address: address
-          chain_id: 1
+          chain_id: 6
           tokens_burnable: true
-          transfer_cooldown_time: 9
+          transfer_cooldown_time: 7
           created_at: created_at
           owner_address: owner_address
           royalties_address: royalties_address
-          royalties_bps: 2
-          tx_id: 3
-          type: 2
+          error: error
+          royalties_bps: 5
+          tx_id: 9
+          type: 3
           deleted_at:
             valid: true
             time: time
           updated_at: updated_at
           base_uri: base_uri
           name: name
+          auto_sponsor: true
           id: 5
           tokens_transferable_by_user: true
-          app_id: 6
+          app_id: 0
           hash: hash
-          status: 7
+          status: 2
       properties:
         count:
           type: integer
@@ -1776,11 +2208,16 @@ components:
       example:
         image: image
         animation_url: animation_url
+        created_at: created_at
+        description: description
+        deleted_at:
+          valid: true
+          time: time
+        uri: uri
+        external_link: external_link
         updated_at: updated_at
         metadata_id: metadata_id
         name: name
-        created_at: created_at
-        description: description
         attributes:
         - display_type: display_type
           attribute_name: attribute_name
@@ -1790,15 +2227,13 @@ components:
           attribute_name: attribute_name
           value: value
           trait_type: trait_type
-        id: 6
-        deleted_at:
-          valid: true
-          time: time
-        uri: uri
-        external_link: external_link
+        id: 1
+        app_id: 6
       properties:
         animation_url:
           type: string
+        app_id:
+          type: integer
         attributes:
           items:
             $ref: '#/components/schemas/models.ExposedMetadataAttribute'
@@ -1842,6 +2277,7 @@ components:
         trait_type:
           type: string
         value:
+          description: TODO support number
           type: string
       type: object
     models.ExposedMetadataQueryResult:
@@ -1850,11 +2286,16 @@ components:
         items:
         - image: image
           animation_url: animation_url
+          created_at: created_at
+          description: description
+          deleted_at:
+            valid: true
+            time: time
+          uri: uri
+          external_link: external_link
           updated_at: updated_at
           metadata_id: metadata_id
           name: name
-          created_at: created_at
-          description: description
           attributes:
           - display_type: display_type
             attribute_name: attribute_name
@@ -1864,19 +2305,20 @@ components:
             attribute_name: attribute_name
             value: value
             trait_type: trait_type
-          id: 6
-          deleted_at:
-            valid: true
-            time: time
-          uri: uri
-          external_link: external_link
+          id: 1
+          app_id: 6
         - image: image
           animation_url: animation_url
+          created_at: created_at
+          description: description
+          deleted_at:
+            valid: true
+            time: time
+          uri: uri
+          external_link: external_link
           updated_at: updated_at
           metadata_id: metadata_id
           name: name
-          created_at: created_at
-          description: description
           attributes:
           - display_type: display_type
             attribute_name: attribute_name
@@ -1886,12 +2328,8 @@ components:
             attribute_name: attribute_name
             value: value
             trait_type: trait_type
-          id: 6
-          deleted_at:
-            valid: true
-            time: time
-          uri: uri
-          external_link: external_link
+          id: 1
+          app_id: 6
       properties:
         count:
           type: integer
@@ -1935,25 +2373,25 @@ components:
     models.MintTask:
       example:
         mint_to: mint_to
-        amount: 6
+        amount: 0
         chain_type: 5
-        chain_id: 5
+        chain_id: 1
         contract: contract
         created_at: created_at
         error: error
-        tx_id: 2
+        tx_id: 3
         deleted_at:
           valid: true
           time: time
-        contract_type: 2
+        contract_type: 5
         token_uri: token_uri
         token_id: token_id
         updated_at: updated_at
-        mint_type: 9
-        id: 7
-        app_id: 1
+        mint_type: 7
+        id: 2
+        app_id: 6
         hash: hash
-        status: 3
+        status: 9
       properties:
         amount:
           type: integer
@@ -1998,45 +2436,45 @@ components:
         count: 0
         items:
         - mint_to: mint_to
-          amount: 6
+          amount: 0
           chain_type: 5
-          chain_id: 5
+          chain_id: 1
           contract: contract
           created_at: created_at
           error: error
-          tx_id: 2
+          tx_id: 3
           deleted_at:
             valid: true
             time: time
-          contract_type: 2
+          contract_type: 5
           token_uri: token_uri
           token_id: token_id
           updated_at: updated_at
-          mint_type: 9
-          id: 7
-          app_id: 1
+          mint_type: 7
+          id: 2
+          app_id: 6
           hash: hash
-          status: 3
+          status: 9
         - mint_to: mint_to
-          amount: 6
+          amount: 0
           chain_type: 5
-          chain_id: 5
+          chain_id: 1
           contract: contract
           created_at: created_at
           error: error
-          tx_id: 2
+          tx_id: 3
           deleted_at:
             valid: true
             time: time
-          contract_type: 2
+          contract_type: 5
           token_uri: token_uri
           token_id: token_id
           updated_at: updated_at
-          mint_type: 9
-          id: 7
-          app_id: 1
+          mint_type: 7
+          id: 2
+          app_id: 6
           hash: hash
-          status: 3
+          status: 9
       properties:
         count:
           type: integer
@@ -2044,6 +2482,99 @@ components:
           items:
             $ref: '#/components/schemas/models.MintTask'
           type: array
+      type: object
+    models.Transaction:
+      example:
+        data: data
+        storageCollateralized: 1.2315135367772556
+        pre_hashs: pre_hashs
+        created_at: created_at
+        epoch_number: 5
+        gasCoveredBySponsor: true
+        chainType: 6
+        error: error
+        epochHeight: 1.4658129805029452
+        taskType: 1
+        updated_at: updated_at
+        pending_reason: pending_reason
+        gas: 5.637376656633329
+        from: from
+        id: 9
+        state: 4
+        storageCoveredBySponsor: true
+        value: 7.457744773683766
+        gasPrice: 7.061401241503109
+        gasFee: 2.3021358869347655
+        tryReceiptCnt: 6
+        deleted_at:
+          valid: true
+          time: time
+        nonce: 3
+        storageLimit: 1.0246457001441578
+        stage: 2
+        chainId: 0
+        to: to
+        hash: hash
+        status: 7
+      properties:
+        chainId:
+          type: integer
+        chainType:
+          type: integer
+        created_at:
+          type: string
+        data:
+          type: string
+        deleted_at:
+          $ref: '#/components/schemas/gorm.DeletedAt'
+        epochHeight:
+          type: number
+        epoch_number:
+          type: integer
+        error:
+          type: string
+        from:
+          type: string
+        gas:
+          type: number
+        gasCoveredBySponsor:
+          type: boolean
+        gasFee:
+          type: number
+        gasPrice:
+          type: number
+        hash:
+          type: string
+        id:
+          type: integer
+        nonce:
+          type: integer
+        pending_reason:
+          type: string
+        pre_hashs:
+          type: string
+        stage:
+          type: integer
+        state:
+          type: integer
+        status:
+          type: integer
+        storageCollateralized:
+          type: number
+        storageCoveredBySponsor:
+          type: boolean
+        storageLimit:
+          type: number
+        taskType:
+          type: integer
+        to:
+          type: string
+        tryReceiptCnt:
+          type: integer
+        updated_at:
+          type: string
+        value:
+          type: number
       type: object
     models.TransferTask:
       example:
@@ -2170,8 +2701,80 @@ components:
       properties:
         code:
           type: integer
+        data:
+          type: string
         message:
           type: string
+      type: object
+    routers.UpdateTokenUriReq:
+      properties:
+        chain:
+          enum:
+          - conflux
+          - conflux_test
+          type: string
+        contract_type:
+          enum:
+          - erc721
+          - erc1155
+          type: string
+        token_uri:
+          type: string
+      required:
+      - chain
+      - contract_type
+      type: object
+    services.AppBatchMintByMetaUriDto:
+      properties:
+        chain:
+          enum:
+          - conflux
+          - conflux_test
+          type: string
+        contract_address:
+          type: string
+        mint_items:
+          items:
+            $ref: '#/components/schemas/services.MintItemDto'
+          type: array
+      required:
+      - chain
+      - contract_address
+      - mint_items
+      type: object
+    services.AppMintByMetaPartsDto:
+      properties:
+        amount:
+          description: "amount on same token id, only erc1155 contract could set large\
+            \ than 1, others set null or 1"
+          type: integer
+        animation_url:
+          type: string
+        attributes:
+          items:
+            $ref: '#/components/schemas/models.ExposedMetadataAttribute'
+          type: array
+        chain:
+          type: string
+        contract_address:
+          type: string
+        description:
+          type: string
+        file_url:
+          type: string
+        mint_to_address:
+          type: string
+        name:
+          type: string
+        number:
+          description: "mint number, everyone with different token id (not conflict\
+            \ with AmountOnSameTokenID)"
+          type: integer
+      required:
+      - chain
+      - file_url
+      - mint_to_address
+      - name
       type: object
     services.BurnBatchDto:
       properties:
@@ -2246,6 +2849,9 @@ components:
       type: object
     services.ContractDeployDto:
       properties:
+        auto_sponsor:
+          description: "default: true"
+          type: boolean
         base_uri:
           type: string
         chain:
@@ -2267,12 +2873,16 @@ components:
         symbol:
           type: string
         tokens_burnable:
+          description: "default: true"
           type: boolean
         tokens_transferable_by_admin:
+          description: "default: true"
           type: boolean
         tokens_transferable_by_user:
+          description: "default: true"
           type: boolean
         transfer_cooldown_time:
+          description: "default: 0"
           type: integer
         type:
           enum:
@@ -2325,8 +2935,14 @@ components:
       - contract_address
       - mint_to_address
       type: object
-    services.EasyMintMetaDto:
+    services.EasyMintMetaPartsDto:
       properties:
+        animation_url:
+          type: string
+        attributes:
+          items:
+            $ref: '#/components/schemas/models.ExposedMetadataAttribute'
+          type: array
         chain:
           type: string
         description:
@@ -2339,7 +2955,6 @@ components:
           type: string
       required:
       - chain
-      - description
       - file_url
       - mint_to_address
       - name
@@ -2537,6 +3152,16 @@ components:
         file_url:
           type: string
       type: object
+    services.UploadFolderResponse:
+      example:
+        folder_url: folder_url
+        file_num: 0
+      properties:
+        file_num:
+          type: integer
+        folder_url:
+          type: string
+      type: object
     textproto.MIMEHeader:
       additionalProperties:
         items:
@@ -2551,6 +3176,15 @@ components:
           type: string
       required:
       - file
+      type: object
+    UploadFolder_request:
+      properties:
+        folder:
+          description: uploaded folder
+          format: binary
+          type: string
+      required:
+      - folder
       type: object
     EasyMintByFile_request:
       properties:

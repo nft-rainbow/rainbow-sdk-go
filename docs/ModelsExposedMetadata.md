@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AnimationUrl** | Pointer to **string** |  | [optional] 
+**AppId** | Pointer to **int32** |  | [optional] 
 **Attributes** | Pointer to [**[]ModelsExposedMetadataAttribute**](ModelsExposedMetadataAttribute.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **DeletedAt** | Pointer to [**GormDeletedAt**](GormDeletedAt.md) |  | [optional] 
@@ -60,6 +61,31 @@ SetAnimationUrl sets AnimationUrl field to given value.
 `func (o *ModelsExposedMetadata) HasAnimationUrl() bool`
 
 HasAnimationUrl returns a boolean if a field has been set.
+
+### GetAppId
+
+`func (o *ModelsExposedMetadata) GetAppId() int32`
+
+GetAppId returns the AppId field if non-nil, zero value otherwise.
+
+### GetAppIdOk
+
+`func (o *ModelsExposedMetadata) GetAppIdOk() (*int32, bool)`
+
+GetAppIdOk returns a tuple with the AppId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppId
+
+`func (o *ModelsExposedMetadata) SetAppId(v int32)`
+
+SetAppId sets AppId field to given value.
+
+### HasAppId
+
+`func (o *ModelsExposedMetadata) HasAppId() bool`
+
+HasAppId returns a boolean if a field has been set.
 
 ### GetAttributes
 

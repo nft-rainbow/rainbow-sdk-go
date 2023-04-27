@@ -1,11 +1,13 @@
 # \LoginApi
 
-All URIs are relative to *http://api.nftrainbow.cn/v1*
+All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**LoginApp**](LoginApi.md#LoginApp) | **Post** /login | App login
-[**RefreshAuth**](LoginApi.md#RefreshAuth) | **Get** /refresh_token | Refresh JWT
+[**LoginApp**](LoginApi.md#LoginApp) | **Post** /v1/login | App login
+[**RefreshAppAuth**](LoginApi.md#RefreshAppAuth) | **Get** /v1/refresh_token | Refresh JWT
+[**RefreshUserAuth**](LoginApi.md#RefreshUserAuth) | **Get** /dashboard/refresh_token | Refresh JWT
+[**UserLogin**](LoginApi.md#UserLogin) | **Post** /dashboard/login | User login
 
 
 
@@ -30,7 +32,7 @@ import (
 )
 
 func main() {
-    appLoginInfo := *openapiclient.NewMiddlewaresAppLogin("AppId_example", "AppSecret_example") // MiddlewaresAppLogin | login info, contain app_id and app_secret
+    appLoginInfo := *openapiclient.NewMiddlewaresAppLoginInfo("AppId_example", "AppSecret_example") // MiddlewaresAppLoginInfo | login info, contain app_id and app_secret
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -55,7 +57,7 @@ Other parameters are passed through a pointer to a apiLoginAppRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appLoginInfo** | [**MiddlewaresAppLogin**](MiddlewaresAppLogin.md) | login info, contain app_id and app_secret | 
+ **appLoginInfo** | [**MiddlewaresAppLoginInfo**](MiddlewaresAppLoginInfo.md) | login info, contain app_id and app_secret | 
 
 ### Return type
 
@@ -75,9 +77,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## RefreshAuth
+## RefreshAppAuth
 
-> MiddlewaresLoginResp RefreshAuth(ctx).Authorization(authorization).Execute()
+> MiddlewaresLoginResp RefreshAppAuth(ctx).Authorization(authorization).Execute()
 
 Refresh JWT
 
@@ -100,13 +102,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LoginApi.RefreshAuth(context.Background()).Authorization(authorization).Execute()
+    resp, r, err := apiClient.LoginApi.RefreshAppAuth(context.Background()).Authorization(authorization).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.RefreshAuth``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.RefreshAppAuth``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RefreshAuth`: MiddlewaresLoginResp
-    fmt.Fprintf(os.Stdout, "Response from `LoginApi.RefreshAuth`: %v\n", resp)
+    // response from `RefreshAppAuth`: MiddlewaresLoginResp
+    fmt.Fprintf(os.Stdout, "Response from `LoginApi.RefreshAppAuth`: %v\n", resp)
 }
 ```
 
@@ -116,12 +118,144 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRefreshAuthRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRefreshAppAuthRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer openapi_token | 
+
+### Return type
+
+[**MiddlewaresLoginResp**](MiddlewaresLoginResp.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RefreshUserAuth
+
+> MiddlewaresLoginResp RefreshUserAuth(ctx).Authorization(authorization).Execute()
+
+Refresh JWT
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer openapi_token
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.LoginApi.RefreshUserAuth(context.Background()).Authorization(authorization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.RefreshUserAuth``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RefreshUserAuth`: MiddlewaresLoginResp
+    fmt.Fprintf(os.Stdout, "Response from `LoginApi.RefreshUserAuth`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRefreshUserAuthRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** | Bearer openapi_token | 
+
+### Return type
+
+[**MiddlewaresLoginResp**](MiddlewaresLoginResp.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserLogin
+
+> MiddlewaresLoginResp UserLogin(ctx).UserLoginInfo(userLoginInfo).Execute()
+
+User login
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userLoginInfo := *openapiclient.NewMiddlewaresUserLoginInfo("Email_example", "Password_example") // MiddlewaresUserLoginInfo | login info, contain app_id and app_secret
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.LoginApi.UserLogin(context.Background()).UserLoginInfo(userLoginInfo).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.UserLogin``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UserLogin`: MiddlewaresLoginResp
+    fmt.Fprintf(os.Stdout, "Response from `LoginApi.UserLogin`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserLoginRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userLoginInfo** | [**MiddlewaresUserLoginInfo**](MiddlewaresUserLoginInfo.md) | login info, contain app_id and app_secret | 
 
 ### Return type
 

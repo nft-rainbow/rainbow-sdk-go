@@ -82,6 +82,21 @@ type ContractApi interface {
 	GetContractInfoExecute(r ApiGetContractInfoRequest) (*ModelsContract, *http.Response, error)
 
 	/*
+	GetContractProfile Get contract runtime profile
+
+	Get contract runtime profile, contains contract info and currently minted/minting max token id
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param address address
+	@return ApiGetContractProfileRequest
+	*/
+	GetContractProfile(ctx context.Context, address string) ApiGetContractProfileRequest
+
+	// GetContractProfileExecute executes the request
+	//  @return ModelsContractRuntimeProfile
+	GetContractProfileExecute(r ApiGetContractProfileRequest) (*ModelsContractRuntimeProfile, *http.Response, error)
+
+	/*
 	GetContractSponsorInfo Query sponsor
 
 	Get the sponsor of the specified contract according to address.
@@ -230,7 +245,7 @@ func (a *ContractApiService) AddContractSponsorWhitelistExecute(r ApiAddContract
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/{address}/sponsor/whitelist"
+	localVarPath := localBasePath + "/v1/contracts/{address}/sponsor/whitelist"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -385,7 +400,7 @@ func (a *ContractApiService) DeployContractExecute(r ApiDeployContractRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/"
+	localVarPath := localBasePath + "/v1/contracts/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -524,7 +539,7 @@ func (a *ContractApiService) GetContractAdminExecute(r ApiGetContractAdminReques
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/{address}/admin"
+	localVarPath := localBasePath + "/v1/contracts/{address}/admin"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -670,8 +685,143 @@ func (a *ContractApiService) GetContractInfoExecute(r ApiGetContractInfoRequest)
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/detail/{id}"
+	localVarPath := localBasePath + "/v1/contracts/detail/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetContractProfileRequest struct {
+	ctx context.Context
+	ApiService ContractApi
+	authorization *string
+	address string
+}
+
+// Bearer Open_JWT
+func (r ApiGetContractProfileRequest) Authorization(authorization string) ApiGetContractProfileRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetContractProfileRequest) Execute() (*ModelsContractRuntimeProfile, *http.Response, error) {
+	return r.ApiService.GetContractProfileExecute(r)
+}
+
+/*
+GetContractProfile Get contract runtime profile
+
+Get contract runtime profile, contains contract info and currently minted/minting max token id
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param address address
+ @return ApiGetContractProfileRequest
+*/
+func (a *ContractApiService) GetContractProfile(ctx context.Context, address string) ApiGetContractProfileRequest {
+	return ApiGetContractProfileRequest{
+		ApiService: a,
+		ctx: ctx,
+		address: address,
+	}
+}
+
+// Execute executes the request
+//  @return ModelsContractRuntimeProfile
+func (a *ContractApiService) GetContractProfileExecute(r ApiGetContractProfileRequest) (*ModelsContractRuntimeProfile, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ModelsContractRuntimeProfile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractApiService.GetContractProfile")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/:address/profile"
+	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -812,7 +962,7 @@ func (a *ContractApiService) GetContractSponsorInfoExecute(r ApiGetContractSpons
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/{address}/sponsor"
+	localVarPath := localBasePath + "/v1/contracts/{address}/sponsor"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -950,7 +1100,7 @@ func (a *ContractApiService) GetContractSponsoredWhitelistExecute(r ApiGetContra
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/{address}/sponsor/whitelist"
+	localVarPath := localBasePath + "/v1/contracts/{address}/sponsor/whitelist"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1107,7 +1257,7 @@ func (a *ContractApiService) ListContractsExecute(r ApiListContractsRequest) (*M
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/"
+	localVarPath := localBasePath + "/v1/contracts/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1243,7 +1393,7 @@ func (a *ContractApiService) RemoveContractSponsorWhitelistExecute(r ApiRemoveCo
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/{address}/sponsor/whitelist"
+	localVarPath := localBasePath + "/v1/contracts/{address}/sponsor/whitelist"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1408,7 +1558,7 @@ func (a *ContractApiService) SetContractSponsorExecute(r ApiSetContractSponsorRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/{address}/sponsor"
+	localVarPath := localBasePath + "/v1/contracts/{address}/sponsor"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1556,7 +1706,7 @@ func (a *ContractApiService) UpdateContractAdminExecute(r ApiUpdateContractAdmin
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contracts/{address}/admin"
+	localVarPath := localBasePath + "/v1/contracts/{address}/admin"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)

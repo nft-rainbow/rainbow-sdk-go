@@ -1,16 +1,167 @@
 # \MintsApi
 
-All URIs are relative to *http://api.nftrainbow.cn/v1*
+All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BatchCustomMint**](MintsApi.md#BatchCustomMint) | **Post** /mints/customizable/batch | Batch Mint NFTs
-[**CustomMint**](MintsApi.md#CustomMint) | **Post** /mints/ | Mint NFT
-[**EasyMintByFile**](MintsApi.md#EasyMintByFile) | **Post** /mints/easy/files | Mint NFT with file
-[**EasyMintByMetadata**](MintsApi.md#EasyMintByMetadata) | **Post** /mints/easy/urls | Mint NFT with metadata
-[**GetMintDetail**](MintsApi.md#GetMintDetail) | **Get** /mints/{id} | Mint NFT detail
-[**ListMints**](MintsApi.md#ListMints) | **Get** /mints/ | Obtain NFT list
+[**AppBatchMintByMetaUri**](MintsApi.md#AppBatchMintByMetaUri) | **Post** /dashboard/apps/{id}/nft/batch/by-meta-uri | Batch Mint NFT with metadata uri
+[**AppBatchMintNFT**](MintsApi.md#AppBatchMintNFT) | **Post** /dashboard/apps/{id}/nft/batch/by-meta-parts | Batch Mint NFT with metadata parts
+[**BatchCustomMint**](MintsApi.md#BatchCustomMint) | **Post** /v1/mints/customizable/batch | Batch Mint NFTs
+[**CustomMint**](MintsApi.md#CustomMint) | **Post** /v1/mints/ | Mint NFT
+[**EasyMintByFile**](MintsApi.md#EasyMintByFile) | **Post** /v1/mints/easy/files | Mint NFT with file
+[**EasyMintByMetadata**](MintsApi.md#EasyMintByMetadata) | **Post** /v1/mints/easy/urls | Mint NFT with metadata
+[**GetMintDetail**](MintsApi.md#GetMintDetail) | **Get** /v1/mints/{id} | Mint NFT detail
+[**ListMints**](MintsApi.md#ListMints) | **Get** /v1/mints/ | Obtain NFT list
+[**ReMintNFT**](MintsApi.md#ReMintNFT) | **Post** /v1/mints/{id}/reMint | Reset mint task status to init so that it can be minted again
 
+
+
+## AppBatchMintByMetaUri
+
+> []int32 AppBatchMintByMetaUri(ctx, id).Authorization(authorization).BatchMintRequest(batchMintRequest).Execute()
+
+Batch Mint NFT with metadata uri
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer JWT
+    id := int32(56) // int32 | id
+    batchMintRequest := *openapiclient.NewServicesAppBatchMintByMetaUriDto("Chain_example", "ContractAddress_example", []openapiclient.ServicesMintItemDto{*openapiclient.NewServicesMintItemDto("MintToAddress_example")}) // ServicesAppBatchMintByMetaUriDto | batch_mint_request
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MintsApi.AppBatchMintByMetaUri(context.Background(), id).Authorization(authorization).BatchMintRequest(batchMintRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MintsApi.AppBatchMintByMetaUri``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AppBatchMintByMetaUri`: []int32
+    fmt.Fprintf(os.Stdout, "Response from `MintsApi.AppBatchMintByMetaUri`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **int32** | id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppBatchMintByMetaUriRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** | Bearer JWT | 
+
+ **batchMintRequest** | [**ServicesAppBatchMintByMetaUriDto**](ServicesAppBatchMintByMetaUriDto.md) | batch_mint_request | 
+
+### Return type
+
+**[]int32**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AppBatchMintNFT
+
+> []ModelsMintTask AppBatchMintNFT(ctx, id).Authorization(authorization).AppBatchMintMetaInfo(appBatchMintMetaInfo).Execute()
+
+Batch Mint NFT with metadata parts
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer JWT
+    id := int32(56) // int32 | id
+    appBatchMintMetaInfo := []openapiclient.ServicesAppMintByMetaPartsDto{*openapiclient.NewServicesAppMintByMetaPartsDto("Chain_example", "FileUrl_example", "MintToAddress_example", "Name_example")} // []ServicesAppMintByMetaPartsDto | mint_meta
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MintsApi.AppBatchMintNFT(context.Background(), id).Authorization(authorization).AppBatchMintMetaInfo(appBatchMintMetaInfo).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MintsApi.AppBatchMintNFT``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AppBatchMintNFT`: []ModelsMintTask
+    fmt.Fprintf(os.Stdout, "Response from `MintsApi.AppBatchMintNFT`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **int32** | id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAppBatchMintNFTRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** | Bearer JWT | 
+
+ **appBatchMintMetaInfo** | [**[]ServicesAppMintByMetaPartsDto**](ServicesAppMintByMetaPartsDto.md) | mint_meta | 
+
+### Return type
+
+[**[]ModelsMintTask**](ModelsMintTask.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## BatchCustomMint
@@ -247,7 +398,7 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
-    easyMintMetaInfo := *openapiclient.NewServicesEasyMintMetaDto("Chain_example", "Description_example", "FileUrl_example", "MintToAddress_example", "Name_example") // ServicesEasyMintMetaDto | easy_mint_meta_info
+    easyMintMetaInfo := *openapiclient.NewServicesEasyMintMetaPartsDto("Chain_example", "FileUrl_example", "MintToAddress_example", "Name_example") // ServicesEasyMintMetaPartsDto | easy_mint_meta_info
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -273,7 +424,7 @@ Other parameters are passed through a pointer to a apiEasyMintByMetadataRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
- **easyMintMetaInfo** | [**ServicesEasyMintMetaDto**](ServicesEasyMintMetaDto.md) | easy_mint_meta_info | 
+ **easyMintMetaInfo** | [**ServicesEasyMintMetaPartsDto**](ServicesEasyMintMetaPartsDto.md) | easy_mint_meta_info | 
 
 ### Return type
 
@@ -367,7 +518,7 @@ No authorization required
 
 ## ListMints
 
-> ModelsMintTaskQueryResult ListMints(ctx).Authorization(authorization).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Execute()
+> ModelsMintTaskQueryResult ListMints(ctx).Authorization(authorization).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Status(status).Chain(chain).Execute()
 
 Obtain NFT list
 
@@ -391,10 +542,12 @@ func main() {
     limit := int32(56) // int32 | limit (optional)
     contract := "contract_example" // string | contract (optional)
     mintTo := "mintTo_example" // string | mint_to (optional)
+    status := int32(56) // int32 | status (optional)
+    chain := "chain_example" // string | chain (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MintsApi.ListMints(context.Background()).Authorization(authorization).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Execute()
+    resp, r, err := apiClient.MintsApi.ListMints(context.Background()).Authorization(authorization).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Status(status).Chain(chain).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MintsApi.ListMints``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -420,10 +573,84 @@ Name | Type | Description  | Notes
  **limit** | **int32** | limit | 
  **contract** | **string** | contract | 
  **mintTo** | **string** | mint_to | 
+ **status** | **int32** | status | 
+ **chain** | **string** | chain | 
 
 ### Return type
 
 [**ModelsMintTaskQueryResult**](ModelsMintTaskQueryResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReMintNFT
+
+> ModelsMintTask ReMintNFT(ctx, id).Authorization(authorization).Execute()
+
+Reset mint task status to init so that it can be minted again
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer Open_JWT
+    id := int32(56) // int32 | id
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MintsApi.ReMintNFT(context.Background(), id).Authorization(authorization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MintsApi.ReMintNFT``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReMintNFT`: ModelsMintTask
+    fmt.Fprintf(os.Stdout, "Response from `MintsApi.ReMintNFT`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **int32** | id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReMintNFTRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** | Bearer Open_JWT | 
+
+
+### Return type
+
+[**ModelsMintTask**](ModelsMintTask.md)
 
 ### Authorization
 

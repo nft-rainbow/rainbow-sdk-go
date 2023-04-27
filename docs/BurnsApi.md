@@ -1,13 +1,13 @@
 # \BurnsApi
 
-All URIs are relative to *http://api.nftrainbow.cn/v1*
+All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BurnBatch**](BurnsApi.md#BurnBatch) | **Post** /burns/customizable/batch | Batch burn NFT
-[**BurnNft**](BurnsApi.md#BurnNft) | **Post** /burns | Burn NFT
-[**GetBurnDetail**](BurnsApi.md#GetBurnDetail) | **Get** /burns/{id} | Burn NFT detail
-[**GetBurnList**](BurnsApi.md#GetBurnList) | **Get** /burns | Obtain the burned NFTs list
+[**BurnBatch**](BurnsApi.md#BurnBatch) | **Post** /v1/burns/customizable/batch | Batch burn NFT
+[**BurnNft**](BurnsApi.md#BurnNft) | **Post** /v1/burns | Burn NFT
+[**GetBurnDetail**](BurnsApi.md#GetBurnDetail) | **Get** /v1/burns/{id} | Burn NFT detail
+[**GetBurnList**](BurnsApi.md#GetBurnList) | **Get** /v1/burns | Obtain the burned NFTs list
 
 
 

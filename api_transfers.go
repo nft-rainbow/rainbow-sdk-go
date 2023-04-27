@@ -136,7 +136,7 @@ func (a *TransfersApiService) BatchTransferNftExecute(r ApiBatchTransferNftReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/transfers/customizable/batch"
+	localVarPath := localBasePath + "/v1/transfers/customizable/batch"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -275,7 +275,7 @@ func (a *TransfersApiService) GetTransferDetailExecute(r ApiGetTransferDetailReq
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/transfers/{id}"
+	localVarPath := localBasePath + "/v1/transfers/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -421,7 +421,7 @@ func (a *TransfersApiService) ListTransferExecute(r ApiListTransferRequest) (*Mo
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/transfers/"
+	localVarPath := localBasePath + "/v1/transfers/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -554,7 +554,7 @@ func (a *TransfersApiService) TransferNftExecute(r ApiTransferNftRequest) (*Mode
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/transfers/customizable"
+	localVarPath := localBasePath + "/v1/transfers/customizable"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

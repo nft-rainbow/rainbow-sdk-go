@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | Pointer to **int32** |  | [optional] 
+**Data** | Pointer to **string** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -50,6 +51,31 @@ SetCode sets Code field to given value.
 `func (o *RainbowErrorsRainbowErrorDetailInfo) HasCode() bool`
 
 HasCode returns a boolean if a field has been set.
+
+### GetData
+
+`func (o *RainbowErrorsRainbowErrorDetailInfo) GetData() string`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *RainbowErrorsRainbowErrorDetailInfo) GetDataOk() (*string, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetData
+
+`func (o *RainbowErrorsRainbowErrorDetailInfo) SetData(v string)`
+
+SetData sets Data field to given value.
+
+### HasData
+
+`func (o *RainbowErrorsRainbowErrorDetailInfo) HasData() bool`
+
+HasData returns a boolean if a field has been set.
 
 ### GetMessage
 

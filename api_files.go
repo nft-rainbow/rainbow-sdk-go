@@ -63,6 +63,34 @@ type FilesApi interface {
 	// UploadFileToOssExecute executes the request
 	//  @return ServicesUploadFilesResponse
 	UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*ServicesUploadFilesResponse, *http.Response, error)
+
+	/*
+	UploadFolder Upload folder
+
+	Upload a folder containing the files which can be a video, an image and so on
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUploadFolderRequest
+	*/
+	UploadFolder(ctx context.Context) ApiUploadFolderRequest
+
+	// UploadFolderExecute executes the request
+	//  @return ServicesUploadFolderResponse
+	UploadFolderExecute(r ApiUploadFolderRequest) (*ServicesUploadFolderResponse, *http.Response, error)
+
+	/*
+	UploadFolderToOSS Upload folder to oss
+
+	Upload a folder containing the files which can be a video, an image and so on, to oss
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUploadFolderToOSSRequest
+	*/
+	UploadFolderToOSS(ctx context.Context) ApiUploadFolderToOSSRequest
+
+	// UploadFolderToOSSExecute executes the request
+	//  @return ServicesUploadFolderResponse
+	UploadFolderToOSSExecute(r ApiUploadFolderToOSSRequest) (*ServicesUploadFolderResponse, *http.Response, error)
 }
 
 // FilesApiService FilesApi service
@@ -128,7 +156,7 @@ func (a *FilesApiService) ListFilesExecute(r ApiListFilesRequest) (*ModelsFilesQ
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/files/"
+	localVarPath := localBasePath + "/v1/files/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -261,7 +289,7 @@ func (a *FilesApiService) UploadFileExecute(r ApiUploadFileRequest) (*ServicesUp
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/files/"
+	localVarPath := localBasePath + "/v1/files/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -405,7 +433,7 @@ func (a *FilesApiService) UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/files/oss"
+	localVarPath := localBasePath + "/v1/files/oss"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -449,6 +477,294 @@ func (a *FilesApiService) UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*
 		fileLocalVarFile.Close()
 	}
 	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUploadFolderRequest struct {
+	ctx context.Context
+	ApiService FilesApi
+	authorization *string
+	folder **os.File
+}
+
+// Bearer openapi_token
+func (r ApiUploadFolderRequest) Authorization(authorization string) ApiUploadFolderRequest {
+	r.authorization = &authorization
+	return r
+}
+
+// uploaded folder
+func (r ApiUploadFolderRequest) Folder(folder *os.File) ApiUploadFolderRequest {
+	r.folder = &folder
+	return r
+}
+
+func (r ApiUploadFolderRequest) Execute() (*ServicesUploadFolderResponse, *http.Response, error) {
+	return r.ApiService.UploadFolderExecute(r)
+}
+
+/*
+UploadFolder Upload folder
+
+Upload a folder containing the files which can be a video, an image and so on
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiUploadFolderRequest
+*/
+func (a *FilesApiService) UploadFolder(ctx context.Context) ApiUploadFolderRequest {
+	return ApiUploadFolderRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ServicesUploadFolderResponse
+func (a *FilesApiService) UploadFolderExecute(r ApiUploadFolderRequest) (*ServicesUploadFolderResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServicesUploadFolderResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.UploadFolder")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/files/folder"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if r.folder == nil {
+		return localVarReturnValue, nil, reportError("folder is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	var folderLocalVarFormFileName string
+	var folderLocalVarFileName     string
+	var folderLocalVarFileBytes    []byte
+
+	folderLocalVarFormFileName = "folder"
+
+	folderLocalVarFile := *r.folder
+	if folderLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(folderLocalVarFile)
+		folderLocalVarFileBytes = fbs
+		folderLocalVarFileName = folderLocalVarFile.Name()
+		folderLocalVarFile.Close()
+	}
+	formFiles = append(formFiles, formFile{fileBytes: folderLocalVarFileBytes, fileName: folderLocalVarFileName, formFileName: folderLocalVarFormFileName})
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUploadFolderToOSSRequest struct {
+	ctx context.Context
+	ApiService FilesApi
+	authorization *string
+	folder **os.File
+}
+
+// Bearer openapi_token
+func (r ApiUploadFolderToOSSRequest) Authorization(authorization string) ApiUploadFolderToOSSRequest {
+	r.authorization = &authorization
+	return r
+}
+
+// uploaded folder
+func (r ApiUploadFolderToOSSRequest) Folder(folder *os.File) ApiUploadFolderToOSSRequest {
+	r.folder = &folder
+	return r
+}
+
+func (r ApiUploadFolderToOSSRequest) Execute() (*ServicesUploadFolderResponse, *http.Response, error) {
+	return r.ApiService.UploadFolderToOSSExecute(r)
+}
+
+/*
+UploadFolderToOSS Upload folder to oss
+
+Upload a folder containing the files which can be a video, an image and so on, to oss
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiUploadFolderToOSSRequest
+*/
+func (a *FilesApiService) UploadFolderToOSS(ctx context.Context) ApiUploadFolderToOSSRequest {
+	return ApiUploadFolderToOSSRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ServicesUploadFolderResponse
+func (a *FilesApiService) UploadFolderToOSSExecute(r ApiUploadFolderToOSSRequest) (*ServicesUploadFolderResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ServicesUploadFolderResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.UploadFolderToOSS")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/files/folder/oss"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if r.folder == nil {
+		return localVarReturnValue, nil, reportError("folder is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	var folderLocalVarFormFileName string
+	var folderLocalVarFileName     string
+	var folderLocalVarFileBytes    []byte
+
+	folderLocalVarFormFileName = "folder"
+
+	folderLocalVarFile := *r.folder
+	if folderLocalVarFile != nil {
+		fbs, _ := ioutil.ReadAll(folderLocalVarFile)
+		folderLocalVarFileBytes = fbs
+		folderLocalVarFileName = folderLocalVarFile.Name()
+		folderLocalVarFile.Close()
+	}
+	formFiles = append(formFiles, formFile{fileBytes: folderLocalVarFileBytes, fileName: folderLocalVarFileName, formFileName: folderLocalVarFormFileName})
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

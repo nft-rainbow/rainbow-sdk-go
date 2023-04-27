@@ -1,12 +1,14 @@
 # \FilesApi
 
-All URIs are relative to *http://api.nftrainbow.cn/v1*
+All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListFiles**](FilesApi.md#ListFiles) | **Get** /files/ | Obtain file list
-[**UploadFile**](FilesApi.md#UploadFile) | **Post** /files/ | Upload file
-[**UploadFileToOss**](FilesApi.md#UploadFileToOss) | **Post** /files/oss | Upload file to OSS
+[**ListFiles**](FilesApi.md#ListFiles) | **Get** /v1/files/ | Obtain file list
+[**UploadFile**](FilesApi.md#UploadFile) | **Post** /v1/files/ | Upload file
+[**UploadFileToOss**](FilesApi.md#UploadFileToOss) | **Post** /v1/files/oss | Upload file to OSS
+[**UploadFolder**](FilesApi.md#UploadFolder) | **Post** /v1/files/folder | Upload folder
+[**UploadFolderToOSS**](FilesApi.md#UploadFolderToOSS) | **Post** /v1/files/folder/oss | Upload folder to oss
 
 
 
@@ -201,6 +203,142 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ServicesUploadFilesResponse**](ServicesUploadFilesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UploadFolder
+
+> ServicesUploadFolderResponse UploadFolder(ctx).Authorization(authorization).Folder(folder).Execute()
+
+Upload folder
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer openapi_token
+    folder := os.NewFile(1234, "some_file") // *os.File | uploaded folder
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FilesApi.UploadFolder(context.Background()).Authorization(authorization).Folder(folder).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.UploadFolder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UploadFolder`: ServicesUploadFolderResponse
+    fmt.Fprintf(os.Stdout, "Response from `FilesApi.UploadFolder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUploadFolderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** | Bearer openapi_token | 
+ **folder** | ***os.File** | uploaded folder | 
+
+### Return type
+
+[**ServicesUploadFolderResponse**](ServicesUploadFolderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UploadFolderToOSS
+
+> ServicesUploadFolderResponse UploadFolderToOSS(ctx).Authorization(authorization).Folder(folder).Execute()
+
+Upload folder to oss
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer openapi_token
+    folder := os.NewFile(1234, "some_file") // *os.File | uploaded folder
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.FilesApi.UploadFolderToOSS(context.Background()).Authorization(authorization).Folder(folder).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FilesApi.UploadFolderToOSS``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UploadFolderToOSS`: ServicesUploadFolderResponse
+    fmt.Fprintf(os.Stdout, "Response from `FilesApi.UploadFolderToOSS`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUploadFolderToOSSRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** | Bearer openapi_token | 
+ **folder** | ***os.File** | uploaded folder | 
+
+### Return type
+
+[**ServicesUploadFolderResponse**](ServicesUploadFolderResponse.md)
 
 ### Authorization
 

@@ -17,6 +17,7 @@ import (
 // ModelsExposedMetadata struct for ModelsExposedMetadata
 type ModelsExposedMetadata struct {
 	AnimationUrl *string `json:"animation_url,omitempty"`
+	AppId *int32 `json:"app_id,omitempty"`
 	Attributes []ModelsExposedMetadataAttribute `json:"attributes,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	DeletedAt *GormDeletedAt `json:"deleted_at,omitempty"`
@@ -83,6 +84,38 @@ func (o *ModelsExposedMetadata) HasAnimationUrl() bool {
 // SetAnimationUrl gets a reference to the given string and assigns it to the AnimationUrl field.
 func (o *ModelsExposedMetadata) SetAnimationUrl(v string) {
 	o.AnimationUrl = &v
+}
+
+// GetAppId returns the AppId field value if set, zero value otherwise.
+func (o *ModelsExposedMetadata) GetAppId() int32 {
+	if o == nil || isNil(o.AppId) {
+		var ret int32
+		return ret
+	}
+	return *o.AppId
+}
+
+// GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsExposedMetadata) GetAppIdOk() (*int32, bool) {
+	if o == nil || isNil(o.AppId) {
+    return nil, false
+	}
+	return o.AppId, true
+}
+
+// HasAppId returns a boolean if a field has been set.
+func (o *ModelsExposedMetadata) HasAppId() bool {
+	if o != nil && !isNil(o.AppId) {
+		return true
+	}
+
+	return false
+}
+
+// SetAppId gets a reference to the given int32 and assigns it to the AppId field.
+func (o *ModelsExposedMetadata) SetAppId(v int32) {
+	o.AppId = &v
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
@@ -418,6 +451,9 @@ func (o ModelsExposedMetadata) MarshalJSON() ([]byte, error) {
 	if !isNil(o.AnimationUrl) {
 		toSerialize["animation_url"] = o.AnimationUrl
 	}
+	if !isNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
 	if !isNil(o.Attributes) {
 		toSerialize["attributes"] = o.Attributes
 	}
@@ -470,6 +506,7 @@ func (o *ModelsExposedMetadata) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "animation_url")
+		delete(additionalProperties, "app_id")
 		delete(additionalProperties, "attributes")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "deleted_at")

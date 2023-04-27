@@ -105,11 +105,11 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "http://api.nftrainbow.cn/v1",
+				URL: "http://api.nftrainbow.cn",
 				Description: "No description provided",
 			},
 			{
-				URL: "https://api.nftrainbow.cn/v1",
+				URL: "https://api.nftrainbow.cn",
 				Description: "No description provided",
 			},
 		},

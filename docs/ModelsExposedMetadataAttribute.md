@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AttributeName** | Pointer to **string** |  | [optional] 
 **DisplayType** | Pointer to **string** |  | [optional] 
 **TraitType** | Pointer to **string** |  | [optional] 
-**Value** | Pointer to **string** |  | [optional] 
+**Value** | Pointer to **string** | TODO support number | [optional] 
 
 ## Methods
 

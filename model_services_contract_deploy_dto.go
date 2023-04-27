@@ -16,6 +16,8 @@ import (
 
 // ServicesContractDeployDto struct for ServicesContractDeployDto
 type ServicesContractDeployDto struct {
+	// default: true
+	AutoSponsor *bool `json:"auto_sponsor,omitempty"`
 	BaseUri *string `json:"base_uri,omitempty"`
 	Chain string `json:"chain"`
 	// default: true
@@ -25,9 +27,13 @@ type ServicesContractDeployDto struct {
 	RoyaltiesAddress *string `json:"royalties_address,omitempty"`
 	RoyaltiesBps *int32 `json:"royalties_bps,omitempty"`
 	Symbol string `json:"symbol"`
+	// default: true
 	TokensBurnable *bool `json:"tokens_burnable,omitempty"`
+	// default: true
 	TokensTransferableByAdmin *bool `json:"tokens_transferable_by_admin,omitempty"`
+	// default: true
 	TokensTransferableByUser *bool `json:"tokens_transferable_by_user,omitempty"`
+	// default: 0
 	TransferCooldownTime *int32 `json:"transfer_cooldown_time,omitempty"`
 	Type string `json:"type"`
 	AdditionalProperties map[string]interface{}
@@ -54,6 +60,38 @@ func NewServicesContractDeployDto(chain string, name string, symbol string, type
 func NewServicesContractDeployDtoWithDefaults() *ServicesContractDeployDto {
 	this := ServicesContractDeployDto{}
 	return &this
+}
+
+// GetAutoSponsor returns the AutoSponsor field value if set, zero value otherwise.
+func (o *ServicesContractDeployDto) GetAutoSponsor() bool {
+	if o == nil || isNil(o.AutoSponsor) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoSponsor
+}
+
+// GetAutoSponsorOk returns a tuple with the AutoSponsor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesContractDeployDto) GetAutoSponsorOk() (*bool, bool) {
+	if o == nil || isNil(o.AutoSponsor) {
+    return nil, false
+	}
+	return o.AutoSponsor, true
+}
+
+// HasAutoSponsor returns a boolean if a field has been set.
+func (o *ServicesContractDeployDto) HasAutoSponsor() bool {
+	if o != nil && !isNil(o.AutoSponsor) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoSponsor gets a reference to the given bool and assigns it to the AutoSponsor field.
+func (o *ServicesContractDeployDto) SetAutoSponsor(v bool) {
+	o.AutoSponsor = &v
 }
 
 // GetBaseUri returns the BaseUri field value if set, zero value otherwise.
@@ -442,6 +480,9 @@ func (o *ServicesContractDeployDto) SetType(v string) {
 
 func (o ServicesContractDeployDto) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if !isNil(o.AutoSponsor) {
+		toSerialize["auto_sponsor"] = o.AutoSponsor
+	}
 	if !isNil(o.BaseUri) {
 		toSerialize["base_uri"] = o.BaseUri
 	}
@@ -499,6 +540,7 @@ func (o *ServicesContractDeployDto) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "auto_sponsor")
 		delete(additionalProperties, "base_uri")
 		delete(additionalProperties, "chain")
 		delete(additionalProperties, "is_sponsor_for_all_user")

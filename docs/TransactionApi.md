@@ -1,10 +1,10 @@
 # \TransactionApi
 
-All URIs are relative to *http://api.nftrainbow.cn/v1*
+All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetTransactionByID**](TransactionApi.md#GetTransactionByID) | **Get** /tx/{id} | Get transaction informantion by ID
+[**GetTransactionByID**](TransactionApi.md#GetTransactionByID) | **Get** /v1/tx/{id} | Get transaction informantion by ID
 
 
 

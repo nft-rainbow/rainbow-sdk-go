@@ -24,6 +24,36 @@ import (
 type MintsApi interface {
 
 	/*
+	AppBatchMintByMetaUri Batch Mint NFT with metadata uri
+
+	Batch Mint a NFT by providing tokenIds and metadata urls to create the metadata
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id id
+	@return ApiAppBatchMintByMetaUriRequest
+	*/
+	AppBatchMintByMetaUri(ctx context.Context, id int32) ApiAppBatchMintByMetaUriRequest
+
+	// AppBatchMintByMetaUriExecute executes the request
+	//  @return []int32
+	AppBatchMintByMetaUriExecute(r ApiAppBatchMintByMetaUriRequest) ([]int32, *http.Response, error)
+
+	/*
+	AppBatchMintNFT Batch Mint NFT with metadata parts
+
+	Batch Mint a NFT by providing a file url to create the metadata
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id id
+	@return ApiAppBatchMintNFTRequest
+	*/
+	AppBatchMintNFT(ctx context.Context, id int32) ApiAppBatchMintNFTRequest
+
+	// AppBatchMintNFTExecute executes the request
+	//  @return []ModelsMintTask
+	AppBatchMintNFTExecute(r ApiAppBatchMintNFTRequest) ([]ModelsMintTask, *http.Response, error)
+
+	/*
 	BatchCustomMint Batch Mint NFTs
 
 	Mint several NFTs once
@@ -107,10 +137,319 @@ type MintsApi interface {
 	// ListMintsExecute executes the request
 	//  @return ModelsMintTaskQueryResult
 	ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTaskQueryResult, *http.Response, error)
+
+	/*
+	ReMintNFT Reset mint task status to init so that it can be minted again
+
+	Reset mint task status to init so that it can be minted again
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id id
+	@return ApiReMintNFTRequest
+	*/
+	ReMintNFT(ctx context.Context, id int32) ApiReMintNFTRequest
+
+	// ReMintNFTExecute executes the request
+	//  @return ModelsMintTask
+	ReMintNFTExecute(r ApiReMintNFTRequest) (*ModelsMintTask, *http.Response, error)
 }
 
 // MintsApiService MintsApi service
 type MintsApiService service
+
+type ApiAppBatchMintByMetaUriRequest struct {
+	ctx context.Context
+	ApiService MintsApi
+	authorization *string
+	id int32
+	batchMintRequest *ServicesAppBatchMintByMetaUriDto
+}
+
+// Bearer JWT
+func (r ApiAppBatchMintByMetaUriRequest) Authorization(authorization string) ApiAppBatchMintByMetaUriRequest {
+	r.authorization = &authorization
+	return r
+}
+
+// batch_mint_request
+func (r ApiAppBatchMintByMetaUriRequest) BatchMintRequest(batchMintRequest ServicesAppBatchMintByMetaUriDto) ApiAppBatchMintByMetaUriRequest {
+	r.batchMintRequest = &batchMintRequest
+	return r
+}
+
+func (r ApiAppBatchMintByMetaUriRequest) Execute() ([]int32, *http.Response, error) {
+	return r.ApiService.AppBatchMintByMetaUriExecute(r)
+}
+
+/*
+AppBatchMintByMetaUri Batch Mint NFT with metadata uri
+
+Batch Mint a NFT by providing tokenIds and metadata urls to create the metadata
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id id
+ @return ApiAppBatchMintByMetaUriRequest
+*/
+func (a *MintsApiService) AppBatchMintByMetaUri(ctx context.Context, id int32) ApiAppBatchMintByMetaUriRequest {
+	return ApiAppBatchMintByMetaUriRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return []int32
+func (a *MintsApiService) AppBatchMintByMetaUriExecute(r ApiAppBatchMintByMetaUriRequest) ([]int32, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []int32
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.AppBatchMintByMetaUri")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/dashboard/apps/{id}/nft/batch/by-meta-uri"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if r.batchMintRequest == nil {
+		return localVarReturnValue, nil, reportError("batchMintRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.batchMintRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiAppBatchMintNFTRequest struct {
+	ctx context.Context
+	ApiService MintsApi
+	authorization *string
+	id int32
+	appBatchMintMetaInfo *[]ServicesAppMintByMetaPartsDto
+}
+
+// Bearer JWT
+func (r ApiAppBatchMintNFTRequest) Authorization(authorization string) ApiAppBatchMintNFTRequest {
+	r.authorization = &authorization
+	return r
+}
+
+// mint_meta
+func (r ApiAppBatchMintNFTRequest) AppBatchMintMetaInfo(appBatchMintMetaInfo []ServicesAppMintByMetaPartsDto) ApiAppBatchMintNFTRequest {
+	r.appBatchMintMetaInfo = &appBatchMintMetaInfo
+	return r
+}
+
+func (r ApiAppBatchMintNFTRequest) Execute() ([]ModelsMintTask, *http.Response, error) {
+	return r.ApiService.AppBatchMintNFTExecute(r)
+}
+
+/*
+AppBatchMintNFT Batch Mint NFT with metadata parts
+
+Batch Mint a NFT by providing a file url to create the metadata
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id id
+ @return ApiAppBatchMintNFTRequest
+*/
+func (a *MintsApiService) AppBatchMintNFT(ctx context.Context, id int32) ApiAppBatchMintNFTRequest {
+	return ApiAppBatchMintNFTRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return []ModelsMintTask
+func (a *MintsApiService) AppBatchMintNFTExecute(r ApiAppBatchMintNFTRequest) ([]ModelsMintTask, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ModelsMintTask
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.AppBatchMintNFT")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/dashboard/apps/{id}/nft/batch/by-meta-parts"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if r.appBatchMintMetaInfo == nil {
+		return localVarReturnValue, nil, reportError("appBatchMintMetaInfo is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.appBatchMintMetaInfo
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiBatchCustomMintRequest struct {
 	ctx context.Context
@@ -165,7 +504,7 @@ func (a *MintsApiService) BatchCustomMintExecute(r ApiBatchCustomMintRequest) ([
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/mints/customizable/batch"
+	localVarPath := localBasePath + "/v1/mints/customizable/batch"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -308,7 +647,7 @@ func (a *MintsApiService) CustomMintExecute(r ApiCustomMintRequest) (*ModelsMint
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/mints/"
+	localVarPath := localBasePath + "/v1/mints/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -475,7 +814,7 @@ func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/mints/easy/files"
+	localVarPath := localBasePath + "/v1/mints/easy/files"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -597,7 +936,7 @@ type ApiEasyMintByMetadataRequest struct {
 	ctx context.Context
 	ApiService MintsApi
 	authorization *string
-	easyMintMetaInfo *ServicesEasyMintMetaDto
+	easyMintMetaInfo *ServicesEasyMintMetaPartsDto
 }
 
 // Bearer Open_JWT
@@ -607,7 +946,7 @@ func (r ApiEasyMintByMetadataRequest) Authorization(authorization string) ApiEas
 }
 
 // easy_mint_meta_info
-func (r ApiEasyMintByMetadataRequest) EasyMintMetaInfo(easyMintMetaInfo ServicesEasyMintMetaDto) ApiEasyMintByMetadataRequest {
+func (r ApiEasyMintByMetadataRequest) EasyMintMetaInfo(easyMintMetaInfo ServicesEasyMintMetaPartsDto) ApiEasyMintByMetadataRequest {
 	r.easyMintMetaInfo = &easyMintMetaInfo
 	return r
 }
@@ -646,7 +985,7 @@ func (a *MintsApiService) EasyMintByMetadataExecute(r ApiEasyMintByMetadataReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/mints/easy/urls"
+	localVarPath := localBasePath + "/v1/mints/easy/urls"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -785,7 +1124,7 @@ func (a *MintsApiService) GetMintDetailExecute(r ApiGetMintDetailRequest) (*Mode
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/mints/{id}"
+	localVarPath := localBasePath + "/v1/mints/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -879,6 +1218,8 @@ type ApiListMintsRequest struct {
 	limit *int32
 	contract *string
 	mintTo *string
+	status *int32
+	chain *string
 }
 
 // Bearer Open_JWT
@@ -908,6 +1249,18 @@ func (r ApiListMintsRequest) Contract(contract string) ApiListMintsRequest {
 // mint_to
 func (r ApiListMintsRequest) MintTo(mintTo string) ApiListMintsRequest {
 	r.mintTo = &mintTo
+	return r
+}
+
+// status
+func (r ApiListMintsRequest) Status(status int32) ApiListMintsRequest {
+	r.status = &status
+	return r
+}
+
+// chain
+func (r ApiListMintsRequest) Chain(chain string) ApiListMintsRequest {
+	r.chain = &chain
 	return r
 }
 
@@ -945,7 +1298,7 @@ func (a *MintsApiService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTa
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/mints/"
+	localVarPath := localBasePath + "/v1/mints/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -965,6 +1318,12 @@ func (a *MintsApiService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTa
 	}
 	if r.mintTo != nil {
 		localVarQueryParams.Add("mint_to", parameterToString(*r.mintTo, ""))
+	}
+	if r.status != nil {
+		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
+	}
+	if r.chain != nil {
+		localVarQueryParams.Add("chain", parameterToString(*r.chain, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1005,6 +1364,141 @@ func (a *MintsApiService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTa
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiReMintNFTRequest struct {
+	ctx context.Context
+	ApiService MintsApi
+	authorization *string
+	id int32
+}
+
+// Bearer Open_JWT
+func (r ApiReMintNFTRequest) Authorization(authorization string) ApiReMintNFTRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiReMintNFTRequest) Execute() (*ModelsMintTask, *http.Response, error) {
+	return r.ApiService.ReMintNFTExecute(r)
+}
+
+/*
+ReMintNFT Reset mint task status to init so that it can be minted again
+
+Reset mint task status to init so that it can be minted again
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id id
+ @return ApiReMintNFTRequest
+*/
+func (a *MintsApiService) ReMintNFT(ctx context.Context, id int32) ApiReMintNFTRequest {
+	return ApiReMintNFTRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return ModelsMintTask
+func (a *MintsApiService) ReMintNFTExecute(r ApiReMintNFTRequest) (*ModelsMintTask, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ModelsMintTask
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.ReMintNFT")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/mints/{id}/reMint"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v RainbowErrorsRainbowErrorDetailInfo

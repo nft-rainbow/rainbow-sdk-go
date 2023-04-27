@@ -18,11 +18,13 @@ import (
 type ModelsContract struct {
 	Address *string `json:"address,omitempty"`
 	AppId *int32 `json:"app_id,omitempty"`
+	AutoSponsor *bool `json:"auto_sponsor,omitempty"`
 	BaseUri *string `json:"base_uri,omitempty"`
 	ChainId *int32 `json:"chain_id,omitempty"`
 	ChainType *int32 `json:"chain_type,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	DeletedAt *GormDeletedAt `json:"deleted_at,omitempty"`
+	Error *string `json:"error,omitempty"`
 	Hash *string `json:"hash,omitempty"`
 	Id *int32 `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -124,6 +126,38 @@ func (o *ModelsContract) HasAppId() bool {
 // SetAppId gets a reference to the given int32 and assigns it to the AppId field.
 func (o *ModelsContract) SetAppId(v int32) {
 	o.AppId = &v
+}
+
+// GetAutoSponsor returns the AutoSponsor field value if set, zero value otherwise.
+func (o *ModelsContract) GetAutoSponsor() bool {
+	if o == nil || isNil(o.AutoSponsor) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoSponsor
+}
+
+// GetAutoSponsorOk returns a tuple with the AutoSponsor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsContract) GetAutoSponsorOk() (*bool, bool) {
+	if o == nil || isNil(o.AutoSponsor) {
+    return nil, false
+	}
+	return o.AutoSponsor, true
+}
+
+// HasAutoSponsor returns a boolean if a field has been set.
+func (o *ModelsContract) HasAutoSponsor() bool {
+	if o != nil && !isNil(o.AutoSponsor) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoSponsor gets a reference to the given bool and assigns it to the AutoSponsor field.
+func (o *ModelsContract) SetAutoSponsor(v bool) {
+	o.AutoSponsor = &v
 }
 
 // GetBaseUri returns the BaseUri field value if set, zero value otherwise.
@@ -284,6 +318,38 @@ func (o *ModelsContract) HasDeletedAt() bool {
 // SetDeletedAt gets a reference to the given GormDeletedAt and assigns it to the DeletedAt field.
 func (o *ModelsContract) SetDeletedAt(v GormDeletedAt) {
 	o.DeletedAt = &v
+}
+
+// GetError returns the Error field value if set, zero value otherwise.
+func (o *ModelsContract) GetError() string {
+	if o == nil || isNil(o.Error) {
+		var ret string
+		return ret
+	}
+	return *o.Error
+}
+
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsContract) GetErrorOk() (*string, bool) {
+	if o == nil || isNil(o.Error) {
+    return nil, false
+	}
+	return o.Error, true
+}
+
+// HasError returns a boolean if a field has been set.
+func (o *ModelsContract) HasError() bool {
+	if o != nil && !isNil(o.Error) {
+		return true
+	}
+
+	return false
+}
+
+// SetError gets a reference to the given string and assigns it to the Error field.
+func (o *ModelsContract) SetError(v string) {
+	o.Error = &v
 }
 
 // GetHash returns the Hash field value if set, zero value otherwise.
@@ -774,6 +840,9 @@ func (o ModelsContract) MarshalJSON() ([]byte, error) {
 	if !isNil(o.AppId) {
 		toSerialize["app_id"] = o.AppId
 	}
+	if !isNil(o.AutoSponsor) {
+		toSerialize["auto_sponsor"] = o.AutoSponsor
+	}
 	if !isNil(o.BaseUri) {
 		toSerialize["base_uri"] = o.BaseUri
 	}
@@ -788,6 +857,9 @@ func (o ModelsContract) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.DeletedAt) {
 		toSerialize["deleted_at"] = o.DeletedAt
+	}
+	if !isNil(o.Error) {
+		toSerialize["error"] = o.Error
 	}
 	if !isNil(o.Hash) {
 		toSerialize["hash"] = o.Hash
@@ -854,11 +926,13 @@ func (o *ModelsContract) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "address")
 		delete(additionalProperties, "app_id")
+		delete(additionalProperties, "auto_sponsor")
 		delete(additionalProperties, "base_uri")
 		delete(additionalProperties, "chain_id")
 		delete(additionalProperties, "chain_type")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "deleted_at")
+		delete(additionalProperties, "error")
 		delete(additionalProperties, "hash")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")

@@ -74,54 +74,65 @@ ctx = context.WithValue(context.Background(), rainbowsdk.ContextOperationServerV
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://api.nftrainbow.cn/v1*
+All URIs are relative to *http://api.nftrainbow.cn*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BurnsApi* | [**BurnBatch**](docs/BurnsApi.md#burnbatch) | **Post** /burns/customizable/batch | Batch burn NFT
-*BurnsApi* | [**BurnNft**](docs/BurnsApi.md#burnnft) | **Post** /burns | Burn NFT
-*BurnsApi* | [**GetBurnDetail**](docs/BurnsApi.md#getburndetail) | **Get** /burns/{id} | Burn NFT detail
-*BurnsApi* | [**GetBurnList**](docs/BurnsApi.md#getburnlist) | **Get** /burns | Obtain the burned NFTs list
-*ContractApi* | [**AddContractSponsorWhitelist**](docs/ContractApi.md#addcontractsponsorwhitelist) | **Post** /contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist
-*ContractApi* | [**DeployContract**](docs/ContractApi.md#deploycontract) | **Post** /contracts/ | Deploy contract
-*ContractApi* | [**GetContractAdmin**](docs/ContractApi.md#getcontractadmin) | **Get** /contracts/{address}/admin | Get administrator of contract, only work on conflux chain
-*ContractApi* | [**GetContractInfo**](docs/ContractApi.md#getcontractinfo) | **Get** /contracts/detail/{id} | Contract detail
-*ContractApi* | [**GetContractSponsorInfo**](docs/ContractApi.md#getcontractsponsorinfo) | **Get** /contracts/{address}/sponsor | Query sponsor
-*ContractApi* | [**GetContractSponsoredWhitelist**](docs/ContractApi.md#getcontractsponsoredwhitelist) | **Get** /contracts/{address}/sponsor/whitelist | Get contract sponsored whitelist
-*ContractApi* | [**ListContracts**](docs/ContractApi.md#listcontracts) | **Get** /contracts/ | Obtain contract list
-*ContractApi* | [**RemoveContractSponsorWhitelist**](docs/ContractApi.md#removecontractsponsorwhitelist) | **Delete** /contracts/{address}/sponsor/whitelist | Remove contract sponsored whitelist
-*ContractApi* | [**SetContractSponsor**](docs/ContractApi.md#setcontractsponsor) | **Post** /contracts/{address}/sponsor | Set sponsor
-*ContractApi* | [**UpdateContractAdmin**](docs/ContractApi.md#updatecontractadmin) | **Put** /contracts/{address}/admin | Update administrator of contract
-*FilesApi* | [**ListFiles**](docs/FilesApi.md#listfiles) | **Get** /files/ | Obtain file list
-*FilesApi* | [**UploadFile**](docs/FilesApi.md#uploadfile) | **Post** /files/ | Upload file
-*FilesApi* | [**UploadFileToOss**](docs/FilesApi.md#uploadfiletooss) | **Post** /files/oss | Upload file to OSS
-*LoginApi* | [**LoginApp**](docs/LoginApi.md#loginapp) | **Post** /login | App login
-*LoginApi* | [**RefreshAuth**](docs/LoginApi.md#refreshauth) | **Get** /refresh_token | Refresh JWT
-*MetadataApi* | [**CreateMetadata**](docs/MetadataApi.md#createmetadata) | **Post** /metadata/ | Create NFT metadata
-*MetadataApi* | [**GetMetadatInfo**](docs/MetadataApi.md#getmetadatinfo) | **Get** /metadata/{metadata_id} | Query metadata
-*MetadataApi* | [**ListMetadatas**](docs/MetadataApi.md#listmetadatas) | **Get** /metadata/ | Obtain metadata list
-*MintsApi* | [**BatchCustomMint**](docs/MintsApi.md#batchcustommint) | **Post** /mints/customizable/batch | Batch Mint NFTs
-*MintsApi* | [**CustomMint**](docs/MintsApi.md#custommint) | **Post** /mints/ | Mint NFT
-*MintsApi* | [**EasyMintByFile**](docs/MintsApi.md#easymintbyfile) | **Post** /mints/easy/files | Mint NFT with file
-*MintsApi* | [**EasyMintByMetadata**](docs/MintsApi.md#easymintbymetadata) | **Post** /mints/easy/urls | Mint NFT with metadata
-*MintsApi* | [**GetMintDetail**](docs/MintsApi.md#getmintdetail) | **Get** /mints/{id} | Mint NFT detail
-*MintsApi* | [**ListMints**](docs/MintsApi.md#listmints) | **Get** /mints/ | Obtain NFT list
-*NFTsApi* | [**NFTInfo**](docs/NFTsApi.md#nftinfo) | **Get** /nft/{address}/{token_id} | Get NFT info, mainly owner and metadata
-*TransactionApi* | [**GetTransactionByID**](docs/TransactionApi.md#gettransactionbyid) | **Get** /tx/{id} | Get transaction informantion by ID
-*TransfersApi* | [**BatchTransferNft**](docs/TransfersApi.md#batchtransfernft) | **Post** /transfers/customizable/batch | Batch Transfer NFTs
-*TransfersApi* | [**GetTransferDetail**](docs/TransfersApi.md#gettransferdetail) | **Get** /transfers/{id} | Transfer NFT detail
-*TransfersApi* | [**ListTransfer**](docs/TransfersApi.md#listtransfer) | **Get** /transfers/ | Obtain the transferred NFTs list
-*TransfersApi* | [**TransferNft**](docs/TransfersApi.md#transfernft) | **Post** /transfers/customizable | Transfer NFT
+*BurnsApi* | [**BurnBatch**](docs/BurnsApi.md#burnbatch) | **Post** /v1/burns/customizable/batch | Batch burn NFT
+*BurnsApi* | [**BurnNft**](docs/BurnsApi.md#burnnft) | **Post** /v1/burns | Burn NFT
+*BurnsApi* | [**GetBurnDetail**](docs/BurnsApi.md#getburndetail) | **Get** /v1/burns/{id} | Burn NFT detail
+*BurnsApi* | [**GetBurnList**](docs/BurnsApi.md#getburnlist) | **Get** /v1/burns | Obtain the burned NFTs list
+*ContractApi* | [**AddContractSponsorWhitelist**](docs/ContractApi.md#addcontractsponsorwhitelist) | **Post** /v1/contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist
+*ContractApi* | [**DeployContract**](docs/ContractApi.md#deploycontract) | **Post** /v1/contracts/ | Deploy contract
+*ContractApi* | [**GetContractAdmin**](docs/ContractApi.md#getcontractadmin) | **Get** /v1/contracts/{address}/admin | Get administrator of contract, only work on conflux chain
+*ContractApi* | [**GetContractInfo**](docs/ContractApi.md#getcontractinfo) | **Get** /v1/contracts/detail/{id} | Contract detail
+*ContractApi* | [**GetContractProfile**](docs/ContractApi.md#getcontractprofile) | **Get** /v1/:address/profile | Get contract runtime profile
+*ContractApi* | [**GetContractSponsorInfo**](docs/ContractApi.md#getcontractsponsorinfo) | **Get** /v1/contracts/{address}/sponsor | Query sponsor
+*ContractApi* | [**GetContractSponsoredWhitelist**](docs/ContractApi.md#getcontractsponsoredwhitelist) | **Get** /v1/contracts/{address}/sponsor/whitelist | Get contract sponsored whitelist
+*ContractApi* | [**ListContracts**](docs/ContractApi.md#listcontracts) | **Get** /v1/contracts/ | Obtain contract list
+*ContractApi* | [**RemoveContractSponsorWhitelist**](docs/ContractApi.md#removecontractsponsorwhitelist) | **Delete** /v1/contracts/{address}/sponsor/whitelist | Remove contract sponsored whitelist
+*ContractApi* | [**SetContractSponsor**](docs/ContractApi.md#setcontractsponsor) | **Post** /v1/contracts/{address}/sponsor | Set sponsor
+*ContractApi* | [**UpdateContractAdmin**](docs/ContractApi.md#updatecontractadmin) | **Put** /v1/contracts/{address}/admin | Update administrator of contract
+*FilesApi* | [**ListFiles**](docs/FilesApi.md#listfiles) | **Get** /v1/files/ | Obtain file list
+*FilesApi* | [**UploadFile**](docs/FilesApi.md#uploadfile) | **Post** /v1/files/ | Upload file
+*FilesApi* | [**UploadFileToOss**](docs/FilesApi.md#uploadfiletooss) | **Post** /v1/files/oss | Upload file to OSS
+*FilesApi* | [**UploadFolder**](docs/FilesApi.md#uploadfolder) | **Post** /v1/files/folder | Upload folder
+*FilesApi* | [**UploadFolderToOSS**](docs/FilesApi.md#uploadfoldertooss) | **Post** /v1/files/folder/oss | Upload folder to oss
+*LoginApi* | [**LoginApp**](docs/LoginApi.md#loginapp) | **Post** /v1/login | App login
+*LoginApi* | [**RefreshAppAuth**](docs/LoginApi.md#refreshappauth) | **Get** /v1/refresh_token | Refresh JWT
+*LoginApi* | [**RefreshUserAuth**](docs/LoginApi.md#refreshuserauth) | **Get** /dashboard/refresh_token | Refresh JWT
+*LoginApi* | [**UserLogin**](docs/LoginApi.md#userlogin) | **Post** /dashboard/login | User login
+*MetadataApi* | [**CreateMetadata**](docs/MetadataApi.md#createmetadata) | **Post** /v1/metadata/ | Create NFT metadata
+*MetadataApi* | [**GetMetadatInfo**](docs/MetadataApi.md#getmetadatinfo) | **Get** /v1/metadata/{metadata_id} | Query metadata
+*MetadataApi* | [**ListMetadatas**](docs/MetadataApi.md#listmetadatas) | **Get** /v1/metadata/ | Obtain metadata list
+*MintsApi* | [**AppBatchMintByMetaUri**](docs/MintsApi.md#appbatchmintbymetauri) | **Post** /dashboard/apps/{id}/nft/batch/by-meta-uri | Batch Mint NFT with metadata uri
+*MintsApi* | [**AppBatchMintNFT**](docs/MintsApi.md#appbatchmintnft) | **Post** /dashboard/apps/{id}/nft/batch/by-meta-parts | Batch Mint NFT with metadata parts
+*MintsApi* | [**BatchCustomMint**](docs/MintsApi.md#batchcustommint) | **Post** /v1/mints/customizable/batch | Batch Mint NFTs
+*MintsApi* | [**CustomMint**](docs/MintsApi.md#custommint) | **Post** /v1/mints/ | Mint NFT
+*MintsApi* | [**EasyMintByFile**](docs/MintsApi.md#easymintbyfile) | **Post** /v1/mints/easy/files | Mint NFT with file
+*MintsApi* | [**EasyMintByMetadata**](docs/MintsApi.md#easymintbymetadata) | **Post** /v1/mints/easy/urls | Mint NFT with metadata
+*MintsApi* | [**GetMintDetail**](docs/MintsApi.md#getmintdetail) | **Get** /v1/mints/{id} | Mint NFT detail
+*MintsApi* | [**ListMints**](docs/MintsApi.md#listmints) | **Get** /v1/mints/ | Obtain NFT list
+*MintsApi* | [**ReMintNFT**](docs/MintsApi.md#remintnft) | **Post** /v1/mints/{id}/reMint | Reset mint task status to init so that it can be minted again
+*NFTsApi* | [**NftInfo**](docs/NFTsApi.md#nftinfo) | **Get** /v1/nft/{address}/{token_id} | Get NFT info, mainly owner and metadata
+*NFTsApi* | [**UpdateNftTokenUri**](docs/NFTsApi.md#updatenfttokenuri) | **Put** /v1/nft/{address}/{token_id}/tokenUri | Update NFT token uri
+*TransactionApi* | [**GetTransactionByID**](docs/TransactionApi.md#gettransactionbyid) | **Get** /v1/tx/{id} | Get transaction informantion by ID
+*TransfersApi* | [**BatchTransferNft**](docs/TransfersApi.md#batchtransfernft) | **Post** /v1/transfers/customizable/batch | Batch Transfer NFTs
+*TransfersApi* | [**GetTransferDetail**](docs/TransfersApi.md#gettransferdetail) | **Get** /v1/transfers/{id} | Transfer NFT detail
+*TransfersApi* | [**ListTransfer**](docs/TransfersApi.md#listtransfer) | **Get** /v1/transfers/ | Obtain the transferred NFTs list
+*TransfersApi* | [**TransferNft**](docs/TransfersApi.md#transfernft) | **Post** /v1/transfers/customizable | Transfer NFT
 
 
 ## Documentation For Models
 
  - [GormDeletedAt](docs/GormDeletedAt.md)
- - [MiddlewaresAppLogin](docs/MiddlewaresAppLogin.md)
+ - [MiddlewaresAppLoginInfo](docs/MiddlewaresAppLoginInfo.md)
  - [MiddlewaresLoginResp](docs/MiddlewaresLoginResp.md)
+ - [MiddlewaresUserLoginInfo](docs/MiddlewaresUserLoginInfo.md)
  - [ModelsBurnTask](docs/ModelsBurnTask.md)
  - [ModelsBurnTaskQueryResult](docs/ModelsBurnTaskQueryResult.md)
  - [ModelsContract](docs/ModelsContract.md)
+ - [ModelsContractRuntimeProfile](docs/ModelsContractRuntimeProfile.md)
  - [ModelsContractTaskQueryResult](docs/ModelsContractTaskQueryResult.md)
  - [ModelsExposedFile](docs/ModelsExposedFile.md)
  - [ModelsExposedMetadata](docs/ModelsExposedMetadata.md)
@@ -130,10 +141,14 @@ Class | Method | HTTP request | Description
  - [ModelsFilesQueryResult](docs/ModelsFilesQueryResult.md)
  - [ModelsMintTask](docs/ModelsMintTask.md)
  - [ModelsMintTaskQueryResult](docs/ModelsMintTaskQueryResult.md)
+ - [ModelsTransaction](docs/ModelsTransaction.md)
  - [ModelsTransferTask](docs/ModelsTransferTask.md)
  - [ModelsTransferTaskQueryResult](docs/ModelsTransferTaskQueryResult.md)
  - [MultipartFileHeader](docs/MultipartFileHeader.md)
  - [RainbowErrorsRainbowErrorDetailInfo](docs/RainbowErrorsRainbowErrorDetailInfo.md)
+ - [RoutersUpdateTokenUriReq](docs/RoutersUpdateTokenUriReq.md)
+ - [ServicesAppBatchMintByMetaUriDto](docs/ServicesAppBatchMintByMetaUriDto.md)
+ - [ServicesAppMintByMetaPartsDto](docs/ServicesAppMintByMetaPartsDto.md)
  - [ServicesBurnBatchDto](docs/ServicesBurnBatchDto.md)
  - [ServicesBurnDto](docs/ServicesBurnDto.md)
  - [ServicesBurnItemDto](docs/ServicesBurnItemDto.md)
@@ -141,7 +156,7 @@ Class | Method | HTTP request | Description
  - [ServicesContractDeployDto](docs/ServicesContractDeployDto.md)
  - [ServicesCustomMintBatchDto](docs/ServicesCustomMintBatchDto.md)
  - [ServicesCustomMintDto](docs/ServicesCustomMintDto.md)
- - [ServicesEasyMintMetaDto](docs/ServicesEasyMintMetaDto.md)
+ - [ServicesEasyMintMetaPartsDto](docs/ServicesEasyMintMetaPartsDto.md)
  - [ServicesMetadataDto](docs/ServicesMetadataDto.md)
  - [ServicesMintItemDto](docs/ServicesMintItemDto.md)
  - [ServicesNFT](docs/ServicesNFT.md)
@@ -153,6 +168,7 @@ Class | Method | HTTP request | Description
  - [ServicesTransferItemDto](docs/ServicesTransferItemDto.md)
  - [ServicesTxResp](docs/ServicesTxResp.md)
  - [ServicesUploadFilesResponse](docs/ServicesUploadFilesResponse.md)
+ - [ServicesUploadFolderResponse](docs/ServicesUploadFolderResponse.md)
 
 
 ## Documentation For Authorization

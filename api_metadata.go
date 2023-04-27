@@ -122,7 +122,7 @@ func (a *MetadataApiService) CreateMetadataExecute(r ApiCreateMetadataRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/metadata/"
+	localVarPath := localBasePath + "/v1/metadata/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -261,7 +261,7 @@ func (a *MetadataApiService) GetMetadatInfoExecute(r ApiGetMetadatInfoRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/metadata/{metadata_id}"
+	localVarPath := localBasePath + "/v1/metadata/{metadata_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"metadata_id"+"}", url.PathEscape(parameterToString(r.metadataId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -407,7 +407,7 @@ func (a *MetadataApiService) ListMetadatasExecute(r ApiListMetadatasRequest) (*M
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/metadata/"
+	localVarPath := localBasePath + "/v1/metadata/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

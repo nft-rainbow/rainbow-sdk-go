@@ -17,6 +17,7 @@ import (
 // RainbowErrorsRainbowErrorDetailInfo struct for RainbowErrorsRainbowErrorDetailInfo
 type RainbowErrorsRainbowErrorDetailInfo struct {
 	Code *int32 `json:"code,omitempty"`
+	Data *string `json:"data,omitempty"`
 	Message *string `json:"message,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -72,6 +73,38 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) SetCode(v int32) {
 	o.Code = &v
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *RainbowErrorsRainbowErrorDetailInfo) GetData() string {
+	if o == nil || isNil(o.Data) {
+		var ret string
+		return ret
+	}
+	return *o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RainbowErrorsRainbowErrorDetailInfo) GetDataOk() (*string, bool) {
+	if o == nil || isNil(o.Data) {
+    return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *RainbowErrorsRainbowErrorDetailInfo) HasData() bool {
+	if o != nil && !isNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given string and assigns it to the Data field.
+func (o *RainbowErrorsRainbowErrorDetailInfo) SetData(v string) {
+	o.Data = &v
+}
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetMessage() string {
 	if o == nil || isNil(o.Message) {
@@ -109,6 +142,9 @@ func (o RainbowErrorsRainbowErrorDetailInfo) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
+	if !isNil(o.Data) {
+		toSerialize["data"] = o.Data
+	}
 	if !isNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
@@ -131,6 +167,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) UnmarshalJSON(bytes []byte) (err e
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "code")
+		delete(additionalProperties, "data")
 		delete(additionalProperties, "message")
 		o.AdditionalProperties = additionalProperties
 	}

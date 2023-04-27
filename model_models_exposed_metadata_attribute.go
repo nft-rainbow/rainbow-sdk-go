@@ -19,6 +19,7 @@ type ModelsExposedMetadataAttribute struct {
 	AttributeName *string `json:"attribute_name,omitempty"`
 	DisplayType *string `json:"display_type,omitempty"`
 	TraitType *string `json:"trait_type,omitempty"`
+	// TODO support number
 	Value *string `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

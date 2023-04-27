@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AutoSponsor** | Pointer to **bool** | default: true | [optional] 
 **BaseUri** | Pointer to **string** |  | [optional] 
 **Chain** | **string** |  | 
 **IsSponsorForAllUser** | Pointer to **bool** | default: true | [optional] 
@@ -12,10 +13,10 @@ Name | Type | Description | Notes
 **RoyaltiesAddress** | Pointer to **string** |  | [optional] 
 **RoyaltiesBps** | Pointer to **int32** |  | [optional] 
 **Symbol** | **string** |  | 
-**TokensBurnable** | Pointer to **bool** |  | [optional] 
-**TokensTransferableByAdmin** | Pointer to **bool** |  | [optional] 
-**TokensTransferableByUser** | Pointer to **bool** |  | [optional] 
-**TransferCooldownTime** | Pointer to **int32** |  | [optional] 
+**TokensBurnable** | Pointer to **bool** | default: true | [optional] 
+**TokensTransferableByAdmin** | Pointer to **bool** | default: true | [optional] 
+**TokensTransferableByUser** | Pointer to **bool** | default: true | [optional] 
+**TransferCooldownTime** | Pointer to **int32** | default: 0 | [optional] 
 **Type** | **string** |  | 
 
 ## Methods
@@ -36,6 +37,31 @@ will change when the set of required properties is changed
 NewServicesContractDeployDtoWithDefaults instantiates a new ServicesContractDeployDto object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAutoSponsor
+
+`func (o *ServicesContractDeployDto) GetAutoSponsor() bool`
+
+GetAutoSponsor returns the AutoSponsor field if non-nil, zero value otherwise.
+
+### GetAutoSponsorOk
+
+`func (o *ServicesContractDeployDto) GetAutoSponsorOk() (*bool, bool)`
+
+GetAutoSponsorOk returns a tuple with the AutoSponsor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoSponsor
+
+`func (o *ServicesContractDeployDto) SetAutoSponsor(v bool)`
+
+SetAutoSponsor sets AutoSponsor field to given value.
+
+### HasAutoSponsor
+
+`func (o *ServicesContractDeployDto) HasAutoSponsor() bool`
+
+HasAutoSponsor returns a boolean if a field has been set.
 
 ### GetBaseUri
 

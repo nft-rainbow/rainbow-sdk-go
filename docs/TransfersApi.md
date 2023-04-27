@@ -1,13 +1,13 @@
 # \TransfersApi
 
-All URIs are relative to *http://api.nftrainbow.cn/v1*
+All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BatchTransferNft**](TransfersApi.md#BatchTransferNft) | **Post** /transfers/customizable/batch | Batch Transfer NFTs
-[**GetTransferDetail**](TransfersApi.md#GetTransferDetail) | **Get** /transfers/{id} | Transfer NFT detail
-[**ListTransfer**](TransfersApi.md#ListTransfer) | **Get** /transfers/ | Obtain the transferred NFTs list
-[**TransferNft**](TransfersApi.md#TransferNft) | **Post** /transfers/customizable | Transfer NFT
+[**BatchTransferNft**](TransfersApi.md#BatchTransferNft) | **Post** /v1/transfers/customizable/batch | Batch Transfer NFTs
+[**GetTransferDetail**](TransfersApi.md#GetTransferDetail) | **Get** /v1/transfers/{id} | Transfer NFT detail
+[**ListTransfer**](TransfersApi.md#ListTransfer) | **Get** /v1/transfers/ | Obtain the transferred NFTs list
+[**TransferNft**](TransfersApi.md#TransferNft) | **Post** /v1/transfers/customizable | Transfer NFT
 
 
 

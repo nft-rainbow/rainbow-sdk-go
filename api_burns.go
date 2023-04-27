@@ -136,7 +136,7 @@ func (a *BurnsApiService) BurnBatchExecute(r ApiBurnBatchRequest) ([]ModelsBurnT
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/burns/customizable/batch"
+	localVarPath := localBasePath + "/v1/burns/customizable/batch"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -279,7 +279,7 @@ func (a *BurnsApiService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/burns"
+	localVarPath := localBasePath + "/v1/burns"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -418,7 +418,7 @@ func (a *BurnsApiService) GetBurnDetailExecute(r ApiGetBurnDetailRequest) (*Mode
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/burns/{id}"
+	localVarPath := localBasePath + "/v1/burns/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -550,7 +550,7 @@ func (a *BurnsApiService) GetBurnListExecute(r ApiGetBurnListRequest) (*ModelsBu
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/burns"
+	localVarPath := localBasePath + "/v1/burns"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

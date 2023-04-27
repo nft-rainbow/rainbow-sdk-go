@@ -90,7 +90,7 @@ func (a *TransactionApiService) GetTransactionByIDExecute(r ApiGetTransactionByI
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/tx/{id}"
+	localVarPath := localBasePath + "/v1/tx/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)

@@ -1,12 +1,12 @@
 # \MetadataApi
 
-All URIs are relative to *http://api.nftrainbow.cn/v1*
+All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateMetadata**](MetadataApi.md#CreateMetadata) | **Post** /metadata/ | Create NFT metadata
-[**GetMetadatInfo**](MetadataApi.md#GetMetadatInfo) | **Get** /metadata/{metadata_id} | Query metadata
-[**ListMetadatas**](MetadataApi.md#ListMetadatas) | **Get** /metadata/ | Obtain metadata list
+[**CreateMetadata**](MetadataApi.md#CreateMetadata) | **Post** /v1/metadata/ | Create NFT metadata
+[**GetMetadatInfo**](MetadataApi.md#GetMetadatInfo) | **Get** /v1/metadata/{metadata_id} | Query metadata
+[**ListMetadatas**](MetadataApi.md#ListMetadatas) | **Get** /v1/metadata/ | Obtain metadata list
 
 
 

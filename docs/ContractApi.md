@@ -1,19 +1,20 @@
 # \ContractApi
 
-All URIs are relative to *http://api.nftrainbow.cn/v1*
+All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddContractSponsorWhitelist**](ContractApi.md#AddContractSponsorWhitelist) | **Post** /contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist
-[**DeployContract**](ContractApi.md#DeployContract) | **Post** /contracts/ | Deploy contract
-[**GetContractAdmin**](ContractApi.md#GetContractAdmin) | **Get** /contracts/{address}/admin | Get administrator of contract, only work on conflux chain
-[**GetContractInfo**](ContractApi.md#GetContractInfo) | **Get** /contracts/detail/{id} | Contract detail
-[**GetContractSponsorInfo**](ContractApi.md#GetContractSponsorInfo) | **Get** /contracts/{address}/sponsor | Query sponsor
-[**GetContractSponsoredWhitelist**](ContractApi.md#GetContractSponsoredWhitelist) | **Get** /contracts/{address}/sponsor/whitelist | Get contract sponsored whitelist
-[**ListContracts**](ContractApi.md#ListContracts) | **Get** /contracts/ | Obtain contract list
-[**RemoveContractSponsorWhitelist**](ContractApi.md#RemoveContractSponsorWhitelist) | **Delete** /contracts/{address}/sponsor/whitelist | Remove contract sponsored whitelist
-[**SetContractSponsor**](ContractApi.md#SetContractSponsor) | **Post** /contracts/{address}/sponsor | Set sponsor
-[**UpdateContractAdmin**](ContractApi.md#UpdateContractAdmin) | **Put** /contracts/{address}/admin | Update administrator of contract
+[**AddContractSponsorWhitelist**](ContractApi.md#AddContractSponsorWhitelist) | **Post** /v1/contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist
+[**DeployContract**](ContractApi.md#DeployContract) | **Post** /v1/contracts/ | Deploy contract
+[**GetContractAdmin**](ContractApi.md#GetContractAdmin) | **Get** /v1/contracts/{address}/admin | Get administrator of contract, only work on conflux chain
+[**GetContractInfo**](ContractApi.md#GetContractInfo) | **Get** /v1/contracts/detail/{id} | Contract detail
+[**GetContractProfile**](ContractApi.md#GetContractProfile) | **Get** /v1/:address/profile | Get contract runtime profile
+[**GetContractSponsorInfo**](ContractApi.md#GetContractSponsorInfo) | **Get** /v1/contracts/{address}/sponsor | Query sponsor
+[**GetContractSponsoredWhitelist**](ContractApi.md#GetContractSponsoredWhitelist) | **Get** /v1/contracts/{address}/sponsor/whitelist | Get contract sponsored whitelist
+[**ListContracts**](ContractApi.md#ListContracts) | **Get** /v1/contracts/ | Obtain contract list
+[**RemoveContractSponsorWhitelist**](ContractApi.md#RemoveContractSponsorWhitelist) | **Delete** /v1/contracts/{address}/sponsor/whitelist | Remove contract sponsored whitelist
+[**SetContractSponsor**](ContractApi.md#SetContractSponsor) | **Post** /v1/contracts/{address}/sponsor | Set sponsor
+[**UpdateContractAdmin**](ContractApi.md#UpdateContractAdmin) | **Put** /v1/contracts/{address}/admin | Update administrator of contract
 
 
 
@@ -288,6 +289,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ModelsContract**](ModelsContract.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetContractProfile
+
+> ModelsContractRuntimeProfile GetContractProfile(ctx, address).Authorization(authorization).Execute()
+
+Get contract runtime profile
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer Open_JWT
+    address := "address_example" // string | address
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContractApi.GetContractProfile(context.Background(), address).Authorization(authorization).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ContractApi.GetContractProfile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetContractProfile`: ModelsContractRuntimeProfile
+    fmt.Fprintf(os.Stdout, "Response from `ContractApi.GetContractProfile`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**address** | **string** | address | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetContractProfileRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** | Bearer Open_JWT | 
+
+
+### Return type
+
+[**ModelsContractRuntimeProfile**](ModelsContractRuntimeProfile.md)
 
 ### Authorization
 
