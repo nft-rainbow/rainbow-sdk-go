@@ -21,7 +21,6 @@ Name | Type | Description | Notes
 **RoyaltiesBps** | Pointer to **int32** |  | [optional] 
 **Status** | Pointer to **int32** | 0-pending, 1-success, 2-failed | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
-**TokensBurnable** | Pointer to **bool** |  | [optional] 
 **TokensTransferableByAdmin** | Pointer to **bool** |  | [optional] 
 **TokensTransferableByUser** | Pointer to **bool** |  | [optional] 
 **TransferCooldownTime** | Pointer to **int32** |  | [optional] 
@@ -472,31 +471,6 @@ SetSymbol sets Symbol field to given value.
 `func (o *ModelsContract) HasSymbol() bool`
 
 HasSymbol returns a boolean if a field has been set.
-
-### GetTokensBurnable
-
-`func (o *ModelsContract) GetTokensBurnable() bool`
-
-GetTokensBurnable returns the TokensBurnable field if non-nil, zero value otherwise.
-
-### GetTokensBurnableOk
-
-`func (o *ModelsContract) GetTokensBurnableOk() (*bool, bool)`
-
-GetTokensBurnableOk returns a tuple with the TokensBurnable field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTokensBurnable
-
-`func (o *ModelsContract) SetTokensBurnable(v bool)`
-
-SetTokensBurnable sets TokensBurnable field to given value.
-
-### HasTokensBurnable
-
-`func (o *ModelsContract) HasTokensBurnable() bool`
-
-HasTokensBurnable returns a boolean if a field has been set.
 
 ### GetTokensTransferableByAdmin
 

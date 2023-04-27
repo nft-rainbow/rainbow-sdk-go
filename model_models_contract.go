@@ -34,7 +34,6 @@ type ModelsContract struct {
 	// 0-pending, 1-success, 2-failed
 	Status *int32 `json:"status,omitempty"`
 	Symbol *string `json:"symbol,omitempty"`
-	TokensBurnable *bool `json:"tokens_burnable,omitempty"`
 	TokensTransferableByAdmin *bool `json:"tokens_transferable_by_admin,omitempty"`
 	TokensTransferableByUser *bool `json:"tokens_transferable_by_user,omitempty"`
 	TransferCooldownTime *int32 `json:"transfer_cooldown_time,omitempty"`
@@ -608,38 +607,6 @@ func (o *ModelsContract) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
-// GetTokensBurnable returns the TokensBurnable field value if set, zero value otherwise.
-func (o *ModelsContract) GetTokensBurnable() bool {
-	if o == nil || isNil(o.TokensBurnable) {
-		var ret bool
-		return ret
-	}
-	return *o.TokensBurnable
-}
-
-// GetTokensBurnableOk returns a tuple with the TokensBurnable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ModelsContract) GetTokensBurnableOk() (*bool, bool) {
-	if o == nil || isNil(o.TokensBurnable) {
-    return nil, false
-	}
-	return o.TokensBurnable, true
-}
-
-// HasTokensBurnable returns a boolean if a field has been set.
-func (o *ModelsContract) HasTokensBurnable() bool {
-	if o != nil && !isNil(o.TokensBurnable) {
-		return true
-	}
-
-	return false
-}
-
-// SetTokensBurnable gets a reference to the given bool and assigns it to the TokensBurnable field.
-func (o *ModelsContract) SetTokensBurnable(v bool) {
-	o.TokensBurnable = &v
-}
-
 // GetTokensTransferableByAdmin returns the TokensTransferableByAdmin field value if set, zero value otherwise.
 func (o *ModelsContract) GetTokensTransferableByAdmin() bool {
 	if o == nil || isNil(o.TokensTransferableByAdmin) {
@@ -885,9 +852,6 @@ func (o ModelsContract) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
 	}
-	if !isNil(o.TokensBurnable) {
-		toSerialize["tokens_burnable"] = o.TokensBurnable
-	}
 	if !isNil(o.TokensTransferableByAdmin) {
 		toSerialize["tokens_transferable_by_admin"] = o.TokensTransferableByAdmin
 	}
@@ -941,7 +905,6 @@ func (o *ModelsContract) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "royalties_bps")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "symbol")
-		delete(additionalProperties, "tokens_burnable")
 		delete(additionalProperties, "tokens_transferable_by_admin")
 		delete(additionalProperties, "tokens_transferable_by_user")
 		delete(additionalProperties, "transfer_cooldown_time")

@@ -28,8 +28,6 @@ type ServicesContractDeployDto struct {
 	RoyaltiesBps *int32 `json:"royalties_bps,omitempty"`
 	Symbol string `json:"symbol"`
 	// default: true
-	TokensBurnable *bool `json:"tokens_burnable,omitempty"`
-	// default: true
 	TokensTransferableByAdmin *bool `json:"tokens_transferable_by_admin,omitempty"`
 	// default: true
 	TokensTransferableByUser *bool `json:"tokens_transferable_by_user,omitempty"`
@@ -326,38 +324,6 @@ func (o *ServicesContractDeployDto) SetSymbol(v string) {
 	o.Symbol = v
 }
 
-// GetTokensBurnable returns the TokensBurnable field value if set, zero value otherwise.
-func (o *ServicesContractDeployDto) GetTokensBurnable() bool {
-	if o == nil || isNil(o.TokensBurnable) {
-		var ret bool
-		return ret
-	}
-	return *o.TokensBurnable
-}
-
-// GetTokensBurnableOk returns a tuple with the TokensBurnable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServicesContractDeployDto) GetTokensBurnableOk() (*bool, bool) {
-	if o == nil || isNil(o.TokensBurnable) {
-    return nil, false
-	}
-	return o.TokensBurnable, true
-}
-
-// HasTokensBurnable returns a boolean if a field has been set.
-func (o *ServicesContractDeployDto) HasTokensBurnable() bool {
-	if o != nil && !isNil(o.TokensBurnable) {
-		return true
-	}
-
-	return false
-}
-
-// SetTokensBurnable gets a reference to the given bool and assigns it to the TokensBurnable field.
-func (o *ServicesContractDeployDto) SetTokensBurnable(v bool) {
-	o.TokensBurnable = &v
-}
-
 // GetTokensTransferableByAdmin returns the TokensTransferableByAdmin field value if set, zero value otherwise.
 func (o *ServicesContractDeployDto) GetTokensTransferableByAdmin() bool {
 	if o == nil || isNil(o.TokensTransferableByAdmin) {
@@ -507,9 +473,6 @@ func (o ServicesContractDeployDto) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["symbol"] = o.Symbol
 	}
-	if !isNil(o.TokensBurnable) {
-		toSerialize["tokens_burnable"] = o.TokensBurnable
-	}
 	if !isNil(o.TokensTransferableByAdmin) {
 		toSerialize["tokens_transferable_by_admin"] = o.TokensTransferableByAdmin
 	}
@@ -549,7 +512,6 @@ func (o *ServicesContractDeployDto) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "royalties_address")
 		delete(additionalProperties, "royalties_bps")
 		delete(additionalProperties, "symbol")
-		delete(additionalProperties, "tokens_burnable")
 		delete(additionalProperties, "tokens_transferable_by_admin")
 		delete(additionalProperties, "tokens_transferable_by_user")
 		delete(additionalProperties, "transfer_cooldown_time")

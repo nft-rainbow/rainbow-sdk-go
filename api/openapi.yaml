@@ -2001,7 +2001,6 @@ components:
         tokens_transferable_by_admin: true
         address: address
         chain_id: 1
-        tokens_burnable: true
         transfer_cooldown_time: 9
         created_at: created_at
         owner_address: owner_address
@@ -2058,8 +2057,6 @@ components:
           type: integer
         symbol:
           type: string
-        tokens_burnable:
-          type: boolean
         tokens_transferable_by_admin:
           type: boolean
         tokens_transferable_by_user:
@@ -2082,7 +2079,6 @@ components:
           tokens_transferable_by_admin: true
           address: address
           chain_id: 1
-          tokens_burnable: true
           transfer_cooldown_time: 9
           created_at: created_at
           owner_address: owner_address
@@ -2119,7 +2115,6 @@ components:
           tokens_transferable_by_admin: true
           address: address
           chain_id: 1
-          tokens_burnable: true
           transfer_cooldown_time: 9
           created_at: created_at
           owner_address: owner_address
@@ -2145,7 +2140,6 @@ components:
           tokens_transferable_by_admin: true
           address: address
           chain_id: 1
-          tokens_burnable: true
           transfer_cooldown_time: 9
           created_at: created_at
           owner_address: owner_address
@@ -2872,9 +2866,6 @@ components:
           type: integer
         symbol:
           type: string
-        tokens_burnable:
-          description: "default: true"
-          type: boolean
         tokens_transferable_by_admin:
           description: "default: true"
           type: boolean

@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **RoyaltiesAddress** | Pointer to **string** |  | [optional] 
 **RoyaltiesBps** | Pointer to **int32** |  | [optional] 
 **Symbol** | **string** |  | 
-**TokensBurnable** | Pointer to **bool** | default: true | [optional] 
 **TokensTransferableByAdmin** | Pointer to **bool** | default: true | [optional] 
 **TokensTransferableByUser** | Pointer to **bool** | default: true | [optional] 
 **TransferCooldownTime** | Pointer to **int32** | default: 0 | [optional] 
@@ -247,31 +246,6 @@ and a boolean to check if the value has been set.
 
 SetSymbol sets Symbol field to given value.
 
-
-### GetTokensBurnable
-
-`func (o *ServicesContractDeployDto) GetTokensBurnable() bool`
-
-GetTokensBurnable returns the TokensBurnable field if non-nil, zero value otherwise.
-
-### GetTokensBurnableOk
-
-`func (o *ServicesContractDeployDto) GetTokensBurnableOk() (*bool, bool)`
-
-GetTokensBurnableOk returns a tuple with the TokensBurnable field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTokensBurnable
-
-`func (o *ServicesContractDeployDto) SetTokensBurnable(v bool)`
-
-SetTokensBurnable sets TokensBurnable field to given value.
-
-### HasTokensBurnable
-
-`func (o *ServicesContractDeployDto) HasTokensBurnable() bool`
-
-HasTokensBurnable returns a boolean if a field has been set.
 
 ### GetTokensTransferableByAdmin
 
