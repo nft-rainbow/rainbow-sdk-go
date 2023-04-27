@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**DeployContract**](ContractApi.md#DeployContract) | **Post** /v1/contracts/ | Deploy contract
 [**GetContractAdmin**](ContractApi.md#GetContractAdmin) | **Get** /v1/contracts/{address}/admin | Get administrator of contract, only work on conflux chain
 [**GetContractInfo**](ContractApi.md#GetContractInfo) | **Get** /v1/contracts/detail/{id} | Contract detail
-[**GetContractProfile**](ContractApi.md#GetContractProfile) | **Get** /v1/:address/profile | Get contract runtime profile
+[**GetContractProfile**](ContractApi.md#GetContractProfile) | **Get** /v1/contracts/{address}/profile | Get contract runtime profile
 [**GetContractSponsorInfo**](ContractApi.md#GetContractSponsorInfo) | **Get** /v1/contracts/{address}/sponsor | Query sponsor
 [**GetContractSponsoredWhitelist**](ContractApi.md#GetContractSponsoredWhitelist) | **Get** /v1/contracts/{address}/sponsor/whitelist | Get contract sponsored whitelist
 [**ListContracts**](ContractApi.md#ListContracts) | **Get** /v1/contracts/ | Obtain contract list

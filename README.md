@@ -86,7 +86,7 @@ Class | Method | HTTP request | Description
 *ContractApi* | [**DeployContract**](docs/ContractApi.md#deploycontract) | **Post** /v1/contracts/ | Deploy contract
 *ContractApi* | [**GetContractAdmin**](docs/ContractApi.md#getcontractadmin) | **Get** /v1/contracts/{address}/admin | Get administrator of contract, only work on conflux chain
 *ContractApi* | [**GetContractInfo**](docs/ContractApi.md#getcontractinfo) | **Get** /v1/contracts/detail/{id} | Contract detail
-*ContractApi* | [**GetContractProfile**](docs/ContractApi.md#getcontractprofile) | **Get** /v1/:address/profile | Get contract runtime profile
+*ContractApi* | [**GetContractProfile**](docs/ContractApi.md#getcontractprofile) | **Get** /v1/contracts/{address}/profile | Get contract runtime profile
 *ContractApi* | [**GetContractSponsorInfo**](docs/ContractApi.md#getcontractsponsorinfo) | **Get** /v1/contracts/{address}/sponsor | Query sponsor
 *ContractApi* | [**GetContractSponsoredWhitelist**](docs/ContractApi.md#getcontractsponsoredwhitelist) | **Get** /v1/contracts/{address}/sponsor/whitelist | Get contract sponsored whitelist
 *ContractApi* | [**ListContracts**](docs/ContractApi.md#listcontracts) | **Get** /v1/contracts/ | Obtain contract list

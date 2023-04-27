@@ -820,7 +820,7 @@ func (a *ContractApiService) GetContractProfileExecute(r ApiGetContractProfileRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/:address/profile"
+	localVarPath := localBasePath + "/v1/contracts/{address}/profile"
 	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)

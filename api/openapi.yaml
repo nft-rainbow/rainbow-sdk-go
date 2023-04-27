@@ -174,48 +174,6 @@ paths:
       summary: Refresh JWT
       tags:
       - Login
-  /v1/:address/profile:
-    get:
-      description: "Get contract runtime profile, contains contract info and currently\
-        \ minted/minting max token id"
-      operationId: GetContractProfile
-      parameters:
-      - description: Bearer Open_JWT
-        in: header
-        name: Authorization
-        required: true
-        schema:
-          type: string
-      - description: address
-        in: path
-        name: address
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/models.ContractRuntimeProfile'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Invalid request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
-          description: Internal Server error
-      security:
-      - ApiKeyAuth: []
-      summary: Get contract runtime profile
-      tags:
-      - Contract
   /v1/burns:
     get:
       description: Get the NFT burned list information.
@@ -603,6 +561,48 @@ paths:
       tags:
       - Contract
       x-codegen-request-body-name: admin_info
+  /v1/contracts/{address}/profile:
+    get:
+      description: "Get contract runtime profile, contains contract info and currently\
+        \ minted/minting max token id"
+      operationId: GetContractProfile
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.ContractRuntimeProfile'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Get contract runtime profile
+      tags:
+      - Contract
   /v1/contracts/{address}/sponsor:
     get:
       description: Get the sponsor of the specified contract according to address.
@@ -1997,19 +1997,19 @@ components:
     models.Contract:
       example:
         symbol: symbol
-        chain_type: 1
+        chain_type: 5
         tokens_transferable_by_admin: true
         address: address
-        chain_id: 6
+        chain_id: 1
         tokens_burnable: true
-        transfer_cooldown_time: 7
+        transfer_cooldown_time: 9
         created_at: created_at
         owner_address: owner_address
         royalties_address: royalties_address
         error: error
-        royalties_bps: 5
-        tx_id: 9
-        type: 3
+        royalties_bps: 2
+        tx_id: 3
+        type: 2
         deleted_at:
           valid: true
           time: time
@@ -2019,9 +2019,9 @@ components:
         auto_sponsor: true
         id: 5
         tokens_transferable_by_user: true
-        app_id: 0
+        app_id: 6
         hash: hash
-        status: 2
+        status: 7
       properties:
         address:
           type: string
@@ -2078,19 +2078,19 @@ components:
       example:
         contract:
           symbol: symbol
-          chain_type: 1
+          chain_type: 5
           tokens_transferable_by_admin: true
           address: address
-          chain_id: 6
+          chain_id: 1
           tokens_burnable: true
-          transfer_cooldown_time: 7
+          transfer_cooldown_time: 9
           created_at: created_at
           owner_address: owner_address
           royalties_address: royalties_address
           error: error
-          royalties_bps: 5
-          tx_id: 9
-          type: 3
+          royalties_bps: 2
+          tx_id: 3
+          type: 2
           deleted_at:
             valid: true
             time: time
@@ -2100,10 +2100,10 @@ components:
           auto_sponsor: true
           id: 5
           tokens_transferable_by_user: true
-          app_id: 0
+          app_id: 6
           hash: hash
-          status: 2
-        max_token_id: 2
+          status: 7
+        max_token_id: 0
       properties:
         contract:
           $ref: '#/components/schemas/models.Contract'
@@ -2115,19 +2115,19 @@ components:
         count: 0
         items:
         - symbol: symbol
-          chain_type: 1
+          chain_type: 5
           tokens_transferable_by_admin: true
           address: address
-          chain_id: 6
+          chain_id: 1
           tokens_burnable: true
-          transfer_cooldown_time: 7
+          transfer_cooldown_time: 9
           created_at: created_at
           owner_address: owner_address
           royalties_address: royalties_address
           error: error
-          royalties_bps: 5
-          tx_id: 9
-          type: 3
+          royalties_bps: 2
+          tx_id: 3
+          type: 2
           deleted_at:
             valid: true
             time: time
@@ -2137,23 +2137,23 @@ components:
           auto_sponsor: true
           id: 5
           tokens_transferable_by_user: true
-          app_id: 0
+          app_id: 6
           hash: hash
-          status: 2
+          status: 7
         - symbol: symbol
-          chain_type: 1
+          chain_type: 5
           tokens_transferable_by_admin: true
           address: address
-          chain_id: 6
+          chain_id: 1
           tokens_burnable: true
-          transfer_cooldown_time: 7
+          transfer_cooldown_time: 9
           created_at: created_at
           owner_address: owner_address
           royalties_address: royalties_address
           error: error
-          royalties_bps: 5
-          tx_id: 9
-          type: 3
+          royalties_bps: 2
+          tx_id: 3
+          type: 2
           deleted_at:
             valid: true
             time: time
@@ -2163,9 +2163,9 @@ components:
           auto_sponsor: true
           id: 5
           tokens_transferable_by_user: true
-          app_id: 0
+          app_id: 6
           hash: hash
-          status: 2
+          status: 7
       properties:
         count:
           type: integer
