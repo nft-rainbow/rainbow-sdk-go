@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsMintTask type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsMintTask{}
+
 // ModelsMintTask struct for ModelsMintTask
 type ModelsMintTask struct {
 	Amount *int32 `json:"amount,omitempty"`
@@ -70,7 +73,7 @@ func (o *ModelsMintTask) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetAmountOk() (*int32, bool) {
 	if o == nil || isNil(o.Amount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Amount, true
 }
@@ -102,7 +105,7 @@ func (o *ModelsMintTask) GetAppId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetAppIdOk() (*int32, bool) {
 	if o == nil || isNil(o.AppId) {
-    return nil, false
+		return nil, false
 	}
 	return o.AppId, true
 }
@@ -134,7 +137,7 @@ func (o *ModelsMintTask) GetChainId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetChainIdOk() (*int32, bool) {
 	if o == nil || isNil(o.ChainId) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChainId, true
 }
@@ -166,7 +169,7 @@ func (o *ModelsMintTask) GetChainType() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetChainTypeOk() (*int32, bool) {
 	if o == nil || isNil(o.ChainType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChainType, true
 }
@@ -198,7 +201,7 @@ func (o *ModelsMintTask) GetContract() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetContractOk() (*string, bool) {
 	if o == nil || isNil(o.Contract) {
-    return nil, false
+		return nil, false
 	}
 	return o.Contract, true
 }
@@ -230,7 +233,7 @@ func (o *ModelsMintTask) GetContractType() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetContractTypeOk() (*int32, bool) {
 	if o == nil || isNil(o.ContractType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ContractType, true
 }
@@ -262,7 +265,7 @@ func (o *ModelsMintTask) GetCreatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetCreatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
@@ -294,7 +297,7 @@ func (o *ModelsMintTask) GetDeletedAt() GormDeletedAt {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetDeletedAtOk() (*GormDeletedAt, bool) {
 	if o == nil || isNil(o.DeletedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeletedAt, true
 }
@@ -326,7 +329,7 @@ func (o *ModelsMintTask) GetError() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetErrorOk() (*string, bool) {
 	if o == nil || isNil(o.Error) {
-    return nil, false
+		return nil, false
 	}
 	return o.Error, true
 }
@@ -358,7 +361,7 @@ func (o *ModelsMintTask) GetHash() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetHashOk() (*string, bool) {
 	if o == nil || isNil(o.Hash) {
-    return nil, false
+		return nil, false
 	}
 	return o.Hash, true
 }
@@ -390,7 +393,7 @@ func (o *ModelsMintTask) GetId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetIdOk() (*int32, bool) {
 	if o == nil || isNil(o.Id) {
-    return nil, false
+		return nil, false
 	}
 	return o.Id, true
 }
@@ -422,7 +425,7 @@ func (o *ModelsMintTask) GetMintTo() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetMintToOk() (*string, bool) {
 	if o == nil || isNil(o.MintTo) {
-    return nil, false
+		return nil, false
 	}
 	return o.MintTo, true
 }
@@ -454,7 +457,7 @@ func (o *ModelsMintTask) GetMintType() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetMintTypeOk() (*int32, bool) {
 	if o == nil || isNil(o.MintType) {
-    return nil, false
+		return nil, false
 	}
 	return o.MintType, true
 }
@@ -486,7 +489,7 @@ func (o *ModelsMintTask) GetStatus() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetStatusOk() (*int32, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -518,7 +521,7 @@ func (o *ModelsMintTask) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetTokenIdOk() (*string, bool) {
 	if o == nil || isNil(o.TokenId) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokenId, true
 }
@@ -550,7 +553,7 @@ func (o *ModelsMintTask) GetTokenUri() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetTokenUriOk() (*string, bool) {
 	if o == nil || isNil(o.TokenUri) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokenUri, true
 }
@@ -582,7 +585,7 @@ func (o *ModelsMintTask) GetTxId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetTxIdOk() (*int32, bool) {
 	if o == nil || isNil(o.TxId) {
-    return nil, false
+		return nil, false
 	}
 	return o.TxId, true
 }
@@ -614,7 +617,7 @@ func (o *ModelsMintTask) GetUpdatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTask) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
@@ -634,6 +637,14 @@ func (o *ModelsMintTask) SetUpdatedAt(v string) {
 }
 
 func (o ModelsMintTask) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsMintTask) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
@@ -694,7 +705,7 @@ func (o ModelsMintTask) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsMintTask) UnmarshalJSON(bytes []byte) (err error) {

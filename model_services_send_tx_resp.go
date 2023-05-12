@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesSendTxResp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesSendTxResp{}
+
 // ServicesSendTxResp struct for ServicesSendTxResp
 type ServicesSendTxResp struct {
 	TxId *int32 `json:"tx_id,omitempty"`
@@ -52,7 +55,7 @@ func (o *ServicesSendTxResp) GetTxId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesSendTxResp) GetTxIdOk() (*int32, bool) {
 	if o == nil || isNil(o.TxId) {
-    return nil, false
+		return nil, false
 	}
 	return o.TxId, true
 }
@@ -72,6 +75,14 @@ func (o *ServicesSendTxResp) SetTxId(v int32) {
 }
 
 func (o ServicesSendTxResp) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesSendTxResp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.TxId) {
 		toSerialize["tx_id"] = o.TxId
@@ -81,7 +92,7 @@ func (o ServicesSendTxResp) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesSendTxResp) UnmarshalJSON(bytes []byte) (err error) {

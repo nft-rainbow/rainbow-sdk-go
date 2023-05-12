@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsContractRuntimeProfile type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsContractRuntimeProfile{}
+
 // ModelsContractRuntimeProfile struct for ModelsContractRuntimeProfile
 type ModelsContractRuntimeProfile struct {
 	Contract *ModelsContract `json:"contract,omitempty"`
@@ -53,7 +56,7 @@ func (o *ModelsContractRuntimeProfile) GetContract() ModelsContract {
 // and a boolean to check if the value has been set.
 func (o *ModelsContractRuntimeProfile) GetContractOk() (*ModelsContract, bool) {
 	if o == nil || isNil(o.Contract) {
-    return nil, false
+		return nil, false
 	}
 	return o.Contract, true
 }
@@ -85,7 +88,7 @@ func (o *ModelsContractRuntimeProfile) GetMaxTokenId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsContractRuntimeProfile) GetMaxTokenIdOk() (*int32, bool) {
 	if o == nil || isNil(o.MaxTokenId) {
-    return nil, false
+		return nil, false
 	}
 	return o.MaxTokenId, true
 }
@@ -105,6 +108,14 @@ func (o *ModelsContractRuntimeProfile) SetMaxTokenId(v int32) {
 }
 
 func (o ModelsContractRuntimeProfile) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsContractRuntimeProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Contract) {
 		toSerialize["contract"] = o.Contract
@@ -117,7 +128,7 @@ func (o ModelsContractRuntimeProfile) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsContractRuntimeProfile) UnmarshalJSON(bytes []byte) (err error) {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsExposedFile type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsExposedFile{}
+
 // ModelsExposedFile struct for ModelsExposedFile
 type ModelsExposedFile struct {
 	CreatedAt *string `json:"created_at,omitempty"`
@@ -59,7 +62,7 @@ func (o *ModelsExposedFile) GetCreatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetCreatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
@@ -91,7 +94,7 @@ func (o *ModelsExposedFile) GetDeletedAt() GormDeletedAt {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetDeletedAtOk() (*GormDeletedAt, bool) {
 	if o == nil || isNil(o.DeletedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeletedAt, true
 }
@@ -123,7 +126,7 @@ func (o *ModelsExposedFile) GetFileName() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetFileNameOk() (*string, bool) {
 	if o == nil || isNil(o.FileName) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileName, true
 }
@@ -155,7 +158,7 @@ func (o *ModelsExposedFile) GetFileSize() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetFileSizeOk() (*int32, bool) {
 	if o == nil || isNil(o.FileSize) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileSize, true
 }
@@ -187,7 +190,7 @@ func (o *ModelsExposedFile) GetFileType() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetFileTypeOk() (*string, bool) {
 	if o == nil || isNil(o.FileType) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileType, true
 }
@@ -219,7 +222,7 @@ func (o *ModelsExposedFile) GetFileUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetFileUrlOk() (*string, bool) {
 	if o == nil || isNil(o.FileUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileUrl, true
 }
@@ -251,7 +254,7 @@ func (o *ModelsExposedFile) GetId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetIdOk() (*int32, bool) {
 	if o == nil || isNil(o.Id) {
-    return nil, false
+		return nil, false
 	}
 	return o.Id, true
 }
@@ -283,7 +286,7 @@ func (o *ModelsExposedFile) GetUpdatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedFile) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
@@ -303,6 +306,14 @@ func (o *ModelsExposedFile) SetUpdatedAt(v string) {
 }
 
 func (o ModelsExposedFile) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsExposedFile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
@@ -333,7 +344,7 @@ func (o ModelsExposedFile) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsExposedFile) UnmarshalJSON(bytes []byte) (err error) {

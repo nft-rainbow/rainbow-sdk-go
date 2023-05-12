@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesTransferBatchDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesTransferBatchDto{}
+
 // ServicesTransferBatchDto struct for ServicesTransferBatchDto
 type ServicesTransferBatchDto struct {
 	Chain string `json:"chain"`
@@ -60,7 +63,7 @@ func (o *ServicesTransferBatchDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferBatchDto) GetChainOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Chain, true
 }
@@ -84,7 +87,7 @@ func (o *ServicesTransferBatchDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferBatchDto) GetContractAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContractAddress, true
 }
@@ -108,7 +111,7 @@ func (o *ServicesTransferBatchDto) GetContractType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferBatchDto) GetContractTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContractType, true
 }
@@ -132,7 +135,7 @@ func (o *ServicesTransferBatchDto) GetItems() []ServicesTransferItemDto {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferBatchDto) GetItemsOk() ([]ServicesTransferItemDto, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Items, true
 }
@@ -143,25 +146,25 @@ func (o *ServicesTransferBatchDto) SetItems(v []ServicesTransferItemDto) {
 }
 
 func (o ServicesTransferBatchDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesTransferBatchDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
-	if true {
-		toSerialize["contract_address"] = o.ContractAddress
-	}
-	if true {
-		toSerialize["contract_type"] = o.ContractType
-	}
-	if true {
-		toSerialize["items"] = o.Items
-	}
+	toSerialize["chain"] = o.Chain
+	toSerialize["contract_address"] = o.ContractAddress
+	toSerialize["contract_type"] = o.ContractType
+	toSerialize["items"] = o.Items
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesTransferBatchDto) UnmarshalJSON(bytes []byte) (err error) {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MiddlewaresLoginResp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MiddlewaresLoginResp{}
+
 // MiddlewaresLoginResp struct for MiddlewaresLoginResp
 type MiddlewaresLoginResp struct {
 	Expire *string `json:"expire,omitempty"`
@@ -53,7 +56,7 @@ func (o *MiddlewaresLoginResp) GetExpire() string {
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresLoginResp) GetExpireOk() (*string, bool) {
 	if o == nil || isNil(o.Expire) {
-    return nil, false
+		return nil, false
 	}
 	return o.Expire, true
 }
@@ -85,7 +88,7 @@ func (o *MiddlewaresLoginResp) GetToken() string {
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresLoginResp) GetTokenOk() (*string, bool) {
 	if o == nil || isNil(o.Token) {
-    return nil, false
+		return nil, false
 	}
 	return o.Token, true
 }
@@ -105,6 +108,14 @@ func (o *MiddlewaresLoginResp) SetToken(v string) {
 }
 
 func (o MiddlewaresLoginResp) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MiddlewaresLoginResp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Expire) {
 		toSerialize["expire"] = o.Expire
@@ -117,7 +128,7 @@ func (o MiddlewaresLoginResp) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *MiddlewaresLoginResp) UnmarshalJSON(bytes []byte) (err error) {

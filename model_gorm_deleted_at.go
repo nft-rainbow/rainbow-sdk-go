@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GormDeletedAt type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GormDeletedAt{}
+
 // GormDeletedAt struct for GormDeletedAt
 type GormDeletedAt struct {
 	Time *string `json:"time,omitempty"`
@@ -54,7 +57,7 @@ func (o *GormDeletedAt) GetTime() string {
 // and a boolean to check if the value has been set.
 func (o *GormDeletedAt) GetTimeOk() (*string, bool) {
 	if o == nil || isNil(o.Time) {
-    return nil, false
+		return nil, false
 	}
 	return o.Time, true
 }
@@ -86,7 +89,7 @@ func (o *GormDeletedAt) GetValid() bool {
 // and a boolean to check if the value has been set.
 func (o *GormDeletedAt) GetValidOk() (*bool, bool) {
 	if o == nil || isNil(o.Valid) {
-    return nil, false
+		return nil, false
 	}
 	return o.Valid, true
 }
@@ -106,6 +109,14 @@ func (o *GormDeletedAt) SetValid(v bool) {
 }
 
 func (o GormDeletedAt) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o GormDeletedAt) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Time) {
 		toSerialize["time"] = o.Time
@@ -118,7 +129,7 @@ func (o GormDeletedAt) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *GormDeletedAt) UnmarshalJSON(bytes []byte) (err error) {

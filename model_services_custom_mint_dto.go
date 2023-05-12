@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesCustomMintDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesCustomMintDto{}
+
 // ServicesCustomMintDto struct for ServicesCustomMintDto
 type ServicesCustomMintDto struct {
 	Amount *int32 `json:"amount,omitempty"`
@@ -60,7 +63,7 @@ func (o *ServicesCustomMintDto) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetAmountOk() (*int32, bool) {
 	if o == nil || isNil(o.Amount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Amount, true
 }
@@ -93,7 +96,7 @@ func (o *ServicesCustomMintDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetChainOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Chain, true
 }
@@ -117,7 +120,7 @@ func (o *ServicesCustomMintDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetContractAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContractAddress, true
 }
@@ -140,7 +143,7 @@ func (o *ServicesCustomMintDto) GetMetadataUri() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetMetadataUriOk() (*string, bool) {
 	if o == nil || isNil(o.MetadataUri) {
-    return nil, false
+		return nil, false
 	}
 	return o.MetadataUri, true
 }
@@ -173,7 +176,7 @@ func (o *ServicesCustomMintDto) GetMintToAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetMintToAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.MintToAddress, true
 }
@@ -196,7 +199,7 @@ func (o *ServicesCustomMintDto) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesCustomMintDto) GetTokenIdOk() (*string, bool) {
 	if o == nil || isNil(o.TokenId) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokenId, true
 }
@@ -216,22 +219,24 @@ func (o *ServicesCustomMintDto) SetTokenId(v string) {
 }
 
 func (o ServicesCustomMintDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesCustomMintDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
-	if true {
-		toSerialize["contract_address"] = o.ContractAddress
-	}
+	toSerialize["chain"] = o.Chain
+	toSerialize["contract_address"] = o.ContractAddress
 	if !isNil(o.MetadataUri) {
 		toSerialize["metadata_uri"] = o.MetadataUri
 	}
-	if true {
-		toSerialize["mint_to_address"] = o.MintToAddress
-	}
+	toSerialize["mint_to_address"] = o.MintToAddress
 	if !isNil(o.TokenId) {
 		toSerialize["token_id"] = o.TokenId
 	}
@@ -240,7 +245,7 @@ func (o ServicesCustomMintDto) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesCustomMintDto) UnmarshalJSON(bytes []byte) (err error) {

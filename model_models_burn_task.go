@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsBurnTask type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsBurnTask{}
+
 // ModelsBurnTask struct for ModelsBurnTask
 type ModelsBurnTask struct {
 	Amount *int32 `json:"amount,omitempty"`
@@ -68,7 +71,7 @@ func (o *ModelsBurnTask) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetAmountOk() (*int32, bool) {
 	if o == nil || isNil(o.Amount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Amount, true
 }
@@ -100,7 +103,7 @@ func (o *ModelsBurnTask) GetAppId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetAppIdOk() (*int32, bool) {
 	if o == nil || isNil(o.AppId) {
-    return nil, false
+		return nil, false
 	}
 	return o.AppId, true
 }
@@ -132,7 +135,7 @@ func (o *ModelsBurnTask) GetChainId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetChainIdOk() (*int32, bool) {
 	if o == nil || isNil(o.ChainId) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChainId, true
 }
@@ -164,7 +167,7 @@ func (o *ModelsBurnTask) GetChainType() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetChainTypeOk() (*int32, bool) {
 	if o == nil || isNil(o.ChainType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChainType, true
 }
@@ -196,7 +199,7 @@ func (o *ModelsBurnTask) GetContract() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetContractOk() (*string, bool) {
 	if o == nil || isNil(o.Contract) {
-    return nil, false
+		return nil, false
 	}
 	return o.Contract, true
 }
@@ -228,7 +231,7 @@ func (o *ModelsBurnTask) GetContractType() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetContractTypeOk() (*int32, bool) {
 	if o == nil || isNil(o.ContractType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ContractType, true
 }
@@ -260,7 +263,7 @@ func (o *ModelsBurnTask) GetCreatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetCreatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
@@ -292,7 +295,7 @@ func (o *ModelsBurnTask) GetDeletedAt() GormDeletedAt {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetDeletedAtOk() (*GormDeletedAt, bool) {
 	if o == nil || isNil(o.DeletedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeletedAt, true
 }
@@ -324,7 +327,7 @@ func (o *ModelsBurnTask) GetError() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetErrorOk() (*string, bool) {
 	if o == nil || isNil(o.Error) {
-    return nil, false
+		return nil, false
 	}
 	return o.Error, true
 }
@@ -356,7 +359,7 @@ func (o *ModelsBurnTask) GetHash() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetHashOk() (*string, bool) {
 	if o == nil || isNil(o.Hash) {
-    return nil, false
+		return nil, false
 	}
 	return o.Hash, true
 }
@@ -388,7 +391,7 @@ func (o *ModelsBurnTask) GetId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetIdOk() (*int32, bool) {
 	if o == nil || isNil(o.Id) {
-    return nil, false
+		return nil, false
 	}
 	return o.Id, true
 }
@@ -420,7 +423,7 @@ func (o *ModelsBurnTask) GetStatus() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetStatusOk() (*int32, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -452,7 +455,7 @@ func (o *ModelsBurnTask) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetTokenIdOk() (*string, bool) {
 	if o == nil || isNil(o.TokenId) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokenId, true
 }
@@ -484,7 +487,7 @@ func (o *ModelsBurnTask) GetTxId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetTxIdOk() (*int32, bool) {
 	if o == nil || isNil(o.TxId) {
-    return nil, false
+		return nil, false
 	}
 	return o.TxId, true
 }
@@ -516,7 +519,7 @@ func (o *ModelsBurnTask) GetUpdatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
@@ -548,7 +551,7 @@ func (o *ModelsBurnTask) GetUser() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTask) GetUserOk() (*string, bool) {
 	if o == nil || isNil(o.User) {
-    return nil, false
+		return nil, false
 	}
 	return o.User, true
 }
@@ -568,6 +571,14 @@ func (o *ModelsBurnTask) SetUser(v string) {
 }
 
 func (o ModelsBurnTask) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsBurnTask) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
@@ -622,7 +633,7 @@ func (o ModelsBurnTask) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsBurnTask) UnmarshalJSON(bytes []byte) (err error) {

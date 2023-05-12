@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **StorageCollateralized** | Pointer to **float32** |  | [optional] 
 **StorageCoveredBySponsor** | Pointer to **bool** |  | [optional] 
 **StorageLimit** | Pointer to **float32** |  | [optional] 
-**TaskType** | Pointer to **int32** |  | [optional] 
+**TaskType** | Pointer to [**ModelsTaskType**](ModelsTaskType.md) |  | [optional] 
 **To** | Pointer to **string** |  | [optional] 
 **TryReceiptCnt** | Pointer to **int32** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
@@ -655,20 +655,20 @@ HasStorageLimit returns a boolean if a field has been set.
 
 ### GetTaskType
 
-`func (o *ModelsTransaction) GetTaskType() int32`
+`func (o *ModelsTransaction) GetTaskType() ModelsTaskType`
 
 GetTaskType returns the TaskType field if non-nil, zero value otherwise.
 
 ### GetTaskTypeOk
 
-`func (o *ModelsTransaction) GetTaskTypeOk() (*int32, bool)`
+`func (o *ModelsTransaction) GetTaskTypeOk() (*ModelsTaskType, bool)`
 
 GetTaskTypeOk returns a tuple with the TaskType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaskType
 
-`func (o *ModelsTransaction) SetTaskType(v int32)`
+`func (o *ModelsTransaction) SetTaskType(v ModelsTaskType)`
 
 SetTaskType sets TaskType field to given value.
 

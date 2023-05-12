@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsExposedMetadataAttribute type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsExposedMetadataAttribute{}
+
 // ModelsExposedMetadataAttribute struct for ModelsExposedMetadataAttribute
 type ModelsExposedMetadataAttribute struct {
 	AttributeName *string `json:"attribute_name,omitempty"`
@@ -56,7 +59,7 @@ func (o *ModelsExposedMetadataAttribute) GetAttributeName() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataAttribute) GetAttributeNameOk() (*string, bool) {
 	if o == nil || isNil(o.AttributeName) {
-    return nil, false
+		return nil, false
 	}
 	return o.AttributeName, true
 }
@@ -88,7 +91,7 @@ func (o *ModelsExposedMetadataAttribute) GetDisplayType() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataAttribute) GetDisplayTypeOk() (*string, bool) {
 	if o == nil || isNil(o.DisplayType) {
-    return nil, false
+		return nil, false
 	}
 	return o.DisplayType, true
 }
@@ -120,7 +123,7 @@ func (o *ModelsExposedMetadataAttribute) GetTraitType() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataAttribute) GetTraitTypeOk() (*string, bool) {
 	if o == nil || isNil(o.TraitType) {
-    return nil, false
+		return nil, false
 	}
 	return o.TraitType, true
 }
@@ -152,7 +155,7 @@ func (o *ModelsExposedMetadataAttribute) GetValue() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataAttribute) GetValueOk() (*string, bool) {
 	if o == nil || isNil(o.Value) {
-    return nil, false
+		return nil, false
 	}
 	return o.Value, true
 }
@@ -172,6 +175,14 @@ func (o *ModelsExposedMetadataAttribute) SetValue(v string) {
 }
 
 func (o ModelsExposedMetadataAttribute) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsExposedMetadataAttribute) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AttributeName) {
 		toSerialize["attribute_name"] = o.AttributeName
@@ -190,7 +201,7 @@ func (o ModelsExposedMetadataAttribute) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsExposedMetadataAttribute) UnmarshalJSON(bytes []byte) (err error) {

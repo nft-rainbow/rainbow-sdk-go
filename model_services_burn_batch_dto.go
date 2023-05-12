@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesBurnBatchDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesBurnBatchDto{}
+
 // ServicesBurnBatchDto struct for ServicesBurnBatchDto
 type ServicesBurnBatchDto struct {
 	Chain string `json:"chain"`
@@ -61,7 +64,7 @@ func (o *ServicesBurnBatchDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnBatchDto) GetChainOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Chain, true
 }
@@ -85,7 +88,7 @@ func (o *ServicesBurnBatchDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnBatchDto) GetContractAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContractAddress, true
 }
@@ -109,7 +112,7 @@ func (o *ServicesBurnBatchDto) GetContractType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnBatchDto) GetContractTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContractType, true
 }
@@ -133,7 +136,7 @@ func (o *ServicesBurnBatchDto) GetItems() []ServicesBurnItemDto {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnBatchDto) GetItemsOk() ([]ServicesBurnItemDto, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.Items, true
 }
@@ -156,7 +159,7 @@ func (o *ServicesBurnBatchDto) GetUser() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnBatchDto) GetUserOk() (*string, bool) {
 	if o == nil || isNil(o.User) {
-    return nil, false
+		return nil, false
 	}
 	return o.User, true
 }
@@ -176,19 +179,19 @@ func (o *ServicesBurnBatchDto) SetUser(v string) {
 }
 
 func (o ServicesBurnBatchDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesBurnBatchDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
-	if true {
-		toSerialize["contract_address"] = o.ContractAddress
-	}
-	if true {
-		toSerialize["contract_type"] = o.ContractType
-	}
-	if true {
-		toSerialize["items"] = o.Items
-	}
+	toSerialize["chain"] = o.Chain
+	toSerialize["contract_address"] = o.ContractAddress
+	toSerialize["contract_type"] = o.ContractType
+	toSerialize["items"] = o.Items
 	if !isNil(o.User) {
 		toSerialize["user"] = o.User
 	}
@@ -197,7 +200,7 @@ func (o ServicesBurnBatchDto) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesBurnBatchDto) UnmarshalJSON(bytes []byte) (err error) {

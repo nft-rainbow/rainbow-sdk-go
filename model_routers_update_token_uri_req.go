@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RoutersUpdateTokenUriReq type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RoutersUpdateTokenUriReq{}
+
 // RoutersUpdateTokenUriReq struct for RoutersUpdateTokenUriReq
 type RoutersUpdateTokenUriReq struct {
 	Chain string `json:"chain"`
@@ -57,7 +60,7 @@ func (o *RoutersUpdateTokenUriReq) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *RoutersUpdateTokenUriReq) GetChainOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Chain, true
 }
@@ -81,7 +84,7 @@ func (o *RoutersUpdateTokenUriReq) GetContractType() string {
 // and a boolean to check if the value has been set.
 func (o *RoutersUpdateTokenUriReq) GetContractTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContractType, true
 }
@@ -104,7 +107,7 @@ func (o *RoutersUpdateTokenUriReq) GetTokenUri() string {
 // and a boolean to check if the value has been set.
 func (o *RoutersUpdateTokenUriReq) GetTokenUriOk() (*string, bool) {
 	if o == nil || isNil(o.TokenUri) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokenUri, true
 }
@@ -124,13 +127,17 @@ func (o *RoutersUpdateTokenUriReq) SetTokenUri(v string) {
 }
 
 func (o RoutersUpdateTokenUriReq) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RoutersUpdateTokenUriReq) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
-	if true {
-		toSerialize["contract_type"] = o.ContractType
-	}
+	toSerialize["chain"] = o.Chain
+	toSerialize["contract_type"] = o.ContractType
 	if !isNil(o.TokenUri) {
 		toSerialize["token_uri"] = o.TokenUri
 	}
@@ -139,7 +146,7 @@ func (o RoutersUpdateTokenUriReq) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *RoutersUpdateTokenUriReq) UnmarshalJSON(bytes []byte) (err error) {

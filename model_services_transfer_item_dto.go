@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesTransferItemDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesTransferItemDto{}
+
 // ServicesTransferItemDto struct for ServicesTransferItemDto
 type ServicesTransferItemDto struct {
 	Amount *int32 `json:"amount,omitempty"`
@@ -58,7 +61,7 @@ func (o *ServicesTransferItemDto) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferItemDto) GetAmountOk() (*int32, bool) {
 	if o == nil || isNil(o.Amount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Amount, true
 }
@@ -91,7 +94,7 @@ func (o *ServicesTransferItemDto) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferItemDto) GetTokenIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.TokenId, true
 }
@@ -115,7 +118,7 @@ func (o *ServicesTransferItemDto) GetTransferFromAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferItemDto) GetTransferFromAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.TransferFromAddress, true
 }
@@ -139,7 +142,7 @@ func (o *ServicesTransferItemDto) GetTransferToAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferItemDto) GetTransferToAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.TransferToAddress, true
 }
@@ -150,25 +153,27 @@ func (o *ServicesTransferItemDto) SetTransferToAddress(v string) {
 }
 
 func (o ServicesTransferItemDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesTransferItemDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if true {
-		toSerialize["token_id"] = o.TokenId
-	}
-	if true {
-		toSerialize["transfer_from_address"] = o.TransferFromAddress
-	}
-	if true {
-		toSerialize["transfer_to_address"] = o.TransferToAddress
-	}
+	toSerialize["token_id"] = o.TokenId
+	toSerialize["transfer_from_address"] = o.TransferFromAddress
+	toSerialize["transfer_to_address"] = o.TransferToAddress
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesTransferItemDto) UnmarshalJSON(bytes []byte) (err error) {

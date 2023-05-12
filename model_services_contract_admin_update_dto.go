@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesContractAdminUpdateDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesContractAdminUpdateDto{}
+
 // ServicesContractAdminUpdateDto struct for ServicesContractAdminUpdateDto
 type ServicesContractAdminUpdateDto struct {
 	// Chain           string `form:\"chain\" json:\"chain\" binding:\"required,oneof=conflux conflux_test\"` ContractAddress string `form:\"contract_address\" json:\"contract_address\" binding:\"required\"`
@@ -55,7 +58,7 @@ func (o *ServicesContractAdminUpdateDto) GetAdminAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractAdminUpdateDto) GetAdminAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.AdminAddress, true
 }
@@ -66,16 +69,22 @@ func (o *ServicesContractAdminUpdateDto) SetAdminAddress(v string) {
 }
 
 func (o ServicesContractAdminUpdateDto) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["admin_address"] = o.AdminAddress
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesContractAdminUpdateDto) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["admin_address"] = o.AdminAddress
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesContractAdminUpdateDto) UnmarshalJSON(bytes []byte) (err error) {

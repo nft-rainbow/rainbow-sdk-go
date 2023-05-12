@@ -13,7 +13,7 @@ package rainbowsdk
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -111,8 +111,8 @@ func (a *NFTsApiService) NftInfoExecute(r ApiNftInfoRequest) (*ServicesNFT, *htt
 	}
 
 	localVarPath := localBasePath + "/v1/nft/{address}/{token_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"token_id"+"}", url.PathEscape(parameterToString(r.tokenId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterValueToString(r.address, "address")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"token_id"+"}", url.PathEscape(parameterValueToString(r.tokenId, "tokenId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -138,7 +138,7 @@ func (a *NFTsApiService) NftInfoExecute(r ApiNftInfoRequest) (*ServicesNFT, *htt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -149,9 +149,9 @@ func (a *NFTsApiService) NftInfoExecute(r ApiNftInfoRequest) (*ServicesNFT, *htt
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -168,8 +168,8 @@ func (a *NFTsApiService) NftInfoExecute(r ApiNftInfoRequest) (*ServicesNFT, *htt
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -179,8 +179,8 @@ func (a *NFTsApiService) NftInfoExecute(r ApiNftInfoRequest) (*ServicesNFT, *htt
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -257,8 +257,8 @@ func (a *NFTsApiService) UpdateNftTokenUriExecute(r ApiUpdateNftTokenUriRequest)
 	}
 
 	localVarPath := localBasePath + "/v1/nft/{address}/{token_id}/tokenUri"
-	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterToString(r.address, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"token_id"+"}", url.PathEscape(parameterToString(r.tokenId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterValueToString(r.address, "address")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"token_id"+"}", url.PathEscape(parameterValueToString(r.tokenId, "tokenId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -287,7 +287,7 @@ func (a *NFTsApiService) UpdateNftTokenUriExecute(r ApiUpdateNftTokenUriRequest)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
 	// body params
 	localVarPostBody = r.req
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -300,9 +300,9 @@ func (a *NFTsApiService) UpdateNftTokenUriExecute(r ApiUpdateNftTokenUriRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -319,8 +319,8 @@ func (a *NFTsApiService) UpdateNftTokenUriExecute(r ApiUpdateNftTokenUriRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

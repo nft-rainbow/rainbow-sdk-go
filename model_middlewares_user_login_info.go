@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MiddlewaresUserLoginInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MiddlewaresUserLoginInfo{}
+
 // MiddlewaresUserLoginInfo struct for MiddlewaresUserLoginInfo
 type MiddlewaresUserLoginInfo struct {
 	Email string `json:"email"`
@@ -56,7 +59,7 @@ func (o *MiddlewaresUserLoginInfo) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresUserLoginInfo) GetEmailOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Email, true
 }
@@ -80,7 +83,7 @@ func (o *MiddlewaresUserLoginInfo) GetPassword() string {
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresUserLoginInfo) GetPasswordOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Password, true
 }
@@ -91,19 +94,23 @@ func (o *MiddlewaresUserLoginInfo) SetPassword(v string) {
 }
 
 func (o MiddlewaresUserLoginInfo) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MiddlewaresUserLoginInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["email"] = o.Email
-	}
-	if true {
-		toSerialize["password"] = o.Password
-	}
+	toSerialize["email"] = o.Email
+	toSerialize["password"] = o.Password
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *MiddlewaresUserLoginInfo) UnmarshalJSON(bytes []byte) (err error) {

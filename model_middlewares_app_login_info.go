@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MiddlewaresAppLoginInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MiddlewaresAppLoginInfo{}
+
 // MiddlewaresAppLoginInfo struct for MiddlewaresAppLoginInfo
 type MiddlewaresAppLoginInfo struct {
 	AppId string `json:"app_id"`
@@ -56,7 +59,7 @@ func (o *MiddlewaresAppLoginInfo) GetAppId() string {
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresAppLoginInfo) GetAppIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.AppId, true
 }
@@ -80,7 +83,7 @@ func (o *MiddlewaresAppLoginInfo) GetAppSecret() string {
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresAppLoginInfo) GetAppSecretOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.AppSecret, true
 }
@@ -91,19 +94,23 @@ func (o *MiddlewaresAppLoginInfo) SetAppSecret(v string) {
 }
 
 func (o MiddlewaresAppLoginInfo) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MiddlewaresAppLoginInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["app_id"] = o.AppId
-	}
-	if true {
-		toSerialize["app_secret"] = o.AppSecret
-	}
+	toSerialize["app_id"] = o.AppId
+	toSerialize["app_secret"] = o.AppSecret
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *MiddlewaresAppLoginInfo) UnmarshalJSON(bytes []byte) (err error) {

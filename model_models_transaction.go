@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsTransaction type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsTransaction{}
+
 // ModelsTransaction struct for ModelsTransaction
 type ModelsTransaction struct {
 	ChainId *int32 `json:"chainId,omitempty"`
@@ -40,7 +43,7 @@ type ModelsTransaction struct {
 	StorageCollateralized *float32 `json:"storageCollateralized,omitempty"`
 	StorageCoveredBySponsor *bool `json:"storageCoveredBySponsor,omitempty"`
 	StorageLimit *float32 `json:"storageLimit,omitempty"`
-	TaskType *int32 `json:"taskType,omitempty"`
+	TaskType *ModelsTaskType `json:"taskType,omitempty"`
 	To *string `json:"to,omitempty"`
 	TryReceiptCnt *int32 `json:"tryReceiptCnt,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
@@ -80,7 +83,7 @@ func (o *ModelsTransaction) GetChainId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetChainIdOk() (*int32, bool) {
 	if o == nil || isNil(o.ChainId) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChainId, true
 }
@@ -112,7 +115,7 @@ func (o *ModelsTransaction) GetChainType() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetChainTypeOk() (*int32, bool) {
 	if o == nil || isNil(o.ChainType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChainType, true
 }
@@ -144,7 +147,7 @@ func (o *ModelsTransaction) GetCreatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetCreatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
@@ -176,7 +179,7 @@ func (o *ModelsTransaction) GetData() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetDataOk() (*string, bool) {
 	if o == nil || isNil(o.Data) {
-    return nil, false
+		return nil, false
 	}
 	return o.Data, true
 }
@@ -208,7 +211,7 @@ func (o *ModelsTransaction) GetDeletedAt() GormDeletedAt {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetDeletedAtOk() (*GormDeletedAt, bool) {
 	if o == nil || isNil(o.DeletedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeletedAt, true
 }
@@ -240,7 +243,7 @@ func (o *ModelsTransaction) GetEpochHeight() float32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetEpochHeightOk() (*float32, bool) {
 	if o == nil || isNil(o.EpochHeight) {
-    return nil, false
+		return nil, false
 	}
 	return o.EpochHeight, true
 }
@@ -272,7 +275,7 @@ func (o *ModelsTransaction) GetEpochNumber() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetEpochNumberOk() (*int32, bool) {
 	if o == nil || isNil(o.EpochNumber) {
-    return nil, false
+		return nil, false
 	}
 	return o.EpochNumber, true
 }
@@ -304,7 +307,7 @@ func (o *ModelsTransaction) GetError() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetErrorOk() (*string, bool) {
 	if o == nil || isNil(o.Error) {
-    return nil, false
+		return nil, false
 	}
 	return o.Error, true
 }
@@ -336,7 +339,7 @@ func (o *ModelsTransaction) GetFrom() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetFromOk() (*string, bool) {
 	if o == nil || isNil(o.From) {
-    return nil, false
+		return nil, false
 	}
 	return o.From, true
 }
@@ -368,7 +371,7 @@ func (o *ModelsTransaction) GetGas() float32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetGasOk() (*float32, bool) {
 	if o == nil || isNil(o.Gas) {
-    return nil, false
+		return nil, false
 	}
 	return o.Gas, true
 }
@@ -400,7 +403,7 @@ func (o *ModelsTransaction) GetGasCoveredBySponsor() bool {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetGasCoveredBySponsorOk() (*bool, bool) {
 	if o == nil || isNil(o.GasCoveredBySponsor) {
-    return nil, false
+		return nil, false
 	}
 	return o.GasCoveredBySponsor, true
 }
@@ -432,7 +435,7 @@ func (o *ModelsTransaction) GetGasFee() float32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetGasFeeOk() (*float32, bool) {
 	if o == nil || isNil(o.GasFee) {
-    return nil, false
+		return nil, false
 	}
 	return o.GasFee, true
 }
@@ -464,7 +467,7 @@ func (o *ModelsTransaction) GetGasPrice() float32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetGasPriceOk() (*float32, bool) {
 	if o == nil || isNil(o.GasPrice) {
-    return nil, false
+		return nil, false
 	}
 	return o.GasPrice, true
 }
@@ -496,7 +499,7 @@ func (o *ModelsTransaction) GetHash() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetHashOk() (*string, bool) {
 	if o == nil || isNil(o.Hash) {
-    return nil, false
+		return nil, false
 	}
 	return o.Hash, true
 }
@@ -528,7 +531,7 @@ func (o *ModelsTransaction) GetId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetIdOk() (*int32, bool) {
 	if o == nil || isNil(o.Id) {
-    return nil, false
+		return nil, false
 	}
 	return o.Id, true
 }
@@ -560,7 +563,7 @@ func (o *ModelsTransaction) GetNonce() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetNonceOk() (*int32, bool) {
 	if o == nil || isNil(o.Nonce) {
-    return nil, false
+		return nil, false
 	}
 	return o.Nonce, true
 }
@@ -592,7 +595,7 @@ func (o *ModelsTransaction) GetPendingReason() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetPendingReasonOk() (*string, bool) {
 	if o == nil || isNil(o.PendingReason) {
-    return nil, false
+		return nil, false
 	}
 	return o.PendingReason, true
 }
@@ -624,7 +627,7 @@ func (o *ModelsTransaction) GetPreHashs() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetPreHashsOk() (*string, bool) {
 	if o == nil || isNil(o.PreHashs) {
-    return nil, false
+		return nil, false
 	}
 	return o.PreHashs, true
 }
@@ -656,7 +659,7 @@ func (o *ModelsTransaction) GetStage() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetStageOk() (*int32, bool) {
 	if o == nil || isNil(o.Stage) {
-    return nil, false
+		return nil, false
 	}
 	return o.Stage, true
 }
@@ -688,7 +691,7 @@ func (o *ModelsTransaction) GetState() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetStateOk() (*int32, bool) {
 	if o == nil || isNil(o.State) {
-    return nil, false
+		return nil, false
 	}
 	return o.State, true
 }
@@ -720,7 +723,7 @@ func (o *ModelsTransaction) GetStatus() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetStatusOk() (*int32, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -752,7 +755,7 @@ func (o *ModelsTransaction) GetStorageCollateralized() float32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetStorageCollateralizedOk() (*float32, bool) {
 	if o == nil || isNil(o.StorageCollateralized) {
-    return nil, false
+		return nil, false
 	}
 	return o.StorageCollateralized, true
 }
@@ -784,7 +787,7 @@ func (o *ModelsTransaction) GetStorageCoveredBySponsor() bool {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetStorageCoveredBySponsorOk() (*bool, bool) {
 	if o == nil || isNil(o.StorageCoveredBySponsor) {
-    return nil, false
+		return nil, false
 	}
 	return o.StorageCoveredBySponsor, true
 }
@@ -816,7 +819,7 @@ func (o *ModelsTransaction) GetStorageLimit() float32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetStorageLimitOk() (*float32, bool) {
 	if o == nil || isNil(o.StorageLimit) {
-    return nil, false
+		return nil, false
 	}
 	return o.StorageLimit, true
 }
@@ -836,9 +839,9 @@ func (o *ModelsTransaction) SetStorageLimit(v float32) {
 }
 
 // GetTaskType returns the TaskType field value if set, zero value otherwise.
-func (o *ModelsTransaction) GetTaskType() int32 {
+func (o *ModelsTransaction) GetTaskType() ModelsTaskType {
 	if o == nil || isNil(o.TaskType) {
-		var ret int32
+		var ret ModelsTaskType
 		return ret
 	}
 	return *o.TaskType
@@ -846,9 +849,9 @@ func (o *ModelsTransaction) GetTaskType() int32 {
 
 // GetTaskTypeOk returns a tuple with the TaskType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelsTransaction) GetTaskTypeOk() (*int32, bool) {
+func (o *ModelsTransaction) GetTaskTypeOk() (*ModelsTaskType, bool) {
 	if o == nil || isNil(o.TaskType) {
-    return nil, false
+		return nil, false
 	}
 	return o.TaskType, true
 }
@@ -862,8 +865,8 @@ func (o *ModelsTransaction) HasTaskType() bool {
 	return false
 }
 
-// SetTaskType gets a reference to the given int32 and assigns it to the TaskType field.
-func (o *ModelsTransaction) SetTaskType(v int32) {
+// SetTaskType gets a reference to the given ModelsTaskType and assigns it to the TaskType field.
+func (o *ModelsTransaction) SetTaskType(v ModelsTaskType) {
 	o.TaskType = &v
 }
 
@@ -880,7 +883,7 @@ func (o *ModelsTransaction) GetTo() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetToOk() (*string, bool) {
 	if o == nil || isNil(o.To) {
-    return nil, false
+		return nil, false
 	}
 	return o.To, true
 }
@@ -912,7 +915,7 @@ func (o *ModelsTransaction) GetTryReceiptCnt() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetTryReceiptCntOk() (*int32, bool) {
 	if o == nil || isNil(o.TryReceiptCnt) {
-    return nil, false
+		return nil, false
 	}
 	return o.TryReceiptCnt, true
 }
@@ -944,7 +947,7 @@ func (o *ModelsTransaction) GetUpdatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
@@ -976,7 +979,7 @@ func (o *ModelsTransaction) GetValue() float32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransaction) GetValueOk() (*float32, bool) {
 	if o == nil || isNil(o.Value) {
-    return nil, false
+		return nil, false
 	}
 	return o.Value, true
 }
@@ -996,6 +999,14 @@ func (o *ModelsTransaction) SetValue(v float32) {
 }
 
 func (o ModelsTransaction) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsTransaction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ChainId) {
 		toSerialize["chainId"] = o.ChainId
@@ -1089,7 +1100,7 @@ func (o ModelsTransaction) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsTransaction) UnmarshalJSON(bytes []byte) (err error) {

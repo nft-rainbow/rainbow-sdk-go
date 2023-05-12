@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesAppMintByMetaPartsDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesAppMintByMetaPartsDto{}
+
 // ServicesAppMintByMetaPartsDto struct for ServicesAppMintByMetaPartsDto
 type ServicesAppMintByMetaPartsDto struct {
 	// amount on same token id, only erc1155 contract could set large than 1, others set null or 1
@@ -67,7 +70,7 @@ func (o *ServicesAppMintByMetaPartsDto) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppMintByMetaPartsDto) GetAmountOk() (*int32, bool) {
 	if o == nil || isNil(o.Amount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Amount, true
 }
@@ -99,7 +102,7 @@ func (o *ServicesAppMintByMetaPartsDto) GetAnimationUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppMintByMetaPartsDto) GetAnimationUrlOk() (*string, bool) {
 	if o == nil || isNil(o.AnimationUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.AnimationUrl, true
 }
@@ -131,7 +134,7 @@ func (o *ServicesAppMintByMetaPartsDto) GetAttributes() []ModelsExposedMetadataA
 // and a boolean to check if the value has been set.
 func (o *ServicesAppMintByMetaPartsDto) GetAttributesOk() ([]ModelsExposedMetadataAttribute, bool) {
 	if o == nil || isNil(o.Attributes) {
-    return nil, false
+		return nil, false
 	}
 	return o.Attributes, true
 }
@@ -164,7 +167,7 @@ func (o *ServicesAppMintByMetaPartsDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppMintByMetaPartsDto) GetChainOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Chain, true
 }
@@ -187,7 +190,7 @@ func (o *ServicesAppMintByMetaPartsDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppMintByMetaPartsDto) GetContractAddressOk() (*string, bool) {
 	if o == nil || isNil(o.ContractAddress) {
-    return nil, false
+		return nil, false
 	}
 	return o.ContractAddress, true
 }
@@ -219,7 +222,7 @@ func (o *ServicesAppMintByMetaPartsDto) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppMintByMetaPartsDto) GetDescriptionOk() (*string, bool) {
 	if o == nil || isNil(o.Description) {
-    return nil, false
+		return nil, false
 	}
 	return o.Description, true
 }
@@ -252,7 +255,7 @@ func (o *ServicesAppMintByMetaPartsDto) GetFileUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppMintByMetaPartsDto) GetFileUrlOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.FileUrl, true
 }
@@ -276,7 +279,7 @@ func (o *ServicesAppMintByMetaPartsDto) GetMintToAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppMintByMetaPartsDto) GetMintToAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.MintToAddress, true
 }
@@ -300,7 +303,7 @@ func (o *ServicesAppMintByMetaPartsDto) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppMintByMetaPartsDto) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -323,7 +326,7 @@ func (o *ServicesAppMintByMetaPartsDto) GetNumber() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppMintByMetaPartsDto) GetNumberOk() (*int32, bool) {
 	if o == nil || isNil(o.Number) {
-    return nil, false
+		return nil, false
 	}
 	return o.Number, true
 }
@@ -343,6 +346,14 @@ func (o *ServicesAppMintByMetaPartsDto) SetNumber(v int32) {
 }
 
 func (o ServicesAppMintByMetaPartsDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesAppMintByMetaPartsDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
@@ -353,24 +364,16 @@ func (o ServicesAppMintByMetaPartsDto) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Attributes) {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
+	toSerialize["chain"] = o.Chain
 	if !isNil(o.ContractAddress) {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if true {
-		toSerialize["file_url"] = o.FileUrl
-	}
-	if true {
-		toSerialize["mint_to_address"] = o.MintToAddress
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["file_url"] = o.FileUrl
+	toSerialize["mint_to_address"] = o.MintToAddress
+	toSerialize["name"] = o.Name
 	if !isNil(o.Number) {
 		toSerialize["number"] = o.Number
 	}
@@ -379,7 +382,7 @@ func (o ServicesAppMintByMetaPartsDto) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesAppMintByMetaPartsDto) UnmarshalJSON(bytes []byte) (err error) {

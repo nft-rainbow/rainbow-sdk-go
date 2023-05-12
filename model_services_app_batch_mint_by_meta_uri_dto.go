@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesAppBatchMintByMetaUriDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesAppBatchMintByMetaUriDto{}
+
 // ServicesAppBatchMintByMetaUriDto struct for ServicesAppBatchMintByMetaUriDto
 type ServicesAppBatchMintByMetaUriDto struct {
 	Chain string `json:"chain"`
@@ -58,7 +61,7 @@ func (o *ServicesAppBatchMintByMetaUriDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppBatchMintByMetaUriDto) GetChainOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Chain, true
 }
@@ -82,7 +85,7 @@ func (o *ServicesAppBatchMintByMetaUriDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesAppBatchMintByMetaUriDto) GetContractAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContractAddress, true
 }
@@ -106,7 +109,7 @@ func (o *ServicesAppBatchMintByMetaUriDto) GetMintItems() []ServicesMintItemDto 
 // and a boolean to check if the value has been set.
 func (o *ServicesAppBatchMintByMetaUriDto) GetMintItemsOk() ([]ServicesMintItemDto, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return o.MintItems, true
 }
@@ -117,22 +120,24 @@ func (o *ServicesAppBatchMintByMetaUriDto) SetMintItems(v []ServicesMintItemDto)
 }
 
 func (o ServicesAppBatchMintByMetaUriDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesAppBatchMintByMetaUriDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
-	if true {
-		toSerialize["contract_address"] = o.ContractAddress
-	}
-	if true {
-		toSerialize["mint_items"] = o.MintItems
-	}
+	toSerialize["chain"] = o.Chain
+	toSerialize["contract_address"] = o.ContractAddress
+	toSerialize["mint_items"] = o.MintItems
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesAppBatchMintByMetaUriDto) UnmarshalJSON(bytes []byte) (err error) {

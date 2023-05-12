@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesBurnDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesBurnDto{}
+
 // ServicesBurnDto struct for ServicesBurnDto
 type ServicesBurnDto struct {
 	Amount *int32 `json:"amount,omitempty"`
@@ -61,7 +64,7 @@ func (o *ServicesBurnDto) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetAmountOk() (*int32, bool) {
 	if o == nil || isNil(o.Amount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Amount, true
 }
@@ -94,7 +97,7 @@ func (o *ServicesBurnDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetChainOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Chain, true
 }
@@ -118,7 +121,7 @@ func (o *ServicesBurnDto) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetContractAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContractAddress, true
 }
@@ -142,7 +145,7 @@ func (o *ServicesBurnDto) GetContractType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetContractTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.ContractType, true
 }
@@ -166,7 +169,7 @@ func (o *ServicesBurnDto) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetTokenIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.TokenId, true
 }
@@ -189,7 +192,7 @@ func (o *ServicesBurnDto) GetUser() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetUserOk() (*string, bool) {
 	if o == nil || isNil(o.User) {
-    return nil, false
+		return nil, false
 	}
 	return o.User, true
 }
@@ -209,22 +212,22 @@ func (o *ServicesBurnDto) SetUser(v string) {
 }
 
 func (o ServicesBurnDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesBurnDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
-	if true {
-		toSerialize["contract_address"] = o.ContractAddress
-	}
-	if true {
-		toSerialize["contract_type"] = o.ContractType
-	}
-	if true {
-		toSerialize["token_id"] = o.TokenId
-	}
+	toSerialize["chain"] = o.Chain
+	toSerialize["contract_address"] = o.ContractAddress
+	toSerialize["contract_type"] = o.ContractType
+	toSerialize["token_id"] = o.TokenId
 	if !isNil(o.User) {
 		toSerialize["user"] = o.User
 	}
@@ -233,7 +236,7 @@ func (o ServicesBurnDto) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesBurnDto) UnmarshalJSON(bytes []byte) (err error) {

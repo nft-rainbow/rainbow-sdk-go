@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RainbowErrorsRainbowErrorDetailInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RainbowErrorsRainbowErrorDetailInfo{}
+
 // RainbowErrorsRainbowErrorDetailInfo struct for RainbowErrorsRainbowErrorDetailInfo
 type RainbowErrorsRainbowErrorDetailInfo struct {
 	Code *int32 `json:"code,omitempty"`
@@ -54,7 +57,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetCode() int32 {
 // and a boolean to check if the value has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetCodeOk() (*int32, bool) {
 	if o == nil || isNil(o.Code) {
-    return nil, false
+		return nil, false
 	}
 	return o.Code, true
 }
@@ -86,7 +89,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetData() string {
 // and a boolean to check if the value has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetDataOk() (*string, bool) {
 	if o == nil || isNil(o.Data) {
-    return nil, false
+		return nil, false
 	}
 	return o.Data, true
 }
@@ -118,7 +121,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetMessageOk() (*string, bool) {
 	if o == nil || isNil(o.Message) {
-    return nil, false
+		return nil, false
 	}
 	return o.Message, true
 }
@@ -138,6 +141,14 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) SetMessage(v string) {
 }
 
 func (o RainbowErrorsRainbowErrorDetailInfo) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o RainbowErrorsRainbowErrorDetailInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Code) {
 		toSerialize["code"] = o.Code
@@ -153,7 +164,7 @@ func (o RainbowErrorsRainbowErrorDetailInfo) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *RainbowErrorsRainbowErrorDetailInfo) UnmarshalJSON(bytes []byte) (err error) {

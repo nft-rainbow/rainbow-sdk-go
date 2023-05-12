@@ -378,9 +378,17 @@ paths:
       tags:
       - Contract
     post:
-      description: Deploy a ERC721 or ERC1155 contract.
+      description: |-
+        Deploy a ERC721 or ERC1155 contract.
+        Deploy a ERC721 or ERC1155 contract.
       operationId: DeployContract
       parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
       - description: Bearer Open_JWT
         in: header
         name: Authorization
@@ -415,8 +423,10 @@ paths:
           description: Internal Server error
       security:
       - ApiKeyAuth: []
+      - ApiKeyAuth: []
       summary: Deploy contract
       tags:
+      - Contract
       - Contract
       x-codegen-request-body-name: contract_info
   /v1/contracts/detail/{id}:
@@ -579,6 +589,11 @@ paths:
         required: true
         schema:
           type: string
+      - description: the returned max token id will ignore the token ids
+        in: query
+        name: ignore_token_ids
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -683,7 +698,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/services.SetSponsorResp'
-          description: Transaction id" "success
+          description: "Transaction id\"\t\"success"
         "400":
           content:
             application/json:
@@ -1197,9 +1212,47 @@ paths:
       - Metadata
   /v1/mints/:
     get:
-      description: Get the NFT list containing the NFTs minted in the specified app
+      description: |-
+        Get the NFT list containing the NFTs minted in the specified app
+        Get the NFT list containing the NFTs minted in the specified app
       operationId: ListMints
       parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: page
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: limit
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: contract
+        in: query
+        name: contract
+        schema:
+          type: string
+      - description: mint_to
+        in: query
+        name: mint_to
+        schema:
+          type: string
+      - description: status
+        in: query
+        name: status
+        schema:
+          type: integer
+      - description: chain
+        in: query
+        name: chain
+        schema:
+          type: string
       - description: Bearer Open_JWT
         in: header
         name: Authorization
@@ -1251,8 +1304,10 @@ paths:
           description: Internal Server error
       security:
       - ApiKeyAuth: []
+      - ApiKeyAuth: []
       summary: Obtain NFT list
       tags:
+      - Mints
       - Mints
     post:
       description: Mint a NFT by providing a metadata url
@@ -2477,6 +2532,32 @@ components:
             $ref: '#/components/schemas/models.MintTask'
           type: array
       type: object
+    models.TaskType:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      type: integer
+      x-enum-varnames:
+      - TASK_TYPE_DEPLOY
+      - TASK_TYPE_MINT
+      - TASK_TYPE_MINT_BATCH
+      - TASK_TYPE_TRANSFER
+      - TASK_TYPE_TRANSFER_BATCH
+      - TASK_TYPE_BURN
+      - TASK_TYPE_BURN_BATCH
+      - TASK_TYPE_UPDATE_ADMIN
+      - TASK_TYPE_SPONSOR_BALANCE
+      - TASK_TYPE_SPONSOR_PRIVILEGE
+      - TASK_TYPE_UPDATE_TOKEN_URI
     models.Transaction:
       example:
         data: data
@@ -2488,7 +2569,7 @@ components:
         chainType: 6
         error: error
         epochHeight: 1.4658129805029452
-        taskType: 1
+        taskType: null
         updated_at: updated_at
         pending_reason: pending_reason
         gas: 5.637376656633329
@@ -2496,10 +2577,10 @@ components:
         id: 9
         state: 4
         storageCoveredBySponsor: true
-        value: 7.457744773683766
+        value: 6.84685269835264
         gasPrice: 7.061401241503109
         gasFee: 2.3021358869347655
-        tryReceiptCnt: 6
+        tryReceiptCnt: 1
         deleted_at:
           valid: true
           time: time
@@ -2560,7 +2641,7 @@ components:
         storageLimit:
           type: number
         taskType:
-          type: integer
+          $ref: '#/components/schemas/models.TaskType'
         to:
           type: string
         tryReceiptCnt:
@@ -2678,6 +2759,56 @@ components:
             $ref: '#/components/schemas/models.TransferTask'
           type: array
       type: object
+    models.TxState:
+      enum:
+      - -10
+      - -9
+      - -8
+      - -7
+      - -6
+      - -5
+      - -4
+      - -3
+      - -2
+      - -1
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      type: integer
+      x-enum-comments:
+        TX_STATE_CONFIRMED: "4"
+        TX_STATE_EXECUTED: "3"
+        TX_STATE_EXECUTE_FAILED: "-2"
+        TX_STATE_INIT: "0"
+        TX_STATE_PENDING_RETRY: "-5"
+        TX_STATE_PENDING_RETRY_UPPER_GAS: "-6"
+        TX_STATE_PENDING_TX_EMPTY_RETRY: "-7"
+        TX_STATE_PENDING_WAIT: -10; pending because of notEnoughCash or futureNonce
+        TX_STATE_POPULATED: "1"
+        TX_STATE_READY_OR_INSERTED: "2"
+        TX_STATE_SEND_FAILED: "-1"
+        TX_STATE_SEND_FAILED_RETRY: "-3"
+        TX_STATE_SEND_FAILED_RETRY_UPPER_GAS: "-4"
+        _RESERVE_1: "-9"
+        _RESERVE_2: "-8"
+      x-enum-varnames:
+      - TX_STATE_PENDING_WAIT
+      - _RESERVE_1
+      - _RESERVE_2
+      - TX_STATE_PENDING_TX_EMPTY_RETRY
+      - TX_STATE_PENDING_RETRY_UPPER_GAS
+      - TX_STATE_PENDING_RETRY
+      - TX_STATE_SEND_FAILED_RETRY_UPPER_GAS
+      - TX_STATE_SEND_FAILED_RETRY
+      - TX_STATE_EXECUTE_FAILED
+      - TX_STATE_SEND_FAILED
+      - TX_STATE_INIT
+      - TX_STATE_POPULATED
+      - TX_STATE_READY_OR_INSERTED
+      - TX_STATE_EXECUTED
+      - TX_STATE_CONFIRMED
     multipart.FileHeader:
       properties:
         filename:
@@ -3111,7 +3242,7 @@ components:
         error_msg: error_msg
         state_msg: state_msg
         is_success: true
-        state_code: 0
+        state_code: null
         hash: hash
       properties:
         error_msg:
@@ -3123,7 +3254,7 @@ components:
         is_success:
           type: boolean
         state_code:
-          type: integer
+          $ref: '#/components/schemas/models.TxState'
         state_msg:
           type: string
       type: object

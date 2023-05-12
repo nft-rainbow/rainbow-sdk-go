@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsTransferTask type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsTransferTask{}
+
 // ModelsTransferTask struct for ModelsTransferTask
 type ModelsTransferTask struct {
 	Amount *int32 `json:"amount,omitempty"`
@@ -69,7 +72,7 @@ func (o *ModelsTransferTask) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetAmountOk() (*int32, bool) {
 	if o == nil || isNil(o.Amount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Amount, true
 }
@@ -101,7 +104,7 @@ func (o *ModelsTransferTask) GetAppId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetAppIdOk() (*int32, bool) {
 	if o == nil || isNil(o.AppId) {
-    return nil, false
+		return nil, false
 	}
 	return o.AppId, true
 }
@@ -133,7 +136,7 @@ func (o *ModelsTransferTask) GetChainId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetChainIdOk() (*int32, bool) {
 	if o == nil || isNil(o.ChainId) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChainId, true
 }
@@ -165,7 +168,7 @@ func (o *ModelsTransferTask) GetChainType() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetChainTypeOk() (*int32, bool) {
 	if o == nil || isNil(o.ChainType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChainType, true
 }
@@ -197,7 +200,7 @@ func (o *ModelsTransferTask) GetContract() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetContractOk() (*string, bool) {
 	if o == nil || isNil(o.Contract) {
-    return nil, false
+		return nil, false
 	}
 	return o.Contract, true
 }
@@ -229,7 +232,7 @@ func (o *ModelsTransferTask) GetContractType() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetContractTypeOk() (*int32, bool) {
 	if o == nil || isNil(o.ContractType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ContractType, true
 }
@@ -261,7 +264,7 @@ func (o *ModelsTransferTask) GetCreatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetCreatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
@@ -293,7 +296,7 @@ func (o *ModelsTransferTask) GetDeletedAt() GormDeletedAt {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetDeletedAtOk() (*GormDeletedAt, bool) {
 	if o == nil || isNil(o.DeletedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeletedAt, true
 }
@@ -325,7 +328,7 @@ func (o *ModelsTransferTask) GetError() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetErrorOk() (*string, bool) {
 	if o == nil || isNil(o.Error) {
-    return nil, false
+		return nil, false
 	}
 	return o.Error, true
 }
@@ -357,7 +360,7 @@ func (o *ModelsTransferTask) GetHash() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetHashOk() (*string, bool) {
 	if o == nil || isNil(o.Hash) {
-    return nil, false
+		return nil, false
 	}
 	return o.Hash, true
 }
@@ -389,7 +392,7 @@ func (o *ModelsTransferTask) GetId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetIdOk() (*int32, bool) {
 	if o == nil || isNil(o.Id) {
-    return nil, false
+		return nil, false
 	}
 	return o.Id, true
 }
@@ -421,7 +424,7 @@ func (o *ModelsTransferTask) GetStatus() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetStatusOk() (*int32, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -453,7 +456,7 @@ func (o *ModelsTransferTask) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetTokenIdOk() (*string, bool) {
 	if o == nil || isNil(o.TokenId) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokenId, true
 }
@@ -485,7 +488,7 @@ func (o *ModelsTransferTask) GetTransferFrom() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetTransferFromOk() (*string, bool) {
 	if o == nil || isNil(o.TransferFrom) {
-    return nil, false
+		return nil, false
 	}
 	return o.TransferFrom, true
 }
@@ -517,7 +520,7 @@ func (o *ModelsTransferTask) GetTransferTo() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetTransferToOk() (*string, bool) {
 	if o == nil || isNil(o.TransferTo) {
-    return nil, false
+		return nil, false
 	}
 	return o.TransferTo, true
 }
@@ -549,7 +552,7 @@ func (o *ModelsTransferTask) GetTxId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetTxIdOk() (*int32, bool) {
 	if o == nil || isNil(o.TxId) {
-    return nil, false
+		return nil, false
 	}
 	return o.TxId, true
 }
@@ -581,7 +584,7 @@ func (o *ModelsTransferTask) GetUpdatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTask) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
@@ -601,6 +604,14 @@ func (o *ModelsTransferTask) SetUpdatedAt(v string) {
 }
 
 func (o ModelsTransferTask) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsTransferTask) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
@@ -658,7 +669,7 @@ func (o ModelsTransferTask) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsTransferTask) UnmarshalJSON(bytes []byte) (err error) {

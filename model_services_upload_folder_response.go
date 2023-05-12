@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesUploadFolderResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesUploadFolderResponse{}
+
 // ServicesUploadFolderResponse struct for ServicesUploadFolderResponse
 type ServicesUploadFolderResponse struct {
 	FileNum *int32 `json:"file_num,omitempty"`
@@ -53,7 +56,7 @@ func (o *ServicesUploadFolderResponse) GetFileNum() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFolderResponse) GetFileNumOk() (*int32, bool) {
 	if o == nil || isNil(o.FileNum) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileNum, true
 }
@@ -85,7 +88,7 @@ func (o *ServicesUploadFolderResponse) GetFolderUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFolderResponse) GetFolderUrlOk() (*string, bool) {
 	if o == nil || isNil(o.FolderUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.FolderUrl, true
 }
@@ -105,6 +108,14 @@ func (o *ServicesUploadFolderResponse) SetFolderUrl(v string) {
 }
 
 func (o ServicesUploadFolderResponse) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesUploadFolderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.FileNum) {
 		toSerialize["file_num"] = o.FileNum
@@ -117,7 +128,7 @@ func (o ServicesUploadFolderResponse) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesUploadFolderResponse) UnmarshalJSON(bytes []byte) (err error) {

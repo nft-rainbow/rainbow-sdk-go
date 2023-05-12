@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsMintTaskQueryResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsMintTaskQueryResult{}
+
 // ModelsMintTaskQueryResult struct for ModelsMintTaskQueryResult
 type ModelsMintTaskQueryResult struct {
 	Count *int32 `json:"count,omitempty"`
@@ -53,7 +56,7 @@ func (o *ModelsMintTaskQueryResult) GetCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTaskQueryResult) GetCountOk() (*int32, bool) {
 	if o == nil || isNil(o.Count) {
-    return nil, false
+		return nil, false
 	}
 	return o.Count, true
 }
@@ -85,7 +88,7 @@ func (o *ModelsMintTaskQueryResult) GetItems() []ModelsMintTask {
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTaskQueryResult) GetItemsOk() ([]ModelsMintTask, bool) {
 	if o == nil || isNil(o.Items) {
-    return nil, false
+		return nil, false
 	}
 	return o.Items, true
 }
@@ -105,6 +108,14 @@ func (o *ModelsMintTaskQueryResult) SetItems(v []ModelsMintTask) {
 }
 
 func (o ModelsMintTaskQueryResult) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsMintTaskQueryResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Count) {
 		toSerialize["count"] = o.Count
@@ -117,7 +128,7 @@ func (o ModelsMintTaskQueryResult) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsMintTaskQueryResult) UnmarshalJSON(bytes []byte) (err error) {

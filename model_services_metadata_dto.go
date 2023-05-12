@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesMetadataDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesMetadataDto{}
+
 // ServicesMetadataDto struct for ServicesMetadataDto
 type ServicesMetadataDto struct {
 	AnimationUrl *string `json:"animation_url,omitempty"`
@@ -60,7 +63,7 @@ func (o *ServicesMetadataDto) GetAnimationUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetAnimationUrlOk() (*string, bool) {
 	if o == nil || isNil(o.AnimationUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.AnimationUrl, true
 }
@@ -92,7 +95,7 @@ func (o *ServicesMetadataDto) GetAttributes() []ModelsExposedMetadataAttribute {
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetAttributesOk() ([]ModelsExposedMetadataAttribute, bool) {
 	if o == nil || isNil(o.Attributes) {
-    return nil, false
+		return nil, false
 	}
 	return o.Attributes, true
 }
@@ -125,7 +128,7 @@ func (o *ServicesMetadataDto) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Description, true
 }
@@ -148,7 +151,7 @@ func (o *ServicesMetadataDto) GetExternalLink() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetExternalLinkOk() (*string, bool) {
 	if o == nil || isNil(o.ExternalLink) {
-    return nil, false
+		return nil, false
 	}
 	return o.ExternalLink, true
 }
@@ -181,7 +184,7 @@ func (o *ServicesMetadataDto) GetImage() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetImageOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Image, true
 }
@@ -205,7 +208,7 @@ func (o *ServicesMetadataDto) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMetadataDto) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -216,6 +219,14 @@ func (o *ServicesMetadataDto) SetName(v string) {
 }
 
 func (o ServicesMetadataDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesMetadataDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AnimationUrl) {
 		toSerialize["animation_url"] = o.AnimationUrl
@@ -223,24 +234,18 @@ func (o ServicesMetadataDto) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Attributes) {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
+	toSerialize["description"] = o.Description
 	if !isNil(o.ExternalLink) {
 		toSerialize["external_link"] = o.ExternalLink
 	}
-	if true {
-		toSerialize["image"] = o.Image
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["image"] = o.Image
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesMetadataDto) UnmarshalJSON(bytes []byte) (err error) {

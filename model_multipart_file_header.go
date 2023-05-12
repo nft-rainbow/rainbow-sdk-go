@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MultipartFileHeader type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MultipartFileHeader{}
+
 // MultipartFileHeader struct for MultipartFileHeader
 type MultipartFileHeader struct {
 	Filename *string `json:"filename,omitempty"`
@@ -54,7 +57,7 @@ func (o *MultipartFileHeader) GetFilename() string {
 // and a boolean to check if the value has been set.
 func (o *MultipartFileHeader) GetFilenameOk() (*string, bool) {
 	if o == nil || isNil(o.Filename) {
-    return nil, false
+		return nil, false
 	}
 	return o.Filename, true
 }
@@ -86,7 +89,7 @@ func (o *MultipartFileHeader) GetHeader() map[string][]string {
 // and a boolean to check if the value has been set.
 func (o *MultipartFileHeader) GetHeaderOk() (*map[string][]string, bool) {
 	if o == nil || isNil(o.Header) {
-    return nil, false
+		return nil, false
 	}
 	return o.Header, true
 }
@@ -118,7 +121,7 @@ func (o *MultipartFileHeader) GetSize() int32 {
 // and a boolean to check if the value has been set.
 func (o *MultipartFileHeader) GetSizeOk() (*int32, bool) {
 	if o == nil || isNil(o.Size) {
-    return nil, false
+		return nil, false
 	}
 	return o.Size, true
 }
@@ -138,6 +141,14 @@ func (o *MultipartFileHeader) SetSize(v int32) {
 }
 
 func (o MultipartFileHeader) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o MultipartFileHeader) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Filename) {
 		toSerialize["filename"] = o.Filename
@@ -153,7 +164,7 @@ func (o MultipartFileHeader) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *MultipartFileHeader) UnmarshalJSON(bytes []byte) (err error) {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsContract type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsContract{}
+
 // ModelsContract struct for ModelsContract
 type ModelsContract struct {
 	Address *string `json:"address,omitempty"`
@@ -76,7 +79,7 @@ func (o *ModelsContract) GetAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetAddressOk() (*string, bool) {
 	if o == nil || isNil(o.Address) {
-    return nil, false
+		return nil, false
 	}
 	return o.Address, true
 }
@@ -108,7 +111,7 @@ func (o *ModelsContract) GetAppId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetAppIdOk() (*int32, bool) {
 	if o == nil || isNil(o.AppId) {
-    return nil, false
+		return nil, false
 	}
 	return o.AppId, true
 }
@@ -140,7 +143,7 @@ func (o *ModelsContract) GetAutoSponsor() bool {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetAutoSponsorOk() (*bool, bool) {
 	if o == nil || isNil(o.AutoSponsor) {
-    return nil, false
+		return nil, false
 	}
 	return o.AutoSponsor, true
 }
@@ -172,7 +175,7 @@ func (o *ModelsContract) GetBaseUri() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetBaseUriOk() (*string, bool) {
 	if o == nil || isNil(o.BaseUri) {
-    return nil, false
+		return nil, false
 	}
 	return o.BaseUri, true
 }
@@ -204,7 +207,7 @@ func (o *ModelsContract) GetChainId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetChainIdOk() (*int32, bool) {
 	if o == nil || isNil(o.ChainId) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChainId, true
 }
@@ -236,7 +239,7 @@ func (o *ModelsContract) GetChainType() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetChainTypeOk() (*int32, bool) {
 	if o == nil || isNil(o.ChainType) {
-    return nil, false
+		return nil, false
 	}
 	return o.ChainType, true
 }
@@ -268,7 +271,7 @@ func (o *ModelsContract) GetCreatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetCreatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
@@ -300,7 +303,7 @@ func (o *ModelsContract) GetDeletedAt() GormDeletedAt {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetDeletedAtOk() (*GormDeletedAt, bool) {
 	if o == nil || isNil(o.DeletedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeletedAt, true
 }
@@ -332,7 +335,7 @@ func (o *ModelsContract) GetError() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetErrorOk() (*string, bool) {
 	if o == nil || isNil(o.Error) {
-    return nil, false
+		return nil, false
 	}
 	return o.Error, true
 }
@@ -364,7 +367,7 @@ func (o *ModelsContract) GetHash() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetHashOk() (*string, bool) {
 	if o == nil || isNil(o.Hash) {
-    return nil, false
+		return nil, false
 	}
 	return o.Hash, true
 }
@@ -396,7 +399,7 @@ func (o *ModelsContract) GetId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetIdOk() (*int32, bool) {
 	if o == nil || isNil(o.Id) {
-    return nil, false
+		return nil, false
 	}
 	return o.Id, true
 }
@@ -428,7 +431,7 @@ func (o *ModelsContract) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
-    return nil, false
+		return nil, false
 	}
 	return o.Name, true
 }
@@ -460,7 +463,7 @@ func (o *ModelsContract) GetOwnerAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetOwnerAddressOk() (*string, bool) {
 	if o == nil || isNil(o.OwnerAddress) {
-    return nil, false
+		return nil, false
 	}
 	return o.OwnerAddress, true
 }
@@ -492,7 +495,7 @@ func (o *ModelsContract) GetRoyaltiesAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetRoyaltiesAddressOk() (*string, bool) {
 	if o == nil || isNil(o.RoyaltiesAddress) {
-    return nil, false
+		return nil, false
 	}
 	return o.RoyaltiesAddress, true
 }
@@ -524,7 +527,7 @@ func (o *ModelsContract) GetRoyaltiesBps() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetRoyaltiesBpsOk() (*int32, bool) {
 	if o == nil || isNil(o.RoyaltiesBps) {
-    return nil, false
+		return nil, false
 	}
 	return o.RoyaltiesBps, true
 }
@@ -556,7 +559,7 @@ func (o *ModelsContract) GetStatus() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetStatusOk() (*int32, bool) {
 	if o == nil || isNil(o.Status) {
-    return nil, false
+		return nil, false
 	}
 	return o.Status, true
 }
@@ -588,7 +591,7 @@ func (o *ModelsContract) GetSymbol() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetSymbolOk() (*string, bool) {
 	if o == nil || isNil(o.Symbol) {
-    return nil, false
+		return nil, false
 	}
 	return o.Symbol, true
 }
@@ -620,7 +623,7 @@ func (o *ModelsContract) GetTokensTransferableByAdmin() bool {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTokensTransferableByAdminOk() (*bool, bool) {
 	if o == nil || isNil(o.TokensTransferableByAdmin) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokensTransferableByAdmin, true
 }
@@ -652,7 +655,7 @@ func (o *ModelsContract) GetTokensTransferableByUser() bool {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTokensTransferableByUserOk() (*bool, bool) {
 	if o == nil || isNil(o.TokensTransferableByUser) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokensTransferableByUser, true
 }
@@ -684,7 +687,7 @@ func (o *ModelsContract) GetTransferCooldownTime() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTransferCooldownTimeOk() (*int32, bool) {
 	if o == nil || isNil(o.TransferCooldownTime) {
-    return nil, false
+		return nil, false
 	}
 	return o.TransferCooldownTime, true
 }
@@ -716,7 +719,7 @@ func (o *ModelsContract) GetTxId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTxIdOk() (*int32, bool) {
 	if o == nil || isNil(o.TxId) {
-    return nil, false
+		return nil, false
 	}
 	return o.TxId, true
 }
@@ -748,7 +751,7 @@ func (o *ModelsContract) GetType() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetTypeOk() (*int32, bool) {
 	if o == nil || isNil(o.Type) {
-    return nil, false
+		return nil, false
 	}
 	return o.Type, true
 }
@@ -780,7 +783,7 @@ func (o *ModelsContract) GetUpdatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsContract) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
@@ -800,6 +803,14 @@ func (o *ModelsContract) SetUpdatedAt(v string) {
 }
 
 func (o ModelsContract) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsContract) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Address) {
 		toSerialize["address"] = o.Address
@@ -875,7 +886,7 @@ func (o ModelsContract) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsContract) UnmarshalJSON(bytes []byte) (err error) {

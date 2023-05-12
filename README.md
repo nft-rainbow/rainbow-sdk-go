@@ -15,7 +15,6 @@ Install the following dependencies:
 
 ```shell
 go get github.com/stretchr/testify/assert
-go get golang.org/x/oauth2
 go get golang.org/x/net/context
 ```
 
@@ -84,6 +83,7 @@ Class | Method | HTTP request | Description
 *BurnsApi* | [**GetBurnList**](docs/BurnsApi.md#getburnlist) | **Get** /v1/burns | Obtain the burned NFTs list
 *ContractApi* | [**AddContractSponsorWhitelist**](docs/ContractApi.md#addcontractsponsorwhitelist) | **Post** /v1/contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist
 *ContractApi* | [**DeployContract**](docs/ContractApi.md#deploycontract) | **Post** /v1/contracts/ | Deploy contract
+*ContractApi* | [**DeployContract_0**](docs/ContractApi.md#deploycontract_0) | **Post** /v1/contracts/ | Deploy contract
 *ContractApi* | [**GetContractAdmin**](docs/ContractApi.md#getcontractadmin) | **Get** /v1/contracts/{address}/admin | Get administrator of contract, only work on conflux chain
 *ContractApi* | [**GetContractInfo**](docs/ContractApi.md#getcontractinfo) | **Get** /v1/contracts/detail/{id} | Contract detail
 *ContractApi* | [**GetContractProfile**](docs/ContractApi.md#getcontractprofile) | **Get** /v1/contracts/{address}/profile | Get contract runtime profile
@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 *MintsApi* | [**EasyMintByMetadata**](docs/MintsApi.md#easymintbymetadata) | **Post** /v1/mints/easy/urls | Mint NFT with metadata
 *MintsApi* | [**GetMintDetail**](docs/MintsApi.md#getmintdetail) | **Get** /v1/mints/{id} | Mint NFT detail
 *MintsApi* | [**ListMints**](docs/MintsApi.md#listmints) | **Get** /v1/mints/ | Obtain NFT list
+*MintsApi* | [**ListMints_0**](docs/MintsApi.md#listmints_0) | **Get** /v1/mints/ | Obtain NFT list
 *MintsApi* | [**ReMintNFT**](docs/MintsApi.md#remintnft) | **Post** /v1/mints/{id}/reMint | Reset mint task status to init so that it can be minted again
 *NFTsApi* | [**NftInfo**](docs/NFTsApi.md#nftinfo) | **Get** /v1/nft/{address}/{token_id} | Get NFT info, mainly owner and metadata
 *NFTsApi* | [**UpdateNftTokenUri**](docs/NFTsApi.md#updatenfttokenuri) | **Put** /v1/nft/{address}/{token_id}/tokenUri | Update NFT token uri
@@ -141,9 +142,11 @@ Class | Method | HTTP request | Description
  - [ModelsFilesQueryResult](docs/ModelsFilesQueryResult.md)
  - [ModelsMintTask](docs/ModelsMintTask.md)
  - [ModelsMintTaskQueryResult](docs/ModelsMintTaskQueryResult.md)
+ - [ModelsTaskType](docs/ModelsTaskType.md)
  - [ModelsTransaction](docs/ModelsTransaction.md)
  - [ModelsTransferTask](docs/ModelsTransferTask.md)
  - [ModelsTransferTaskQueryResult](docs/ModelsTransferTaskQueryResult.md)
+ - [ModelsTxState](docs/ModelsTxState.md)
  - [MultipartFileHeader](docs/MultipartFileHeader.md)
  - [RainbowErrorsRainbowErrorDetailInfo](docs/RainbowErrorsRainbowErrorDetailInfo.md)
  - [RoutersUpdateTokenUriReq](docs/RoutersUpdateTokenUriReq.md)

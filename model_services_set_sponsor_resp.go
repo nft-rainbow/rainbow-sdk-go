@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesSetSponsorResp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesSetSponsorResp{}
+
 // ServicesSetSponsorResp struct for ServicesSetSponsorResp
 type ServicesSetSponsorResp struct {
 	SponsorCollateralTxId *int32 `json:"sponsor_collateral_tx_id,omitempty"`
@@ -53,7 +56,7 @@ func (o *ServicesSetSponsorResp) GetSponsorCollateralTxId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesSetSponsorResp) GetSponsorCollateralTxIdOk() (*int32, bool) {
 	if o == nil || isNil(o.SponsorCollateralTxId) {
-    return nil, false
+		return nil, false
 	}
 	return o.SponsorCollateralTxId, true
 }
@@ -85,7 +88,7 @@ func (o *ServicesSetSponsorResp) GetSponsorGasTxId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesSetSponsorResp) GetSponsorGasTxIdOk() (*int32, bool) {
 	if o == nil || isNil(o.SponsorGasTxId) {
-    return nil, false
+		return nil, false
 	}
 	return o.SponsorGasTxId, true
 }
@@ -105,6 +108,14 @@ func (o *ServicesSetSponsorResp) SetSponsorGasTxId(v int32) {
 }
 
 func (o ServicesSetSponsorResp) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesSetSponsorResp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.SponsorCollateralTxId) {
 		toSerialize["sponsor_collateral_tx_id"] = o.SponsorCollateralTxId
@@ -117,7 +128,7 @@ func (o ServicesSetSponsorResp) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesSetSponsorResp) UnmarshalJSON(bytes []byte) (err error) {

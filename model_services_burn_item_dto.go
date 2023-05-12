@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesBurnItemDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesBurnItemDto{}
+
 // ServicesBurnItemDto struct for ServicesBurnItemDto
 type ServicesBurnItemDto struct {
 	Amount *int32 `json:"amount,omitempty"`
@@ -54,7 +57,7 @@ func (o *ServicesBurnItemDto) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnItemDto) GetAmountOk() (*int32, bool) {
 	if o == nil || isNil(o.Amount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Amount, true
 }
@@ -87,7 +90,7 @@ func (o *ServicesBurnItemDto) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnItemDto) GetTokenIdOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.TokenId, true
 }
@@ -98,19 +101,25 @@ func (o *ServicesBurnItemDto) SetTokenId(v string) {
 }
 
 func (o ServicesBurnItemDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesBurnItemDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if true {
-		toSerialize["token_id"] = o.TokenId
-	}
+	toSerialize["token_id"] = o.TokenId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesBurnItemDto) UnmarshalJSON(bytes []byte) (err error) {

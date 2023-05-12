@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddContractSponsorWhitelist**](ContractApi.md#AddContractSponsorWhitelist) | **Post** /v1/contracts/{address}/sponsor/whitelist | Add contract sponsored whitelist
 [**DeployContract**](ContractApi.md#DeployContract) | **Post** /v1/contracts/ | Deploy contract
+[**DeployContract_0**](ContractApi.md#DeployContract_0) | **Post** /v1/contracts/ | Deploy contract
 [**GetContractAdmin**](ContractApi.md#GetContractAdmin) | **Get** /v1/contracts/{address}/admin | Get administrator of contract, only work on conflux chain
 [**GetContractInfo**](ContractApi.md#GetContractInfo) | **Get** /v1/contracts/detail/{id} | Contract detail
 [**GetContractProfile**](ContractApi.md#GetContractProfile) | **Get** /v1/contracts/{address}/profile | Get contract runtime profile
@@ -35,7 +36,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -94,7 +95,7 @@ No authorization required
 
 ## DeployContract
 
-> ModelsContract DeployContract(ctx).Authorization(authorization).ContractInfo(contractInfo).Execute()
+> ModelsContract DeployContract(ctx).Authorization(authorization).Authorization2(authorization2).ContractInfo(contractInfo).Execute()
 
 Deploy contract
 
@@ -109,16 +110,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
+    authorization2 := "authorization_example" // string | Bearer Open_JWT
     contractInfo := *openapiclient.NewServicesContractDeployDto("Chain_example", "Name_example", "Symbol_example", "Type_example") // ServicesContractDeployDto | contract_info
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractApi.DeployContract(context.Background()).Authorization(authorization).ContractInfo(contractInfo).Execute()
+    resp, r, err := apiClient.ContractApi.DeployContract(context.Background()).Authorization(authorization).Authorization2(authorization2).ContractInfo(contractInfo).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContractApi.DeployContract``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +142,77 @@ Other parameters are passed through a pointer to a apiDeployContractRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
+ **authorization2** | **string** | Bearer Open_JWT | 
+ **contractInfo** | [**ServicesContractDeployDto**](ServicesContractDeployDto.md) | contract_info | 
+
+### Return type
+
+[**ModelsContract**](ModelsContract.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeployContract_0
+
+> ModelsContract DeployContract_0(ctx).Authorization(authorization).Authorization2(authorization2).ContractInfo(contractInfo).Execute()
+
+Deploy contract
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer Open_JWT
+    authorization2 := "authorization_example" // string | Bearer Open_JWT
+    contractInfo := *openapiclient.NewServicesContractDeployDto("Chain_example", "Name_example", "Symbol_example", "Type_example") // ServicesContractDeployDto | contract_info
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ContractApi.DeployContract_0(context.Background()).Authorization(authorization).Authorization2(authorization2).ContractInfo(contractInfo).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ContractApi.DeployContract_0``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeployContract_0`: ModelsContract
+    fmt.Fprintf(os.Stdout, "Response from `ContractApi.DeployContract_0`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeployContract_1Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** | Bearer Open_JWT | 
+ **authorization2** | **string** | Bearer Open_JWT | 
  **contractInfo** | [**ServicesContractDeployDto**](ServicesContractDeployDto.md) | contract_info | 
 
 ### Return type
@@ -177,7 +250,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -249,7 +322,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -306,7 +379,7 @@ No authorization required
 
 ## GetContractProfile
 
-> ModelsContractRuntimeProfile GetContractProfile(ctx, address).Authorization(authorization).Execute()
+> ModelsContractRuntimeProfile GetContractProfile(ctx, address).Authorization(authorization).IgnoreTokenIds(ignoreTokenIds).Execute()
 
 Get contract runtime profile
 
@@ -321,16 +394,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
     address := "address_example" // string | address
+    ignoreTokenIds := "ignoreTokenIds_example" // string | the returned max token id will ignore the token ids (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractApi.GetContractProfile(context.Background(), address).Authorization(authorization).Execute()
+    resp, r, err := apiClient.ContractApi.GetContractProfile(context.Background(), address).Authorization(authorization).IgnoreTokenIds(ignoreTokenIds).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContractApi.GetContractProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -357,6 +431,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
 
+ **ignoreTokenIds** | **string** | the returned max token id will ignore the token ids | 
 
 ### Return type
 
@@ -393,7 +468,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -467,7 +542,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -539,7 +614,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -609,7 +684,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -683,7 +758,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -759,7 +834,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {

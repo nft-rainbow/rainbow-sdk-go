@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesEasyMintMetaPartsDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesEasyMintMetaPartsDto{}
+
 // ServicesEasyMintMetaPartsDto struct for ServicesEasyMintMetaPartsDto
 type ServicesEasyMintMetaPartsDto struct {
 	AnimationUrl *string `json:"animation_url,omitempty"`
@@ -62,7 +65,7 @@ func (o *ServicesEasyMintMetaPartsDto) GetAnimationUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaPartsDto) GetAnimationUrlOk() (*string, bool) {
 	if o == nil || isNil(o.AnimationUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.AnimationUrl, true
 }
@@ -94,7 +97,7 @@ func (o *ServicesEasyMintMetaPartsDto) GetAttributes() []ModelsExposedMetadataAt
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaPartsDto) GetAttributesOk() ([]ModelsExposedMetadataAttribute, bool) {
 	if o == nil || isNil(o.Attributes) {
-    return nil, false
+		return nil, false
 	}
 	return o.Attributes, true
 }
@@ -127,7 +130,7 @@ func (o *ServicesEasyMintMetaPartsDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaPartsDto) GetChainOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Chain, true
 }
@@ -150,7 +153,7 @@ func (o *ServicesEasyMintMetaPartsDto) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaPartsDto) GetDescriptionOk() (*string, bool) {
 	if o == nil || isNil(o.Description) {
-    return nil, false
+		return nil, false
 	}
 	return o.Description, true
 }
@@ -183,7 +186,7 @@ func (o *ServicesEasyMintMetaPartsDto) GetFileUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaPartsDto) GetFileUrlOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.FileUrl, true
 }
@@ -207,7 +210,7 @@ func (o *ServicesEasyMintMetaPartsDto) GetMintToAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaPartsDto) GetMintToAddressOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.MintToAddress, true
 }
@@ -231,7 +234,7 @@ func (o *ServicesEasyMintMetaPartsDto) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaPartsDto) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -242,6 +245,14 @@ func (o *ServicesEasyMintMetaPartsDto) SetName(v string) {
 }
 
 func (o ServicesEasyMintMetaPartsDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesEasyMintMetaPartsDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AnimationUrl) {
 		toSerialize["animation_url"] = o.AnimationUrl
@@ -249,27 +260,19 @@ func (o ServicesEasyMintMetaPartsDto) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Attributes) {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
+	toSerialize["chain"] = o.Chain
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if true {
-		toSerialize["file_url"] = o.FileUrl
-	}
-	if true {
-		toSerialize["mint_to_address"] = o.MintToAddress
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["file_url"] = o.FileUrl
+	toSerialize["mint_to_address"] = o.MintToAddress
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesEasyMintMetaPartsDto) UnmarshalJSON(bytes []byte) (err error) {

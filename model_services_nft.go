@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesNFT type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesNFT{}
+
 // ServicesNFT struct for ServicesNFT
 type ServicesNFT struct {
 	ContractAddress *string `json:"contract_address,omitempty"`
@@ -54,7 +57,7 @@ func (o *ServicesNFT) GetContractAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesNFT) GetContractAddressOk() (*string, bool) {
 	if o == nil || isNil(o.ContractAddress) {
-    return nil, false
+		return nil, false
 	}
 	return o.ContractAddress, true
 }
@@ -86,7 +89,7 @@ func (o *ServicesNFT) GetOwner() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesNFT) GetOwnerOk() (*string, bool) {
 	if o == nil || isNil(o.Owner) {
-    return nil, false
+		return nil, false
 	}
 	return o.Owner, true
 }
@@ -118,7 +121,7 @@ func (o *ServicesNFT) GetTokenId() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesNFT) GetTokenIdOk() (*string, bool) {
 	if o == nil || isNil(o.TokenId) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokenId, true
 }
@@ -138,6 +141,14 @@ func (o *ServicesNFT) SetTokenId(v string) {
 }
 
 func (o ServicesNFT) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesNFT) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ContractAddress) {
 		toSerialize["contract_address"] = o.ContractAddress
@@ -153,7 +164,7 @@ func (o ServicesNFT) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesNFT) UnmarshalJSON(bytes []byte) (err error) {

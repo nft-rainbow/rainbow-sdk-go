@@ -13,7 +13,7 @@ package rainbowsdk
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"os"
@@ -166,10 +166,10 @@ func (a *FilesApiService) ListFilesExecute(r ApiListFilesRequest) (*ModelsFilesQ
 	}
 
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -188,7 +188,7 @@ func (a *FilesApiService) ListFilesExecute(r ApiListFilesRequest) (*ModelsFilesQ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -199,9 +199,9 @@ func (a *FilesApiService) ListFilesExecute(r ApiListFilesRequest) (*ModelsFilesQ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -218,8 +218,8 @@ func (a *FilesApiService) ListFilesExecute(r ApiListFilesRequest) (*ModelsFilesQ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -240,7 +240,7 @@ type ApiUploadFileRequest struct {
 	ctx context.Context
 	ApiService FilesApi
 	authorization *string
-	file **os.File
+	file *os.File
 }
 
 // Bearer openapi_token
@@ -251,7 +251,7 @@ func (r ApiUploadFileRequest) Authorization(authorization string) ApiUploadFileR
 
 // uploaded file
 func (r ApiUploadFileRequest) File(file *os.File) ApiUploadFileRequest {
-	r.file = &file
+	r.file = file
 	return r
 }
 
@@ -318,21 +318,24 @@ func (a *FilesApiService) UploadFileExecute(r ApiUploadFileRequest) (*ServicesUp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
 	var fileLocalVarFileBytes    []byte
 
 	fileLocalVarFormFileName = "file"
 
-	fileLocalVarFile := *r.file
+
+	fileLocalVarFile := r.file
+
 	if fileLocalVarFile != nil {
-		fbs, _ := ioutil.ReadAll(fileLocalVarFile)
+		fbs, _ := io.ReadAll(fileLocalVarFile)
+
 		fileLocalVarFileBytes = fbs
 		fileLocalVarFileName = fileLocalVarFile.Name()
 		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	}
-	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -343,9 +346,9 @@ func (a *FilesApiService) UploadFileExecute(r ApiUploadFileRequest) (*ServicesUp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -362,8 +365,8 @@ func (a *FilesApiService) UploadFileExecute(r ApiUploadFileRequest) (*ServicesUp
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -384,7 +387,7 @@ type ApiUploadFileToOssRequest struct {
 	ctx context.Context
 	ApiService FilesApi
 	authorization *string
-	file **os.File
+	file *os.File
 }
 
 // Bearer openapi_token
@@ -395,7 +398,7 @@ func (r ApiUploadFileToOssRequest) Authorization(authorization string) ApiUpload
 
 // uploaded file
 func (r ApiUploadFileToOssRequest) File(file *os.File) ApiUploadFileToOssRequest {
-	r.file = &file
+	r.file = file
 	return r
 }
 
@@ -462,21 +465,24 @@ func (a *FilesApiService) UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
 	var fileLocalVarFileBytes    []byte
 
 	fileLocalVarFormFileName = "file"
 
-	fileLocalVarFile := *r.file
+
+	fileLocalVarFile := r.file
+
 	if fileLocalVarFile != nil {
-		fbs, _ := ioutil.ReadAll(fileLocalVarFile)
+		fbs, _ := io.ReadAll(fileLocalVarFile)
+
 		fileLocalVarFileBytes = fbs
 		fileLocalVarFileName = fileLocalVarFile.Name()
 		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	}
-	formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -487,9 +493,9 @@ func (a *FilesApiService) UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -506,8 +512,8 @@ func (a *FilesApiService) UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -528,7 +534,7 @@ type ApiUploadFolderRequest struct {
 	ctx context.Context
 	ApiService FilesApi
 	authorization *string
-	folder **os.File
+	folder *os.File
 }
 
 // Bearer openapi_token
@@ -539,7 +545,7 @@ func (r ApiUploadFolderRequest) Authorization(authorization string) ApiUploadFol
 
 // uploaded folder
 func (r ApiUploadFolderRequest) Folder(folder *os.File) ApiUploadFolderRequest {
-	r.folder = &folder
+	r.folder = folder
 	return r
 }
 
@@ -606,21 +612,24 @@ func (a *FilesApiService) UploadFolderExecute(r ApiUploadFolderRequest) (*Servic
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
 	var folderLocalVarFormFileName string
 	var folderLocalVarFileName     string
 	var folderLocalVarFileBytes    []byte
 
 	folderLocalVarFormFileName = "folder"
 
-	folderLocalVarFile := *r.folder
+
+	folderLocalVarFile := r.folder
+
 	if folderLocalVarFile != nil {
-		fbs, _ := ioutil.ReadAll(folderLocalVarFile)
+		fbs, _ := io.ReadAll(folderLocalVarFile)
+
 		folderLocalVarFileBytes = fbs
 		folderLocalVarFileName = folderLocalVarFile.Name()
 		folderLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: folderLocalVarFileBytes, fileName: folderLocalVarFileName, formFileName: folderLocalVarFormFileName})
 	}
-	formFiles = append(formFiles, formFile{fileBytes: folderLocalVarFileBytes, fileName: folderLocalVarFileName, formFileName: folderLocalVarFormFileName})
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -631,9 +640,9 @@ func (a *FilesApiService) UploadFolderExecute(r ApiUploadFolderRequest) (*Servic
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -650,8 +659,8 @@ func (a *FilesApiService) UploadFolderExecute(r ApiUploadFolderRequest) (*Servic
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -672,7 +681,7 @@ type ApiUploadFolderToOSSRequest struct {
 	ctx context.Context
 	ApiService FilesApi
 	authorization *string
-	folder **os.File
+	folder *os.File
 }
 
 // Bearer openapi_token
@@ -683,7 +692,7 @@ func (r ApiUploadFolderToOSSRequest) Authorization(authorization string) ApiUplo
 
 // uploaded folder
 func (r ApiUploadFolderToOSSRequest) Folder(folder *os.File) ApiUploadFolderToOSSRequest {
-	r.folder = &folder
+	r.folder = folder
 	return r
 }
 
@@ -750,21 +759,24 @@ func (a *FilesApiService) UploadFolderToOSSExecute(r ApiUploadFolderToOSSRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
 	var folderLocalVarFormFileName string
 	var folderLocalVarFileName     string
 	var folderLocalVarFileBytes    []byte
 
 	folderLocalVarFormFileName = "folder"
 
-	folderLocalVarFile := *r.folder
+
+	folderLocalVarFile := r.folder
+
 	if folderLocalVarFile != nil {
-		fbs, _ := ioutil.ReadAll(folderLocalVarFile)
+		fbs, _ := io.ReadAll(folderLocalVarFile)
+
 		folderLocalVarFileBytes = fbs
 		folderLocalVarFileName = folderLocalVarFile.Name()
 		folderLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: folderLocalVarFileBytes, fileName: folderLocalVarFileName, formFileName: folderLocalVarFormFileName})
 	}
-	formFiles = append(formFiles, formFile{fileBytes: folderLocalVarFileBytes, fileName: folderLocalVarFileName, formFileName: folderLocalVarFormFileName})
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -775,9 +787,9 @@ func (a *FilesApiService) UploadFolderToOSSExecute(r ApiUploadFolderToOSSRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -794,8 +806,8 @@ func (a *FilesApiService) UploadFolderToOSSExecute(r ApiUploadFolderToOSSRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

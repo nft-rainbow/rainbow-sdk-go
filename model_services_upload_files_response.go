@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesUploadFilesResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesUploadFilesResponse{}
+
 // ServicesUploadFilesResponse struct for ServicesUploadFilesResponse
 type ServicesUploadFilesResponse struct {
 	FileName *string `json:"file_name,omitempty"`
@@ -55,7 +58,7 @@ func (o *ServicesUploadFilesResponse) GetFileName() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileNameOk() (*string, bool) {
 	if o == nil || isNil(o.FileName) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileName, true
 }
@@ -87,7 +90,7 @@ func (o *ServicesUploadFilesResponse) GetFileSize() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileSizeOk() (*int32, bool) {
 	if o == nil || isNil(o.FileSize) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileSize, true
 }
@@ -119,7 +122,7 @@ func (o *ServicesUploadFilesResponse) GetFileType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileTypeOk() (*string, bool) {
 	if o == nil || isNil(o.FileType) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileType, true
 }
@@ -151,7 +154,7 @@ func (o *ServicesUploadFilesResponse) GetFileUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileUrlOk() (*string, bool) {
 	if o == nil || isNil(o.FileUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.FileUrl, true
 }
@@ -171,6 +174,14 @@ func (o *ServicesUploadFilesResponse) SetFileUrl(v string) {
 }
 
 func (o ServicesUploadFilesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesUploadFilesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.FileName) {
 		toSerialize["file_name"] = o.FileName
@@ -189,7 +200,7 @@ func (o ServicesUploadFilesResponse) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesUploadFilesResponse) UnmarshalJSON(bytes []byte) (err error) {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsTransferTaskQueryResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsTransferTaskQueryResult{}
+
 // ModelsTransferTaskQueryResult struct for ModelsTransferTaskQueryResult
 type ModelsTransferTaskQueryResult struct {
 	Count *int32 `json:"count,omitempty"`
@@ -53,7 +56,7 @@ func (o *ModelsTransferTaskQueryResult) GetCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTaskQueryResult) GetCountOk() (*int32, bool) {
 	if o == nil || isNil(o.Count) {
-    return nil, false
+		return nil, false
 	}
 	return o.Count, true
 }
@@ -85,7 +88,7 @@ func (o *ModelsTransferTaskQueryResult) GetItems() []ModelsTransferTask {
 // and a boolean to check if the value has been set.
 func (o *ModelsTransferTaskQueryResult) GetItemsOk() ([]ModelsTransferTask, bool) {
 	if o == nil || isNil(o.Items) {
-    return nil, false
+		return nil, false
 	}
 	return o.Items, true
 }
@@ -105,6 +108,14 @@ func (o *ModelsTransferTaskQueryResult) SetItems(v []ModelsTransferTask) {
 }
 
 func (o ModelsTransferTaskQueryResult) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsTransferTaskQueryResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Count) {
 		toSerialize["count"] = o.Count
@@ -117,7 +128,7 @@ func (o ModelsTransferTaskQueryResult) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsTransferTaskQueryResult) UnmarshalJSON(bytes []byte) (err error) {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesSponsorInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesSponsorInfo{}
+
 // ServicesSponsorInfo struct for ServicesSponsorInfo
 type ServicesSponsorInfo struct {
 	CollateralSponsor *string `json:"collateral_sponsor,omitempty"`
@@ -57,7 +60,7 @@ func (o *ServicesSponsorInfo) GetCollateralSponsor() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetCollateralSponsorOk() (*string, bool) {
 	if o == nil || isNil(o.CollateralSponsor) {
-    return nil, false
+		return nil, false
 	}
 	return o.CollateralSponsor, true
 }
@@ -89,7 +92,7 @@ func (o *ServicesSponsorInfo) GetCollateralSponsorBalance() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetCollateralSponsorBalanceOk() (*string, bool) {
 	if o == nil || isNil(o.CollateralSponsorBalance) {
-    return nil, false
+		return nil, false
 	}
 	return o.CollateralSponsorBalance, true
 }
@@ -121,7 +124,7 @@ func (o *ServicesSponsorInfo) GetGasSponsor() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetGasSponsorOk() (*string, bool) {
 	if o == nil || isNil(o.GasSponsor) {
-    return nil, false
+		return nil, false
 	}
 	return o.GasSponsor, true
 }
@@ -153,7 +156,7 @@ func (o *ServicesSponsorInfo) GetGasSponsorBalance() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetGasSponsorBalanceOk() (*string, bool) {
 	if o == nil || isNil(o.GasSponsorBalance) {
-    return nil, false
+		return nil, false
 	}
 	return o.GasSponsorBalance, true
 }
@@ -185,7 +188,7 @@ func (o *ServicesSponsorInfo) GetGasUpperBound() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetGasUpperBoundOk() (*string, bool) {
 	if o == nil || isNil(o.GasUpperBound) {
-    return nil, false
+		return nil, false
 	}
 	return o.GasUpperBound, true
 }
@@ -217,7 +220,7 @@ func (o *ServicesSponsorInfo) GetIsAllWhiteListed() bool {
 // and a boolean to check if the value has been set.
 func (o *ServicesSponsorInfo) GetIsAllWhiteListedOk() (*bool, bool) {
 	if o == nil || isNil(o.IsAllWhiteListed) {
-    return nil, false
+		return nil, false
 	}
 	return o.IsAllWhiteListed, true
 }
@@ -237,6 +240,14 @@ func (o *ServicesSponsorInfo) SetIsAllWhiteListed(v bool) {
 }
 
 func (o ServicesSponsorInfo) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesSponsorInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.CollateralSponsor) {
 		toSerialize["collateral_sponsor"] = o.CollateralSponsor
@@ -261,7 +272,7 @@ func (o ServicesSponsorInfo) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesSponsorInfo) UnmarshalJSON(bytes []byte) (err error) {

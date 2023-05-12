@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsExposedMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsExposedMetadata{}
+
 // ModelsExposedMetadata struct for ModelsExposedMetadata
 type ModelsExposedMetadata struct {
 	AnimationUrl *string `json:"animation_url,omitempty"`
@@ -67,7 +70,7 @@ func (o *ModelsExposedMetadata) GetAnimationUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetAnimationUrlOk() (*string, bool) {
 	if o == nil || isNil(o.AnimationUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.AnimationUrl, true
 }
@@ -99,7 +102,7 @@ func (o *ModelsExposedMetadata) GetAppId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetAppIdOk() (*int32, bool) {
 	if o == nil || isNil(o.AppId) {
-    return nil, false
+		return nil, false
 	}
 	return o.AppId, true
 }
@@ -131,7 +134,7 @@ func (o *ModelsExposedMetadata) GetAttributes() []ModelsExposedMetadataAttribute
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetAttributesOk() ([]ModelsExposedMetadataAttribute, bool) {
 	if o == nil || isNil(o.Attributes) {
-    return nil, false
+		return nil, false
 	}
 	return o.Attributes, true
 }
@@ -163,7 +166,7 @@ func (o *ModelsExposedMetadata) GetCreatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetCreatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
@@ -195,7 +198,7 @@ func (o *ModelsExposedMetadata) GetDeletedAt() GormDeletedAt {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetDeletedAtOk() (*GormDeletedAt, bool) {
 	if o == nil || isNil(o.DeletedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeletedAt, true
 }
@@ -228,7 +231,7 @@ func (o *ModelsExposedMetadata) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Description, true
 }
@@ -251,7 +254,7 @@ func (o *ModelsExposedMetadata) GetExternalLink() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetExternalLinkOk() (*string, bool) {
 	if o == nil || isNil(o.ExternalLink) {
-    return nil, false
+		return nil, false
 	}
 	return o.ExternalLink, true
 }
@@ -283,7 +286,7 @@ func (o *ModelsExposedMetadata) GetId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetIdOk() (*int32, bool) {
 	if o == nil || isNil(o.Id) {
-    return nil, false
+		return nil, false
 	}
 	return o.Id, true
 }
@@ -316,7 +319,7 @@ func (o *ModelsExposedMetadata) GetImage() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetImageOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Image, true
 }
@@ -339,7 +342,7 @@ func (o *ModelsExposedMetadata) GetMetadataId() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetMetadataIdOk() (*string, bool) {
 	if o == nil || isNil(o.MetadataId) {
-    return nil, false
+		return nil, false
 	}
 	return o.MetadataId, true
 }
@@ -372,7 +375,7 @@ func (o *ModelsExposedMetadata) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -395,7 +398,7 @@ func (o *ModelsExposedMetadata) GetUpdatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
@@ -427,7 +430,7 @@ func (o *ModelsExposedMetadata) GetUri() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadata) GetUriOk() (*string, bool) {
 	if o == nil || isNil(o.Uri) {
-    return nil, false
+		return nil, false
 	}
 	return o.Uri, true
 }
@@ -447,6 +450,14 @@ func (o *ModelsExposedMetadata) SetUri(v string) {
 }
 
 func (o ModelsExposedMetadata) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsExposedMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AnimationUrl) {
 		toSerialize["animation_url"] = o.AnimationUrl
@@ -463,24 +474,18 @@ func (o ModelsExposedMetadata) MarshalJSON() ([]byte, error) {
 	if !isNil(o.DeletedAt) {
 		toSerialize["deleted_at"] = o.DeletedAt
 	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
+	toSerialize["description"] = o.Description
 	if !isNil(o.ExternalLink) {
 		toSerialize["external_link"] = o.ExternalLink
 	}
 	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if true {
-		toSerialize["image"] = o.Image
-	}
+	toSerialize["image"] = o.Image
 	if !isNil(o.MetadataId) {
 		toSerialize["metadata_id"] = o.MetadataId
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
@@ -492,7 +497,7 @@ func (o ModelsExposedMetadata) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsExposedMetadata) UnmarshalJSON(bytes []byte) (err error) {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesContractDeployDto type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesContractDeployDto{}
+
 // ServicesContractDeployDto struct for ServicesContractDeployDto
 type ServicesContractDeployDto struct {
 	// default: true
@@ -73,7 +76,7 @@ func (o *ServicesContractDeployDto) GetAutoSponsor() bool {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetAutoSponsorOk() (*bool, bool) {
 	if o == nil || isNil(o.AutoSponsor) {
-    return nil, false
+		return nil, false
 	}
 	return o.AutoSponsor, true
 }
@@ -105,7 +108,7 @@ func (o *ServicesContractDeployDto) GetBaseUri() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetBaseUriOk() (*string, bool) {
 	if o == nil || isNil(o.BaseUri) {
-    return nil, false
+		return nil, false
 	}
 	return o.BaseUri, true
 }
@@ -138,7 +141,7 @@ func (o *ServicesContractDeployDto) GetChain() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetChainOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Chain, true
 }
@@ -161,7 +164,7 @@ func (o *ServicesContractDeployDto) GetIsSponsorForAllUser() bool {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetIsSponsorForAllUserOk() (*bool, bool) {
 	if o == nil || isNil(o.IsSponsorForAllUser) {
-    return nil, false
+		return nil, false
 	}
 	return o.IsSponsorForAllUser, true
 }
@@ -194,7 +197,7 @@ func (o *ServicesContractDeployDto) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Name, true
 }
@@ -217,7 +220,7 @@ func (o *ServicesContractDeployDto) GetOwnerAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetOwnerAddressOk() (*string, bool) {
 	if o == nil || isNil(o.OwnerAddress) {
-    return nil, false
+		return nil, false
 	}
 	return o.OwnerAddress, true
 }
@@ -249,7 +252,7 @@ func (o *ServicesContractDeployDto) GetRoyaltiesAddress() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetRoyaltiesAddressOk() (*string, bool) {
 	if o == nil || isNil(o.RoyaltiesAddress) {
-    return nil, false
+		return nil, false
 	}
 	return o.RoyaltiesAddress, true
 }
@@ -281,7 +284,7 @@ func (o *ServicesContractDeployDto) GetRoyaltiesBps() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetRoyaltiesBpsOk() (*int32, bool) {
 	if o == nil || isNil(o.RoyaltiesBps) {
-    return nil, false
+		return nil, false
 	}
 	return o.RoyaltiesBps, true
 }
@@ -314,7 +317,7 @@ func (o *ServicesContractDeployDto) GetSymbol() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetSymbolOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Symbol, true
 }
@@ -337,7 +340,7 @@ func (o *ServicesContractDeployDto) GetTokensTransferableByAdmin() bool {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetTokensTransferableByAdminOk() (*bool, bool) {
 	if o == nil || isNil(o.TokensTransferableByAdmin) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokensTransferableByAdmin, true
 }
@@ -369,7 +372,7 @@ func (o *ServicesContractDeployDto) GetTokensTransferableByUser() bool {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetTokensTransferableByUserOk() (*bool, bool) {
 	if o == nil || isNil(o.TokensTransferableByUser) {
-    return nil, false
+		return nil, false
 	}
 	return o.TokensTransferableByUser, true
 }
@@ -401,7 +404,7 @@ func (o *ServicesContractDeployDto) GetTransferCooldownTime() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetTransferCooldownTimeOk() (*int32, bool) {
 	if o == nil || isNil(o.TransferCooldownTime) {
-    return nil, false
+		return nil, false
 	}
 	return o.TransferCooldownTime, true
 }
@@ -434,7 +437,7 @@ func (o *ServicesContractDeployDto) GetType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesContractDeployDto) GetTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Type, true
 }
@@ -445,6 +448,14 @@ func (o *ServicesContractDeployDto) SetType(v string) {
 }
 
 func (o ServicesContractDeployDto) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesContractDeployDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AutoSponsor) {
 		toSerialize["auto_sponsor"] = o.AutoSponsor
@@ -452,15 +463,11 @@ func (o ServicesContractDeployDto) MarshalJSON() ([]byte, error) {
 	if !isNil(o.BaseUri) {
 		toSerialize["base_uri"] = o.BaseUri
 	}
-	if true {
-		toSerialize["chain"] = o.Chain
-	}
+	toSerialize["chain"] = o.Chain
 	if !isNil(o.IsSponsorForAllUser) {
 		toSerialize["is_sponsor_for_all_user"] = o.IsSponsorForAllUser
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if !isNil(o.OwnerAddress) {
 		toSerialize["owner_address"] = o.OwnerAddress
 	}
@@ -470,9 +477,7 @@ func (o ServicesContractDeployDto) MarshalJSON() ([]byte, error) {
 	if !isNil(o.RoyaltiesBps) {
 		toSerialize["royalties_bps"] = o.RoyaltiesBps
 	}
-	if true {
-		toSerialize["symbol"] = o.Symbol
-	}
+	toSerialize["symbol"] = o.Symbol
 	if !isNil(o.TokensTransferableByAdmin) {
 		toSerialize["tokens_transferable_by_admin"] = o.TokensTransferableByAdmin
 	}
@@ -482,15 +487,13 @@ func (o ServicesContractDeployDto) MarshalJSON() ([]byte, error) {
 	if !isNil(o.TransferCooldownTime) {
 		toSerialize["transfer_cooldown_time"] = o.TransferCooldownTime
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesContractDeployDto) UnmarshalJSON(bytes []byte) (err error) {

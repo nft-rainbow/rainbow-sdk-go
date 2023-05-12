@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**EasyMintByMetadata**](MintsApi.md#EasyMintByMetadata) | **Post** /v1/mints/easy/urls | Mint NFT with metadata
 [**GetMintDetail**](MintsApi.md#GetMintDetail) | **Get** /v1/mints/{id} | Mint NFT detail
 [**ListMints**](MintsApi.md#ListMints) | **Get** /v1/mints/ | Obtain NFT list
+[**ListMints_0**](MintsApi.md#ListMints_0) | **Get** /v1/mints/ | Obtain NFT list
 [**ReMintNFT**](MintsApi.md#ReMintNFT) | **Post** /v1/mints/{id}/reMint | Reset mint task status to init so that it can be minted again
 
 
@@ -33,7 +34,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -107,7 +108,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -181,7 +182,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -249,7 +250,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -317,7 +318,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -393,7 +394,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -461,7 +462,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
@@ -518,7 +519,7 @@ No authorization required
 
 ## ListMints
 
-> ModelsMintTaskQueryResult ListMints(ctx).Authorization(authorization).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Status(status).Chain(chain).Execute()
+> ModelsMintTaskQueryResult ListMints(ctx).Authorization(authorization).Authorization2(authorization2).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Status(status).Chain(chain).Page2(page2).Limit2(limit2).Contract2(contract2).MintTo2(mintTo2).Status2(status2).Chain2(chain2).Execute()
 
 Obtain NFT list
 
@@ -533,21 +534,28 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
     authorization := "authorization_example" // string | Bearer Open_JWT
+    authorization2 := "authorization_example" // string | Bearer Open_JWT
     page := int32(56) // int32 | page (optional)
     limit := int32(56) // int32 | limit (optional)
     contract := "contract_example" // string | contract (optional)
     mintTo := "mintTo_example" // string | mint_to (optional)
     status := int32(56) // int32 | status (optional)
     chain := "chain_example" // string | chain (optional)
+    page2 := int32(56) // int32 | page (optional)
+    limit2 := int32(56) // int32 | limit (optional)
+    contract2 := "contract_example" // string | contract (optional)
+    mintTo2 := "mintTo_example" // string | mint_to (optional)
+    status2 := int32(56) // int32 | status (optional)
+    chain2 := "chain_example" // string | chain (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MintsApi.ListMints(context.Background()).Authorization(authorization).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Status(status).Chain(chain).Execute()
+    resp, r, err := apiClient.MintsApi.ListMints(context.Background()).Authorization(authorization).Authorization2(authorization2).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Status(status).Chain(chain).Page2(page2).Limit2(limit2).Contract2(contract2).MintTo2(mintTo2).Status2(status2).Chain2(chain2).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MintsApi.ListMints``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -569,12 +577,111 @@ Other parameters are passed through a pointer to a apiListMintsRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
+ **authorization2** | **string** | Bearer Open_JWT | 
  **page** | **int32** | page | 
  **limit** | **int32** | limit | 
  **contract** | **string** | contract | 
  **mintTo** | **string** | mint_to | 
  **status** | **int32** | status | 
  **chain** | **string** | chain | 
+ **page2** | **int32** | page | 
+ **limit2** | **int32** | limit | 
+ **contract2** | **string** | contract | 
+ **mintTo2** | **string** | mint_to | 
+ **status2** | **int32** | status | 
+ **chain2** | **string** | chain | 
+
+### Return type
+
+[**ModelsMintTaskQueryResult**](ModelsMintTaskQueryResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListMints_0
+
+> ModelsMintTaskQueryResult ListMints_0(ctx).Authorization(authorization).Authorization2(authorization2).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Status(status).Chain(chain).Page2(page2).Limit2(limit2).Contract2(contract2).MintTo2(mintTo2).Status2(status2).Chain2(chain2).Execute()
+
+Obtain NFT list
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer Open_JWT
+    authorization2 := "authorization_example" // string | Bearer Open_JWT
+    page := int32(56) // int32 | page (optional)
+    limit := int32(56) // int32 | limit (optional)
+    contract := "contract_example" // string | contract (optional)
+    mintTo := "mintTo_example" // string | mint_to (optional)
+    status := int32(56) // int32 | status (optional)
+    chain := "chain_example" // string | chain (optional)
+    page2 := int32(56) // int32 | page (optional)
+    limit2 := int32(56) // int32 | limit (optional)
+    contract2 := "contract_example" // string | contract (optional)
+    mintTo2 := "mintTo_example" // string | mint_to (optional)
+    status2 := int32(56) // int32 | status (optional)
+    chain2 := "chain_example" // string | chain (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MintsApi.ListMints_0(context.Background()).Authorization(authorization).Authorization2(authorization2).Page(page).Limit(limit).Contract(contract).MintTo(mintTo).Status(status).Chain(chain).Page2(page2).Limit2(limit2).Contract2(contract2).MintTo2(mintTo2).Status2(status2).Chain2(chain2).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MintsApi.ListMints_0``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListMints_0`: ModelsMintTaskQueryResult
+    fmt.Fprintf(os.Stdout, "Response from `MintsApi.ListMints_0`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListMints_1Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** | Bearer Open_JWT | 
+ **authorization2** | **string** | Bearer Open_JWT | 
+ **page** | **int32** | page | 
+ **limit** | **int32** | limit | 
+ **contract** | **string** | contract | 
+ **mintTo** | **string** | mint_to | 
+ **status** | **int32** | status | 
+ **chain** | **string** | chain | 
+ **page2** | **int32** | page | 
+ **limit2** | **int32** | limit | 
+ **contract2** | **string** | contract | 
+ **mintTo2** | **string** | mint_to | 
+ **status2** | **int32** | status | 
+ **chain2** | **string** | chain | 
 
 ### Return type
 
@@ -611,7 +718,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {

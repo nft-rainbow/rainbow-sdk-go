@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsExposedMetadataQueryResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsExposedMetadataQueryResult{}
+
 // ModelsExposedMetadataQueryResult struct for ModelsExposedMetadataQueryResult
 type ModelsExposedMetadataQueryResult struct {
 	Count *int32 `json:"count,omitempty"`
@@ -53,7 +56,7 @@ func (o *ModelsExposedMetadataQueryResult) GetCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataQueryResult) GetCountOk() (*int32, bool) {
 	if o == nil || isNil(o.Count) {
-    return nil, false
+		return nil, false
 	}
 	return o.Count, true
 }
@@ -85,7 +88,7 @@ func (o *ModelsExposedMetadataQueryResult) GetItems() []ModelsExposedMetadata {
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataQueryResult) GetItemsOk() ([]ModelsExposedMetadata, bool) {
 	if o == nil || isNil(o.Items) {
-    return nil, false
+		return nil, false
 	}
 	return o.Items, true
 }
@@ -105,6 +108,14 @@ func (o *ModelsExposedMetadataQueryResult) SetItems(v []ModelsExposedMetadata) {
 }
 
 func (o ModelsExposedMetadataQueryResult) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsExposedMetadataQueryResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Count) {
 		toSerialize["count"] = o.Count
@@ -117,7 +128,7 @@ func (o ModelsExposedMetadataQueryResult) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsExposedMetadataQueryResult) UnmarshalJSON(bytes []byte) (err error) {

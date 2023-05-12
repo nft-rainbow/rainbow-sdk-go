@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Hash** | Pointer to **string** |  | [optional] 
 **IsFinalized** | Pointer to **bool** |  | [optional] 
 **IsSuccess** | Pointer to **bool** |  | [optional] 
-**StateCode** | Pointer to **int32** |  | [optional] 
+**StateCode** | Pointer to [**ModelsTxState**](ModelsTxState.md) |  | [optional] 
 **StateMsg** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -132,20 +132,20 @@ HasIsSuccess returns a boolean if a field has been set.
 
 ### GetStateCode
 
-`func (o *ServicesTxResp) GetStateCode() int32`
+`func (o *ServicesTxResp) GetStateCode() ModelsTxState`
 
 GetStateCode returns the StateCode field if non-nil, zero value otherwise.
 
 ### GetStateCodeOk
 
-`func (o *ServicesTxResp) GetStateCodeOk() (*int32, bool)`
+`func (o *ServicesTxResp) GetStateCodeOk() (*ModelsTxState, bool)`
 
 GetStateCodeOk returns a tuple with the StateCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStateCode
 
-`func (o *ServicesTxResp) SetStateCode(v int32)`
+`func (o *ServicesTxResp) SetStateCode(v ModelsTxState)`
 
 SetStateCode sets StateCode field to given value.
 

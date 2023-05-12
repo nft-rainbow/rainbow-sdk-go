@@ -14,13 +14,16 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesTxResp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesTxResp{}
+
 // ServicesTxResp struct for ServicesTxResp
 type ServicesTxResp struct {
 	ErrorMsg *string `json:"error_msg,omitempty"`
 	Hash *string `json:"hash,omitempty"`
 	IsFinalized *bool `json:"is_finalized,omitempty"`
 	IsSuccess *bool `json:"is_success,omitempty"`
-	StateCode *int32 `json:"state_code,omitempty"`
+	StateCode *ModelsTxState `json:"state_code,omitempty"`
 	StateMsg *string `json:"state_msg,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -57,7 +60,7 @@ func (o *ServicesTxResp) GetErrorMsg() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetErrorMsgOk() (*string, bool) {
 	if o == nil || isNil(o.ErrorMsg) {
-    return nil, false
+		return nil, false
 	}
 	return o.ErrorMsg, true
 }
@@ -89,7 +92,7 @@ func (o *ServicesTxResp) GetHash() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetHashOk() (*string, bool) {
 	if o == nil || isNil(o.Hash) {
-    return nil, false
+		return nil, false
 	}
 	return o.Hash, true
 }
@@ -121,7 +124,7 @@ func (o *ServicesTxResp) GetIsFinalized() bool {
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetIsFinalizedOk() (*bool, bool) {
 	if o == nil || isNil(o.IsFinalized) {
-    return nil, false
+		return nil, false
 	}
 	return o.IsFinalized, true
 }
@@ -153,7 +156,7 @@ func (o *ServicesTxResp) GetIsSuccess() bool {
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetIsSuccessOk() (*bool, bool) {
 	if o == nil || isNil(o.IsSuccess) {
-    return nil, false
+		return nil, false
 	}
 	return o.IsSuccess, true
 }
@@ -173,9 +176,9 @@ func (o *ServicesTxResp) SetIsSuccess(v bool) {
 }
 
 // GetStateCode returns the StateCode field value if set, zero value otherwise.
-func (o *ServicesTxResp) GetStateCode() int32 {
+func (o *ServicesTxResp) GetStateCode() ModelsTxState {
 	if o == nil || isNil(o.StateCode) {
-		var ret int32
+		var ret ModelsTxState
 		return ret
 	}
 	return *o.StateCode
@@ -183,9 +186,9 @@ func (o *ServicesTxResp) GetStateCode() int32 {
 
 // GetStateCodeOk returns a tuple with the StateCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServicesTxResp) GetStateCodeOk() (*int32, bool) {
+func (o *ServicesTxResp) GetStateCodeOk() (*ModelsTxState, bool) {
 	if o == nil || isNil(o.StateCode) {
-    return nil, false
+		return nil, false
 	}
 	return o.StateCode, true
 }
@@ -199,8 +202,8 @@ func (o *ServicesTxResp) HasStateCode() bool {
 	return false
 }
 
-// SetStateCode gets a reference to the given int32 and assigns it to the StateCode field.
-func (o *ServicesTxResp) SetStateCode(v int32) {
+// SetStateCode gets a reference to the given ModelsTxState and assigns it to the StateCode field.
+func (o *ServicesTxResp) SetStateCode(v ModelsTxState) {
 	o.StateCode = &v
 }
 
@@ -217,7 +220,7 @@ func (o *ServicesTxResp) GetStateMsg() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesTxResp) GetStateMsgOk() (*string, bool) {
 	if o == nil || isNil(o.StateMsg) {
-    return nil, false
+		return nil, false
 	}
 	return o.StateMsg, true
 }
@@ -237,6 +240,14 @@ func (o *ServicesTxResp) SetStateMsg(v string) {
 }
 
 func (o ServicesTxResp) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesTxResp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ErrorMsg) {
 		toSerialize["error_msg"] = o.ErrorMsg
@@ -261,7 +272,7 @@ func (o ServicesTxResp) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesTxResp) UnmarshalJSON(bytes []byte) (err error) {
