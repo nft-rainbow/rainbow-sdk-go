@@ -35,9 +35,11 @@ docs/ModelsExposedMetadataQueryResult.md
 docs/ModelsFilesQueryResult.md
 docs/ModelsMintTask.md
 docs/ModelsMintTaskQueryResult.md
+docs/ModelsTaskType.md
 docs/ModelsTransaction.md
 docs/ModelsTransferTask.md
 docs/ModelsTransferTaskQueryResult.md
+docs/ModelsTxState.md
 docs/MultipartFileHeader.md
 docs/NFTsApi.md
 docs/RainbowErrorsRainbowErrorDetailInfo.md
@@ -85,9 +87,11 @@ model_models_exposed_metadata_query_result.go
 model_models_files_query_result.go
 model_models_mint_task.go
 model_models_mint_task_query_result.go
+model_models_task_type.go
 model_models_transaction.go
 model_models_transfer_task.go
 model_models_transfer_task_query_result.go
+model_models_tx_state.go
 model_multipart_file_header.go
 model_rainbow_errors_rainbow_error_detail_info.go
 model_routers_update_token_uri_req.go
@@ -114,13 +118,4 @@ model_services_tx_resp.go
 model_services_upload_files_response.go
 model_services_upload_folder_response.go
 response.go
-test/api_burns_test.go
-test/api_contract_test.go
-test/api_files_test.go
-test/api_login_test.go
-test/api_metadata_test.go
-test/api_mints_test.go
-test/api_nfts_test.go
-test/api_transaction_test.go
-test/api_transfers_test.go
 utils.go
