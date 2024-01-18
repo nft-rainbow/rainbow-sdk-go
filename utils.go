@@ -342,6 +342,10 @@ func IsNil(i interface{}) bool {
 	return false
 }
 
+func isNil(i interface{}) bool{
+	return IsNil(i)
+}
+
 type MappedNullable interface {
 	ToMap() (map[string]interface{}, error)
 }
