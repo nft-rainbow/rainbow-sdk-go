@@ -31,6 +31,7 @@ const (
 	MODELSTASKTYPE_TASK_TYPE_SPONSOR_BALANCE ModelsTaskType = 9
 	MODELSTASKTYPE_TASK_TYPE_SPONSOR_PRIVILEGE ModelsTaskType = 10
 	MODELSTASKTYPE_TASK_TYPE_UPDATE_TOKEN_URI ModelsTaskType = 11
+	MODELSTASKTYPE_TASK_TYPE_CREATE_TBA ModelsTaskType = 12
 )
 
 // All allowed values of ModelsTaskType enum
@@ -46,6 +47,7 @@ var AllowedModelsTaskTypeEnumValues = []ModelsTaskType{
 	9,
 	10,
 	11,
+	12,
 }
 
 func (v *ModelsTaskType) UnmarshalJSON(src []byte) error {

@@ -46,7 +46,7 @@ func NewRainbowErrorsRainbowErrorDetailInfoWithDefaults() *RainbowErrorsRainbowE
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetCode() int32 {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		var ret int32
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetCode() int32 {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetCodeOk() (*int32, bool) {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
 	return o.Code, true
@@ -64,7 +64,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetCodeOk() (*int32, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) HasCode() bool {
-	if o != nil && !isNil(o.Code) {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) SetCode(v int32) {
 
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetData() string {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		var ret string
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetData() string {
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetDataOk() (*string, bool) {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
@@ -96,7 +96,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetDataOk() (*string, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) HasData() bool {
-	if o != nil && !isNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
@@ -110,7 +110,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) SetData(v string) {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetMessage() string {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -120,7 +120,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) GetMessageOk() (*string, bool) {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
 	return o.Message, true
@@ -128,7 +128,7 @@ func (o *RainbowErrorsRainbowErrorDetailInfo) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *RainbowErrorsRainbowErrorDetailInfo) HasMessage() bool {
-	if o != nil && !isNil(o.Message) {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -150,13 +150,13 @@ func (o RainbowErrorsRainbowErrorDetailInfo) MarshalJSON() ([]byte, error) {
 
 func (o RainbowErrorsRainbowErrorDetailInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Code) {
+	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if !isNil(o.Data) {
+	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	if !isNil(o.Message) {
+	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
 
@@ -167,16 +167,20 @@ func (o RainbowErrorsRainbowErrorDetailInfo) ToMap() (map[string]interface{}, er
 	return toSerialize, nil
 }
 
-func (o *RainbowErrorsRainbowErrorDetailInfo) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RainbowErrorsRainbowErrorDetailInfo) UnmarshalJSON(data []byte) (err error) {
 	varRainbowErrorsRainbowErrorDetailInfo := _RainbowErrorsRainbowErrorDetailInfo{}
 
-	if err = json.Unmarshal(bytes, &varRainbowErrorsRainbowErrorDetailInfo); err == nil {
-		*o = RainbowErrorsRainbowErrorDetailInfo(varRainbowErrorsRainbowErrorDetailInfo)
+	err = json.Unmarshal(data, &varRainbowErrorsRainbowErrorDetailInfo)
+
+	if err != nil {
+		return err
 	}
+
+	*o = RainbowErrorsRainbowErrorDetailInfo(varRainbowErrorsRainbowErrorDetailInfo)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "code")
 		delete(additionalProperties, "data")
 		delete(additionalProperties, "message")

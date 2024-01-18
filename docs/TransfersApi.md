@@ -1,13 +1,13 @@
-# \TransfersApi
+# \TransfersAPI
 
 All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BatchTransferNft**](TransfersApi.md#BatchTransferNft) | **Post** /v1/transfers/customizable/batch | Batch Transfer NFTs
-[**GetTransferDetail**](TransfersApi.md#GetTransferDetail) | **Get** /v1/transfers/{id} | Transfer NFT detail
-[**ListTransfer**](TransfersApi.md#ListTransfer) | **Get** /v1/transfers/ | Obtain the transferred NFTs list
-[**TransferNft**](TransfersApi.md#TransferNft) | **Post** /v1/transfers/customizable | Transfer NFT
+[**BatchTransferNft**](TransfersAPI.md#BatchTransferNft) | **Post** /v1/transfers/customizable/batch | Batch Transfer NFTs
+[**GetTransferDetail**](TransfersAPI.md#GetTransferDetail) | **Get** /v1/transfers/{id} | Transfer NFT detail
+[**ListTransfer**](TransfersAPI.md#ListTransfer) | **Get** /v1/transfers/ | Obtain the transferred NFTs list
+[**TransferNft**](TransfersAPI.md#TransferNft) | **Post** /v1/transfers/customizable | Transfer NFT
 
 
 
@@ -25,25 +25,25 @@ Batch Transfer NFTs
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer Open_JWT
-    transferBatchDto := *openapiclient.NewServicesTransferBatchDto("Chain_example", "ContractAddress_example", "ContractType_example", []openapiclient.ServicesTransferItemDto{*openapiclient.NewServicesTransferItemDto("TokenId_example", "TransferFromAddress_example", "TransferToAddress_example")}) // ServicesTransferBatchDto | transfer_batch_dto
+	authorization := "authorization_example" // string | Bearer Open_JWT
+	transferBatchDto := *openapiclient.NewServicesTransferBatchDto("Chain_example", "ContractAddress_example", "ContractType_example", []openapiclient.ServicesTransferItemDto{*openapiclient.NewServicesTransferItemDto("TokenId_example", "TransferFromAddress_example", "TransferToAddress_example")}) // ServicesTransferBatchDto | transfer_batch_dto
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TransfersApi.BatchTransferNft(context.Background()).Authorization(authorization).TransferBatchDto(transferBatchDto).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.BatchTransferNft``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `BatchTransferNft`: []ModelsTransferTask
-    fmt.Fprintf(os.Stdout, "Response from `TransfersApi.BatchTransferNft`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TransfersAPI.BatchTransferNft(context.Background()).Authorization(authorization).TransferBatchDto(transferBatchDto).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TransfersAPI.BatchTransferNft``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `BatchTransferNft`: []ModelsTransferTask
+	fmt.Fprintf(os.Stdout, "Response from `TransfersAPI.BatchTransferNft`: %v\n", resp)
 }
 ```
 
@@ -93,25 +93,25 @@ Transfer NFT detail
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer Open_JWT
-    id := int32(56) // int32 | id
+	authorization := "authorization_example" // string | Bearer Open_JWT
+	id := int32(56) // int32 | id
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TransfersApi.GetTransferDetail(context.Background(), id).Authorization(authorization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.GetTransferDetail``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTransferDetail`: ModelsTransferTask
-    fmt.Fprintf(os.Stdout, "Response from `TransfersApi.GetTransferDetail`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TransfersAPI.GetTransferDetail(context.Background(), id).Authorization(authorization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TransfersAPI.GetTransferDetail``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetTransferDetail`: ModelsTransferTask
+	fmt.Fprintf(os.Stdout, "Response from `TransfersAPI.GetTransferDetail`: %v\n", resp)
 }
 ```
 
@@ -165,26 +165,26 @@ Obtain the transferred NFTs list
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer Open_JWT
-    page := int32(56) // int32 | page (optional)
-    limit := int32(56) // int32 | limit (optional)
+	authorization := "authorization_example" // string | Bearer Open_JWT
+	page := int32(56) // int32 | page (optional)
+	limit := int32(56) // int32 | limit (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TransfersApi.ListTransfer(context.Background()).Authorization(authorization).Page(page).Limit(limit).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.ListTransfer``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListTransfer`: ModelsTransferTaskQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `TransfersApi.ListTransfer`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TransfersAPI.ListTransfer(context.Background()).Authorization(authorization).Page(page).Limit(limit).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TransfersAPI.ListTransfer``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListTransfer`: ModelsTransferTaskQueryResult
+	fmt.Fprintf(os.Stdout, "Response from `TransfersAPI.ListTransfer`: %v\n", resp)
 }
 ```
 
@@ -235,25 +235,25 @@ Transfer NFT
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer Open_JWT
-    transferDto := *openapiclient.NewServicesTransferDto("Chain_example", "ContractAddress_example", "ContractType_example", "TokenId_example", "TransferFromAddress_example", "TransferToAddress_example") // ServicesTransferDto | transfer_dto
+	authorization := "authorization_example" // string | Bearer Open_JWT
+	transferDto := *openapiclient.NewServicesTransferDto("Chain_example", "ContractAddress_example", "ContractType_example", "TokenId_example", "TransferFromAddress_example", "TransferToAddress_example") // ServicesTransferDto | transfer_dto
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TransfersApi.TransferNft(context.Background()).Authorization(authorization).TransferDto(transferDto).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TransfersApi.TransferNft``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TransferNft`: ModelsTransferTask
-    fmt.Fprintf(os.Stdout, "Response from `TransfersApi.TransferNft`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TransfersAPI.TransferNft(context.Background()).Authorization(authorization).TransferDto(transferDto).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TransfersAPI.TransferNft``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TransferNft`: ModelsTransferTask
+	fmt.Fprintf(os.Stdout, "Response from `TransfersAPI.TransferNft`: %v\n", resp)
 }
 ```
 

@@ -35,8 +35,8 @@ import (
 )
 
 var (
-	jsonCheck = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
-	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
+	JsonCheck       = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?json)`)
+	XmlCheck        = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?xml)`)
 	queryParamSplit = regexp.MustCompile(`(^|&)([^&]+)`)
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
@@ -49,23 +49,27 @@ type APIClient struct {
 
 	// API Services
 
-	BurnsApi BurnsApi
+	AccountsAPI AccountsAPI
 
-	ContractApi ContractApi
+	BurnsAPI BurnsAPI
 
-	FilesApi FilesApi
+	ContractAPI ContractAPI
 
-	LoginApi LoginApi
+	FilesAPI FilesAPI
 
-	MetadataApi MetadataApi
+	LoginAPI LoginAPI
 
-	MintsApi MintsApi
+	MetadataAPI MetadataAPI
 
-	NFTsApi NFTsApi
+	MintsAPI MintsAPI
 
-	TransactionApi TransactionApi
+	NFTsAPI NFTsAPI
 
-	TransfersApi TransfersApi
+	TBAAPI TBAAPI
+
+	TransactionAPI TransactionAPI
+
+	TransfersAPI TransfersAPI
 }
 
 type service struct {
@@ -84,15 +88,17 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.BurnsApi = (*BurnsApiService)(&c.common)
-	c.ContractApi = (*ContractApiService)(&c.common)
-	c.FilesApi = (*FilesApiService)(&c.common)
-	c.LoginApi = (*LoginApiService)(&c.common)
-	c.MetadataApi = (*MetadataApiService)(&c.common)
-	c.MintsApi = (*MintsApiService)(&c.common)
-	c.NFTsApi = (*NFTsApiService)(&c.common)
-	c.TransactionApi = (*TransactionApiService)(&c.common)
-	c.TransfersApi = (*TransfersApiService)(&c.common)
+	c.AccountsAPI = (*AccountsAPIService)(&c.common)
+	c.BurnsAPI = (*BurnsAPIService)(&c.common)
+	c.ContractAPI = (*ContractAPIService)(&c.common)
+	c.FilesAPI = (*FilesAPIService)(&c.common)
+	c.LoginAPI = (*LoginAPIService)(&c.common)
+	c.MetadataAPI = (*MetadataAPIService)(&c.common)
+	c.MintsAPI = (*MintsAPIService)(&c.common)
+	c.NFTsAPI = (*NFTsAPIService)(&c.common)
+	c.TBAAPI = (*TBAAPIService)(&c.common)
+	c.TransactionAPI = (*TransactionAPIService)(&c.common)
+	c.TransfersAPI = (*TransfersAPIService)(&c.common)
 
 	return c
 }
@@ -474,13 +480,13 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 		_, err = (*f).Seek(0, io.SeekStart)
 		return
 	}
-	if xmlCheck.MatchString(contentType) {
+	if XmlCheck.MatchString(contentType) {
 		if err = xml.Unmarshal(b, v); err != nil {
 			return err
 		}
 		return nil
 	}
-	if jsonCheck.MatchString(contentType) {
+	if JsonCheck.MatchString(contentType) {
 		if actualObj, ok := v.(interface{ GetActualInstance() interface{} }); ok { // oneOf, anyOf schemas
 			if unmarshalObj, ok := actualObj.(interface{ UnmarshalJSON([]byte) error }); ok { // make sure it has UnmarshalJSON defined
 				if err = unmarshalObj.UnmarshalJSON(b); err != nil {
@@ -545,10 +551,14 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 		_, err = bodyBuf.WriteString(s)
 	} else if s, ok := body.(*string); ok {
 		_, err = bodyBuf.WriteString(*s)
-	} else if jsonCheck.MatchString(contentType) {
+	} else if JsonCheck.MatchString(contentType) {
 		err = json.NewEncoder(bodyBuf).Encode(body)
-	} else if xmlCheck.MatchString(contentType) {
-		err = xml.NewEncoder(bodyBuf).Encode(body)
+	} else if XmlCheck.MatchString(contentType) {
+		var bs []byte
+		bs, err = xml.Marshal(body)
+		if err == nil {
+			bodyBuf.Write(bs)
+		}
 	}
 
 	if err != nil {
@@ -664,16 +674,17 @@ func formatErrorMessage(status string, v interface{}) string {
 	str := ""
 	metaValue := reflect.ValueOf(v).Elem()
 
-	field := metaValue.FieldByName("Title")
-	if field != (reflect.Value{}) {
-		str = fmt.Sprintf("%s", field.Interface())
+	if metaValue.Kind() == reflect.Struct {
+		field := metaValue.FieldByName("Title")
+		if field != (reflect.Value{}) {
+			str = fmt.Sprintf("%s", field.Interface())
+		}
+
+		field = metaValue.FieldByName("Detail")
+		if field != (reflect.Value{}) {
+			str = fmt.Sprintf("%s (%s)", str, field.Interface())
+		}
 	}
 
-	field = metaValue.FieldByName("Detail")
-	if field != (reflect.Value{}) {
-		str = fmt.Sprintf("%s (%s)", str, field.Interface())
-	}
-
-	// status title (detail)
 	return strings.TrimSpace(fmt.Sprintf("%s %s", status, str))
 }

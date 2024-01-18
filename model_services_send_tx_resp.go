@@ -44,7 +44,7 @@ func NewServicesSendTxRespWithDefaults() *ServicesSendTxResp {
 
 // GetTxId returns the TxId field value if set, zero value otherwise.
 func (o *ServicesSendTxResp) GetTxId() int32 {
-	if o == nil || isNil(o.TxId) {
+	if o == nil || IsNil(o.TxId) {
 		var ret int32
 		return ret
 	}
@@ -54,7 +54,7 @@ func (o *ServicesSendTxResp) GetTxId() int32 {
 // GetTxIdOk returns a tuple with the TxId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesSendTxResp) GetTxIdOk() (*int32, bool) {
-	if o == nil || isNil(o.TxId) {
+	if o == nil || IsNil(o.TxId) {
 		return nil, false
 	}
 	return o.TxId, true
@@ -62,7 +62,7 @@ func (o *ServicesSendTxResp) GetTxIdOk() (*int32, bool) {
 
 // HasTxId returns a boolean if a field has been set.
 func (o *ServicesSendTxResp) HasTxId() bool {
-	if o != nil && !isNil(o.TxId) {
+	if o != nil && !IsNil(o.TxId) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o ServicesSendTxResp) MarshalJSON() ([]byte, error) {
 
 func (o ServicesSendTxResp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.TxId) {
+	if !IsNil(o.TxId) {
 		toSerialize["tx_id"] = o.TxId
 	}
 
@@ -95,16 +95,20 @@ func (o ServicesSendTxResp) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ServicesSendTxResp) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ServicesSendTxResp) UnmarshalJSON(data []byte) (err error) {
 	varServicesSendTxResp := _ServicesSendTxResp{}
 
-	if err = json.Unmarshal(bytes, &varServicesSendTxResp); err == nil {
-		*o = ServicesSendTxResp(varServicesSendTxResp)
+	err = json.Unmarshal(data, &varServicesSendTxResp)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ServicesSendTxResp(varServicesSendTxResp)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "tx_id")
 		o.AdditionalProperties = additionalProperties
 	}

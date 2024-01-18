@@ -20,7 +20,7 @@ import (
 )
 
 
-type BurnsApi interface {
+type BurnsAPI interface {
 
 	/*
 	BurnBatch Batch burn NFT
@@ -80,12 +80,12 @@ type BurnsApi interface {
 	GetBurnListExecute(r ApiGetBurnListRequest) (*ModelsBurnTaskQueryResult, *http.Response, error)
 }
 
-// BurnsApiService BurnsApi service
-type BurnsApiService service
+// BurnsAPIService BurnsAPI service
+type BurnsAPIService service
 
 type ApiBurnBatchRequest struct {
 	ctx context.Context
-	ApiService BurnsApi
+	ApiService BurnsAPI
 	authorization *string
 	burnBatchDto *ServicesBurnBatchDto
 }
@@ -114,7 +114,7 @@ Batch burn NFT by admin
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBurnBatchRequest
 */
-func (a *BurnsApiService) BurnBatch(ctx context.Context) ApiBurnBatchRequest {
+func (a *BurnsAPIService) BurnBatch(ctx context.Context) ApiBurnBatchRequest {
 	return ApiBurnBatchRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -123,7 +123,7 @@ func (a *BurnsApiService) BurnBatch(ctx context.Context) ApiBurnBatchRequest {
 
 // Execute executes the request
 //  @return []ModelsBurnTask
-func (a *BurnsApiService) BurnBatchExecute(r ApiBurnBatchRequest) ([]ModelsBurnTask, *http.Response, error) {
+func (a *BurnsAPIService) BurnBatchExecute(r ApiBurnBatchRequest) ([]ModelsBurnTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -131,7 +131,7 @@ func (a *BurnsApiService) BurnBatchExecute(r ApiBurnBatchRequest) ([]ModelsBurnT
 		localVarReturnValue  []ModelsBurnTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsApiService.BurnBatch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsAPIService.BurnBatch")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -228,7 +228,7 @@ func (a *BurnsApiService) BurnBatchExecute(r ApiBurnBatchRequest) ([]ModelsBurnT
 
 type ApiBurnNftRequest struct {
 	ctx context.Context
-	ApiService BurnsApi
+	ApiService BurnsAPI
 	authorization *string
 	burnDto *ServicesBurnDto
 }
@@ -257,7 +257,7 @@ Burn NFT by admin
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBurnNftRequest
 */
-func (a *BurnsApiService) BurnNft(ctx context.Context) ApiBurnNftRequest {
+func (a *BurnsAPIService) BurnNft(ctx context.Context) ApiBurnNftRequest {
 	return ApiBurnNftRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -266,7 +266,7 @@ func (a *BurnsApiService) BurnNft(ctx context.Context) ApiBurnNftRequest {
 
 // Execute executes the request
 //  @return ModelsBurnTask
-func (a *BurnsApiService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, *http.Response, error) {
+func (a *BurnsAPIService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -274,7 +274,7 @@ func (a *BurnsApiService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, 
 		localVarReturnValue  *ModelsBurnTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsApiService.BurnNft")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsAPIService.BurnNft")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -371,7 +371,7 @@ func (a *BurnsApiService) BurnNftExecute(r ApiBurnNftRequest) (*ModelsBurnTask, 
 
 type ApiGetBurnDetailRequest struct {
 	ctx context.Context
-	ApiService BurnsApi
+	ApiService BurnsAPI
 	authorization *string
 	id int32
 }
@@ -395,7 +395,7 @@ Get NFT Burn detail info
  @param id id
  @return ApiGetBurnDetailRequest
 */
-func (a *BurnsApiService) GetBurnDetail(ctx context.Context, id int32) ApiGetBurnDetailRequest {
+func (a *BurnsAPIService) GetBurnDetail(ctx context.Context, id int32) ApiGetBurnDetailRequest {
 	return ApiGetBurnDetailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -405,7 +405,7 @@ func (a *BurnsApiService) GetBurnDetail(ctx context.Context, id int32) ApiGetBur
 
 // Execute executes the request
 //  @return ModelsBurnTask
-func (a *BurnsApiService) GetBurnDetailExecute(r ApiGetBurnDetailRequest) (*ModelsBurnTask, *http.Response, error) {
+func (a *BurnsAPIService) GetBurnDetailExecute(r ApiGetBurnDetailRequest) (*ModelsBurnTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -413,7 +413,7 @@ func (a *BurnsApiService) GetBurnDetailExecute(r ApiGetBurnDetailRequest) (*Mode
 		localVarReturnValue  *ModelsBurnTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsApiService.GetBurnDetail")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsAPIService.GetBurnDetail")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -506,7 +506,7 @@ func (a *BurnsApiService) GetBurnDetailExecute(r ApiGetBurnDetailRequest) (*Mode
 
 type ApiGetBurnListRequest struct {
 	ctx context.Context
-	ApiService BurnsApi
+	ApiService BurnsAPI
 	authorization *string
 }
 
@@ -528,7 +528,7 @@ Get the NFT burned list information.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetBurnListRequest
 */
-func (a *BurnsApiService) GetBurnList(ctx context.Context) ApiGetBurnListRequest {
+func (a *BurnsAPIService) GetBurnList(ctx context.Context) ApiGetBurnListRequest {
 	return ApiGetBurnListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -537,7 +537,7 @@ func (a *BurnsApiService) GetBurnList(ctx context.Context) ApiGetBurnListRequest
 
 // Execute executes the request
 //  @return ModelsBurnTaskQueryResult
-func (a *BurnsApiService) GetBurnListExecute(r ApiGetBurnListRequest) (*ModelsBurnTaskQueryResult, *http.Response, error) {
+func (a *BurnsAPIService) GetBurnListExecute(r ApiGetBurnListRequest) (*ModelsBurnTaskQueryResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -545,7 +545,7 @@ func (a *BurnsApiService) GetBurnListExecute(r ApiGetBurnListRequest) (*ModelsBu
 		localVarReturnValue  *ModelsBurnTaskQueryResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsApiService.GetBurnList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BurnsAPIService.GetBurnList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

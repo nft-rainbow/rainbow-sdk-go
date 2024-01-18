@@ -46,7 +46,7 @@ func NewMultipartFileHeaderWithDefaults() *MultipartFileHeader {
 
 // GetFilename returns the Filename field value if set, zero value otherwise.
 func (o *MultipartFileHeader) GetFilename() string {
-	if o == nil || isNil(o.Filename) {
+	if o == nil || IsNil(o.Filename) {
 		var ret string
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *MultipartFileHeader) GetFilename() string {
 // GetFilenameOk returns a tuple with the Filename field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MultipartFileHeader) GetFilenameOk() (*string, bool) {
-	if o == nil || isNil(o.Filename) {
+	if o == nil || IsNil(o.Filename) {
 		return nil, false
 	}
 	return o.Filename, true
@@ -64,7 +64,7 @@ func (o *MultipartFileHeader) GetFilenameOk() (*string, bool) {
 
 // HasFilename returns a boolean if a field has been set.
 func (o *MultipartFileHeader) HasFilename() bool {
-	if o != nil && !isNil(o.Filename) {
+	if o != nil && !IsNil(o.Filename) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *MultipartFileHeader) SetFilename(v string) {
 
 // GetHeader returns the Header field value if set, zero value otherwise.
 func (o *MultipartFileHeader) GetHeader() map[string][]string {
-	if o == nil || isNil(o.Header) {
+	if o == nil || IsNil(o.Header) {
 		var ret map[string][]string
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *MultipartFileHeader) GetHeader() map[string][]string {
 // GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MultipartFileHeader) GetHeaderOk() (*map[string][]string, bool) {
-	if o == nil || isNil(o.Header) {
+	if o == nil || IsNil(o.Header) {
 		return nil, false
 	}
 	return o.Header, true
@@ -96,7 +96,7 @@ func (o *MultipartFileHeader) GetHeaderOk() (*map[string][]string, bool) {
 
 // HasHeader returns a boolean if a field has been set.
 func (o *MultipartFileHeader) HasHeader() bool {
-	if o != nil && !isNil(o.Header) {
+	if o != nil && !IsNil(o.Header) {
 		return true
 	}
 
@@ -110,7 +110,7 @@ func (o *MultipartFileHeader) SetHeader(v map[string][]string) {
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *MultipartFileHeader) GetSize() int32 {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		var ret int32
 		return ret
 	}
@@ -120,7 +120,7 @@ func (o *MultipartFileHeader) GetSize() int32 {
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MultipartFileHeader) GetSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.Size) {
+	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
 	return o.Size, true
@@ -128,7 +128,7 @@ func (o *MultipartFileHeader) GetSizeOk() (*int32, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *MultipartFileHeader) HasSize() bool {
-	if o != nil && !isNil(o.Size) {
+	if o != nil && !IsNil(o.Size) {
 		return true
 	}
 
@@ -150,13 +150,13 @@ func (o MultipartFileHeader) MarshalJSON() ([]byte, error) {
 
 func (o MultipartFileHeader) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Filename) {
+	if !IsNil(o.Filename) {
 		toSerialize["filename"] = o.Filename
 	}
-	if !isNil(o.Header) {
+	if !IsNil(o.Header) {
 		toSerialize["header"] = o.Header
 	}
-	if !isNil(o.Size) {
+	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
 
@@ -167,16 +167,20 @@ func (o MultipartFileHeader) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *MultipartFileHeader) UnmarshalJSON(bytes []byte) (err error) {
+func (o *MultipartFileHeader) UnmarshalJSON(data []byte) (err error) {
 	varMultipartFileHeader := _MultipartFileHeader{}
 
-	if err = json.Unmarshal(bytes, &varMultipartFileHeader); err == nil {
-		*o = MultipartFileHeader(varMultipartFileHeader)
+	err = json.Unmarshal(data, &varMultipartFileHeader)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MultipartFileHeader(varMultipartFileHeader)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "filename")
 		delete(additionalProperties, "header")
 		delete(additionalProperties, "size")

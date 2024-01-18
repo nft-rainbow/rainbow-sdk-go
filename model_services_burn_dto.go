@@ -12,6 +12,7 @@ package rainbowsdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ServicesBurnDto type satisfies the MappedNullable interface at compile time
@@ -53,7 +54,7 @@ func NewServicesBurnDtoWithDefaults() *ServicesBurnDto {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *ServicesBurnDto) GetAmount() int32 {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		var ret int32
 		return ret
 	}
@@ -63,7 +64,7 @@ func (o *ServicesBurnDto) GetAmount() int32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetAmountOk() (*int32, bool) {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
 	return o.Amount, true
@@ -71,7 +72,7 @@ func (o *ServicesBurnDto) GetAmountOk() (*int32, bool) {
 
 // HasAmount returns a boolean if a field has been set.
 func (o *ServicesBurnDto) HasAmount() bool {
-	if o != nil && !isNil(o.Amount) {
+	if o != nil && !IsNil(o.Amount) {
 		return true
 	}
 
@@ -181,7 +182,7 @@ func (o *ServicesBurnDto) SetTokenId(v string) {
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *ServicesBurnDto) GetUser() string {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		var ret string
 		return ret
 	}
@@ -191,7 +192,7 @@ func (o *ServicesBurnDto) GetUser() string {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnDto) GetUserOk() (*string, bool) {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		return nil, false
 	}
 	return o.User, true
@@ -199,7 +200,7 @@ func (o *ServicesBurnDto) GetUserOk() (*string, bool) {
 
 // HasUser returns a boolean if a field has been set.
 func (o *ServicesBurnDto) HasUser() bool {
-	if o != nil && !isNil(o.User) {
+	if o != nil && !IsNil(o.User) {
 		return true
 	}
 
@@ -221,14 +222,14 @@ func (o ServicesBurnDto) MarshalJSON() ([]byte, error) {
 
 func (o ServicesBurnDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Amount) {
+	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
 	toSerialize["chain"] = o.Chain
 	toSerialize["contract_address"] = o.ContractAddress
 	toSerialize["contract_type"] = o.ContractType
 	toSerialize["token_id"] = o.TokenId
-	if !isNil(o.User) {
+	if !IsNil(o.User) {
 		toSerialize["user"] = o.User
 	}
 
@@ -239,16 +240,44 @@ func (o ServicesBurnDto) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ServicesBurnDto) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ServicesBurnDto) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"chain",
+		"contract_address",
+		"contract_type",
+		"token_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varServicesBurnDto := _ServicesBurnDto{}
 
-	if err = json.Unmarshal(bytes, &varServicesBurnDto); err == nil {
-		*o = ServicesBurnDto(varServicesBurnDto)
+	err = json.Unmarshal(data, &varServicesBurnDto)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ServicesBurnDto(varServicesBurnDto)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "amount")
 		delete(additionalProperties, "chain")
 		delete(additionalProperties, "contract_address")

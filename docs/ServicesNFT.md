@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **ContractAddress** | Pointer to **string** |  | [optional] 
 **Owner** | Pointer to **string** |  | [optional] 
 **TokenId** | Pointer to **string** |  | [optional] 
+**TokenUri** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetTokenId sets TokenId field to given value.
 `func (o *ServicesNFT) HasTokenId() bool`
 
 HasTokenId returns a boolean if a field has been set.
+
+### GetTokenUri
+
+`func (o *ServicesNFT) GetTokenUri() string`
+
+GetTokenUri returns the TokenUri field if non-nil, zero value otherwise.
+
+### GetTokenUriOk
+
+`func (o *ServicesNFT) GetTokenUriOk() (*string, bool)`
+
+GetTokenUriOk returns a tuple with the TokenUri field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenUri
+
+`func (o *ServicesNFT) SetTokenUri(v string)`
+
+SetTokenUri sets TokenUri field to given value.
+
+### HasTokenUri
+
+`func (o *ServicesNFT) HasTokenUri() bool`
+
+HasTokenUri returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

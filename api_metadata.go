@@ -20,7 +20,7 @@ import (
 )
 
 
-type MetadataApi interface {
+type MetadataAPI interface {
 
 	/*
 	CreateMetadata Create NFT metadata
@@ -66,12 +66,12 @@ type MetadataApi interface {
 	ListMetadatasExecute(r ApiListMetadatasRequest) (*ModelsExposedMetadataQueryResult, *http.Response, error)
 }
 
-// MetadataApiService MetadataApi service
-type MetadataApiService service
+// MetadataAPIService MetadataAPI service
+type MetadataAPIService service
 
 type ApiCreateMetadataRequest struct {
 	ctx context.Context
-	ApiService MetadataApi
+	ApiService MetadataAPI
 	authorization *string
 	metadataInfo *ServicesMetadataDto
 }
@@ -100,7 +100,7 @@ Create NFT metadata by providing the info including name, description and so on
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateMetadataRequest
 */
-func (a *MetadataApiService) CreateMetadata(ctx context.Context) ApiCreateMetadataRequest {
+func (a *MetadataAPIService) CreateMetadata(ctx context.Context) ApiCreateMetadataRequest {
 	return ApiCreateMetadataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -109,7 +109,7 @@ func (a *MetadataApiService) CreateMetadata(ctx context.Context) ApiCreateMetada
 
 // Execute executes the request
 //  @return ModelsExposedMetadata
-func (a *MetadataApiService) CreateMetadataExecute(r ApiCreateMetadataRequest) (*ModelsExposedMetadata, *http.Response, error) {
+func (a *MetadataAPIService) CreateMetadataExecute(r ApiCreateMetadataRequest) (*ModelsExposedMetadata, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -117,7 +117,7 @@ func (a *MetadataApiService) CreateMetadataExecute(r ApiCreateMetadataRequest) (
 		localVarReturnValue  *ModelsExposedMetadata
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.CreateMetadata")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataAPIService.CreateMetadata")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -214,7 +214,7 @@ func (a *MetadataApiService) CreateMetadataExecute(r ApiCreateMetadataRequest) (
 
 type ApiGetMetadatInfoRequest struct {
 	ctx context.Context
-	ApiService MetadataApi
+	ApiService MetadataAPI
 	authorization *string
 	metadataId string
 }
@@ -238,7 +238,7 @@ Query the metadata according to metadata_id
  @param metadataId metadata_id
  @return ApiGetMetadatInfoRequest
 */
-func (a *MetadataApiService) GetMetadatInfo(ctx context.Context, metadataId string) ApiGetMetadatInfoRequest {
+func (a *MetadataAPIService) GetMetadatInfo(ctx context.Context, metadataId string) ApiGetMetadatInfoRequest {
 	return ApiGetMetadatInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -248,7 +248,7 @@ func (a *MetadataApiService) GetMetadatInfo(ctx context.Context, metadataId stri
 
 // Execute executes the request
 //  @return ModelsExposedMetadata
-func (a *MetadataApiService) GetMetadatInfoExecute(r ApiGetMetadatInfoRequest) (*ModelsExposedMetadata, *http.Response, error) {
+func (a *MetadataAPIService) GetMetadatInfoExecute(r ApiGetMetadatInfoRequest) (*ModelsExposedMetadata, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -256,7 +256,7 @@ func (a *MetadataApiService) GetMetadatInfoExecute(r ApiGetMetadatInfoRequest) (
 		localVarReturnValue  *ModelsExposedMetadata
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.GetMetadatInfo")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataAPIService.GetMetadatInfo")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -349,7 +349,7 @@ func (a *MetadataApiService) GetMetadatInfoExecute(r ApiGetMetadatInfoRequest) (
 
 type ApiListMetadatasRequest struct {
 	ctx context.Context
-	ApiService MetadataApi
+	ApiService MetadataAPI
 	authorization *string
 	page *string
 	limit *string
@@ -385,7 +385,7 @@ Get the metadata list containing the info of the metadata created in the specifi
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListMetadatasRequest
 */
-func (a *MetadataApiService) ListMetadatas(ctx context.Context) ApiListMetadatasRequest {
+func (a *MetadataAPIService) ListMetadatas(ctx context.Context) ApiListMetadatasRequest {
 	return ApiListMetadatasRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -394,7 +394,7 @@ func (a *MetadataApiService) ListMetadatas(ctx context.Context) ApiListMetadatas
 
 // Execute executes the request
 //  @return ModelsExposedMetadataQueryResult
-func (a *MetadataApiService) ListMetadatasExecute(r ApiListMetadatasRequest) (*ModelsExposedMetadataQueryResult, *http.Response, error) {
+func (a *MetadataAPIService) ListMetadatasExecute(r ApiListMetadatasRequest) (*ModelsExposedMetadataQueryResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -402,7 +402,7 @@ func (a *MetadataApiService) ListMetadatasExecute(r ApiListMetadatasRequest) (*M
 		localVarReturnValue  *ModelsExposedMetadataQueryResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataApiService.ListMetadatas")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetadataAPIService.ListMetadatas")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

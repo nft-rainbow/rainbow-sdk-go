@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **int32** |  | [optional] 
 **AppId** | Pointer to **int32** |  | [optional] 
+**BlockReason** | Pointer to [**EnumsTransactionBlockReason**](EnumsTransactionBlockReason.md) |  | [optional] 
 **ChainId** | Pointer to **int32** |  | [optional] 
 **ChainType** | Pointer to **int32** |  | [optional] 
 **Contract** | Pointer to **string** |  | [optional] 
@@ -90,6 +91,31 @@ SetAppId sets AppId field to given value.
 `func (o *ModelsTransferTask) HasAppId() bool`
 
 HasAppId returns a boolean if a field has been set.
+
+### GetBlockReason
+
+`func (o *ModelsTransferTask) GetBlockReason() EnumsTransactionBlockReason`
+
+GetBlockReason returns the BlockReason field if non-nil, zero value otherwise.
+
+### GetBlockReasonOk
+
+`func (o *ModelsTransferTask) GetBlockReasonOk() (*EnumsTransactionBlockReason, bool)`
+
+GetBlockReasonOk returns a tuple with the BlockReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBlockReason
+
+`func (o *ModelsTransferTask) SetBlockReason(v EnumsTransactionBlockReason)`
+
+SetBlockReason sets BlockReason field to given value.
+
+### HasBlockReason
+
+`func (o *ModelsTransferTask) HasBlockReason() bool`
+
+HasBlockReason returns a boolean if a field has been set.
 
 ### GetChainId
 

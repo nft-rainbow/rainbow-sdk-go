@@ -45,7 +45,7 @@ func NewModelsExposedMetadataQueryResultWithDefaults() *ModelsExposedMetadataQue
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ModelsExposedMetadataQueryResult) GetCount() int32 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *ModelsExposedMetadataQueryResult) GetCount() int32 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataQueryResult) GetCountOk() (*int32, bool) {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
@@ -63,7 +63,7 @@ func (o *ModelsExposedMetadataQueryResult) GetCountOk() (*int32, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *ModelsExposedMetadataQueryResult) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *ModelsExposedMetadataQueryResult) SetCount(v int32) {
 
 // GetItems returns the Items field value if set, zero value otherwise.
 func (o *ModelsExposedMetadataQueryResult) GetItems() []ModelsExposedMetadata {
-	if o == nil || isNil(o.Items) {
+	if o == nil || IsNil(o.Items) {
 		var ret []ModelsExposedMetadata
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *ModelsExposedMetadataQueryResult) GetItems() []ModelsExposedMetadata {
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataQueryResult) GetItemsOk() ([]ModelsExposedMetadata, bool) {
-	if o == nil || isNil(o.Items) {
+	if o == nil || IsNil(o.Items) {
 		return nil, false
 	}
 	return o.Items, true
@@ -95,7 +95,7 @@ func (o *ModelsExposedMetadataQueryResult) GetItemsOk() ([]ModelsExposedMetadata
 
 // HasItems returns a boolean if a field has been set.
 func (o *ModelsExposedMetadataQueryResult) HasItems() bool {
-	if o != nil && !isNil(o.Items) {
+	if o != nil && !IsNil(o.Items) {
 		return true
 	}
 
@@ -117,10 +117,10 @@ func (o ModelsExposedMetadataQueryResult) MarshalJSON() ([]byte, error) {
 
 func (o ModelsExposedMetadataQueryResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Count) {
+	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
-	if !isNil(o.Items) {
+	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items
 	}
 
@@ -131,16 +131,20 @@ func (o ModelsExposedMetadataQueryResult) ToMap() (map[string]interface{}, error
 	return toSerialize, nil
 }
 
-func (o *ModelsExposedMetadataQueryResult) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ModelsExposedMetadataQueryResult) UnmarshalJSON(data []byte) (err error) {
 	varModelsExposedMetadataQueryResult := _ModelsExposedMetadataQueryResult{}
 
-	if err = json.Unmarshal(bytes, &varModelsExposedMetadataQueryResult); err == nil {
-		*o = ModelsExposedMetadataQueryResult(varModelsExposedMetadataQueryResult)
+	err = json.Unmarshal(data, &varModelsExposedMetadataQueryResult)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ModelsExposedMetadataQueryResult(varModelsExposedMetadataQueryResult)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "count")
 		delete(additionalProperties, "items")
 		o.AdditionalProperties = additionalProperties

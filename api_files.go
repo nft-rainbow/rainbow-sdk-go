@@ -20,7 +20,7 @@ import (
 )
 
 
-type FilesApi interface {
+type FilesAPI interface {
 
 	/*
 	ListFiles Obtain file list
@@ -93,12 +93,12 @@ type FilesApi interface {
 	UploadFolderToOSSExecute(r ApiUploadFolderToOSSRequest) (*ServicesUploadFolderResponse, *http.Response, error)
 }
 
-// FilesApiService FilesApi service
-type FilesApiService service
+// FilesAPIService FilesAPI service
+type FilesAPIService service
 
 type ApiListFilesRequest struct {
 	ctx context.Context
-	ApiService FilesApi
+	ApiService FilesAPI
 	authorization *string
 	page *string
 	limit *string
@@ -134,7 +134,7 @@ Get the file list containing the info of the files uploaded in the specified app
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListFilesRequest
 */
-func (a *FilesApiService) ListFiles(ctx context.Context) ApiListFilesRequest {
+func (a *FilesAPIService) ListFiles(ctx context.Context) ApiListFilesRequest {
 	return ApiListFilesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -143,7 +143,7 @@ func (a *FilesApiService) ListFiles(ctx context.Context) ApiListFilesRequest {
 
 // Execute executes the request
 //  @return ModelsFilesQueryResult
-func (a *FilesApiService) ListFilesExecute(r ApiListFilesRequest) (*ModelsFilesQueryResult, *http.Response, error) {
+func (a *FilesAPIService) ListFilesExecute(r ApiListFilesRequest) (*ModelsFilesQueryResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -151,7 +151,7 @@ func (a *FilesApiService) ListFilesExecute(r ApiListFilesRequest) (*ModelsFilesQ
 		localVarReturnValue  *ModelsFilesQueryResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.ListFiles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesAPIService.ListFiles")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -238,7 +238,7 @@ func (a *FilesApiService) ListFilesExecute(r ApiListFilesRequest) (*ModelsFilesQ
 
 type ApiUploadFileRequest struct {
 	ctx context.Context
-	ApiService FilesApi
+	ApiService FilesAPI
 	authorization *string
 	file *os.File
 }
@@ -267,7 +267,7 @@ Upload a file which can be a video, an image and so on
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUploadFileRequest
 */
-func (a *FilesApiService) UploadFile(ctx context.Context) ApiUploadFileRequest {
+func (a *FilesAPIService) UploadFile(ctx context.Context) ApiUploadFileRequest {
 	return ApiUploadFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -276,7 +276,7 @@ func (a *FilesApiService) UploadFile(ctx context.Context) ApiUploadFileRequest {
 
 // Execute executes the request
 //  @return ServicesUploadFilesResponse
-func (a *FilesApiService) UploadFileExecute(r ApiUploadFileRequest) (*ServicesUploadFilesResponse, *http.Response, error) {
+func (a *FilesAPIService) UploadFileExecute(r ApiUploadFileRequest) (*ServicesUploadFilesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -284,7 +284,7 @@ func (a *FilesApiService) UploadFileExecute(r ApiUploadFileRequest) (*ServicesUp
 		localVarReturnValue  *ServicesUploadFilesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.UploadFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesAPIService.UploadFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -324,8 +324,6 @@ func (a *FilesApiService) UploadFileExecute(r ApiUploadFileRequest) (*ServicesUp
 	var fileLocalVarFileBytes    []byte
 
 	fileLocalVarFormFileName = "file"
-
-
 	fileLocalVarFile := r.file
 
 	if fileLocalVarFile != nil {
@@ -385,7 +383,7 @@ func (a *FilesApiService) UploadFileExecute(r ApiUploadFileRequest) (*ServicesUp
 
 type ApiUploadFileToOssRequest struct {
 	ctx context.Context
-	ApiService FilesApi
+	ApiService FilesAPI
 	authorization *string
 	file *os.File
 }
@@ -414,7 +412,7 @@ Upload a file to OSS, which can be a video, an image and so on
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUploadFileToOssRequest
 */
-func (a *FilesApiService) UploadFileToOss(ctx context.Context) ApiUploadFileToOssRequest {
+func (a *FilesAPIService) UploadFileToOss(ctx context.Context) ApiUploadFileToOssRequest {
 	return ApiUploadFileToOssRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -423,7 +421,7 @@ func (a *FilesApiService) UploadFileToOss(ctx context.Context) ApiUploadFileToOs
 
 // Execute executes the request
 //  @return ServicesUploadFilesResponse
-func (a *FilesApiService) UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*ServicesUploadFilesResponse, *http.Response, error) {
+func (a *FilesAPIService) UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*ServicesUploadFilesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -431,7 +429,7 @@ func (a *FilesApiService) UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*
 		localVarReturnValue  *ServicesUploadFilesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.UploadFileToOss")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesAPIService.UploadFileToOss")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -471,8 +469,6 @@ func (a *FilesApiService) UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*
 	var fileLocalVarFileBytes    []byte
 
 	fileLocalVarFormFileName = "file"
-
-
 	fileLocalVarFile := r.file
 
 	if fileLocalVarFile != nil {
@@ -532,7 +528,7 @@ func (a *FilesApiService) UploadFileToOssExecute(r ApiUploadFileToOssRequest) (*
 
 type ApiUploadFolderRequest struct {
 	ctx context.Context
-	ApiService FilesApi
+	ApiService FilesAPI
 	authorization *string
 	folder *os.File
 }
@@ -561,7 +557,7 @@ Upload a folder containing the files which can be a video, an image and so on
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUploadFolderRequest
 */
-func (a *FilesApiService) UploadFolder(ctx context.Context) ApiUploadFolderRequest {
+func (a *FilesAPIService) UploadFolder(ctx context.Context) ApiUploadFolderRequest {
 	return ApiUploadFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -570,7 +566,7 @@ func (a *FilesApiService) UploadFolder(ctx context.Context) ApiUploadFolderReque
 
 // Execute executes the request
 //  @return ServicesUploadFolderResponse
-func (a *FilesApiService) UploadFolderExecute(r ApiUploadFolderRequest) (*ServicesUploadFolderResponse, *http.Response, error) {
+func (a *FilesAPIService) UploadFolderExecute(r ApiUploadFolderRequest) (*ServicesUploadFolderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -578,7 +574,7 @@ func (a *FilesApiService) UploadFolderExecute(r ApiUploadFolderRequest) (*Servic
 		localVarReturnValue  *ServicesUploadFolderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.UploadFolder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesAPIService.UploadFolder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -618,8 +614,6 @@ func (a *FilesApiService) UploadFolderExecute(r ApiUploadFolderRequest) (*Servic
 	var folderLocalVarFileBytes    []byte
 
 	folderLocalVarFormFileName = "folder"
-
-
 	folderLocalVarFile := r.folder
 
 	if folderLocalVarFile != nil {
@@ -679,7 +673,7 @@ func (a *FilesApiService) UploadFolderExecute(r ApiUploadFolderRequest) (*Servic
 
 type ApiUploadFolderToOSSRequest struct {
 	ctx context.Context
-	ApiService FilesApi
+	ApiService FilesAPI
 	authorization *string
 	folder *os.File
 }
@@ -708,7 +702,7 @@ Upload a folder containing the files which can be a video, an image and so on, t
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUploadFolderToOSSRequest
 */
-func (a *FilesApiService) UploadFolderToOSS(ctx context.Context) ApiUploadFolderToOSSRequest {
+func (a *FilesAPIService) UploadFolderToOSS(ctx context.Context) ApiUploadFolderToOSSRequest {
 	return ApiUploadFolderToOSSRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -717,7 +711,7 @@ func (a *FilesApiService) UploadFolderToOSS(ctx context.Context) ApiUploadFolder
 
 // Execute executes the request
 //  @return ServicesUploadFolderResponse
-func (a *FilesApiService) UploadFolderToOSSExecute(r ApiUploadFolderToOSSRequest) (*ServicesUploadFolderResponse, *http.Response, error) {
+func (a *FilesAPIService) UploadFolderToOSSExecute(r ApiUploadFolderToOSSRequest) (*ServicesUploadFolderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -725,7 +719,7 @@ func (a *FilesApiService) UploadFolderToOSSExecute(r ApiUploadFolderToOSSRequest
 		localVarReturnValue  *ServicesUploadFolderResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesApiService.UploadFolderToOSS")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FilesAPIService.UploadFolderToOSS")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -765,8 +759,6 @@ func (a *FilesApiService) UploadFolderToOSSExecute(r ApiUploadFolderToOSSRequest
 	var folderLocalVarFileBytes    []byte
 
 	folderLocalVarFormFileName = "folder"
-
-
 	folderLocalVarFile := r.folder
 
 	if folderLocalVarFile != nil {

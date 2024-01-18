@@ -47,7 +47,7 @@ func NewServicesUploadFilesResponseWithDefaults() *ServicesUploadFilesResponse {
 
 // GetFileName returns the FileName field value if set, zero value otherwise.
 func (o *ServicesUploadFilesResponse) GetFileName() string {
-	if o == nil || isNil(o.FileName) {
+	if o == nil || IsNil(o.FileName) {
 		var ret string
 		return ret
 	}
@@ -57,7 +57,7 @@ func (o *ServicesUploadFilesResponse) GetFileName() string {
 // GetFileNameOk returns a tuple with the FileName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileNameOk() (*string, bool) {
-	if o == nil || isNil(o.FileName) {
+	if o == nil || IsNil(o.FileName) {
 		return nil, false
 	}
 	return o.FileName, true
@@ -65,7 +65,7 @@ func (o *ServicesUploadFilesResponse) GetFileNameOk() (*string, bool) {
 
 // HasFileName returns a boolean if a field has been set.
 func (o *ServicesUploadFilesResponse) HasFileName() bool {
-	if o != nil && !isNil(o.FileName) {
+	if o != nil && !IsNil(o.FileName) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *ServicesUploadFilesResponse) SetFileName(v string) {
 
 // GetFileSize returns the FileSize field value if set, zero value otherwise.
 func (o *ServicesUploadFilesResponse) GetFileSize() int32 {
-	if o == nil || isNil(o.FileSize) {
+	if o == nil || IsNil(o.FileSize) {
 		var ret int32
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *ServicesUploadFilesResponse) GetFileSize() int32 {
 // GetFileSizeOk returns a tuple with the FileSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileSizeOk() (*int32, bool) {
-	if o == nil || isNil(o.FileSize) {
+	if o == nil || IsNil(o.FileSize) {
 		return nil, false
 	}
 	return o.FileSize, true
@@ -97,7 +97,7 @@ func (o *ServicesUploadFilesResponse) GetFileSizeOk() (*int32, bool) {
 
 // HasFileSize returns a boolean if a field has been set.
 func (o *ServicesUploadFilesResponse) HasFileSize() bool {
-	if o != nil && !isNil(o.FileSize) {
+	if o != nil && !IsNil(o.FileSize) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *ServicesUploadFilesResponse) SetFileSize(v int32) {
 
 // GetFileType returns the FileType field value if set, zero value otherwise.
 func (o *ServicesUploadFilesResponse) GetFileType() string {
-	if o == nil || isNil(o.FileType) {
+	if o == nil || IsNil(o.FileType) {
 		var ret string
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *ServicesUploadFilesResponse) GetFileType() string {
 // GetFileTypeOk returns a tuple with the FileType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileTypeOk() (*string, bool) {
-	if o == nil || isNil(o.FileType) {
+	if o == nil || IsNil(o.FileType) {
 		return nil, false
 	}
 	return o.FileType, true
@@ -129,7 +129,7 @@ func (o *ServicesUploadFilesResponse) GetFileTypeOk() (*string, bool) {
 
 // HasFileType returns a boolean if a field has been set.
 func (o *ServicesUploadFilesResponse) HasFileType() bool {
-	if o != nil && !isNil(o.FileType) {
+	if o != nil && !IsNil(o.FileType) {
 		return true
 	}
 
@@ -143,7 +143,7 @@ func (o *ServicesUploadFilesResponse) SetFileType(v string) {
 
 // GetFileUrl returns the FileUrl field value if set, zero value otherwise.
 func (o *ServicesUploadFilesResponse) GetFileUrl() string {
-	if o == nil || isNil(o.FileUrl) {
+	if o == nil || IsNil(o.FileUrl) {
 		var ret string
 		return ret
 	}
@@ -153,7 +153,7 @@ func (o *ServicesUploadFilesResponse) GetFileUrl() string {
 // GetFileUrlOk returns a tuple with the FileUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFilesResponse) GetFileUrlOk() (*string, bool) {
-	if o == nil || isNil(o.FileUrl) {
+	if o == nil || IsNil(o.FileUrl) {
 		return nil, false
 	}
 	return o.FileUrl, true
@@ -161,7 +161,7 @@ func (o *ServicesUploadFilesResponse) GetFileUrlOk() (*string, bool) {
 
 // HasFileUrl returns a boolean if a field has been set.
 func (o *ServicesUploadFilesResponse) HasFileUrl() bool {
-	if o != nil && !isNil(o.FileUrl) {
+	if o != nil && !IsNil(o.FileUrl) {
 		return true
 	}
 
@@ -183,16 +183,16 @@ func (o ServicesUploadFilesResponse) MarshalJSON() ([]byte, error) {
 
 func (o ServicesUploadFilesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.FileName) {
+	if !IsNil(o.FileName) {
 		toSerialize["file_name"] = o.FileName
 	}
-	if !isNil(o.FileSize) {
+	if !IsNil(o.FileSize) {
 		toSerialize["file_size"] = o.FileSize
 	}
-	if !isNil(o.FileType) {
+	if !IsNil(o.FileType) {
 		toSerialize["file_type"] = o.FileType
 	}
-	if !isNil(o.FileUrl) {
+	if !IsNil(o.FileUrl) {
 		toSerialize["file_url"] = o.FileUrl
 	}
 
@@ -203,16 +203,20 @@ func (o ServicesUploadFilesResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ServicesUploadFilesResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ServicesUploadFilesResponse) UnmarshalJSON(data []byte) (err error) {
 	varServicesUploadFilesResponse := _ServicesUploadFilesResponse{}
 
-	if err = json.Unmarshal(bytes, &varServicesUploadFilesResponse); err == nil {
-		*o = ServicesUploadFilesResponse(varServicesUploadFilesResponse)
+	err = json.Unmarshal(data, &varServicesUploadFilesResponse)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ServicesUploadFilesResponse(varServicesUploadFilesResponse)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "file_name")
 		delete(additionalProperties, "file_size")
 		delete(additionalProperties, "file_type")

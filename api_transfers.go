@@ -20,7 +20,7 @@ import (
 )
 
 
-type TransfersApi interface {
+type TransfersAPI interface {
 
 	/*
 	BatchTransferNft Batch Transfer NFTs
@@ -80,12 +80,12 @@ type TransfersApi interface {
 	TransferNftExecute(r ApiTransferNftRequest) (*ModelsTransferTask, *http.Response, error)
 }
 
-// TransfersApiService TransfersApi service
-type TransfersApiService service
+// TransfersAPIService TransfersAPI service
+type TransfersAPIService service
 
 type ApiBatchTransferNftRequest struct {
 	ctx context.Context
-	ApiService TransfersApi
+	ApiService TransfersAPI
 	authorization *string
 	transferBatchDto *ServicesTransferBatchDto
 }
@@ -114,7 +114,7 @@ Transfer several NFTs once
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBatchTransferNftRequest
 */
-func (a *TransfersApiService) BatchTransferNft(ctx context.Context) ApiBatchTransferNftRequest {
+func (a *TransfersAPIService) BatchTransferNft(ctx context.Context) ApiBatchTransferNftRequest {
 	return ApiBatchTransferNftRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -123,7 +123,7 @@ func (a *TransfersApiService) BatchTransferNft(ctx context.Context) ApiBatchTran
 
 // Execute executes the request
 //  @return []ModelsTransferTask
-func (a *TransfersApiService) BatchTransferNftExecute(r ApiBatchTransferNftRequest) ([]ModelsTransferTask, *http.Response, error) {
+func (a *TransfersAPIService) BatchTransferNftExecute(r ApiBatchTransferNftRequest) ([]ModelsTransferTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -131,7 +131,7 @@ func (a *TransfersApiService) BatchTransferNftExecute(r ApiBatchTransferNftReque
 		localVarReturnValue  []ModelsTransferTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.BatchTransferNft")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersAPIService.BatchTransferNft")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -228,7 +228,7 @@ func (a *TransfersApiService) BatchTransferNftExecute(r ApiBatchTransferNftReque
 
 type ApiGetTransferDetailRequest struct {
 	ctx context.Context
-	ApiService TransfersApi
+	ApiService TransfersAPI
 	authorization *string
 	id int32
 }
@@ -252,7 +252,7 @@ Get NFT Transfer detail info
  @param id id
  @return ApiGetTransferDetailRequest
 */
-func (a *TransfersApiService) GetTransferDetail(ctx context.Context, id int32) ApiGetTransferDetailRequest {
+func (a *TransfersAPIService) GetTransferDetail(ctx context.Context, id int32) ApiGetTransferDetailRequest {
 	return ApiGetTransferDetailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -262,7 +262,7 @@ func (a *TransfersApiService) GetTransferDetail(ctx context.Context, id int32) A
 
 // Execute executes the request
 //  @return ModelsTransferTask
-func (a *TransfersApiService) GetTransferDetailExecute(r ApiGetTransferDetailRequest) (*ModelsTransferTask, *http.Response, error) {
+func (a *TransfersAPIService) GetTransferDetailExecute(r ApiGetTransferDetailRequest) (*ModelsTransferTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -270,7 +270,7 @@ func (a *TransfersApiService) GetTransferDetailExecute(r ApiGetTransferDetailReq
 		localVarReturnValue  *ModelsTransferTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.GetTransferDetail")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersAPIService.GetTransferDetail")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -363,7 +363,7 @@ func (a *TransfersApiService) GetTransferDetailExecute(r ApiGetTransferDetailReq
 
 type ApiListTransferRequest struct {
 	ctx context.Context
-	ApiService TransfersApi
+	ApiService TransfersAPI
 	authorization *string
 	page *int32
 	limit *int32
@@ -399,7 +399,7 @@ Get the NFT list containing the transferred NFT information.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListTransferRequest
 */
-func (a *TransfersApiService) ListTransfer(ctx context.Context) ApiListTransferRequest {
+func (a *TransfersAPIService) ListTransfer(ctx context.Context) ApiListTransferRequest {
 	return ApiListTransferRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -408,7 +408,7 @@ func (a *TransfersApiService) ListTransfer(ctx context.Context) ApiListTransferR
 
 // Execute executes the request
 //  @return ModelsTransferTaskQueryResult
-func (a *TransfersApiService) ListTransferExecute(r ApiListTransferRequest) (*ModelsTransferTaskQueryResult, *http.Response, error) {
+func (a *TransfersAPIService) ListTransferExecute(r ApiListTransferRequest) (*ModelsTransferTaskQueryResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -416,7 +416,7 @@ func (a *TransfersApiService) ListTransferExecute(r ApiListTransferRequest) (*Mo
 		localVarReturnValue  *ModelsTransferTaskQueryResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.ListTransfer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersAPIService.ListTransfer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -503,7 +503,7 @@ func (a *TransfersApiService) ListTransferExecute(r ApiListTransferRequest) (*Mo
 
 type ApiTransferNftRequest struct {
 	ctx context.Context
-	ApiService TransfersApi
+	ApiService TransfersAPI
 	authorization *string
 	transferDto *ServicesTransferDto
 }
@@ -532,7 +532,7 @@ Transfer NFT by admin
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiTransferNftRequest
 */
-func (a *TransfersApiService) TransferNft(ctx context.Context) ApiTransferNftRequest {
+func (a *TransfersAPIService) TransferNft(ctx context.Context) ApiTransferNftRequest {
 	return ApiTransferNftRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -541,7 +541,7 @@ func (a *TransfersApiService) TransferNft(ctx context.Context) ApiTransferNftReq
 
 // Execute executes the request
 //  @return ModelsTransferTask
-func (a *TransfersApiService) TransferNftExecute(r ApiTransferNftRequest) (*ModelsTransferTask, *http.Response, error) {
+func (a *TransfersAPIService) TransferNftExecute(r ApiTransferNftRequest) (*ModelsTransferTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -549,7 +549,7 @@ func (a *TransfersApiService) TransferNftExecute(r ApiTransferNftRequest) (*Mode
 		localVarReturnValue  *ModelsTransferTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersApiService.TransferNft")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransfersAPIService.TransferNft")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

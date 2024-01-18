@@ -12,6 +12,7 @@ package rainbowsdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ServicesBurnBatchDto type satisfies the MappedNullable interface at compile time
@@ -148,7 +149,7 @@ func (o *ServicesBurnBatchDto) SetItems(v []ServicesBurnItemDto) {
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *ServicesBurnBatchDto) GetUser() string {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		var ret string
 		return ret
 	}
@@ -158,7 +159,7 @@ func (o *ServicesBurnBatchDto) GetUser() string {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesBurnBatchDto) GetUserOk() (*string, bool) {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		return nil, false
 	}
 	return o.User, true
@@ -166,7 +167,7 @@ func (o *ServicesBurnBatchDto) GetUserOk() (*string, bool) {
 
 // HasUser returns a boolean if a field has been set.
 func (o *ServicesBurnBatchDto) HasUser() bool {
-	if o != nil && !isNil(o.User) {
+	if o != nil && !IsNil(o.User) {
 		return true
 	}
 
@@ -192,7 +193,7 @@ func (o ServicesBurnBatchDto) ToMap() (map[string]interface{}, error) {
 	toSerialize["contract_address"] = o.ContractAddress
 	toSerialize["contract_type"] = o.ContractType
 	toSerialize["items"] = o.Items
-	if !isNil(o.User) {
+	if !IsNil(o.User) {
 		toSerialize["user"] = o.User
 	}
 
@@ -203,16 +204,44 @@ func (o ServicesBurnBatchDto) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ServicesBurnBatchDto) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ServicesBurnBatchDto) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"chain",
+		"contract_address",
+		"contract_type",
+		"items",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varServicesBurnBatchDto := _ServicesBurnBatchDto{}
 
-	if err = json.Unmarshal(bytes, &varServicesBurnBatchDto); err == nil {
-		*o = ServicesBurnBatchDto(varServicesBurnBatchDto)
+	err = json.Unmarshal(data, &varServicesBurnBatchDto)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ServicesBurnBatchDto(varServicesBurnBatchDto)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "chain")
 		delete(additionalProperties, "contract_address")
 		delete(additionalProperties, "contract_type")

@@ -19,7 +19,7 @@ import (
 )
 
 
-type LoginApi interface {
+type LoginAPI interface {
 
 	/*
 	LoginApp App login
@@ -78,12 +78,12 @@ type LoginApi interface {
 	UserLoginExecute(r ApiUserLoginRequest) (*MiddlewaresLoginResp, *http.Response, error)
 }
 
-// LoginApiService LoginApi service
-type LoginApiService service
+// LoginAPIService LoginAPI service
+type LoginAPIService service
 
 type ApiLoginAppRequest struct {
 	ctx context.Context
-	ApiService LoginApi
+	ApiService LoginAPI
 	appLoginInfo *MiddlewaresAppLoginInfo
 }
 
@@ -105,7 +105,7 @@ Login the app to get the JWT according to the app_id and app_secret
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiLoginAppRequest
 */
-func (a *LoginApiService) LoginApp(ctx context.Context) ApiLoginAppRequest {
+func (a *LoginAPIService) LoginApp(ctx context.Context) ApiLoginAppRequest {
 	return ApiLoginAppRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -114,7 +114,7 @@ func (a *LoginApiService) LoginApp(ctx context.Context) ApiLoginAppRequest {
 
 // Execute executes the request
 //  @return MiddlewaresLoginResp
-func (a *LoginApiService) LoginAppExecute(r ApiLoginAppRequest) (*MiddlewaresLoginResp, *http.Response, error) {
+func (a *LoginAPIService) LoginAppExecute(r ApiLoginAppRequest) (*MiddlewaresLoginResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -122,7 +122,7 @@ func (a *LoginApiService) LoginAppExecute(r ApiLoginAppRequest) (*MiddlewaresLog
 		localVarReturnValue  *MiddlewaresLoginResp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginApiService.LoginApp")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginAPIService.LoginApp")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -204,7 +204,7 @@ func (a *LoginApiService) LoginAppExecute(r ApiLoginAppRequest) (*MiddlewaresLog
 
 type ApiRefreshAppAuthRequest struct {
 	ctx context.Context
-	ApiService LoginApi
+	ApiService LoginAPI
 	authorization *string
 }
 
@@ -226,7 +226,7 @@ Obtain a new JWT
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiRefreshAppAuthRequest
 */
-func (a *LoginApiService) RefreshAppAuth(ctx context.Context) ApiRefreshAppAuthRequest {
+func (a *LoginAPIService) RefreshAppAuth(ctx context.Context) ApiRefreshAppAuthRequest {
 	return ApiRefreshAppAuthRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -235,7 +235,7 @@ func (a *LoginApiService) RefreshAppAuth(ctx context.Context) ApiRefreshAppAuthR
 
 // Execute executes the request
 //  @return MiddlewaresLoginResp
-func (a *LoginApiService) RefreshAppAuthExecute(r ApiRefreshAppAuthRequest) (*MiddlewaresLoginResp, *http.Response, error) {
+func (a *LoginAPIService) RefreshAppAuthExecute(r ApiRefreshAppAuthRequest) (*MiddlewaresLoginResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -243,7 +243,7 @@ func (a *LoginApiService) RefreshAppAuthExecute(r ApiRefreshAppAuthRequest) (*Mi
 		localVarReturnValue  *MiddlewaresLoginResp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginApiService.RefreshAppAuth")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginAPIService.RefreshAppAuth")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -324,7 +324,7 @@ func (a *LoginApiService) RefreshAppAuthExecute(r ApiRefreshAppAuthRequest) (*Mi
 
 type ApiRefreshUserAuthRequest struct {
 	ctx context.Context
-	ApiService LoginApi
+	ApiService LoginAPI
 	authorization *string
 }
 
@@ -346,7 +346,7 @@ Obtain a new JWT
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiRefreshUserAuthRequest
 */
-func (a *LoginApiService) RefreshUserAuth(ctx context.Context) ApiRefreshUserAuthRequest {
+func (a *LoginAPIService) RefreshUserAuth(ctx context.Context) ApiRefreshUserAuthRequest {
 	return ApiRefreshUserAuthRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -355,7 +355,7 @@ func (a *LoginApiService) RefreshUserAuth(ctx context.Context) ApiRefreshUserAut
 
 // Execute executes the request
 //  @return MiddlewaresLoginResp
-func (a *LoginApiService) RefreshUserAuthExecute(r ApiRefreshUserAuthRequest) (*MiddlewaresLoginResp, *http.Response, error) {
+func (a *LoginAPIService) RefreshUserAuthExecute(r ApiRefreshUserAuthRequest) (*MiddlewaresLoginResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -363,7 +363,7 @@ func (a *LoginApiService) RefreshUserAuthExecute(r ApiRefreshUserAuthRequest) (*
 		localVarReturnValue  *MiddlewaresLoginResp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginApiService.RefreshUserAuth")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginAPIService.RefreshUserAuth")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -444,7 +444,7 @@ func (a *LoginApiService) RefreshUserAuthExecute(r ApiRefreshUserAuthRequest) (*
 
 type ApiUserLoginRequest struct {
 	ctx context.Context
-	ApiService LoginApi
+	ApiService LoginAPI
 	userLoginInfo *MiddlewaresUserLoginInfo
 }
 
@@ -466,7 +466,7 @@ User login to get the JWT according to the email and password
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUserLoginRequest
 */
-func (a *LoginApiService) UserLogin(ctx context.Context) ApiUserLoginRequest {
+func (a *LoginAPIService) UserLogin(ctx context.Context) ApiUserLoginRequest {
 	return ApiUserLoginRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -475,7 +475,7 @@ func (a *LoginApiService) UserLogin(ctx context.Context) ApiUserLoginRequest {
 
 // Execute executes the request
 //  @return MiddlewaresLoginResp
-func (a *LoginApiService) UserLoginExecute(r ApiUserLoginRequest) (*MiddlewaresLoginResp, *http.Response, error) {
+func (a *LoginAPIService) UserLoginExecute(r ApiUserLoginRequest) (*MiddlewaresLoginResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -483,7 +483,7 @@ func (a *LoginApiService) UserLoginExecute(r ApiUserLoginRequest) (*MiddlewaresL
 		localVarReturnValue  *MiddlewaresLoginResp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginApiService.UserLogin")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LoginAPIService.UserLogin")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

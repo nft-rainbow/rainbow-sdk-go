@@ -12,6 +12,7 @@ package rainbowsdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ServicesMintItemDto type satisfies the MappedNullable interface at compile time
@@ -48,7 +49,7 @@ func NewServicesMintItemDtoWithDefaults() *ServicesMintItemDto {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *ServicesMintItemDto) GetAmount() int32 {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		var ret int32
 		return ret
 	}
@@ -58,7 +59,7 @@ func (o *ServicesMintItemDto) GetAmount() int32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMintItemDto) GetAmountOk() (*int32, bool) {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
 	return o.Amount, true
@@ -66,7 +67,7 @@ func (o *ServicesMintItemDto) GetAmountOk() (*int32, bool) {
 
 // HasAmount returns a boolean if a field has been set.
 func (o *ServicesMintItemDto) HasAmount() bool {
-	if o != nil && !isNil(o.Amount) {
+	if o != nil && !IsNil(o.Amount) {
 		return true
 	}
 
@@ -80,7 +81,7 @@ func (o *ServicesMintItemDto) SetAmount(v int32) {
 
 // GetMetadataUri returns the MetadataUri field value if set, zero value otherwise.
 func (o *ServicesMintItemDto) GetMetadataUri() string {
-	if o == nil || isNil(o.MetadataUri) {
+	if o == nil || IsNil(o.MetadataUri) {
 		var ret string
 		return ret
 	}
@@ -90,7 +91,7 @@ func (o *ServicesMintItemDto) GetMetadataUri() string {
 // GetMetadataUriOk returns a tuple with the MetadataUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMintItemDto) GetMetadataUriOk() (*string, bool) {
-	if o == nil || isNil(o.MetadataUri) {
+	if o == nil || IsNil(o.MetadataUri) {
 		return nil, false
 	}
 	return o.MetadataUri, true
@@ -98,7 +99,7 @@ func (o *ServicesMintItemDto) GetMetadataUriOk() (*string, bool) {
 
 // HasMetadataUri returns a boolean if a field has been set.
 func (o *ServicesMintItemDto) HasMetadataUri() bool {
-	if o != nil && !isNil(o.MetadataUri) {
+	if o != nil && !IsNil(o.MetadataUri) {
 		return true
 	}
 
@@ -136,7 +137,7 @@ func (o *ServicesMintItemDto) SetMintToAddress(v string) {
 
 // GetTokenId returns the TokenId field value if set, zero value otherwise.
 func (o *ServicesMintItemDto) GetTokenId() string {
-	if o == nil || isNil(o.TokenId) {
+	if o == nil || IsNil(o.TokenId) {
 		var ret string
 		return ret
 	}
@@ -146,7 +147,7 @@ func (o *ServicesMintItemDto) GetTokenId() string {
 // GetTokenIdOk returns a tuple with the TokenId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMintItemDto) GetTokenIdOk() (*string, bool) {
-	if o == nil || isNil(o.TokenId) {
+	if o == nil || IsNil(o.TokenId) {
 		return nil, false
 	}
 	return o.TokenId, true
@@ -154,7 +155,7 @@ func (o *ServicesMintItemDto) GetTokenIdOk() (*string, bool) {
 
 // HasTokenId returns a boolean if a field has been set.
 func (o *ServicesMintItemDto) HasTokenId() bool {
-	if o != nil && !isNil(o.TokenId) {
+	if o != nil && !IsNil(o.TokenId) {
 		return true
 	}
 
@@ -176,14 +177,14 @@ func (o ServicesMintItemDto) MarshalJSON() ([]byte, error) {
 
 func (o ServicesMintItemDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Amount) {
+	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if !isNil(o.MetadataUri) {
+	if !IsNil(o.MetadataUri) {
 		toSerialize["metadata_uri"] = o.MetadataUri
 	}
 	toSerialize["mint_to_address"] = o.MintToAddress
-	if !isNil(o.TokenId) {
+	if !IsNil(o.TokenId) {
 		toSerialize["token_id"] = o.TokenId
 	}
 
@@ -194,16 +195,41 @@ func (o ServicesMintItemDto) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ServicesMintItemDto) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ServicesMintItemDto) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"mint_to_address",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varServicesMintItemDto := _ServicesMintItemDto{}
 
-	if err = json.Unmarshal(bytes, &varServicesMintItemDto); err == nil {
-		*o = ServicesMintItemDto(varServicesMintItemDto)
+	err = json.Unmarshal(data, &varServicesMintItemDto)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ServicesMintItemDto(varServicesMintItemDto)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "amount")
 		delete(additionalProperties, "metadata_uri")
 		delete(additionalProperties, "mint_to_address")

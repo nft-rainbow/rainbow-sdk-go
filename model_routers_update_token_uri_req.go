@@ -12,6 +12,7 @@ package rainbowsdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RoutersUpdateTokenUriReq type satisfies the MappedNullable interface at compile time
@@ -96,7 +97,7 @@ func (o *RoutersUpdateTokenUriReq) SetContractType(v string) {
 
 // GetTokenUri returns the TokenUri field value if set, zero value otherwise.
 func (o *RoutersUpdateTokenUriReq) GetTokenUri() string {
-	if o == nil || isNil(o.TokenUri) {
+	if o == nil || IsNil(o.TokenUri) {
 		var ret string
 		return ret
 	}
@@ -106,7 +107,7 @@ func (o *RoutersUpdateTokenUriReq) GetTokenUri() string {
 // GetTokenUriOk returns a tuple with the TokenUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RoutersUpdateTokenUriReq) GetTokenUriOk() (*string, bool) {
-	if o == nil || isNil(o.TokenUri) {
+	if o == nil || IsNil(o.TokenUri) {
 		return nil, false
 	}
 	return o.TokenUri, true
@@ -114,7 +115,7 @@ func (o *RoutersUpdateTokenUriReq) GetTokenUriOk() (*string, bool) {
 
 // HasTokenUri returns a boolean if a field has been set.
 func (o *RoutersUpdateTokenUriReq) HasTokenUri() bool {
-	if o != nil && !isNil(o.TokenUri) {
+	if o != nil && !IsNil(o.TokenUri) {
 		return true
 	}
 
@@ -138,7 +139,7 @@ func (o RoutersUpdateTokenUriReq) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["chain"] = o.Chain
 	toSerialize["contract_type"] = o.ContractType
-	if !isNil(o.TokenUri) {
+	if !IsNil(o.TokenUri) {
 		toSerialize["token_uri"] = o.TokenUri
 	}
 
@@ -149,16 +150,42 @@ func (o RoutersUpdateTokenUriReq) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *RoutersUpdateTokenUriReq) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RoutersUpdateTokenUriReq) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"chain",
+		"contract_type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varRoutersUpdateTokenUriReq := _RoutersUpdateTokenUriReq{}
 
-	if err = json.Unmarshal(bytes, &varRoutersUpdateTokenUriReq); err == nil {
-		*o = RoutersUpdateTokenUriReq(varRoutersUpdateTokenUriReq)
+	err = json.Unmarshal(data, &varRoutersUpdateTokenUriReq)
+
+	if err != nil {
+		return err
 	}
+
+	*o = RoutersUpdateTokenUriReq(varRoutersUpdateTokenUriReq)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "chain")
 		delete(additionalProperties, "contract_type")
 		delete(additionalProperties, "token_uri")

@@ -22,6 +22,7 @@ type ServicesNFT struct {
 	ContractAddress *string `json:"contract_address,omitempty"`
 	Owner *string `json:"owner,omitempty"`
 	TokenId *string `json:"token_id,omitempty"`
+	TokenUri *string `json:"token_uri,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,7 +47,7 @@ func NewServicesNFTWithDefaults() *ServicesNFT {
 
 // GetContractAddress returns the ContractAddress field value if set, zero value otherwise.
 func (o *ServicesNFT) GetContractAddress() string {
-	if o == nil || isNil(o.ContractAddress) {
+	if o == nil || IsNil(o.ContractAddress) {
 		var ret string
 		return ret
 	}
@@ -56,7 +57,7 @@ func (o *ServicesNFT) GetContractAddress() string {
 // GetContractAddressOk returns a tuple with the ContractAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesNFT) GetContractAddressOk() (*string, bool) {
-	if o == nil || isNil(o.ContractAddress) {
+	if o == nil || IsNil(o.ContractAddress) {
 		return nil, false
 	}
 	return o.ContractAddress, true
@@ -64,7 +65,7 @@ func (o *ServicesNFT) GetContractAddressOk() (*string, bool) {
 
 // HasContractAddress returns a boolean if a field has been set.
 func (o *ServicesNFT) HasContractAddress() bool {
-	if o != nil && !isNil(o.ContractAddress) {
+	if o != nil && !IsNil(o.ContractAddress) {
 		return true
 	}
 
@@ -78,7 +79,7 @@ func (o *ServicesNFT) SetContractAddress(v string) {
 
 // GetOwner returns the Owner field value if set, zero value otherwise.
 func (o *ServicesNFT) GetOwner() string {
-	if o == nil || isNil(o.Owner) {
+	if o == nil || IsNil(o.Owner) {
 		var ret string
 		return ret
 	}
@@ -88,7 +89,7 @@ func (o *ServicesNFT) GetOwner() string {
 // GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesNFT) GetOwnerOk() (*string, bool) {
-	if o == nil || isNil(o.Owner) {
+	if o == nil || IsNil(o.Owner) {
 		return nil, false
 	}
 	return o.Owner, true
@@ -96,7 +97,7 @@ func (o *ServicesNFT) GetOwnerOk() (*string, bool) {
 
 // HasOwner returns a boolean if a field has been set.
 func (o *ServicesNFT) HasOwner() bool {
-	if o != nil && !isNil(o.Owner) {
+	if o != nil && !IsNil(o.Owner) {
 		return true
 	}
 
@@ -110,7 +111,7 @@ func (o *ServicesNFT) SetOwner(v string) {
 
 // GetTokenId returns the TokenId field value if set, zero value otherwise.
 func (o *ServicesNFT) GetTokenId() string {
-	if o == nil || isNil(o.TokenId) {
+	if o == nil || IsNil(o.TokenId) {
 		var ret string
 		return ret
 	}
@@ -120,7 +121,7 @@ func (o *ServicesNFT) GetTokenId() string {
 // GetTokenIdOk returns a tuple with the TokenId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesNFT) GetTokenIdOk() (*string, bool) {
-	if o == nil || isNil(o.TokenId) {
+	if o == nil || IsNil(o.TokenId) {
 		return nil, false
 	}
 	return o.TokenId, true
@@ -128,7 +129,7 @@ func (o *ServicesNFT) GetTokenIdOk() (*string, bool) {
 
 // HasTokenId returns a boolean if a field has been set.
 func (o *ServicesNFT) HasTokenId() bool {
-	if o != nil && !isNil(o.TokenId) {
+	if o != nil && !IsNil(o.TokenId) {
 		return true
 	}
 
@@ -138,6 +139,38 @@ func (o *ServicesNFT) HasTokenId() bool {
 // SetTokenId gets a reference to the given string and assigns it to the TokenId field.
 func (o *ServicesNFT) SetTokenId(v string) {
 	o.TokenId = &v
+}
+
+// GetTokenUri returns the TokenUri field value if set, zero value otherwise.
+func (o *ServicesNFT) GetTokenUri() string {
+	if o == nil || IsNil(o.TokenUri) {
+		var ret string
+		return ret
+	}
+	return *o.TokenUri
+}
+
+// GetTokenUriOk returns a tuple with the TokenUri field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesNFT) GetTokenUriOk() (*string, bool) {
+	if o == nil || IsNil(o.TokenUri) {
+		return nil, false
+	}
+	return o.TokenUri, true
+}
+
+// HasTokenUri returns a boolean if a field has been set.
+func (o *ServicesNFT) HasTokenUri() bool {
+	if o != nil && !IsNil(o.TokenUri) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenUri gets a reference to the given string and assigns it to the TokenUri field.
+func (o *ServicesNFT) SetTokenUri(v string) {
+	o.TokenUri = &v
 }
 
 func (o ServicesNFT) MarshalJSON() ([]byte, error) {
@@ -150,14 +183,17 @@ func (o ServicesNFT) MarshalJSON() ([]byte, error) {
 
 func (o ServicesNFT) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.ContractAddress) {
+	if !IsNil(o.ContractAddress) {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
-	if !isNil(o.Owner) {
+	if !IsNil(o.Owner) {
 		toSerialize["owner"] = o.Owner
 	}
-	if !isNil(o.TokenId) {
+	if !IsNil(o.TokenId) {
 		toSerialize["token_id"] = o.TokenId
+	}
+	if !IsNil(o.TokenUri) {
+		toSerialize["token_uri"] = o.TokenUri
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -167,19 +203,24 @@ func (o ServicesNFT) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ServicesNFT) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ServicesNFT) UnmarshalJSON(data []byte) (err error) {
 	varServicesNFT := _ServicesNFT{}
 
-	if err = json.Unmarshal(bytes, &varServicesNFT); err == nil {
-		*o = ServicesNFT(varServicesNFT)
+	err = json.Unmarshal(data, &varServicesNFT)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ServicesNFT(varServicesNFT)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "contract_address")
 		delete(additionalProperties, "owner")
 		delete(additionalProperties, "token_id")
+		delete(additionalProperties, "token_uri")
 		o.AdditionalProperties = additionalProperties
 	}
 

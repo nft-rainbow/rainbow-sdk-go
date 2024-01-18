@@ -1,13 +1,13 @@
-# \LoginApi
+# \LoginAPI
 
 All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**LoginApp**](LoginApi.md#LoginApp) | **Post** /v1/login | App login
-[**RefreshAppAuth**](LoginApi.md#RefreshAppAuth) | **Get** /v1/refresh_token | Refresh JWT
-[**RefreshUserAuth**](LoginApi.md#RefreshUserAuth) | **Get** /dashboard/refresh_token | Refresh JWT
-[**UserLogin**](LoginApi.md#UserLogin) | **Post** /dashboard/login | User login
+[**LoginApp**](LoginAPI.md#LoginApp) | **Post** /v1/login | App login
+[**RefreshAppAuth**](LoginAPI.md#RefreshAppAuth) | **Get** /v1/refresh_token | Refresh JWT
+[**RefreshUserAuth**](LoginAPI.md#RefreshUserAuth) | **Get** /dashboard/refresh_token | Refresh JWT
+[**UserLogin**](LoginAPI.md#UserLogin) | **Post** /dashboard/login | User login
 
 
 
@@ -25,24 +25,24 @@ App login
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    appLoginInfo := *openapiclient.NewMiddlewaresAppLoginInfo("AppId_example", "AppSecret_example") // MiddlewaresAppLoginInfo | login info, contain app_id and app_secret
+	appLoginInfo := *openapiclient.NewMiddlewaresAppLoginInfo("AppId_example", "AppSecret_example") // MiddlewaresAppLoginInfo | login info, contain app_id and app_secret
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LoginApi.LoginApp(context.Background()).AppLoginInfo(appLoginInfo).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.LoginApp``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `LoginApp`: MiddlewaresLoginResp
-    fmt.Fprintf(os.Stdout, "Response from `LoginApi.LoginApp`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LoginAPI.LoginApp(context.Background()).AppLoginInfo(appLoginInfo).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LoginAPI.LoginApp``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `LoginApp`: MiddlewaresLoginResp
+	fmt.Fprintf(os.Stdout, "Response from `LoginAPI.LoginApp`: %v\n", resp)
 }
 ```
 
@@ -91,24 +91,24 @@ Refresh JWT
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer openapi_token
+	authorization := "authorization_example" // string | Bearer openapi_token
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LoginApi.RefreshAppAuth(context.Background()).Authorization(authorization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.RefreshAppAuth``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RefreshAppAuth`: MiddlewaresLoginResp
-    fmt.Fprintf(os.Stdout, "Response from `LoginApi.RefreshAppAuth`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LoginAPI.RefreshAppAuth(context.Background()).Authorization(authorization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LoginAPI.RefreshAppAuth``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RefreshAppAuth`: MiddlewaresLoginResp
+	fmt.Fprintf(os.Stdout, "Response from `LoginAPI.RefreshAppAuth`: %v\n", resp)
 }
 ```
 
@@ -157,24 +157,24 @@ Refresh JWT
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer openapi_token
+	authorization := "authorization_example" // string | Bearer openapi_token
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LoginApi.RefreshUserAuth(context.Background()).Authorization(authorization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.RefreshUserAuth``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RefreshUserAuth`: MiddlewaresLoginResp
-    fmt.Fprintf(os.Stdout, "Response from `LoginApi.RefreshUserAuth`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LoginAPI.RefreshUserAuth(context.Background()).Authorization(authorization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LoginAPI.RefreshUserAuth``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RefreshUserAuth`: MiddlewaresLoginResp
+	fmt.Fprintf(os.Stdout, "Response from `LoginAPI.RefreshUserAuth`: %v\n", resp)
 }
 ```
 
@@ -223,24 +223,24 @@ User login
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    userLoginInfo := *openapiclient.NewMiddlewaresUserLoginInfo("Email_example", "Password_example") // MiddlewaresUserLoginInfo | login info, contain app_id and app_secret
+	userLoginInfo := *openapiclient.NewMiddlewaresUserLoginInfo("Email_example", "Password_example") // MiddlewaresUserLoginInfo | login info, contain app_id and app_secret
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LoginApi.UserLogin(context.Background()).UserLoginInfo(userLoginInfo).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LoginApi.UserLogin``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UserLogin`: MiddlewaresLoginResp
-    fmt.Fprintf(os.Stdout, "Response from `LoginApi.UserLogin`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.LoginAPI.UserLogin(context.Background()).UserLoginInfo(userLoginInfo).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `LoginAPI.UserLogin``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UserLogin`: MiddlewaresLoginResp
+	fmt.Fprintf(os.Stdout, "Response from `LoginAPI.UserLogin`: %v\n", resp)
 }
 ```
 

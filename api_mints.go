@@ -21,7 +21,7 @@ import (
 )
 
 
-type MintsApi interface {
+type MintsAPI interface {
 
 	/*
 	AppBatchMintByMetaUri Batch Mint NFT with metadata uri
@@ -170,12 +170,12 @@ Get the NFT list containing the NFTs minted in the specified app
 	ReMintNFTExecute(r ApiReMintNFTRequest) (*ModelsMintTask, *http.Response, error)
 }
 
-// MintsApiService MintsApi service
-type MintsApiService service
+// MintsAPIService MintsAPI service
+type MintsAPIService service
 
 type ApiAppBatchMintByMetaUriRequest struct {
 	ctx context.Context
-	ApiService MintsApi
+	ApiService MintsAPI
 	authorization *string
 	id int32
 	batchMintRequest *ServicesAppBatchMintByMetaUriDto
@@ -206,7 +206,7 @@ Batch Mint a NFT by providing tokenIds and metadata urls to create the metadata
  @param id id
  @return ApiAppBatchMintByMetaUriRequest
 */
-func (a *MintsApiService) AppBatchMintByMetaUri(ctx context.Context, id int32) ApiAppBatchMintByMetaUriRequest {
+func (a *MintsAPIService) AppBatchMintByMetaUri(ctx context.Context, id int32) ApiAppBatchMintByMetaUriRequest {
 	return ApiAppBatchMintByMetaUriRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -216,7 +216,7 @@ func (a *MintsApiService) AppBatchMintByMetaUri(ctx context.Context, id int32) A
 
 // Execute executes the request
 //  @return []int32
-func (a *MintsApiService) AppBatchMintByMetaUriExecute(r ApiAppBatchMintByMetaUriRequest) ([]int32, *http.Response, error) {
+func (a *MintsAPIService) AppBatchMintByMetaUriExecute(r ApiAppBatchMintByMetaUriRequest) ([]int32, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -224,7 +224,7 @@ func (a *MintsApiService) AppBatchMintByMetaUriExecute(r ApiAppBatchMintByMetaUr
 		localVarReturnValue  []int32
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.AppBatchMintByMetaUri")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsAPIService.AppBatchMintByMetaUri")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -322,7 +322,7 @@ func (a *MintsApiService) AppBatchMintByMetaUriExecute(r ApiAppBatchMintByMetaUr
 
 type ApiAppBatchMintNFTRequest struct {
 	ctx context.Context
-	ApiService MintsApi
+	ApiService MintsAPI
 	authorization *string
 	id int32
 	appBatchMintMetaInfo *[]ServicesAppMintByMetaPartsDto
@@ -353,7 +353,7 @@ Batch Mint a NFT by providing a file url to create the metadata
  @param id id
  @return ApiAppBatchMintNFTRequest
 */
-func (a *MintsApiService) AppBatchMintNFT(ctx context.Context, id int32) ApiAppBatchMintNFTRequest {
+func (a *MintsAPIService) AppBatchMintNFT(ctx context.Context, id int32) ApiAppBatchMintNFTRequest {
 	return ApiAppBatchMintNFTRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -363,7 +363,7 @@ func (a *MintsApiService) AppBatchMintNFT(ctx context.Context, id int32) ApiAppB
 
 // Execute executes the request
 //  @return []ModelsMintTask
-func (a *MintsApiService) AppBatchMintNFTExecute(r ApiAppBatchMintNFTRequest) ([]ModelsMintTask, *http.Response, error) {
+func (a *MintsAPIService) AppBatchMintNFTExecute(r ApiAppBatchMintNFTRequest) ([]ModelsMintTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -371,7 +371,7 @@ func (a *MintsApiService) AppBatchMintNFTExecute(r ApiAppBatchMintNFTRequest) ([
 		localVarReturnValue  []ModelsMintTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.AppBatchMintNFT")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsAPIService.AppBatchMintNFT")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -469,7 +469,7 @@ func (a *MintsApiService) AppBatchMintNFTExecute(r ApiAppBatchMintNFTRequest) ([
 
 type ApiBatchCustomMintRequest struct {
 	ctx context.Context
-	ApiService MintsApi
+	ApiService MintsAPI
 	authorization *string
 	customMintBatchDto *ServicesCustomMintBatchDto
 }
@@ -498,7 +498,7 @@ Mint several NFTs once
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiBatchCustomMintRequest
 */
-func (a *MintsApiService) BatchCustomMint(ctx context.Context) ApiBatchCustomMintRequest {
+func (a *MintsAPIService) BatchCustomMint(ctx context.Context) ApiBatchCustomMintRequest {
 	return ApiBatchCustomMintRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -507,7 +507,7 @@ func (a *MintsApiService) BatchCustomMint(ctx context.Context) ApiBatchCustomMin
 
 // Execute executes the request
 //  @return []ModelsMintTask
-func (a *MintsApiService) BatchCustomMintExecute(r ApiBatchCustomMintRequest) ([]ModelsMintTask, *http.Response, error) {
+func (a *MintsAPIService) BatchCustomMintExecute(r ApiBatchCustomMintRequest) ([]ModelsMintTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -515,7 +515,7 @@ func (a *MintsApiService) BatchCustomMintExecute(r ApiBatchCustomMintRequest) ([
 		localVarReturnValue  []ModelsMintTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.BatchCustomMint")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsAPIService.BatchCustomMint")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -612,7 +612,7 @@ func (a *MintsApiService) BatchCustomMintExecute(r ApiBatchCustomMintRequest) ([
 
 type ApiCustomMintRequest struct {
 	ctx context.Context
-	ApiService MintsApi
+	ApiService MintsAPI
 	authorization *string
 	customMintDto *ServicesCustomMintDto
 }
@@ -641,7 +641,7 @@ Mint a NFT by providing a metadata url
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCustomMintRequest
 */
-func (a *MintsApiService) CustomMint(ctx context.Context) ApiCustomMintRequest {
+func (a *MintsAPIService) CustomMint(ctx context.Context) ApiCustomMintRequest {
 	return ApiCustomMintRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -650,7 +650,7 @@ func (a *MintsApiService) CustomMint(ctx context.Context) ApiCustomMintRequest {
 
 // Execute executes the request
 //  @return ModelsMintTask
-func (a *MintsApiService) CustomMintExecute(r ApiCustomMintRequest) (*ModelsMintTask, *http.Response, error) {
+func (a *MintsAPIService) CustomMintExecute(r ApiCustomMintRequest) (*ModelsMintTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -658,7 +658,7 @@ func (a *MintsApiService) CustomMintExecute(r ApiCustomMintRequest) (*ModelsMint
 		localVarReturnValue  *ModelsMintTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.CustomMint")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsAPIService.CustomMint")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -755,7 +755,7 @@ func (a *MintsApiService) CustomMintExecute(r ApiCustomMintRequest) (*ModelsMint
 
 type ApiEasyMintByFileRequest struct {
 	ctx context.Context
-	ApiService MintsApi
+	ApiService MintsAPI
 	authorization *string
 	chain *string
 	description *string
@@ -808,7 +808,7 @@ Mint a NFT by uploading a file which can be a video, image and so on
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEasyMintByFileRequest
 */
-func (a *MintsApiService) EasyMintByFile(ctx context.Context) ApiEasyMintByFileRequest {
+func (a *MintsAPIService) EasyMintByFile(ctx context.Context) ApiEasyMintByFileRequest {
 	return ApiEasyMintByFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -817,7 +817,7 @@ func (a *MintsApiService) EasyMintByFile(ctx context.Context) ApiEasyMintByFileR
 
 // Execute executes the request
 //  @return ModelsMintTask
-func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*ModelsMintTask, *http.Response, error) {
+func (a *MintsAPIService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*ModelsMintTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -825,7 +825,7 @@ func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 		localVarReturnValue  *ModelsMintTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.EasyMintByFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsAPIService.EasyMintByFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -881,8 +881,6 @@ func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 	var fileLocalVarFileBytes    []byte
 
 	fileLocalVarFormFileName = "file"
-
-
 	fileLocalVarFile := r.file
 
 	if fileLocalVarFile != nil {
@@ -953,7 +951,7 @@ func (a *MintsApiService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 
 type ApiEasyMintByMetadataRequest struct {
 	ctx context.Context
-	ApiService MintsApi
+	ApiService MintsAPI
 	authorization *string
 	easyMintMetaInfo *ServicesEasyMintMetaPartsDto
 }
@@ -982,7 +980,7 @@ Mint a NFT by providing a file url to create the metadata
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEasyMintByMetadataRequest
 */
-func (a *MintsApiService) EasyMintByMetadata(ctx context.Context) ApiEasyMintByMetadataRequest {
+func (a *MintsAPIService) EasyMintByMetadata(ctx context.Context) ApiEasyMintByMetadataRequest {
 	return ApiEasyMintByMetadataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -991,7 +989,7 @@ func (a *MintsApiService) EasyMintByMetadata(ctx context.Context) ApiEasyMintByM
 
 // Execute executes the request
 //  @return ModelsMintTask
-func (a *MintsApiService) EasyMintByMetadataExecute(r ApiEasyMintByMetadataRequest) (*ModelsMintTask, *http.Response, error) {
+func (a *MintsAPIService) EasyMintByMetadataExecute(r ApiEasyMintByMetadataRequest) (*ModelsMintTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -999,7 +997,7 @@ func (a *MintsApiService) EasyMintByMetadataExecute(r ApiEasyMintByMetadataReque
 		localVarReturnValue  *ModelsMintTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.EasyMintByMetadata")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsAPIService.EasyMintByMetadata")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1096,7 +1094,7 @@ func (a *MintsApiService) EasyMintByMetadataExecute(r ApiEasyMintByMetadataReque
 
 type ApiGetMintDetailRequest struct {
 	ctx context.Context
-	ApiService MintsApi
+	ApiService MintsAPI
 	authorization *string
 	id int32
 }
@@ -1120,7 +1118,7 @@ Get NFT detail info
  @param id id
  @return ApiGetMintDetailRequest
 */
-func (a *MintsApiService) GetMintDetail(ctx context.Context, id int32) ApiGetMintDetailRequest {
+func (a *MintsAPIService) GetMintDetail(ctx context.Context, id int32) ApiGetMintDetailRequest {
 	return ApiGetMintDetailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1130,7 +1128,7 @@ func (a *MintsApiService) GetMintDetail(ctx context.Context, id int32) ApiGetMin
 
 // Execute executes the request
 //  @return ModelsMintTask
-func (a *MintsApiService) GetMintDetailExecute(r ApiGetMintDetailRequest) (*ModelsMintTask, *http.Response, error) {
+func (a *MintsAPIService) GetMintDetailExecute(r ApiGetMintDetailRequest) (*ModelsMintTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1138,7 +1136,7 @@ func (a *MintsApiService) GetMintDetailExecute(r ApiGetMintDetailRequest) (*Mode
 		localVarReturnValue  *ModelsMintTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.GetMintDetail")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsAPIService.GetMintDetail")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1231,7 +1229,7 @@ func (a *MintsApiService) GetMintDetailExecute(r ApiGetMintDetailRequest) (*Mode
 
 type ApiListMintsRequest struct {
 	ctx context.Context
-	ApiService MintsApi
+	ApiService MintsAPI
 	authorization *string
 	authorization2 *string
 	page *int32
@@ -1345,7 +1343,7 @@ Get the NFT list containing the NFTs minted in the specified app
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListMintsRequest
 */
-func (a *MintsApiService) ListMints(ctx context.Context) ApiListMintsRequest {
+func (a *MintsAPIService) ListMints(ctx context.Context) ApiListMintsRequest {
 	return ApiListMintsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1354,7 +1352,7 @@ func (a *MintsApiService) ListMints(ctx context.Context) ApiListMintsRequest {
 
 // Execute executes the request
 //  @return ModelsMintTaskQueryResult
-func (a *MintsApiService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTaskQueryResult, *http.Response, error) {
+func (a *MintsAPIService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTaskQueryResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1362,7 +1360,7 @@ func (a *MintsApiService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTa
 		localVarReturnValue  *ModelsMintTaskQueryResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.ListMints")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsAPIService.ListMints")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1483,7 +1481,7 @@ func (a *MintsApiService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTa
 
 type ApiListMints_0Request struct {
 	ctx context.Context
-	ApiService MintsApi
+	ApiService MintsAPI
 	authorization *string
 	authorization2 *string
 	page *int32
@@ -1597,7 +1595,7 @@ Get the NFT list containing the NFTs minted in the specified app
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListMints_0Request
 */
-func (a *MintsApiService) ListMints_1(ctx context.Context) ApiListMints_0Request {
+func (a *MintsAPIService) ListMints_1(ctx context.Context) ApiListMints_0Request {
 	return ApiListMints_0Request{
 		ApiService: a,
 		ctx: ctx,
@@ -1606,7 +1604,7 @@ func (a *MintsApiService) ListMints_1(ctx context.Context) ApiListMints_0Request
 
 // Execute executes the request
 //  @return ModelsMintTaskQueryResult
-func (a *MintsApiService) ListMints_1Execute(r ApiListMints_0Request) (*ModelsMintTaskQueryResult, *http.Response, error) {
+func (a *MintsAPIService) ListMints_1Execute(r ApiListMints_0Request) (*ModelsMintTaskQueryResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1614,7 +1612,7 @@ func (a *MintsApiService) ListMints_1Execute(r ApiListMints_0Request) (*ModelsMi
 		localVarReturnValue  *ModelsMintTaskQueryResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.ListMints_1")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsAPIService.ListMints_1")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1735,7 +1733,7 @@ func (a *MintsApiService) ListMints_1Execute(r ApiListMints_0Request) (*ModelsMi
 
 type ApiReMintNFTRequest struct {
 	ctx context.Context
-	ApiService MintsApi
+	ApiService MintsAPI
 	authorization *string
 	id int32
 }
@@ -1759,7 +1757,7 @@ Reset mint task status to init so that it can be minted again
  @param id id
  @return ApiReMintNFTRequest
 */
-func (a *MintsApiService) ReMintNFT(ctx context.Context, id int32) ApiReMintNFTRequest {
+func (a *MintsAPIService) ReMintNFT(ctx context.Context, id int32) ApiReMintNFTRequest {
 	return ApiReMintNFTRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1769,7 +1767,7 @@ func (a *MintsApiService) ReMintNFT(ctx context.Context, id int32) ApiReMintNFTR
 
 // Execute executes the request
 //  @return ModelsMintTask
-func (a *MintsApiService) ReMintNFTExecute(r ApiReMintNFTRequest) (*ModelsMintTask, *http.Response, error) {
+func (a *MintsAPIService) ReMintNFTExecute(r ApiReMintNFTRequest) (*ModelsMintTask, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1777,7 +1775,7 @@ func (a *MintsApiService) ReMintNFTExecute(r ApiReMintNFTRequest) (*ModelsMintTa
 		localVarReturnValue  *ModelsMintTask
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsApiService.ReMintNFT")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MintsAPIService.ReMintNFT")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -12,6 +12,7 @@ package rainbowsdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the MiddlewaresUserLoginInfo type satisfies the MappedNullable interface at compile time
@@ -113,16 +114,42 @@ func (o MiddlewaresUserLoginInfo) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *MiddlewaresUserLoginInfo) UnmarshalJSON(bytes []byte) (err error) {
+func (o *MiddlewaresUserLoginInfo) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"email",
+		"password",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varMiddlewaresUserLoginInfo := _MiddlewaresUserLoginInfo{}
 
-	if err = json.Unmarshal(bytes, &varMiddlewaresUserLoginInfo); err == nil {
-		*o = MiddlewaresUserLoginInfo(varMiddlewaresUserLoginInfo)
+	err = json.Unmarshal(data, &varMiddlewaresUserLoginInfo)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MiddlewaresUserLoginInfo(varMiddlewaresUserLoginInfo)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "password")
 		o.AdditionalProperties = additionalProperties

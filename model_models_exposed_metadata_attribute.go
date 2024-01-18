@@ -48,7 +48,7 @@ func NewModelsExposedMetadataAttributeWithDefaults() *ModelsExposedMetadataAttri
 
 // GetAttributeName returns the AttributeName field value if set, zero value otherwise.
 func (o *ModelsExposedMetadataAttribute) GetAttributeName() string {
-	if o == nil || isNil(o.AttributeName) {
+	if o == nil || IsNil(o.AttributeName) {
 		var ret string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *ModelsExposedMetadataAttribute) GetAttributeName() string {
 // GetAttributeNameOk returns a tuple with the AttributeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataAttribute) GetAttributeNameOk() (*string, bool) {
-	if o == nil || isNil(o.AttributeName) {
+	if o == nil || IsNil(o.AttributeName) {
 		return nil, false
 	}
 	return o.AttributeName, true
@@ -66,7 +66,7 @@ func (o *ModelsExposedMetadataAttribute) GetAttributeNameOk() (*string, bool) {
 
 // HasAttributeName returns a boolean if a field has been set.
 func (o *ModelsExposedMetadataAttribute) HasAttributeName() bool {
-	if o != nil && !isNil(o.AttributeName) {
+	if o != nil && !IsNil(o.AttributeName) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *ModelsExposedMetadataAttribute) SetAttributeName(v string) {
 
 // GetDisplayType returns the DisplayType field value if set, zero value otherwise.
 func (o *ModelsExposedMetadataAttribute) GetDisplayType() string {
-	if o == nil || isNil(o.DisplayType) {
+	if o == nil || IsNil(o.DisplayType) {
 		var ret string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *ModelsExposedMetadataAttribute) GetDisplayType() string {
 // GetDisplayTypeOk returns a tuple with the DisplayType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataAttribute) GetDisplayTypeOk() (*string, bool) {
-	if o == nil || isNil(o.DisplayType) {
+	if o == nil || IsNil(o.DisplayType) {
 		return nil, false
 	}
 	return o.DisplayType, true
@@ -98,7 +98,7 @@ func (o *ModelsExposedMetadataAttribute) GetDisplayTypeOk() (*string, bool) {
 
 // HasDisplayType returns a boolean if a field has been set.
 func (o *ModelsExposedMetadataAttribute) HasDisplayType() bool {
-	if o != nil && !isNil(o.DisplayType) {
+	if o != nil && !IsNil(o.DisplayType) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *ModelsExposedMetadataAttribute) SetDisplayType(v string) {
 
 // GetTraitType returns the TraitType field value if set, zero value otherwise.
 func (o *ModelsExposedMetadataAttribute) GetTraitType() string {
-	if o == nil || isNil(o.TraitType) {
+	if o == nil || IsNil(o.TraitType) {
 		var ret string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *ModelsExposedMetadataAttribute) GetTraitType() string {
 // GetTraitTypeOk returns a tuple with the TraitType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataAttribute) GetTraitTypeOk() (*string, bool) {
-	if o == nil || isNil(o.TraitType) {
+	if o == nil || IsNil(o.TraitType) {
 		return nil, false
 	}
 	return o.TraitType, true
@@ -130,7 +130,7 @@ func (o *ModelsExposedMetadataAttribute) GetTraitTypeOk() (*string, bool) {
 
 // HasTraitType returns a boolean if a field has been set.
 func (o *ModelsExposedMetadataAttribute) HasTraitType() bool {
-	if o != nil && !isNil(o.TraitType) {
+	if o != nil && !IsNil(o.TraitType) {
 		return true
 	}
 
@@ -144,7 +144,7 @@ func (o *ModelsExposedMetadataAttribute) SetTraitType(v string) {
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *ModelsExposedMetadataAttribute) GetValue() string {
-	if o == nil || isNil(o.Value) {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *ModelsExposedMetadataAttribute) GetValue() string {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsExposedMetadataAttribute) GetValueOk() (*string, bool) {
-	if o == nil || isNil(o.Value) {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
 	return o.Value, true
@@ -162,7 +162,7 @@ func (o *ModelsExposedMetadataAttribute) GetValueOk() (*string, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *ModelsExposedMetadataAttribute) HasValue() bool {
-	if o != nil && !isNil(o.Value) {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -184,16 +184,16 @@ func (o ModelsExposedMetadataAttribute) MarshalJSON() ([]byte, error) {
 
 func (o ModelsExposedMetadataAttribute) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AttributeName) {
+	if !IsNil(o.AttributeName) {
 		toSerialize["attribute_name"] = o.AttributeName
 	}
-	if !isNil(o.DisplayType) {
+	if !IsNil(o.DisplayType) {
 		toSerialize["display_type"] = o.DisplayType
 	}
-	if !isNil(o.TraitType) {
+	if !IsNil(o.TraitType) {
 		toSerialize["trait_type"] = o.TraitType
 	}
-	if !isNil(o.Value) {
+	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
 	}
 
@@ -204,16 +204,20 @@ func (o ModelsExposedMetadataAttribute) ToMap() (map[string]interface{}, error) 
 	return toSerialize, nil
 }
 
-func (o *ModelsExposedMetadataAttribute) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ModelsExposedMetadataAttribute) UnmarshalJSON(data []byte) (err error) {
 	varModelsExposedMetadataAttribute := _ModelsExposedMetadataAttribute{}
 
-	if err = json.Unmarshal(bytes, &varModelsExposedMetadataAttribute); err == nil {
-		*o = ModelsExposedMetadataAttribute(varModelsExposedMetadataAttribute)
+	err = json.Unmarshal(data, &varModelsExposedMetadataAttribute)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ModelsExposedMetadataAttribute(varModelsExposedMetadataAttribute)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "attribute_name")
 		delete(additionalProperties, "display_type")
 		delete(additionalProperties, "trait_type")

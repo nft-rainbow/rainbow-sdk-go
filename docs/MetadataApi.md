@@ -1,12 +1,12 @@
-# \MetadataApi
+# \MetadataAPI
 
 All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateMetadata**](MetadataApi.md#CreateMetadata) | **Post** /v1/metadata/ | Create NFT metadata
-[**GetMetadatInfo**](MetadataApi.md#GetMetadatInfo) | **Get** /v1/metadata/{metadata_id} | Query metadata
-[**ListMetadatas**](MetadataApi.md#ListMetadatas) | **Get** /v1/metadata/ | Obtain metadata list
+[**CreateMetadata**](MetadataAPI.md#CreateMetadata) | **Post** /v1/metadata/ | Create NFT metadata
+[**GetMetadatInfo**](MetadataAPI.md#GetMetadatInfo) | **Get** /v1/metadata/{metadata_id} | Query metadata
+[**ListMetadatas**](MetadataAPI.md#ListMetadatas) | **Get** /v1/metadata/ | Obtain metadata list
 
 
 
@@ -24,25 +24,25 @@ Create NFT metadata
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer openapi_token
-    metadataInfo := *openapiclient.NewServicesMetadataDto("Description_example", "Image_example", "Name_example") // ServicesMetadataDto | metadata_info
+	authorization := "authorization_example" // string | Bearer openapi_token
+	metadataInfo := *openapiclient.NewServicesMetadataDto("Description_example", "Image_example", "Name_example") // ServicesMetadataDto | metadata_info
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetadataApi.CreateMetadata(context.Background()).Authorization(authorization).MetadataInfo(metadataInfo).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetadataApi.CreateMetadata``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateMetadata`: ModelsExposedMetadata
-    fmt.Fprintf(os.Stdout, "Response from `MetadataApi.CreateMetadata`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetadataAPI.CreateMetadata(context.Background()).Authorization(authorization).MetadataInfo(metadataInfo).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetadataAPI.CreateMetadata``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateMetadata`: ModelsExposedMetadata
+	fmt.Fprintf(os.Stdout, "Response from `MetadataAPI.CreateMetadata`: %v\n", resp)
 }
 ```
 
@@ -92,25 +92,25 @@ Query metadata
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer openapi_token
-    metadataId := "metadataId_example" // string | metadata_id
+	authorization := "authorization_example" // string | Bearer openapi_token
+	metadataId := "metadataId_example" // string | metadata_id
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetadataApi.GetMetadatInfo(context.Background(), metadataId).Authorization(authorization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetadataApi.GetMetadatInfo``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetMetadatInfo`: ModelsExposedMetadata
-    fmt.Fprintf(os.Stdout, "Response from `MetadataApi.GetMetadatInfo`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetadataAPI.GetMetadatInfo(context.Background(), metadataId).Authorization(authorization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetadataAPI.GetMetadatInfo``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMetadatInfo`: ModelsExposedMetadata
+	fmt.Fprintf(os.Stdout, "Response from `MetadataAPI.GetMetadatInfo`: %v\n", resp)
 }
 ```
 
@@ -164,26 +164,26 @@ Obtain metadata list
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer openapi_token
-    page := "page_example" // string | page (optional)
-    limit := "limit_example" // string | limit (optional)
+	authorization := "authorization_example" // string | Bearer openapi_token
+	page := "page_example" // string | page (optional)
+	limit := "limit_example" // string | limit (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MetadataApi.ListMetadatas(context.Background()).Authorization(authorization).Page(page).Limit(limit).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetadataApi.ListMetadatas``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListMetadatas`: ModelsExposedMetadataQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `MetadataApi.ListMetadatas`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetadataAPI.ListMetadatas(context.Background()).Authorization(authorization).Page(page).Limit(limit).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetadataAPI.ListMetadatas``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListMetadatas`: ModelsExposedMetadataQueryResult
+	fmt.Fprintf(os.Stdout, "Response from `MetadataAPI.ListMetadatas`: %v\n", resp)
 }
 ```
 

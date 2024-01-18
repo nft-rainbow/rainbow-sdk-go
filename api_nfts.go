@@ -20,7 +20,24 @@ import (
 )
 
 
-type NFTsApi interface {
+type NFTsAPI interface {
+
+	/*
+	NFTHoldCount Get NFT hold count by address
+
+	Get NFT hold count by address
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param address contract address
+	@param tokenId token_id
+	@param holder holder address
+	@return ApiNFTHoldCountRequest
+	*/
+	NFTHoldCount(ctx context.Context, address string, tokenId string, holder string) ApiNFTHoldCountRequest
+
+	// NFTHoldCountExecute executes the request
+	//  @return map[string]int32
+	NFTHoldCountExecute(r ApiNFTHoldCountRequest) (map[string]int32, *http.Response, error)
 
 	/*
 	NftInfo Get NFT info, mainly owner and metadata
@@ -55,20 +72,190 @@ type NFTsApi interface {
 	UpdateNftTokenUriExecute(r ApiUpdateNftTokenUriRequest) (*ModelsTransaction, *http.Response, error)
 }
 
-// NFTsApiService NFTsApi service
-type NFTsApiService service
+// NFTsAPIService NFTsAPI service
+type NFTsAPIService service
 
-type ApiNftInfoRequest struct {
+type ApiNFTHoldCountRequest struct {
 	ctx context.Context
-	ApiService NFTsApi
+	ApiService NFTsAPI
 	authorization *string
 	address string
 	tokenId string
+	holder string
+	type_ *string
+	epochHeight *float32
+}
+
+// Bearer Open_JWT
+func (r ApiNFTHoldCountRequest) Authorization(authorization string) ApiNFTHoldCountRequest {
+	r.authorization = &authorization
+	return r
+}
+
+// contract type erc721, erc1155, default is erc721
+func (r ApiNFTHoldCountRequest) Type_(type_ string) ApiNFTHoldCountRequest {
+	r.type_ = &type_
+	return r
+}
+
+// epoch height, default is latest_state
+func (r ApiNFTHoldCountRequest) EpochHeight(epochHeight float32) ApiNFTHoldCountRequest {
+	r.epochHeight = &epochHeight
+	return r
+}
+
+func (r ApiNFTHoldCountRequest) Execute() (map[string]int32, *http.Response, error) {
+	return r.ApiService.NFTHoldCountExecute(r)
+}
+
+/*
+NFTHoldCount Get NFT hold count by address
+
+Get NFT hold count by address
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param address contract address
+ @param tokenId token_id
+ @param holder holder address
+ @return ApiNFTHoldCountRequest
+*/
+func (a *NFTsAPIService) NFTHoldCount(ctx context.Context, address string, tokenId string, holder string) ApiNFTHoldCountRequest {
+	return ApiNFTHoldCountRequest{
+		ApiService: a,
+		ctx: ctx,
+		address: address,
+		tokenId: tokenId,
+		holder: holder,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]int32
+func (a *NFTsAPIService) NFTHoldCountExecute(r ApiNFTHoldCountRequest) (map[string]int32, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]int32
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NFTsAPIService.NFTHoldCount")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/nft/count/{address}/{token_id}/{holder}"
+	localVarPath = strings.Replace(localVarPath, "{"+"address"+"}", url.PathEscape(parameterValueToString(r.address, "address")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"token_id"+"}", url.PathEscape(parameterValueToString(r.tokenId, "tokenId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"holder"+"}", url.PathEscape(parameterValueToString(r.holder, "holder")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+
+	if r.type_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
+	}
+	if r.epochHeight != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "epoch_height", r.epochHeight, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v RainbowErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiNftInfoRequest struct {
+	ctx context.Context
+	ApiService NFTsAPI
+	authorization *string
+	address string
+	tokenId string
+	type_ *string
 }
 
 // Bearer Open_JWT
 func (r ApiNftInfoRequest) Authorization(authorization string) ApiNftInfoRequest {
 	r.authorization = &authorization
+	return r
+}
+
+// contract type erc721, erc1155, default is erc721
+func (r ApiNftInfoRequest) Type_(type_ string) ApiNftInfoRequest {
+	r.type_ = &type_
 	return r
 }
 
@@ -86,7 +273,7 @@ Get NFT info, mainly owner and metadata
  @param tokenId token_id
  @return ApiNftInfoRequest
 */
-func (a *NFTsApiService) NftInfo(ctx context.Context, address string, tokenId string) ApiNftInfoRequest {
+func (a *NFTsAPIService) NftInfo(ctx context.Context, address string, tokenId string) ApiNftInfoRequest {
 	return ApiNftInfoRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -97,7 +284,7 @@ func (a *NFTsApiService) NftInfo(ctx context.Context, address string, tokenId st
 
 // Execute executes the request
 //  @return ServicesNFT
-func (a *NFTsApiService) NftInfoExecute(r ApiNftInfoRequest) (*ServicesNFT, *http.Response, error) {
+func (a *NFTsAPIService) NftInfoExecute(r ApiNftInfoRequest) (*ServicesNFT, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -105,7 +292,7 @@ func (a *NFTsApiService) NftInfoExecute(r ApiNftInfoRequest) (*ServicesNFT, *htt
 		localVarReturnValue  *ServicesNFT
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NFTsApiService.NftInfo")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NFTsAPIService.NftInfo")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -121,6 +308,9 @@ func (a *NFTsApiService) NftInfoExecute(r ApiNftInfoRequest) (*ServicesNFT, *htt
 		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
 	}
 
+	if r.type_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -199,7 +389,7 @@ func (a *NFTsApiService) NftInfoExecute(r ApiNftInfoRequest) (*ServicesNFT, *htt
 
 type ApiUpdateNftTokenUriRequest struct {
 	ctx context.Context
-	ApiService NFTsApi
+	ApiService NFTsAPI
 	authorization *string
 	address string
 	tokenId string
@@ -232,7 +422,7 @@ Update NFT token uri
  @param tokenId token_id
  @return ApiUpdateNftTokenUriRequest
 */
-func (a *NFTsApiService) UpdateNftTokenUri(ctx context.Context, address string, tokenId string) ApiUpdateNftTokenUriRequest {
+func (a *NFTsAPIService) UpdateNftTokenUri(ctx context.Context, address string, tokenId string) ApiUpdateNftTokenUriRequest {
 	return ApiUpdateNftTokenUriRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -243,7 +433,7 @@ func (a *NFTsApiService) UpdateNftTokenUri(ctx context.Context, address string, 
 
 // Execute executes the request
 //  @return ModelsTransaction
-func (a *NFTsApiService) UpdateNftTokenUriExecute(r ApiUpdateNftTokenUriRequest) (*ModelsTransaction, *http.Response, error) {
+func (a *NFTsAPIService) UpdateNftTokenUriExecute(r ApiUpdateNftTokenUriRequest) (*ModelsTransaction, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -251,7 +441,7 @@ func (a *NFTsApiService) UpdateNftTokenUriExecute(r ApiUpdateNftTokenUriRequest)
 		localVarReturnValue  *ModelsTransaction
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NFTsApiService.UpdateNftTokenUri")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NFTsAPIService.UpdateNftTokenUri")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -45,7 +45,7 @@ func NewModelsBurnTaskQueryResultWithDefaults() *ModelsBurnTaskQueryResult {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ModelsBurnTaskQueryResult) GetCount() int32 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *ModelsBurnTaskQueryResult) GetCount() int32 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTaskQueryResult) GetCountOk() (*int32, bool) {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
 	return o.Count, true
@@ -63,7 +63,7 @@ func (o *ModelsBurnTaskQueryResult) GetCountOk() (*int32, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *ModelsBurnTaskQueryResult) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *ModelsBurnTaskQueryResult) SetCount(v int32) {
 
 // GetItems returns the Items field value if set, zero value otherwise.
 func (o *ModelsBurnTaskQueryResult) GetItems() []ModelsBurnTask {
-	if o == nil || isNil(o.Items) {
+	if o == nil || IsNil(o.Items) {
 		var ret []ModelsBurnTask
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *ModelsBurnTaskQueryResult) GetItems() []ModelsBurnTask {
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsBurnTaskQueryResult) GetItemsOk() ([]ModelsBurnTask, bool) {
-	if o == nil || isNil(o.Items) {
+	if o == nil || IsNil(o.Items) {
 		return nil, false
 	}
 	return o.Items, true
@@ -95,7 +95,7 @@ func (o *ModelsBurnTaskQueryResult) GetItemsOk() ([]ModelsBurnTask, bool) {
 
 // HasItems returns a boolean if a field has been set.
 func (o *ModelsBurnTaskQueryResult) HasItems() bool {
-	if o != nil && !isNil(o.Items) {
+	if o != nil && !IsNil(o.Items) {
 		return true
 	}
 
@@ -117,10 +117,10 @@ func (o ModelsBurnTaskQueryResult) MarshalJSON() ([]byte, error) {
 
 func (o ModelsBurnTaskQueryResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Count) {
+	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
-	if !isNil(o.Items) {
+	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items
 	}
 
@@ -131,16 +131,20 @@ func (o ModelsBurnTaskQueryResult) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ModelsBurnTaskQueryResult) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ModelsBurnTaskQueryResult) UnmarshalJSON(data []byte) (err error) {
 	varModelsBurnTaskQueryResult := _ModelsBurnTaskQueryResult{}
 
-	if err = json.Unmarshal(bytes, &varModelsBurnTaskQueryResult); err == nil {
-		*o = ModelsBurnTaskQueryResult(varModelsBurnTaskQueryResult)
+	err = json.Unmarshal(data, &varModelsBurnTaskQueryResult)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ModelsBurnTaskQueryResult(varModelsBurnTaskQueryResult)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "count")
 		delete(additionalProperties, "items")
 		o.AdditionalProperties = additionalProperties

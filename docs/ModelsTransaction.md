@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BlockReason** | Pointer to [**EnumsTransactionBlockReason**](EnumsTransactionBlockReason.md) |  | [optional] 
 **ChainId** | Pointer to **int32** |  | [optional] 
 **ChainType** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
@@ -23,7 +24,7 @@ Name | Type | Description | Notes
 **PendingReason** | Pointer to **string** |  | [optional] 
 **PreHashs** | Pointer to **string** |  | [optional] 
 **Stage** | Pointer to **int32** |  | [optional] 
-**State** | Pointer to **int32** |  | [optional] 
+**State** | Pointer to [**ModelsTxState**](ModelsTxState.md) |  | [optional] 
 **Status** | Pointer to **int32** |  | [optional] 
 **StorageCollateralized** | Pointer to **float32** |  | [optional] 
 **StorageCoveredBySponsor** | Pointer to **bool** |  | [optional] 
@@ -52,6 +53,31 @@ will change when the set of required properties is changed
 NewModelsTransactionWithDefaults instantiates a new ModelsTransaction object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBlockReason
+
+`func (o *ModelsTransaction) GetBlockReason() EnumsTransactionBlockReason`
+
+GetBlockReason returns the BlockReason field if non-nil, zero value otherwise.
+
+### GetBlockReasonOk
+
+`func (o *ModelsTransaction) GetBlockReasonOk() (*EnumsTransactionBlockReason, bool)`
+
+GetBlockReasonOk returns a tuple with the BlockReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBlockReason
+
+`func (o *ModelsTransaction) SetBlockReason(v EnumsTransactionBlockReason)`
+
+SetBlockReason sets BlockReason field to given value.
+
+### HasBlockReason
+
+`func (o *ModelsTransaction) HasBlockReason() bool`
+
+HasBlockReason returns a boolean if a field has been set.
 
 ### GetChainId
 
@@ -530,20 +556,20 @@ HasStage returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *ModelsTransaction) GetState() int32`
+`func (o *ModelsTransaction) GetState() ModelsTxState`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *ModelsTransaction) GetStateOk() (*int32, bool)`
+`func (o *ModelsTransaction) GetStateOk() (*ModelsTxState, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *ModelsTransaction) SetState(v int32)`
+`func (o *ModelsTransaction) SetState(v ModelsTxState)`
 
 SetState sets State field to given value.
 

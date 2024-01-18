@@ -174,6 +174,91 @@ paths:
       summary: Refresh JWT
       tags:
       - Login
+  /v1/accounts:
+    get:
+      description: Query web3 account
+      operationId: QueryAccount
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: phone
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/models.AccountDisplayPart'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Query web3 account
+      tags:
+      - Accounts
+    post:
+      description: Insert web3 account
+      operationId: InsertAccount
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/services.InsertAccountReq'
+        description: insert_account_req
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/models.AccountDisplayPart'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Insert web3 account
+      tags:
+      - Accounts
+      x-codegen-request-body-name: insert_account_req
   /v1/burns:
     get:
       description: Get the NFT burned list information.
@@ -571,6 +656,154 @@ paths:
       tags:
       - Contract
       x-codegen-request-body-name: admin_info
+  /v1/contracts/{address}/config/auto-sponsor:
+    get:
+      description: Get contract auto sponsor config
+      operationId: GetContractAutoSponsor
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.AutoSponsorContract'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Get contract auto sponsor config
+      tags:
+      - Contract
+    post:
+      description: Set contract auto sponsor config
+      operationId: SetContractAutoSponsor
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/services.ContractAutoSponsorReq'
+        description: contract auto sponsor config
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gin.H'
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Set contract auto sponsor config
+      tags:
+      - Contract
+      x-codegen-request-body-name: auto_sponsor_req
+  /v1/contracts/{address}/config/transaferable:
+    post:
+      description: Set Contract TransaferableByAdmin and TransaferableByUser Config
+      operationId: SetContractTransaferable
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.SendTxResp'
+          description: Transaction id
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Set Contract Transaferable Config
+      tags:
+      - Contract
   /v1/contracts/{address}/profile:
     get:
       description: "Get contract runtime profile, contains contract info and currently\
@@ -681,7 +914,7 @@ paths:
         required: true
         schema:
           type: string
-      - description: chain
+      - description: "chain: conflux, conflux_test(default)"
         in: query
         name: chain
         schema:
@@ -1563,6 +1796,71 @@ paths:
       summary: Reset mint task status to init so that it can be minted again
       tags:
       - Mints
+  /v1/nft/count/{address}/{token_id}/{holder}:
+    get:
+      description: Get NFT hold count by address
+      operationId: NFTHoldCount
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: contract address
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+      - description: token_id
+        in: path
+        name: token_id
+        required: true
+        schema:
+          type: string
+      - description: holder address
+        in: path
+        name: holder
+        required: true
+        schema:
+          type: string
+      - description: "contract type erc721, erc1155, default is erc721"
+        in: query
+        name: type
+        schema:
+          type: string
+      - description: "epoch height, default is latest_state"
+        in: query
+        name: epoch_height
+        schema:
+          type: number
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: integer
+                type: object
+          description: count
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      security:
+      - ApiKeyAuth: []
+      summary: Get NFT hold count by address
+      tags:
+      - NFTs
   /v1/nft/{address}/{token_id}:
     get:
       description: "Get NFT info, mainly owner and metadata"
@@ -1584,6 +1882,11 @@ paths:
         in: path
         name: token_id
         required: true
+        schema:
+          type: string
+      - description: "contract type erc721, erc1155, default is erc721"
+        in: query
+        name: type
         schema:
           type: string
       responses:
@@ -1688,6 +1991,411 @@ paths:
       summary: Refresh JWT
       tags:
       - Login
+  /v1/tba/accounts:
+    get:
+      description: "Get token bound accounts based on contract, token_id, implementation,\
+        \ chain type, and chain id"
+      operationId: TBAQueryEndpoint
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: "Chain name, should be either conflux or conflux_test"
+        in: query
+        name: chain
+        required: true
+        schema:
+          type: string
+      - description: The implementation contract address of the tba. Will throw an
+          error if the implementation is not in whitelist
+        in: query
+        name: implementation
+        schema:
+          type: string
+      - description: Token contract address of the bounded NFT
+        in: query
+        name: contract
+        schema:
+          type: string
+      - description: Token ID
+        in: query
+        name: token_id
+        schema:
+          type: string
+      - description: Page number
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: Limit per page
+        in: query
+        name: limit
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.TokenBoundAccountQueryResult'
+          description: Token bound accounts information
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Business error
+      security:
+      - ApiKeyAuth: []
+      summary: Get all token bound accounts on chain
+      tags:
+      - TBA
+    post:
+      description: Create a new token bound account based on provided parameters.  Can
+        optionally specify which collection to add. Will fail if the tba is already
+        created or in the queue
+      operationId: TBACreationEndpoint
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/models.TBACreateDto'
+        description: Token Bound Account creation details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.TBACreationTask'
+          description: Token bound account creation task information
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Business error
+      security:
+      - ApiKeyAuth: []
+      summary: Create a new token bound account (TBA)
+      tags:
+      - TBA
+      x-codegen-request-body-name: tbaCreateDto
+  /v1/tba/collections:
+    get:
+      description: "Query TBA collections based on chain, and collection name"
+      operationId: TBACollectionQueryEndpoint
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: The chain type. The types include `conflux` and `conflux_test`
+        in: query
+        name: chain
+        required: true
+        schema:
+          type: string
+      - description: Collection name
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: Page number
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: Limit per page
+        in: query
+        name: limit
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.TokenBoundAccountCollectionQueryResult'
+          description: TBA collections information
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Business error
+      security:
+      - ApiKeyAuth: []
+      summary: Query token bound account (TBA) collections
+      tags:
+      - TBA
+    post:
+      description: Create a new token bound account collection based on provided details.
+      operationId: TBACollectionEndpoint
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/models.TBACollectionCreateDto'
+        description: TBA Collection creation details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/models.TokenBoundAccountCollectionQueryResult'
+          description: Successful creation of TBA collection
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Business error
+      security:
+      - ApiKeyAuth: []
+      summary: Create a new TBA collection
+      tags:
+      - TBA
+      x-codegen-request-body-name: createDto
+  /v1/tba/collections/{collection_name}:
+    put:
+      description: Modify the name and description of a TBA collection based on the
+        provided details
+      operationId: TBACollectionMetaInfoModificationEndpoint
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: Name of the TBA collection to be modified
+        in: path
+        name: collection_name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/models.TBACollectionModifyDto'
+        description: Modification details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gin.H'
+          description: Modification successful
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Business error
+      security:
+      - ApiKeyAuth: []
+      summary: Modify meta information of a TBA collection
+      tags:
+      - TBA
+      x-codegen-request-body-name: modifyDto
+  /v1/tba/collections/{collection_name}/items:
+    delete:
+      description: "Remove specified accounts from a TBA collection based on the provided\
+        \ details. This api will ignore the error if the specified item is not in\
+        \ the collection. If any other error occurs, none of the specified items will\
+        \ be deleted."
+      operationId: TBACollectionRemoveItemsEndpoint
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: Name of the TBA collection to remove items from
+        in: path
+        name: collection_name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/models.TBACollectionItemsDto'
+        description: Details of the accounts to be removed
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gin.H'
+          description: Removal successful
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Business error
+      security:
+      - ApiKeyAuth: []
+      summary: Remove items from a TBA collection
+      tags:
+      - TBA
+      x-codegen-request-body-name: itemsDto
+    post:
+      description: "Add new accounts to a specified TBA collection based on the provided\
+        \ details. This api will ignore the error that the account is already in the\
+        \ collection. If any other error occurs, none of the specified tbas will be\
+        \ added to the collection."
+      operationId: TBACollectionNewItemsEndpoint
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: Name of the TBA collection to add items to
+        in: path
+        name: collection_name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/models.TBACollectionItemsDto'
+        description: Details of the accounts to be added
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gin.H'
+          description: Addition successful
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Business error
+      security:
+      - ApiKeyAuth: []
+      summary: Add new items to a TBA collection
+      tags:
+      - TBA
+      x-codegen-request-body-name: itemsDto
   /v1/transfers/:
     get:
       description: Get the NFT list containing the transferred NFT information.
@@ -1905,6 +2613,26 @@ paths:
       - Transaction
 components:
   schemas:
+    enums.TransactionBlockReason:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      type: integer
+      x-enum-varnames:
+      - TX_BLOCK_REASON_DB_ERR
+      - TX_BLOCK_REASON_SPONSORING
+      - TX_BLOCK_REASON_IO_ERR
+      - TX_BLOCK_REASON_NOT_ENOUGH_CASH
+      - TX_BLOCK_REASON_FAILED_GET_SPONSOR_INFO
+      - TX_BLOCK_REASON_SPONSOR_NOT_ENOUGH
+    gin.H:
+      additionalProperties:
+        type: object
+      type: object
     gorm.DeletedAt:
       example:
         valid: true
@@ -1946,12 +2674,63 @@ components:
       - email
       - password
       type: object
+    models.AccountDisplayPart:
+      example:
+        conflux_testnet_address: conflux_testnet_address
+        phone: phone
+        conflux_mainnet_address: conflux_mainnet_address
+      properties:
+        conflux_mainnet_address:
+          type: string
+        conflux_testnet_address:
+          type: string
+        phone:
+          type: string
+      type: object
+    models.AutoSponsorContract:
+      example:
+        storage_recharge_amount: 1
+        address: address
+        updated_at: updated_at
+        user_id: 5
+        contract_id: 0
+        storage_recharge_threshold: 5
+        auto_sponsor: true
+        created_at: created_at
+        id: 6
+        deleted_at:
+          valid: true
+          time: time
+      properties:
+        address:
+          type: string
+        auto_sponsor:
+          type: boolean
+        contract_id:
+          description: useless
+          type: integer
+        created_at:
+          type: string
+        deleted_at:
+          $ref: '#/components/schemas/gorm.DeletedAt'
+        id:
+          type: integer
+        storage_recharge_amount:
+          type: integer
+        storage_recharge_threshold:
+          type: integer
+        updated_at:
+          type: string
+        user_id:
+          type: integer
+      type: object
     models.BurnTask:
       example:
         amount: 6
         chain_type: 5
         chain_id: 5
         contract: contract
+        block_reason: "{}"
         created_at: created_at
         error: error
         tx_id: 3
@@ -1971,6 +2750,11 @@ components:
           type: integer
         app_id:
           type: integer
+        block_reason:
+          allOf:
+          - $ref: '#/components/schemas/enums.TransactionBlockReason'
+          description: 没有发送到tx engine的原因，比如余额不足或网络错误等
+          type: object
         chain_id:
           type: integer
         chain_type:
@@ -2009,6 +2793,7 @@ components:
           chain_type: 5
           chain_id: 5
           contract: contract
+          block_reason: "{}"
           created_at: created_at
           error: error
           tx_id: 3
@@ -2027,6 +2812,7 @@ components:
           chain_type: 5
           chain_id: 5
           contract: contract
+          block_reason: "{}"
           created_at: created_at
           error: error
           tx_id: 3
@@ -2057,6 +2843,7 @@ components:
         address: address
         chain_id: 1
         transfer_cooldown_time: 9
+        block_reason: "{}"
         created_at: created_at
         owner_address: owner_address
         royalties_address: royalties_address
@@ -2085,6 +2872,11 @@ components:
           type: boolean
         base_uri:
           type: string
+        block_reason:
+          allOf:
+          - $ref: '#/components/schemas/enums.TransactionBlockReason'
+          description: 没有发送到tx engine的原因，比如余额不足或网络错误等
+          type: object
         chain_id:
           type: integer
         chain_type:
@@ -2135,6 +2927,7 @@ components:
           address: address
           chain_id: 1
           transfer_cooldown_time: 9
+          block_reason: "{}"
           created_at: created_at
           owner_address: owner_address
           royalties_address: royalties_address
@@ -2171,6 +2964,7 @@ components:
           address: address
           chain_id: 1
           transfer_cooldown_time: 9
+          block_reason: "{}"
           created_at: created_at
           owner_address: owner_address
           royalties_address: royalties_address
@@ -2196,6 +2990,7 @@ components:
           address: address
           chain_id: 1
           transfer_cooldown_time: 9
+          block_reason: "{}"
           created_at: created_at
           owner_address: owner_address
           royalties_address: royalties_address
@@ -2426,6 +3221,7 @@ components:
         chain_type: 5
         chain_id: 1
         contract: contract
+        block_reason: "{}"
         created_at: created_at
         error: error
         tx_id: 3
@@ -2446,6 +3242,11 @@ components:
           type: integer
         app_id:
           type: integer
+        block_reason:
+          allOf:
+          - $ref: '#/components/schemas/enums.TransactionBlockReason'
+          description: 没有发送到tx engine的原因，比如余额不足或网络错误等
+          type: object
         chain_id:
           type: integer
         chain_type:
@@ -2489,6 +3290,7 @@ components:
           chain_type: 5
           chain_id: 1
           contract: contract
+          block_reason: "{}"
           created_at: created_at
           error: error
           tx_id: 3
@@ -2509,6 +3311,7 @@ components:
           chain_type: 5
           chain_id: 1
           contract: contract
+          block_reason: "{}"
           created_at: created_at
           error: error
           tx_id: 3
@@ -2532,6 +3335,145 @@ components:
             $ref: '#/components/schemas/models.MintTask'
           type: array
       type: object
+    models.TBACollectionCreateDto:
+      properties:
+        chain:
+          description: The chain type. The types include `conflux`` and `conflux_test``
+          type: string
+        description:
+          description: The collection description
+          type: string
+        name:
+          description: The name of the collection. Should be unique for the user.
+          type: string
+      required:
+      - chain
+      - name
+      type: object
+    models.TBACollectionItemsDto:
+      properties:
+        accounts:
+          description: Addresses of the specified tbas. Will throw an error if the
+            tba is not created yet
+          items:
+            type: string
+          type: array
+      required:
+      - accounts
+      type: object
+    models.TBACollectionModifyDto:
+      properties:
+        new_description:
+          type: string
+        new_name:
+          type: string
+      type: object
+    models.TBACreateDto:
+      properties:
+        chain:
+          description: The chain type. The types include `conflux`` and `conflux_test``
+          type: string
+        collection_to_add:
+          description: the collection to add after the tba is created. Will create
+            the collection if it is not created yet.
+          type: string
+        salt:
+          description: salt parameter to adjust tba address
+          type: string
+        token_contract:
+          description: address of the nft contract
+          type: string
+        token_id:
+          description: token id of nft
+          type: string
+      required:
+      - chain
+      - token_contract
+      - token_id
+      type: object
+    models.TBACreationTask:
+      example:
+        chain_type: 1
+        salt: salt
+        chain_id: 6
+        precomputed_address: precomputed_address
+        contract: contract
+        implementation: implementation
+        block_reason: "{}"
+        created_at: created_at
+        token_contract: token_contract
+        error: error
+        tx_id: 9
+        deleted_at:
+          valid: true
+          time: time
+        collection_to_add: collection_to_add
+        contract_type: 5
+        token_contract_chain_id: 7
+        token_id: token_id
+        updated_at: updated_at
+        user_id: 3
+        id: 5
+        app_id: 0
+        hash: hash
+        status: 2
+      properties:
+        app_id:
+          type: integer
+        block_reason:
+          allOf:
+          - $ref: '#/components/schemas/enums.TransactionBlockReason'
+          description: 没有发送到tx engine的原因，比如余额不足或网络错误等
+          type: object
+        chain_id:
+          type: integer
+        chain_type:
+          type: integer
+        collection_to_add:
+          description: the collection to add after the tba is created
+          type: string
+        contract:
+          type: string
+        contract_type:
+          type: integer
+        created_at:
+          type: string
+        deleted_at:
+          $ref: '#/components/schemas/gorm.DeletedAt'
+        error:
+          type: string
+        hash:
+          type: string
+        id:
+          type: integer
+        implementation:
+          description: tba implementation address
+          type: string
+        precomputed_address:
+          description: the precomputed tba address
+          type: string
+        salt:
+          type: string
+        status:
+          description: "0-pending, 1-success, 2-failed"
+          type: integer
+        token_contract:
+          description: the nft token contract address
+          type: string
+        token_contract_chain_id:
+          description: the chain id of the token contract
+          type: integer
+        token_id:
+          description: the token id of the nft
+          type: string
+        tx_id:
+          type: integer
+        updated_at:
+          type: string
+        user_id:
+          description: the user created the task
+          type: integer
+      type: object
     models.TaskType:
       enum:
       - 1
@@ -2545,6 +3487,7 @@ components:
       - 9
       - 10
       - 11
+      - 12
       type: integer
       x-enum-varnames:
       - TASK_TYPE_DEPLOY
@@ -2558,10 +3501,268 @@ components:
       - TASK_TYPE_SPONSOR_BALANCE
       - TASK_TYPE_SPONSOR_PRIVILEGE
       - TASK_TYPE_UPDATE_TOKEN_URI
+      - TASK_TYPE_CREATE_TBA
+    models.TokenBoundAccount:
+      example:
+        token_contract_chain_id: 5
+        chain_type: 1
+        address: address
+        salt: salt
+        chain_id: 6
+        token_id: token_id
+        updated_at: updated_at
+        implementation: implementation
+        created_at: created_at
+        token_contract: token_contract
+        id: 5
+        deleted_at:
+          valid: true
+          time: time
+      properties:
+        address:
+          description: The address of the tba
+          type: string
+        chain_id:
+          description: The chainId of the TBA
+          type: integer
+        chain_type:
+          description: "no need add to unique index, because conflux core testnet\
+            \ and eth mainnet has different address"
+          type: integer
+        created_at:
+          type: string
+        deleted_at:
+          $ref: '#/components/schemas/gorm.DeletedAt'
+        id:
+          type: integer
+        implementation:
+          description: Account logic implementation
+          type: string
+        salt:
+          description: Salt parameter that adjusts the tba address
+          type: string
+        token_contract:
+          description: The address of the nft contract
+          type: string
+        token_contract_chain_id:
+          description: "NOTE: this is not the chain id of contract but the erc6551\
+            \ defined chainid"
+          type: integer
+        token_id:
+          description: Token id of the nft
+          type: string
+        updated_at:
+          type: string
+      type: object
+    models.TokenBoundAccountCollection:
+      example:
+        chain_type: 1
+        chain_id: 6
+        updated_at: updated_at
+        name: name
+        created_at: created_at
+        description: description
+        id: 5
+        deleted_at:
+          valid: true
+          time: time
+        items:
+        - token_contract_chain_id: 5
+          chain_type: 1
+          address: address
+          salt: salt
+          chain_id: 6
+          token_id: token_id
+          updated_at: updated_at
+          implementation: implementation
+          created_at: created_at
+          token_contract: token_contract
+          id: 5
+          deleted_at:
+            valid: true
+            time: time
+        - token_contract_chain_id: 5
+          chain_type: 1
+          address: address
+          salt: salt
+          chain_id: 6
+          token_id: token_id
+          updated_at: updated_at
+          implementation: implementation
+          created_at: created_at
+          token_contract: token_contract
+          id: 5
+          deleted_at:
+            valid: true
+            time: time
+        userId: 5
+      properties:
+        chain_id:
+          description: The chain id of the tba collection. All tbas in the collection
+            are of same chain id.
+          type: integer
+        chain_type:
+          description: "the type of the chain. 1-CFX, 2-ETH. All tbas in the collection\
+            \ are of same chain type"
+          type: integer
+        created_at:
+          type: string
+        deleted_at:
+          $ref: '#/components/schemas/gorm.DeletedAt'
+        description:
+          description: Collection description
+          type: string
+        id:
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/models.TokenBoundAccount'
+          type: array
+        name:
+          description: The name of tba collection. The name is unique for the user.
+          type: string
+        updated_at:
+          type: string
+        userId:
+          description: The user created the collection
+          type: integer
+      type: object
+    models.TokenBoundAccountCollectionQueryResult:
+      example:
+        count: 0
+        items:
+        - chain_type: 1
+          chain_id: 6
+          updated_at: updated_at
+          name: name
+          created_at: created_at
+          description: description
+          id: 5
+          deleted_at:
+            valid: true
+            time: time
+          items:
+          - token_contract_chain_id: 5
+            chain_type: 1
+            address: address
+            salt: salt
+            chain_id: 6
+            token_id: token_id
+            updated_at: updated_at
+            implementation: implementation
+            created_at: created_at
+            token_contract: token_contract
+            id: 5
+            deleted_at:
+              valid: true
+              time: time
+          - token_contract_chain_id: 5
+            chain_type: 1
+            address: address
+            salt: salt
+            chain_id: 6
+            token_id: token_id
+            updated_at: updated_at
+            implementation: implementation
+            created_at: created_at
+            token_contract: token_contract
+            id: 5
+            deleted_at:
+              valid: true
+              time: time
+          userId: 5
+        - chain_type: 1
+          chain_id: 6
+          updated_at: updated_at
+          name: name
+          created_at: created_at
+          description: description
+          id: 5
+          deleted_at:
+            valid: true
+            time: time
+          items:
+          - token_contract_chain_id: 5
+            chain_type: 1
+            address: address
+            salt: salt
+            chain_id: 6
+            token_id: token_id
+            updated_at: updated_at
+            implementation: implementation
+            created_at: created_at
+            token_contract: token_contract
+            id: 5
+            deleted_at:
+              valid: true
+              time: time
+          - token_contract_chain_id: 5
+            chain_type: 1
+            address: address
+            salt: salt
+            chain_id: 6
+            token_id: token_id
+            updated_at: updated_at
+            implementation: implementation
+            created_at: created_at
+            token_contract: token_contract
+            id: 5
+            deleted_at:
+              valid: true
+              time: time
+          userId: 5
+      properties:
+        count:
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/models.TokenBoundAccountCollection'
+          type: array
+      type: object
+    models.TokenBoundAccountQueryResult:
+      example:
+        count: 0
+        items:
+        - token_contract_chain_id: 5
+          chain_type: 1
+          address: address
+          salt: salt
+          chain_id: 6
+          token_id: token_id
+          updated_at: updated_at
+          implementation: implementation
+          created_at: created_at
+          token_contract: token_contract
+          id: 5
+          deleted_at:
+            valid: true
+            time: time
+        - token_contract_chain_id: 5
+          chain_type: 1
+          address: address
+          salt: salt
+          chain_id: 6
+          token_id: token_id
+          updated_at: updated_at
+          implementation: implementation
+          created_at: created_at
+          token_contract: token_contract
+          id: 5
+          deleted_at:
+            valid: true
+            time: time
+      properties:
+        count:
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/models.TokenBoundAccount'
+          type: array
+      type: object
     models.Transaction:
       example:
         data: data
-        storageCollateralized: 1.2315135367772556
+        storageCollateralized: 7.386281948385884
         pre_hashs: pre_hashs
         created_at: created_at
         epoch_number: 5
@@ -2575,23 +3776,29 @@ components:
         gas: 5.637376656633329
         from: from
         id: 9
-        state: 4
+        state: null
         storageCoveredBySponsor: true
-        value: 6.84685269835264
+        value: 1.4894159098541704
         gasPrice: 7.061401241503109
         gasFee: 2.3021358869347655
         tryReceiptCnt: 1
+        block_reason: "{}"
         deleted_at:
           valid: true
           time: time
         nonce: 3
-        storageLimit: 1.0246457001441578
+        storageLimit: 1.2315135367772556
         stage: 2
         chainId: 0
         to: to
         hash: hash
-        status: 7
+        status: 4
       properties:
+        block_reason:
+          allOf:
+          - $ref: '#/components/schemas/enums.TransactionBlockReason'
+          description: 没有发送到tx engine的原因，比如余额不足或网络错误等
+          type: object
         chainId:
           type: integer
         chainType:
@@ -2631,7 +3838,7 @@ components:
         stage:
           type: integer
         state:
-          type: integer
+          $ref: '#/components/schemas/models.TxState'
         status:
           type: integer
         storageCollateralized:
@@ -2657,6 +3864,7 @@ components:
         chain_type: 5
         chain_id: 5
         contract: contract
+        block_reason: "{}"
         created_at: created_at
         transfer_to: transfer_to
         error: error
@@ -2677,6 +3885,11 @@ components:
           type: integer
         app_id:
           type: integer
+        block_reason:
+          allOf:
+          - $ref: '#/components/schemas/enums.TransactionBlockReason'
+          description: 没有发送到tx engine的原因，比如余额不足或网络错误等
+          type: object
         chain_id:
           type: integer
         chain_type:
@@ -2717,6 +3930,7 @@ components:
           chain_type: 5
           chain_id: 5
           contract: contract
+          block_reason: "{}"
           created_at: created_at
           transfer_to: transfer_to
           error: error
@@ -2736,6 +3950,7 @@ components:
           chain_type: 5
           chain_id: 5
           contract: contract
+          block_reason: "{}"
           created_at: created_at
           transfer_to: transfer_to
           error: error
@@ -2972,6 +4187,17 @@ components:
       required:
       - admin_address
       type: object
+    services.ContractAutoSponsorReq:
+      properties:
+        auto_sponsor:
+          description: Address                  string `gorm:"type:varchar(256);index"
+            json:"address"`
+          type: boolean
+        storage_recharge_amount:
+          type: integer
+        storage_recharge_threshold:
+          type: integer
+      type: object
     services.ContractDeployDto:
       properties:
         auto_sponsor:
@@ -3081,6 +4307,13 @@ components:
       - mint_to_address
       - name
       type: object
+    services.InsertAccountReq:
+      properties:
+        create_if_exists:
+          type: boolean
+        phone:
+          type: string
+      type: object
     services.MetadataDto:
       properties:
         animation_url:
@@ -3118,6 +4351,7 @@ components:
     services.NFT:
       example:
         owner: owner
+        token_uri: token_uri
         token_id: token_id
         contract_address: contract_address
       properties:
@@ -3126,6 +4360,8 @@ components:
         owner:
           type: string
         token_id:
+          type: string
+        token_uri:
           type: string
       type: object
     services.SendTxResp:

@@ -20,7 +20,7 @@ import (
 )
 
 
-type TransactionApi interface {
+type TransactionAPI interface {
 
 	/*
 	GetTransactionByID Get transaction informantion by ID
@@ -38,12 +38,12 @@ type TransactionApi interface {
 	GetTransactionByIDExecute(r ApiGetTransactionByIDRequest) (*ServicesTxResp, *http.Response, error)
 }
 
-// TransactionApiService TransactionApi service
-type TransactionApiService service
+// TransactionAPIService TransactionAPI service
+type TransactionAPIService service
 
 type ApiGetTransactionByIDRequest struct {
 	ctx context.Context
-	ApiService TransactionApi
+	ApiService TransactionAPI
 	authorization *string
 	id string
 }
@@ -67,7 +67,7 @@ Get transaction informantion by ID
  @param id Transaction ID
  @return ApiGetTransactionByIDRequest
 */
-func (a *TransactionApiService) GetTransactionByID(ctx context.Context, id string) ApiGetTransactionByIDRequest {
+func (a *TransactionAPIService) GetTransactionByID(ctx context.Context, id string) ApiGetTransactionByIDRequest {
 	return ApiGetTransactionByIDRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -77,7 +77,7 @@ func (a *TransactionApiService) GetTransactionByID(ctx context.Context, id strin
 
 // Execute executes the request
 //  @return ServicesTxResp
-func (a *TransactionApiService) GetTransactionByIDExecute(r ApiGetTransactionByIDRequest) (*ServicesTxResp, *http.Response, error) {
+func (a *TransactionAPIService) GetTransactionByIDExecute(r ApiGetTransactionByIDRequest) (*ServicesTxResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -85,7 +85,7 @@ func (a *TransactionApiService) GetTransactionByIDExecute(r ApiGetTransactionByI
 		localVarReturnValue  *ServicesTxResp
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionApiService.GetTransactionByID")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionAPIService.GetTransactionByID")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

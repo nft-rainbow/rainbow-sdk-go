@@ -45,7 +45,7 @@ func NewMiddlewaresLoginRespWithDefaults() *MiddlewaresLoginResp {
 
 // GetExpire returns the Expire field value if set, zero value otherwise.
 func (o *MiddlewaresLoginResp) GetExpire() string {
-	if o == nil || isNil(o.Expire) {
+	if o == nil || IsNil(o.Expire) {
 		var ret string
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *MiddlewaresLoginResp) GetExpire() string {
 // GetExpireOk returns a tuple with the Expire field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresLoginResp) GetExpireOk() (*string, bool) {
-	if o == nil || isNil(o.Expire) {
+	if o == nil || IsNil(o.Expire) {
 		return nil, false
 	}
 	return o.Expire, true
@@ -63,7 +63,7 @@ func (o *MiddlewaresLoginResp) GetExpireOk() (*string, bool) {
 
 // HasExpire returns a boolean if a field has been set.
 func (o *MiddlewaresLoginResp) HasExpire() bool {
-	if o != nil && !isNil(o.Expire) {
+	if o != nil && !IsNil(o.Expire) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *MiddlewaresLoginResp) SetExpire(v string) {
 
 // GetToken returns the Token field value if set, zero value otherwise.
 func (o *MiddlewaresLoginResp) GetToken() string {
-	if o == nil || isNil(o.Token) {
+	if o == nil || IsNil(o.Token) {
 		var ret string
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *MiddlewaresLoginResp) GetToken() string {
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MiddlewaresLoginResp) GetTokenOk() (*string, bool) {
-	if o == nil || isNil(o.Token) {
+	if o == nil || IsNil(o.Token) {
 		return nil, false
 	}
 	return o.Token, true
@@ -95,7 +95,7 @@ func (o *MiddlewaresLoginResp) GetTokenOk() (*string, bool) {
 
 // HasToken returns a boolean if a field has been set.
 func (o *MiddlewaresLoginResp) HasToken() bool {
-	if o != nil && !isNil(o.Token) {
+	if o != nil && !IsNil(o.Token) {
 		return true
 	}
 
@@ -117,10 +117,10 @@ func (o MiddlewaresLoginResp) MarshalJSON() ([]byte, error) {
 
 func (o MiddlewaresLoginResp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Expire) {
+	if !IsNil(o.Expire) {
 		toSerialize["expire"] = o.Expire
 	}
-	if !isNil(o.Token) {
+	if !IsNil(o.Token) {
 		toSerialize["token"] = o.Token
 	}
 
@@ -131,16 +131,20 @@ func (o MiddlewaresLoginResp) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *MiddlewaresLoginResp) UnmarshalJSON(bytes []byte) (err error) {
+func (o *MiddlewaresLoginResp) UnmarshalJSON(data []byte) (err error) {
 	varMiddlewaresLoginResp := _MiddlewaresLoginResp{}
 
-	if err = json.Unmarshal(bytes, &varMiddlewaresLoginResp); err == nil {
-		*o = MiddlewaresLoginResp(varMiddlewaresLoginResp)
+	err = json.Unmarshal(data, &varMiddlewaresLoginResp)
+
+	if err != nil {
+		return err
 	}
+
+	*o = MiddlewaresLoginResp(varMiddlewaresLoginResp)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "expire")
 		delete(additionalProperties, "token")
 		o.AdditionalProperties = additionalProperties

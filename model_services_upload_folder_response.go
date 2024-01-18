@@ -45,7 +45,7 @@ func NewServicesUploadFolderResponseWithDefaults() *ServicesUploadFolderResponse
 
 // GetFileNum returns the FileNum field value if set, zero value otherwise.
 func (o *ServicesUploadFolderResponse) GetFileNum() int32 {
-	if o == nil || isNil(o.FileNum) {
+	if o == nil || IsNil(o.FileNum) {
 		var ret int32
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *ServicesUploadFolderResponse) GetFileNum() int32 {
 // GetFileNumOk returns a tuple with the FileNum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFolderResponse) GetFileNumOk() (*int32, bool) {
-	if o == nil || isNil(o.FileNum) {
+	if o == nil || IsNil(o.FileNum) {
 		return nil, false
 	}
 	return o.FileNum, true
@@ -63,7 +63,7 @@ func (o *ServicesUploadFolderResponse) GetFileNumOk() (*int32, bool) {
 
 // HasFileNum returns a boolean if a field has been set.
 func (o *ServicesUploadFolderResponse) HasFileNum() bool {
-	if o != nil && !isNil(o.FileNum) {
+	if o != nil && !IsNil(o.FileNum) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *ServicesUploadFolderResponse) SetFileNum(v int32) {
 
 // GetFolderUrl returns the FolderUrl field value if set, zero value otherwise.
 func (o *ServicesUploadFolderResponse) GetFolderUrl() string {
-	if o == nil || isNil(o.FolderUrl) {
+	if o == nil || IsNil(o.FolderUrl) {
 		var ret string
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *ServicesUploadFolderResponse) GetFolderUrl() string {
 // GetFolderUrlOk returns a tuple with the FolderUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesUploadFolderResponse) GetFolderUrlOk() (*string, bool) {
-	if o == nil || isNil(o.FolderUrl) {
+	if o == nil || IsNil(o.FolderUrl) {
 		return nil, false
 	}
 	return o.FolderUrl, true
@@ -95,7 +95,7 @@ func (o *ServicesUploadFolderResponse) GetFolderUrlOk() (*string, bool) {
 
 // HasFolderUrl returns a boolean if a field has been set.
 func (o *ServicesUploadFolderResponse) HasFolderUrl() bool {
-	if o != nil && !isNil(o.FolderUrl) {
+	if o != nil && !IsNil(o.FolderUrl) {
 		return true
 	}
 
@@ -117,10 +117,10 @@ func (o ServicesUploadFolderResponse) MarshalJSON() ([]byte, error) {
 
 func (o ServicesUploadFolderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.FileNum) {
+	if !IsNil(o.FileNum) {
 		toSerialize["file_num"] = o.FileNum
 	}
-	if !isNil(o.FolderUrl) {
+	if !IsNil(o.FolderUrl) {
 		toSerialize["folder_url"] = o.FolderUrl
 	}
 
@@ -131,16 +131,20 @@ func (o ServicesUploadFolderResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ServicesUploadFolderResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ServicesUploadFolderResponse) UnmarshalJSON(data []byte) (err error) {
 	varServicesUploadFolderResponse := _ServicesUploadFolderResponse{}
 
-	if err = json.Unmarshal(bytes, &varServicesUploadFolderResponse); err == nil {
-		*o = ServicesUploadFolderResponse(varServicesUploadFolderResponse)
+	err = json.Unmarshal(data, &varServicesUploadFolderResponse)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ServicesUploadFolderResponse(varServicesUploadFolderResponse)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "file_num")
 		delete(additionalProperties, "folder_url")
 		o.AdditionalProperties = additionalProperties

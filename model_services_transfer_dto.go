@@ -12,6 +12,7 @@ package rainbowsdk
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ServicesTransferDto type satisfies the MappedNullable interface at compile time
@@ -56,7 +57,7 @@ func NewServicesTransferDtoWithDefaults() *ServicesTransferDto {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *ServicesTransferDto) GetAmount() int32 {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		var ret int32
 		return ret
 	}
@@ -66,7 +67,7 @@ func (o *ServicesTransferDto) GetAmount() int32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesTransferDto) GetAmountOk() (*int32, bool) {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
 	return o.Amount, true
@@ -74,7 +75,7 @@ func (o *ServicesTransferDto) GetAmountOk() (*int32, bool) {
 
 // HasAmount returns a boolean if a field has been set.
 func (o *ServicesTransferDto) HasAmount() bool {
-	if o != nil && !isNil(o.Amount) {
+	if o != nil && !IsNil(o.Amount) {
 		return true
 	}
 
@@ -240,7 +241,7 @@ func (o ServicesTransferDto) MarshalJSON() ([]byte, error) {
 
 func (o ServicesTransferDto) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Amount) {
+	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
 	toSerialize["chain"] = o.Chain
@@ -257,16 +258,46 @@ func (o ServicesTransferDto) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ServicesTransferDto) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ServicesTransferDto) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"chain",
+		"contract_address",
+		"contract_type",
+		"token_id",
+		"transfer_from_address",
+		"transfer_to_address",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varServicesTransferDto := _ServicesTransferDto{}
 
-	if err = json.Unmarshal(bytes, &varServicesTransferDto); err == nil {
-		*o = ServicesTransferDto(varServicesTransferDto)
+	err = json.Unmarshal(data, &varServicesTransferDto)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ServicesTransferDto(varServicesTransferDto)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "amount")
 		delete(additionalProperties, "chain")
 		delete(additionalProperties, "contract_address")

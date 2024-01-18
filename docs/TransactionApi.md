@@ -1,10 +1,10 @@
-# \TransactionApi
+# \TransactionAPI
 
 All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetTransactionByID**](TransactionApi.md#GetTransactionByID) | **Get** /v1/tx/{id} | Get transaction informantion by ID
+[**GetTransactionByID**](TransactionAPI.md#GetTransactionByID) | **Get** /v1/tx/{id} | Get transaction informantion by ID
 
 
 
@@ -22,25 +22,25 @@ Get transaction informantion by ID
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer Open_JWT
-    id := "id_example" // string | Transaction ID
+	authorization := "authorization_example" // string | Bearer Open_JWT
+	id := "id_example" // string | Transaction ID
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TransactionApi.GetTransactionByID(context.Background(), id).Authorization(authorization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TransactionApi.GetTransactionByID``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTransactionByID`: ServicesTxResp
-    fmt.Fprintf(os.Stdout, "Response from `TransactionApi.GetTransactionByID`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TransactionAPI.GetTransactionByID(context.Background(), id).Authorization(authorization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TransactionAPI.GetTransactionByID``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetTransactionByID`: ServicesTxResp
+	fmt.Fprintf(os.Stdout, "Response from `TransactionAPI.GetTransactionByID`: %v\n", resp)
 }
 ```
 

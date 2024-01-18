@@ -1,13 +1,13 @@
-# \BurnsApi
+# \BurnsAPI
 
 All URIs are relative to *http://api.nftrainbow.cn*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BurnBatch**](BurnsApi.md#BurnBatch) | **Post** /v1/burns/customizable/batch | Batch burn NFT
-[**BurnNft**](BurnsApi.md#BurnNft) | **Post** /v1/burns | Burn NFT
-[**GetBurnDetail**](BurnsApi.md#GetBurnDetail) | **Get** /v1/burns/{id} | Burn NFT detail
-[**GetBurnList**](BurnsApi.md#GetBurnList) | **Get** /v1/burns | Obtain the burned NFTs list
+[**BurnBatch**](BurnsAPI.md#BurnBatch) | **Post** /v1/burns/customizable/batch | Batch burn NFT
+[**BurnNft**](BurnsAPI.md#BurnNft) | **Post** /v1/burns | Burn NFT
+[**GetBurnDetail**](BurnsAPI.md#GetBurnDetail) | **Get** /v1/burns/{id} | Burn NFT detail
+[**GetBurnList**](BurnsAPI.md#GetBurnList) | **Get** /v1/burns | Obtain the burned NFTs list
 
 
 
@@ -25,25 +25,25 @@ Batch burn NFT
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer Open_JWT
-    burnBatchDto := *openapiclient.NewServicesBurnBatchDto("Chain_example", "ContractAddress_example", "ContractType_example", []openapiclient.ServicesBurnItemDto{*openapiclient.NewServicesBurnItemDto("TokenId_example")}) // ServicesBurnBatchDto | burn_batch_dto
+	authorization := "authorization_example" // string | Bearer Open_JWT
+	burnBatchDto := *openapiclient.NewServicesBurnBatchDto("Chain_example", "ContractAddress_example", "ContractType_example", []openapiclient.ServicesBurnItemDto{*openapiclient.NewServicesBurnItemDto("TokenId_example")}) // ServicesBurnBatchDto | burn_batch_dto
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BurnsApi.BurnBatch(context.Background()).Authorization(authorization).BurnBatchDto(burnBatchDto).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BurnsApi.BurnBatch``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `BurnBatch`: []ModelsBurnTask
-    fmt.Fprintf(os.Stdout, "Response from `BurnsApi.BurnBatch`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BurnsAPI.BurnBatch(context.Background()).Authorization(authorization).BurnBatchDto(burnBatchDto).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BurnsAPI.BurnBatch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `BurnBatch`: []ModelsBurnTask
+	fmt.Fprintf(os.Stdout, "Response from `BurnsAPI.BurnBatch`: %v\n", resp)
 }
 ```
 
@@ -93,25 +93,25 @@ Burn NFT
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer Open_JWT
-    burnDto := *openapiclient.NewServicesBurnDto("Chain_example", "ContractAddress_example", "ContractType_example", "TokenId_example") // ServicesBurnDto | burn_dto
+	authorization := "authorization_example" // string | Bearer Open_JWT
+	burnDto := *openapiclient.NewServicesBurnDto("Chain_example", "ContractAddress_example", "ContractType_example", "TokenId_example") // ServicesBurnDto | burn_dto
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BurnsApi.BurnNft(context.Background()).Authorization(authorization).BurnDto(burnDto).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BurnsApi.BurnNft``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `BurnNft`: ModelsBurnTask
-    fmt.Fprintf(os.Stdout, "Response from `BurnsApi.BurnNft`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BurnsAPI.BurnNft(context.Background()).Authorization(authorization).BurnDto(burnDto).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BurnsAPI.BurnNft``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `BurnNft`: ModelsBurnTask
+	fmt.Fprintf(os.Stdout, "Response from `BurnsAPI.BurnNft`: %v\n", resp)
 }
 ```
 
@@ -161,25 +161,25 @@ Burn NFT detail
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer Open_JWT
-    id := int32(56) // int32 | id
+	authorization := "authorization_example" // string | Bearer Open_JWT
+	id := int32(56) // int32 | id
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BurnsApi.GetBurnDetail(context.Background(), id).Authorization(authorization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BurnsApi.GetBurnDetail``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetBurnDetail`: ModelsBurnTask
-    fmt.Fprintf(os.Stdout, "Response from `BurnsApi.GetBurnDetail`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BurnsAPI.GetBurnDetail(context.Background(), id).Authorization(authorization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BurnsAPI.GetBurnDetail``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetBurnDetail`: ModelsBurnTask
+	fmt.Fprintf(os.Stdout, "Response from `BurnsAPI.GetBurnDetail`: %v\n", resp)
 }
 ```
 
@@ -233,24 +233,24 @@ Obtain the burned NFTs list
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    authorization := "authorization_example" // string | Bearer Open_JWT
+	authorization := "authorization_example" // string | Bearer Open_JWT
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BurnsApi.GetBurnList(context.Background()).Authorization(authorization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BurnsApi.GetBurnList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetBurnList`: ModelsBurnTaskQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `BurnsApi.GetBurnList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BurnsAPI.GetBurnList(context.Background()).Authorization(authorization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BurnsAPI.GetBurnList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetBurnList`: ModelsBurnTaskQueryResult
+	fmt.Fprintf(os.Stdout, "Response from `BurnsAPI.GetBurnList`: %v\n", resp)
 }
 ```
 

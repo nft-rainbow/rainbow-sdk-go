@@ -45,7 +45,7 @@ func NewModelsContractRuntimeProfileWithDefaults() *ModelsContractRuntimeProfile
 
 // GetContract returns the Contract field value if set, zero value otherwise.
 func (o *ModelsContractRuntimeProfile) GetContract() ModelsContract {
-	if o == nil || isNil(o.Contract) {
+	if o == nil || IsNil(o.Contract) {
 		var ret ModelsContract
 		return ret
 	}
@@ -55,7 +55,7 @@ func (o *ModelsContractRuntimeProfile) GetContract() ModelsContract {
 // GetContractOk returns a tuple with the Contract field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContractRuntimeProfile) GetContractOk() (*ModelsContract, bool) {
-	if o == nil || isNil(o.Contract) {
+	if o == nil || IsNil(o.Contract) {
 		return nil, false
 	}
 	return o.Contract, true
@@ -63,7 +63,7 @@ func (o *ModelsContractRuntimeProfile) GetContractOk() (*ModelsContract, bool) {
 
 // HasContract returns a boolean if a field has been set.
 func (o *ModelsContractRuntimeProfile) HasContract() bool {
-	if o != nil && !isNil(o.Contract) {
+	if o != nil && !IsNil(o.Contract) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *ModelsContractRuntimeProfile) SetContract(v ModelsContract) {
 
 // GetMaxTokenId returns the MaxTokenId field value if set, zero value otherwise.
 func (o *ModelsContractRuntimeProfile) GetMaxTokenId() int32 {
-	if o == nil || isNil(o.MaxTokenId) {
+	if o == nil || IsNil(o.MaxTokenId) {
 		var ret int32
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *ModelsContractRuntimeProfile) GetMaxTokenId() int32 {
 // GetMaxTokenIdOk returns a tuple with the MaxTokenId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsContractRuntimeProfile) GetMaxTokenIdOk() (*int32, bool) {
-	if o == nil || isNil(o.MaxTokenId) {
+	if o == nil || IsNil(o.MaxTokenId) {
 		return nil, false
 	}
 	return o.MaxTokenId, true
@@ -95,7 +95,7 @@ func (o *ModelsContractRuntimeProfile) GetMaxTokenIdOk() (*int32, bool) {
 
 // HasMaxTokenId returns a boolean if a field has been set.
 func (o *ModelsContractRuntimeProfile) HasMaxTokenId() bool {
-	if o != nil && !isNil(o.MaxTokenId) {
+	if o != nil && !IsNil(o.MaxTokenId) {
 		return true
 	}
 
@@ -117,10 +117,10 @@ func (o ModelsContractRuntimeProfile) MarshalJSON() ([]byte, error) {
 
 func (o ModelsContractRuntimeProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Contract) {
+	if !IsNil(o.Contract) {
 		toSerialize["contract"] = o.Contract
 	}
-	if !isNil(o.MaxTokenId) {
+	if !IsNil(o.MaxTokenId) {
 		toSerialize["max_token_id"] = o.MaxTokenId
 	}
 
@@ -131,16 +131,20 @@ func (o ModelsContractRuntimeProfile) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ModelsContractRuntimeProfile) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ModelsContractRuntimeProfile) UnmarshalJSON(data []byte) (err error) {
 	varModelsContractRuntimeProfile := _ModelsContractRuntimeProfile{}
 
-	if err = json.Unmarshal(bytes, &varModelsContractRuntimeProfile); err == nil {
-		*o = ModelsContractRuntimeProfile(varModelsContractRuntimeProfile)
+	err = json.Unmarshal(data, &varModelsContractRuntimeProfile)
+
+	if err != nil {
+		return err
 	}
+
+	*o = ModelsContractRuntimeProfile(varModelsContractRuntimeProfile)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "contract")
 		delete(additionalProperties, "max_token_id")
 		o.AdditionalProperties = additionalProperties

@@ -46,7 +46,7 @@ func NewGormDeletedAtWithDefaults() *GormDeletedAt {
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *GormDeletedAt) GetTime() string {
-	if o == nil || isNil(o.Time) {
+	if o == nil || IsNil(o.Time) {
 		var ret string
 		return ret
 	}
@@ -56,7 +56,7 @@ func (o *GormDeletedAt) GetTime() string {
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GormDeletedAt) GetTimeOk() (*string, bool) {
-	if o == nil || isNil(o.Time) {
+	if o == nil || IsNil(o.Time) {
 		return nil, false
 	}
 	return o.Time, true
@@ -64,7 +64,7 @@ func (o *GormDeletedAt) GetTimeOk() (*string, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *GormDeletedAt) HasTime() bool {
-	if o != nil && !isNil(o.Time) {
+	if o != nil && !IsNil(o.Time) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *GormDeletedAt) SetTime(v string) {
 
 // GetValid returns the Valid field value if set, zero value otherwise.
 func (o *GormDeletedAt) GetValid() bool {
-	if o == nil || isNil(o.Valid) {
+	if o == nil || IsNil(o.Valid) {
 		var ret bool
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *GormDeletedAt) GetValid() bool {
 // GetValidOk returns a tuple with the Valid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GormDeletedAt) GetValidOk() (*bool, bool) {
-	if o == nil || isNil(o.Valid) {
+	if o == nil || IsNil(o.Valid) {
 		return nil, false
 	}
 	return o.Valid, true
@@ -96,7 +96,7 @@ func (o *GormDeletedAt) GetValidOk() (*bool, bool) {
 
 // HasValid returns a boolean if a field has been set.
 func (o *GormDeletedAt) HasValid() bool {
-	if o != nil && !isNil(o.Valid) {
+	if o != nil && !IsNil(o.Valid) {
 		return true
 	}
 
@@ -118,10 +118,10 @@ func (o GormDeletedAt) MarshalJSON() ([]byte, error) {
 
 func (o GormDeletedAt) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Time) {
+	if !IsNil(o.Time) {
 		toSerialize["time"] = o.Time
 	}
-	if !isNil(o.Valid) {
+	if !IsNil(o.Valid) {
 		toSerialize["valid"] = o.Valid
 	}
 
@@ -132,16 +132,20 @@ func (o GormDeletedAt) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *GormDeletedAt) UnmarshalJSON(bytes []byte) (err error) {
+func (o *GormDeletedAt) UnmarshalJSON(data []byte) (err error) {
 	varGormDeletedAt := _GormDeletedAt{}
 
-	if err = json.Unmarshal(bytes, &varGormDeletedAt); err == nil {
-		*o = GormDeletedAt(varGormDeletedAt)
+	err = json.Unmarshal(data, &varGormDeletedAt)
+
+	if err != nil {
+		return err
 	}
+
+	*o = GormDeletedAt(varGormDeletedAt)
 
 	additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "time")
 		delete(additionalProperties, "valid")
 		o.AdditionalProperties = additionalProperties
