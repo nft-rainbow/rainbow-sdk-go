@@ -209,7 +209,7 @@ func (a *TBAAPIService) TBACollectionEndpointExecute(r ApiTBACollectionEndpointR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.createDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -367,7 +367,7 @@ func (a *TBAAPIService) TBACollectionMetaInfoModificationEndpointExecute(r ApiTB
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.modifyDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -525,7 +525,7 @@ func (a *TBAAPIService) TBACollectionNewItemsEndpointExecute(r ApiTBACollectionN
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.itemsDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -683,15 +683,15 @@ func (a *TBAAPIService) TBACollectionQueryEndpointExecute(r ApiTBACollectionQuer
 		return localVarReturnValue, nil, reportError("chain is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "", "")
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "", "")
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -710,7 +710,7 @@ func (a *TBAAPIService) TBACollectionQueryEndpointExecute(r ApiTBACollectionQuer
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -866,7 +866,7 @@ func (a *TBAAPIService) TBACollectionRemoveItemsEndpointExecute(r ApiTBACollecti
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.itemsDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1020,7 +1020,7 @@ func (a *TBAAPIService) TBACreationEndpointExecute(r ApiTBACreationEndpointReque
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.tbaCreateDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1192,21 +1192,21 @@ func (a *TBAAPIService) TBAQueryEndpointExecute(r ApiTBAQueryEndpointRequest) (*
 		return localVarReturnValue, nil, reportError("chain is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "", "")
 	if r.implementation != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "implementation", r.implementation, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "implementation", r.implementation, "", "")
 	}
 	if r.contract != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "contract", r.contract, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "contract", r.contract, "", "")
 	}
 	if r.tokenId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "token_id", r.tokenId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "token_id", r.tokenId, "", "")
 	}
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1225,7 +1225,7 @@ func (a *TBAAPIService) TBAQueryEndpointExecute(r ApiTBAQueryEndpointRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

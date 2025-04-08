@@ -177,7 +177,7 @@ paths:
   /v1/accounts:
     get:
       description: Query web3 account
-      operationId: QueryAccount
+      operationId: QueryAccounts
       parameters:
       - description: Bearer Open_JWT
         in: header
@@ -185,8 +185,14 @@ paths:
         required: true
         schema:
           type: string
+      - description: is created by user
+        in: query
+        name: owned
+        schema:
+          type: boolean
       - in: query
         name: phone
+        required: true
         schema:
           type: string
       responses:
@@ -195,7 +201,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/models.AccountDisplayPart'
+                  $ref: '#/components/schemas/models.CustodialAccountDisplay'
                 type: array
           description: OK
         "400":
@@ -238,7 +244,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/models.AccountDisplayPart'
+                  $ref: '#/components/schemas/models.CustodialAccountDisplay'
                 type: array
           description: OK
         "400":
@@ -917,6 +923,16 @@ paths:
       - description: "chain: conflux, conflux_test(default)"
         in: query
         name: chain
+        schema:
+          type: string
+      - description: "gas: default value is 1"
+        in: query
+        name: gas
+        schema:
+          type: string
+      - description: "storage: default value is by user default setting"
+        in: query
+        name: storage
         schema:
           type: string
       - description: "Open auto sponsor or not, for mainnet contract keep user account\
@@ -2564,6 +2580,202 @@ paths:
       summary: Transfer NFT detail
       tags:
       - Transfers
+  /v1/tx:
+    post:
+      description: Send a transaction
+      operationId: SendTransaction
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/services.SendTxReq'
+        description: Send transaction request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.SendTxResp'
+          description: Transaction sent
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Send a transaction
+      tags:
+      - Transaction
+      x-codegen-request-body-name: send_tx_req
+  /v1/tx/build/nft/approve:
+    post:
+      description: Build NFT approve transaction
+      operationId: BuildNftApproveTx
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/services.BuildNftApproveTxReq'
+        description: Approve transaction request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.BuildTxResp'
+          description: NFT approve transaction built
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Build NFT approve transaction
+      tags:
+      - Transaction
+      x-codegen-request-body-name: approve_tx_req
+  /v1/tx/build/nft/set-approval-for-all:
+    post:
+      description: Build NFT set approval for all transaction
+      operationId: BuildNftSetApprovalForAllTx
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/services.BuildNftSetApprovalForAllTxReq'
+        description: Set approval for all transaction request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.BuildTxResp'
+          description: NFT set approval for all transaction built
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Build NFT set approval for all transaction
+      tags:
+      - Transaction
+      x-codegen-request-body-name: set_approval_for_all_tx_req
+  /v1/tx/build/nft/transfer:
+    post:
+      description: Build NFT transfer transaction
+      operationId: BuildNftTransferTx
+      parameters:
+      - description: Bearer Open_JWT
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/services.TransferDto'
+        description: Transfer DTO
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/services.BuildTxResp'
+          description: NFT transfer transaction built
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+        "599":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rainbow_errors.RainbowErrorDetailInfo'
+          description: Businesss error
+      security:
+      - ApiKeyAuth: []
+      summary: Build NFT transfer transaction
+      tags:
+      - Transaction
+      x-codegen-request-body-name: transfer_dto
   /v1/tx/{id}:
     get:
       description: Get transaction informantion by ID
@@ -2674,19 +2886,6 @@ components:
       - email
       - password
       type: object
-    models.AccountDisplayPart:
-      example:
-        conflux_testnet_address: conflux_testnet_address
-        phone: phone
-        conflux_mainnet_address: conflux_mainnet_address
-      properties:
-        conflux_mainnet_address:
-          type: string
-        conflux_testnet_address:
-          type: string
-        phone:
-          type: string
-      type: object
     models.AutoSponsorContract:
       example:
         storage_recharge_amount: 1
@@ -2694,7 +2893,6 @@ components:
         updated_at: updated_at
         user_id: 5
         contract_id: 0
-        storage_recharge_threshold: 5
         auto_sponsor: true
         created_at: created_at
         id: 6
@@ -2717,8 +2915,6 @@ components:
           type: integer
         storage_recharge_amount:
           type: integer
-        storage_recharge_threshold:
-          type: integer
         updated_at:
           type: string
         user_id:
@@ -2733,18 +2929,18 @@ components:
         block_reason: "{}"
         created_at: created_at
         error: error
-        tx_id: 3
+        tx_id: 9
         deleted_at:
           valid: true
           time: time
-        contract_type: 2
+        contract_type: erc721
         token_id: token_id
         updated_at: updated_at
-        id: 7
+        id: 2
         app_id: 1
         user: user
         hash: hash
-        status: 9
+        status: 7
       properties:
         amount:
           type: integer
@@ -2762,7 +2958,10 @@ components:
         contract:
           type: string
         contract_type:
-          type: integer
+          enum:
+          - erc721
+          - erc1155
+          type: string
         created_at:
           type: string
         deleted_at:
@@ -2796,18 +2995,18 @@ components:
           block_reason: "{}"
           created_at: created_at
           error: error
-          tx_id: 3
+          tx_id: 9
           deleted_at:
             valid: true
             time: time
-          contract_type: 2
+          contract_type: erc721
           token_id: token_id
           updated_at: updated_at
-          id: 7
+          id: 2
           app_id: 1
           user: user
           hash: hash
-          status: 9
+          status: 7
         - amount: 6
           chain_type: 5
           chain_id: 5
@@ -2815,18 +3014,18 @@ components:
           block_reason: "{}"
           created_at: created_at
           error: error
-          tx_id: 3
+          tx_id: 9
           deleted_at:
             valid: true
             time: time
-          contract_type: 2
+          contract_type: erc721
           token_id: token_id
           updated_at: updated_at
-          id: 7
+          id: 2
           app_id: 1
           user: user
           hash: hash
-          status: 9
+          status: 7
       properties:
         count:
           type: integer
@@ -2838,29 +3037,30 @@ components:
     models.Contract:
       example:
         symbol: symbol
-        chain_type: 5
-        tokens_transferable_by_admin: true
-        address: address
+        enumable: true
         chain_id: 1
-        transfer_cooldown_time: 9
-        block_reason: "{}"
         created_at: created_at
-        owner_address: owner_address
         royalties_address: royalties_address
         error: error
-        royalties_bps: 2
-        tx_id: 3
         type: 2
-        deleted_at:
-          valid: true
-          time: time
         updated_at: updated_at
         base_uri: base_uri
-        name: name
-        auto_sponsor: true
         id: 5
         tokens_transferable_by_user: true
         app_id: 6
+        chain_type: 5
+        tokens_transferable_by_admin: true
+        address: address
+        transfer_cooldown_time: 9
+        block_reason: "{}"
+        owner_address: owner_address
+        royalties_bps: 2
+        tx_id: 3
+        deleted_at:
+          valid: true
+          time: time
+        name: name
+        auto_sponsor: true
         hash: hash
         status: 7
       properties:
@@ -2885,6 +3085,8 @@ components:
           type: string
         deleted_at:
           $ref: '#/components/schemas/gorm.DeletedAt'
+        enumable:
+          type: boolean
         error:
           type: string
         hash:
@@ -2922,29 +3124,30 @@ components:
       example:
         contract:
           symbol: symbol
-          chain_type: 5
-          tokens_transferable_by_admin: true
-          address: address
+          enumable: true
           chain_id: 1
-          transfer_cooldown_time: 9
-          block_reason: "{}"
           created_at: created_at
-          owner_address: owner_address
           royalties_address: royalties_address
           error: error
-          royalties_bps: 2
-          tx_id: 3
           type: 2
-          deleted_at:
-            valid: true
-            time: time
           updated_at: updated_at
           base_uri: base_uri
-          name: name
-          auto_sponsor: true
           id: 5
           tokens_transferable_by_user: true
           app_id: 6
+          chain_type: 5
+          tokens_transferable_by_admin: true
+          address: address
+          transfer_cooldown_time: 9
+          block_reason: "{}"
+          owner_address: owner_address
+          royalties_bps: 2
+          tx_id: 3
+          deleted_at:
+            valid: true
+            time: time
+          name: name
+          auto_sponsor: true
           hash: hash
           status: 7
         max_token_id: 0
@@ -2959,55 +3162,57 @@ components:
         count: 0
         items:
         - symbol: symbol
-          chain_type: 5
-          tokens_transferable_by_admin: true
-          address: address
+          enumable: true
           chain_id: 1
-          transfer_cooldown_time: 9
-          block_reason: "{}"
           created_at: created_at
-          owner_address: owner_address
           royalties_address: royalties_address
           error: error
-          royalties_bps: 2
-          tx_id: 3
           type: 2
-          deleted_at:
-            valid: true
-            time: time
           updated_at: updated_at
           base_uri: base_uri
-          name: name
-          auto_sponsor: true
           id: 5
           tokens_transferable_by_user: true
           app_id: 6
+          chain_type: 5
+          tokens_transferable_by_admin: true
+          address: address
+          transfer_cooldown_time: 9
+          block_reason: "{}"
+          owner_address: owner_address
+          royalties_bps: 2
+          tx_id: 3
+          deleted_at:
+            valid: true
+            time: time
+          name: name
+          auto_sponsor: true
           hash: hash
           status: 7
         - symbol: symbol
-          chain_type: 5
-          tokens_transferable_by_admin: true
-          address: address
+          enumable: true
           chain_id: 1
-          transfer_cooldown_time: 9
-          block_reason: "{}"
           created_at: created_at
-          owner_address: owner_address
           royalties_address: royalties_address
           error: error
-          royalties_bps: 2
-          tx_id: 3
           type: 2
-          deleted_at:
-            valid: true
-            time: time
           updated_at: updated_at
           base_uri: base_uri
-          name: name
-          auto_sponsor: true
           id: 5
           tokens_transferable_by_user: true
           app_id: 6
+          chain_type: 5
+          tokens_transferable_by_admin: true
+          address: address
+          transfer_cooldown_time: 9
+          block_reason: "{}"
+          owner_address: owner_address
+          royalties_bps: 2
+          tx_id: 3
+          deleted_at:
+            valid: true
+            time: time
+          name: name
+          auto_sponsor: true
           hash: hash
           status: 7
       properties:
@@ -3017,6 +3222,19 @@ components:
           items:
             $ref: '#/components/schemas/models.Contract'
           type: array
+      type: object
+    models.CustodialAccountDisplay:
+      example:
+        conflux_testnet_address: conflux_testnet_address
+        phone: phone
+        conflux_mainnet_address: conflux_mainnet_address
+      properties:
+        conflux_mainnet_address:
+          type: string
+        conflux_testnet_address:
+          type: string
+        phone:
+          type: string
       type: object
     models.ExposedFile:
       example:
@@ -3224,19 +3442,19 @@ components:
         block_reason: "{}"
         created_at: created_at
         error: error
-        tx_id: 3
+        tx_id: 9
         deleted_at:
           valid: true
           time: time
-        contract_type: 5
+        contract_type: erc721
         token_uri: token_uri
         token_id: token_id
         updated_at: updated_at
-        mint_type: 7
-        id: 2
+        mint_type: 2
+        id: 5
         app_id: 6
         hash: hash
-        status: 9
+        status: 7
       properties:
         amount:
           type: integer
@@ -3254,7 +3472,10 @@ components:
         contract:
           type: string
         contract_type:
-          type: integer
+          enum:
+          - erc721
+          - erc1155
+          type: string
         created_at:
           type: string
         deleted_at:
@@ -3293,19 +3514,19 @@ components:
           block_reason: "{}"
           created_at: created_at
           error: error
-          tx_id: 3
+          tx_id: 9
           deleted_at:
             valid: true
             time: time
-          contract_type: 5
+          contract_type: erc721
           token_uri: token_uri
           token_id: token_id
           updated_at: updated_at
-          mint_type: 7
-          id: 2
+          mint_type: 2
+          id: 5
           app_id: 6
           hash: hash
-          status: 9
+          status: 7
         - mint_to: mint_to
           amount: 0
           chain_type: 5
@@ -3314,19 +3535,19 @@ components:
           block_reason: "{}"
           created_at: created_at
           error: error
-          tx_id: 3
+          tx_id: 9
           deleted_at:
             valid: true
             time: time
-          contract_type: 5
+          contract_type: erc721
           token_uri: token_uri
           token_id: token_id
           updated_at: updated_at
-          mint_type: 7
-          id: 2
+          mint_type: 2
+          id: 5
           app_id: 6
           hash: hash
-          status: 9
+          status: 7
       properties:
         count:
           type: integer
@@ -3403,20 +3624,20 @@ components:
         created_at: created_at
         token_contract: token_contract
         error: error
-        tx_id: 9
+        tx_id: 7
         deleted_at:
           valid: true
           time: time
         collection_to_add: collection_to_add
-        contract_type: 5
-        token_contract_chain_id: 7
+        contract_type: erc721
+        token_contract_chain_id: 2
         token_id: token_id
         updated_at: updated_at
-        user_id: 3
+        user_id: 9
         id: 5
         app_id: 0
         hash: hash
-        status: 2
+        status: 5
       properties:
         app_id:
           type: integer
@@ -3435,7 +3656,10 @@ components:
         contract:
           type: string
         contract_type:
-          type: integer
+          enum:
+          - erc721
+          - erc1155
+          type: string
         created_at:
           type: string
         deleted_at:
@@ -3488,7 +3712,10 @@ components:
       - 10
       - 11
       - 12
+      - 13
       type: integer
+      x-enum-comments:
+        TASK_TYPE_SPONSOR_PRIVILEGE: 设置某个用户地址为可花费sponsor
       x-enum-varnames:
       - TASK_TYPE_DEPLOY
       - TASK_TYPE_MINT
@@ -3502,6 +3729,7 @@ components:
       - TASK_TYPE_SPONSOR_PRIVILEGE
       - TASK_TYPE_UPDATE_TOKEN_URI
       - TASK_TYPE_CREATE_TBA
+      - TASK_TYPE_CUSTODY_SEND_TX
     models.TokenBoundAccount:
       example:
         token_contract_chain_id: 5
@@ -3762,7 +3990,7 @@ components:
     models.Transaction:
       example:
         data: data
-        storageCollateralized: 7.386281948385884
+        storageCollateralized: 1.2315135367772556
         pre_hashs: pre_hashs
         created_at: created_at
         epoch_number: 5
@@ -3770,29 +3998,29 @@ components:
         chainType: 6
         error: error
         epochHeight: 1.4658129805029452
-        taskType: null
+        taskType: 1
         updated_at: updated_at
         pending_reason: pending_reason
         gas: 5.637376656633329
         from: from
         id: 9
-        state: null
+        state: 4
         storageCoveredBySponsor: true
-        value: 1.4894159098541704
+        value: 7.457744773683766
         gasPrice: 7.061401241503109
         gasFee: 2.3021358869347655
-        tryReceiptCnt: 1
+        tryReceiptCnt: 6
         block_reason: "{}"
         deleted_at:
           valid: true
           time: time
         nonce: 3
-        storageLimit: 1.2315135367772556
+        storageLimit: 1.0246457001441578
         stage: 2
         chainId: 0
         to: to
         hash: hash
-        status: 4
+        status: 7
       properties:
         block_reason:
           allOf:
@@ -3868,18 +4096,18 @@ components:
         created_at: created_at
         transfer_to: transfer_to
         error: error
-        tx_id: 3
+        tx_id: 9
         deleted_at:
           valid: true
           time: time
-        contract_type: 2
+        contract_type: erc721
         transfer_from: transfer_from
         token_id: token_id
         updated_at: updated_at
-        id: 7
+        id: 2
         app_id: 1
         hash: hash
-        status: 9
+        status: 7
       properties:
         amount:
           type: integer
@@ -3897,7 +4125,10 @@ components:
         contract:
           type: string
         contract_type:
-          type: integer
+          enum:
+          - erc721
+          - erc1155
+          type: string
         created_at:
           type: string
         deleted_at:
@@ -3934,18 +4165,18 @@ components:
           created_at: created_at
           transfer_to: transfer_to
           error: error
-          tx_id: 3
+          tx_id: 9
           deleted_at:
             valid: true
             time: time
-          contract_type: 2
+          contract_type: erc721
           transfer_from: transfer_from
           token_id: token_id
           updated_at: updated_at
-          id: 7
+          id: 2
           app_id: 1
           hash: hash
-          status: 9
+          status: 7
         - amount: 6
           chain_type: 5
           chain_id: 5
@@ -3954,18 +4185,18 @@ components:
           created_at: created_at
           transfer_to: transfer_to
           error: error
-          tx_id: 3
+          tx_id: 9
           deleted_at:
             valid: true
             time: time
-          contract_type: 2
+          contract_type: erc721
           transfer_from: transfer_from
           token_id: token_id
           updated_at: updated_at
-          id: 7
+          id: 2
           app_id: 1
           hash: hash
-          status: 9
+          status: 7
       properties:
         count:
           type: integer
@@ -4038,6 +4269,10 @@ components:
           type: integer
       type: object
     rainbow_errors.RainbowErrorDetailInfo:
+      example:
+        code: 3
+        data: data
+        message: message
       properties:
         code:
           type: integer
@@ -4077,6 +4312,9 @@ components:
           items:
             $ref: '#/components/schemas/services.MintItemDto'
           type: array
+        tokenid_auto_order:
+          description: default is true
+          type: boolean
       required:
       - chain
       - contract_address
@@ -4115,6 +4353,86 @@ components:
       - file_url
       - mint_to_address
       - name
+      type: object
+    services.BuildNftApproveTxReq:
+      properties:
+        chain:
+          enum:
+          - conflux
+          - conflux_test
+          type: string
+        contract_address:
+          type: string
+        contract_type:
+          enum:
+          - erc721
+          - erc1155
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        token_id:
+          type: string
+      required:
+      - chain
+      - contract_address
+      - contract_type
+      - from
+      - to
+      - token_id
+      type: object
+    services.BuildNftSetApprovalForAllTxReq:
+      properties:
+        approved:
+          type: boolean
+        chain:
+          enum:
+          - conflux
+          - conflux_test
+          type: string
+        contract_address:
+          type: string
+        contract_type:
+          enum:
+          - erc721
+          - erc1155
+          type: string
+        from:
+          type: string
+        operator:
+          type: string
+      required:
+      - approved
+      - chain
+      - contract_address
+      - contract_type
+      - from
+      - operator
+      type: object
+    services.BuildTxResp:
+      example:
+        chain: conflux
+        data: data
+        from: from
+        to: to
+        value: value
+      properties:
+        chain:
+          enum:
+          - conflux
+          - conflux_test
+          type: string
+        data:
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        value:
+          type: string
+      required:
+      - chain
       type: object
     services.BurnBatchDto:
       properties:
@@ -4204,12 +4522,23 @@ components:
           description: "default: true"
           type: boolean
         base_uri:
+          description: "base_uri is used be token uri when not set during mint. The\
+            \ token_uri rule is: If TokenUri is set separately during mint, use the\
+            \ TokenUri set during mint, otherwise use base_uri. The scan's parsing\
+            \ of token_uri follows the erc1155 specification, see https://eips.ethereum.org/EIPS/eip-1155\
+            \ metadata section. for example: https://token-cdn-domain/{id}.json would\
+            \ be replaced with https://token-cdn-domain/000000000000000000000000000000000000000000000000000000000004cce0.json\
+            \ if the client is referring to token ID 314592/0x4CCE0."
           type: string
         chain:
           enum:
           - conflux
           - conflux_test
           type: string
+        enumable:
+          description: "If true, the contract is support enum tokens of users and\
+            \ default is true."
+          type: boolean
         is_sponsor_for_all_user:
           description: "default: true"
           type: boolean
@@ -4364,6 +4693,24 @@ components:
         token_uri:
           type: string
       type: object
+    services.SendTxReq:
+      properties:
+        chain:
+          type: string
+        data:
+          type: string
+        from:
+          description: AccountId uint   `json:"account_id" form:"account_id" binding:"required"`
+          type: string
+        to:
+          type: string
+        value:
+          type: string
+      required:
+      - chain
+      - from
+      - to
+      type: object
     services.SendTxResp:
       example:
         tx_id: 0
@@ -4477,11 +4824,20 @@ components:
         is_finalized: true
         error_msg: error_msg
         state_msg: state_msg
+        data: data
+        from: from
+        to: to
         is_success: true
-        state_code: null
+        state_code: 6
+        nonce: 0
+        value: 1.4658129805029452
         hash: hash
       properties:
+        data:
+          type: string
         error_msg:
+          type: string
+        from:
           type: string
         hash:
           type: string
@@ -4489,10 +4845,16 @@ components:
           type: boolean
         is_success:
           type: boolean
+        nonce:
+          type: integer
         state_code:
           $ref: '#/components/schemas/models.TxState'
         state_msg:
           type: string
+        to:
+          type: string
+        value:
+          type: number
       type: object
     services.UploadFilesResponse:
       example:

@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **DeletedAt** | Pointer to [**GormDeletedAt**](GormDeletedAt.md) |  | [optional] 
 **Id** | Pointer to **int32** |  | [optional] 
 **StorageRechargeAmount** | Pointer to **int32** |  | [optional] 
-**StorageRechargeThreshold** | Pointer to **int32** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **int32** |  | [optional] 
 
@@ -208,31 +207,6 @@ SetStorageRechargeAmount sets StorageRechargeAmount field to given value.
 `func (o *ModelsAutoSponsorContract) HasStorageRechargeAmount() bool`
 
 HasStorageRechargeAmount returns a boolean if a field has been set.
-
-### GetStorageRechargeThreshold
-
-`func (o *ModelsAutoSponsorContract) GetStorageRechargeThreshold() int32`
-
-GetStorageRechargeThreshold returns the StorageRechargeThreshold field if non-nil, zero value otherwise.
-
-### GetStorageRechargeThresholdOk
-
-`func (o *ModelsAutoSponsorContract) GetStorageRechargeThresholdOk() (*int32, bool)`
-
-GetStorageRechargeThresholdOk returns a tuple with the StorageRechargeThreshold field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStorageRechargeThreshold
-
-`func (o *ModelsAutoSponsorContract) SetStorageRechargeThreshold(v int32)`
-
-SetStorageRechargeThreshold sets StorageRechargeThreshold field to given value.
-
-### HasStorageRechargeThreshold
-
-`func (o *ModelsAutoSponsorContract) HasStorageRechargeThreshold() bool`
-
-HasStorageRechargeThreshold returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

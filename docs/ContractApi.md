@@ -892,7 +892,7 @@ No authorization required
 
 ## SetContractSponsor
 
-> ServicesSetSponsorResp SetContractSponsor(ctx, address).Authorization(authorization).Chain(chain).AutoSponsor(autoSponsor).Execute()
+> ServicesSetSponsorResp SetContractSponsor(ctx, address).Authorization(authorization).Chain(chain).Gas(gas).Storage(storage).AutoSponsor(autoSponsor).Execute()
 
 Set sponsor
 
@@ -914,11 +914,13 @@ func main() {
 	authorization := "authorization_example" // string | Bearer Open_JWT
 	address := "address_example" // string | Contract address
 	chain := "chain_example" // string | chain: conflux, conflux_test(default) (optional)
+	gas := "gas_example" // string | gas: default value is 1 (optional)
+	storage := "storage_example" // string | storage: default value is by user default setting (optional)
 	autoSponsor := true // bool | Open auto sponsor or not, for mainnet contract keep user account have enough balance (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContractAPI.SetContractSponsor(context.Background(), address).Authorization(authorization).Chain(chain).AutoSponsor(autoSponsor).Execute()
+	resp, r, err := apiClient.ContractAPI.SetContractSponsor(context.Background(), address).Authorization(authorization).Chain(chain).Gas(gas).Storage(storage).AutoSponsor(autoSponsor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContractAPI.SetContractSponsor``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -946,6 +948,8 @@ Name | Type | Description  | Notes
  **authorization** | **string** | Bearer Open_JWT | 
 
  **chain** | **string** | chain: conflux, conflux_test(default) | 
+ **gas** | **string** | gas: default value is 1 | 
+ **storage** | **string** | storage: default value is by user default setting | 
  **autoSponsor** | **bool** | Open auto sponsor or not, for mainnet contract keep user account have enough balance | 
 
 ### Return type

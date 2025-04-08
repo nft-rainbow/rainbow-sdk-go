@@ -27,6 +27,8 @@
 
 * `TASK_TYPE_CREATE_TBA` (value: `12`)
 
+* `TASK_TYPE_CUSTODY_SEND_TX` (value: `13`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

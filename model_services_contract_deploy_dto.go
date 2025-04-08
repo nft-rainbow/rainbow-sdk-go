@@ -22,8 +22,11 @@ var _ MappedNullable = &ServicesContractDeployDto{}
 type ServicesContractDeployDto struct {
 	// default: true
 	AutoSponsor *bool `json:"auto_sponsor,omitempty"`
+	// base_uri is used be token uri when not set during mint. The token_uri rule is: If TokenUri is set separately during mint, use the TokenUri set during mint, otherwise use base_uri. The scan's parsing of token_uri follows the erc1155 specification, see https://eips.ethereum.org/EIPS/eip-1155 metadata section. for example: https://token-cdn-domain/{id}.json would be replaced with https://token-cdn-domain/000000000000000000000000000000000000000000000000000000000004cce0.json if the client is referring to token ID 314592/0x4CCE0.
 	BaseUri *string `json:"base_uri,omitempty"`
 	Chain string `json:"chain"`
+	// If true, the contract is support enum tokens of users and default is true.
+	Enumable *bool `json:"enumable,omitempty"`
 	// default: true
 	IsSponsorForAllUser *bool `json:"is_sponsor_for_all_user,omitempty"`
 	Name string `json:"name"`
@@ -150,6 +153,38 @@ func (o *ServicesContractDeployDto) GetChainOk() (*string, bool) {
 // SetChain sets field value
 func (o *ServicesContractDeployDto) SetChain(v string) {
 	o.Chain = v
+}
+
+// GetEnumable returns the Enumable field value if set, zero value otherwise.
+func (o *ServicesContractDeployDto) GetEnumable() bool {
+	if o == nil || IsNil(o.Enumable) {
+		var ret bool
+		return ret
+	}
+	return *o.Enumable
+}
+
+// GetEnumableOk returns a tuple with the Enumable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesContractDeployDto) GetEnumableOk() (*bool, bool) {
+	if o == nil || IsNil(o.Enumable) {
+		return nil, false
+	}
+	return o.Enumable, true
+}
+
+// HasEnumable returns a boolean if a field has been set.
+func (o *ServicesContractDeployDto) HasEnumable() bool {
+	if o != nil && !IsNil(o.Enumable) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnumable gets a reference to the given bool and assigns it to the Enumable field.
+func (o *ServicesContractDeployDto) SetEnumable(v bool) {
+	o.Enumable = &v
 }
 
 // GetIsSponsorForAllUser returns the IsSponsorForAllUser field value if set, zero value otherwise.
@@ -465,6 +500,9 @@ func (o ServicesContractDeployDto) ToMap() (map[string]interface{}, error) {
 		toSerialize["base_uri"] = o.BaseUri
 	}
 	toSerialize["chain"] = o.Chain
+	if !IsNil(o.Enumable) {
+		toSerialize["enumable"] = o.Enumable
+	}
 	if !IsNil(o.IsSponsorForAllUser) {
 		toSerialize["is_sponsor_for_all_user"] = o.IsSponsorForAllUser
 	}
@@ -538,6 +576,7 @@ func (o *ServicesContractDeployDto) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "auto_sponsor")
 		delete(additionalProperties, "base_uri")
 		delete(additionalProperties, "chain")
+		delete(additionalProperties, "enumable")
 		delete(additionalProperties, "is_sponsor_for_all_user")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "owner_address")

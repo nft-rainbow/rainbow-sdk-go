@@ -42,7 +42,7 @@ func NewModelsMintTaskOrErrorWithDefaults() *ModelsMintTaskOrError {
 
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *ModelsMintTaskOrError) GetError() map[string]interface{} {
-	if o == nil || isNil(o.Error) {
+	if o == nil || IsNil(o.Error) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -52,7 +52,7 @@ func (o *ModelsMintTaskOrError) GetError() map[string]interface{} {
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTaskOrError) GetErrorOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Error) {
+	if o == nil || IsNil(o.Error) {
     return map[string]interface{}{}, false
 	}
 	return o.Error, true
@@ -60,7 +60,7 @@ func (o *ModelsMintTaskOrError) GetErrorOk() (map[string]interface{}, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *ModelsMintTaskOrError) HasError() bool {
-	if o != nil && !isNil(o.Error) {
+	if o != nil && !IsNil(o.Error) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *ModelsMintTaskOrError) SetError(v map[string]interface{}) {
 
 // GetMintTask returns the MintTask field value if set, zero value otherwise.
 func (o *ModelsMintTaskOrError) GetMintTask() ModelsMintTask {
-	if o == nil || isNil(o.MintTask) {
+	if o == nil || IsNil(o.MintTask) {
 		var ret ModelsMintTask
 		return ret
 	}
@@ -84,7 +84,7 @@ func (o *ModelsMintTaskOrError) GetMintTask() ModelsMintTask {
 // GetMintTaskOk returns a tuple with the MintTask field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsMintTaskOrError) GetMintTaskOk() (*ModelsMintTask, bool) {
-	if o == nil || isNil(o.MintTask) {
+	if o == nil || IsNil(o.MintTask) {
     return nil, false
 	}
 	return o.MintTask, true
@@ -92,7 +92,7 @@ func (o *ModelsMintTaskOrError) GetMintTaskOk() (*ModelsMintTask, bool) {
 
 // HasMintTask returns a boolean if a field has been set.
 func (o *ModelsMintTaskOrError) HasMintTask() bool {
-	if o != nil && !isNil(o.MintTask) {
+	if o != nil && !IsNil(o.MintTask) {
 		return true
 	}
 
@@ -106,10 +106,10 @@ func (o *ModelsMintTaskOrError) SetMintTask(v ModelsMintTask) {
 
 func (o ModelsMintTaskOrError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Error) {
+	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	if !isNil(o.MintTask) {
+	if !IsNil(o.MintTask) {
 		toSerialize["mint_task"] = o.MintTask
 	}
 

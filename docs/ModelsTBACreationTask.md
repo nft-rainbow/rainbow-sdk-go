@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AppId** | Pointer to **int32** |  | [optional] 
-**BlockReason** | Pointer to [**EnumsTransactionBlockReason**](EnumsTransactionBlockReason.md) |  | [optional] 
+**BlockReason** | Pointer to [**EnumsTransactionBlockReason**](EnumsTransactionBlockReason.md) | 没有发送到tx engine的原因，比如余额不足或网络错误等 | [optional] 
 **ChainId** | Pointer to **int32** |  | [optional] 
 **ChainType** | Pointer to **int32** |  | [optional] 
 **CollectionToAdd** | Pointer to **string** | the collection to add after the tba is created | [optional] 
 **Contract** | Pointer to **string** |  | [optional] 
-**ContractType** | Pointer to **int32** |  | [optional] 
+**ContractType** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **DeletedAt** | Pointer to [**GormDeletedAt**](GormDeletedAt.md) |  | [optional] 
 **Error** | Pointer to **string** |  | [optional] 
@@ -198,20 +198,20 @@ HasContract returns a boolean if a field has been set.
 
 ### GetContractType
 
-`func (o *ModelsTBACreationTask) GetContractType() int32`
+`func (o *ModelsTBACreationTask) GetContractType() string`
 
 GetContractType returns the ContractType field if non-nil, zero value otherwise.
 
 ### GetContractTypeOk
 
-`func (o *ModelsTBACreationTask) GetContractTypeOk() (*int32, bool)`
+`func (o *ModelsTBACreationTask) GetContractTypeOk() (*string, bool)`
 
 GetContractTypeOk returns a tuple with the ContractType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetContractType
 
-`func (o *ModelsTBACreationTask) SetContractType(v int32)`
+`func (o *ModelsTBACreationTask) SetContractType(v string)`
 
 SetContractType sets ContractType field to given value.
 

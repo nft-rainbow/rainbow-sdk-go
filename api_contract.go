@@ -336,7 +336,7 @@ func (a *ContractAPIService) AddContractSponsorWhitelistExecute(r ApiAddContract
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.users
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -501,8 +501,8 @@ func (a *ContractAPIService) DeployContractExecute(r ApiDeployContractRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization2, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization2, "", "")
 	// body params
 	localVarPostBody = r.contractInfo
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -656,8 +656,8 @@ func (a *ContractAPIService) DeployContract_1Execute(r ApiDeployContract_0Reques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization2, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization2, "", "")
 	// body params
 	localVarPostBody = r.contractInfo
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -794,7 +794,7 @@ func (a *ContractAPIService) GetContractAdminExecute(r ApiGetContractAdminReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -940,7 +940,7 @@ func (a *ContractAPIService) GetContractAutoSponsorExecute(r ApiGetContractAutoS
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1086,7 +1086,7 @@ func (a *ContractAPIService) GetContractInfoExecute(r ApiGetContractInfoRequest)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1212,7 +1212,7 @@ func (a *ContractAPIService) GetContractProfileExecute(r ApiGetContractProfileRe
 	}
 
 	if r.ignoreTokenIds != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ignore_token_ids", r.ignoreTokenIds, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ignore_token_ids", r.ignoreTokenIds, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1231,7 +1231,7 @@ func (a *ContractAPIService) GetContractProfileExecute(r ApiGetContractProfileRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1357,7 +1357,7 @@ func (a *ContractAPIService) GetContractSponsorInfoExecute(r ApiGetContractSpons
 	}
 
 	if r.chain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1376,7 +1376,7 @@ func (a *ContractAPIService) GetContractSponsorInfoExecute(r ApiGetContractSpons
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1511,7 +1511,7 @@ func (a *ContractAPIService) GetContractSponsoredWhitelistExecute(r ApiGetContra
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1651,10 +1651,10 @@ func (a *ContractAPIService) ListContractsExecute(r ApiListContractsRequest) (*M
 	}
 
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1673,7 +1673,7 @@ func (a *ContractAPIService) ListContractsExecute(r ApiListContractsRequest) (*M
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1807,7 +1807,7 @@ func (a *ContractAPIService) RemoveContractSponsorWhitelistExecute(r ApiRemoveCo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.users
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1965,7 +1965,7 @@ func (a *ContractAPIService) SetContractAutoSponsorExecute(r ApiSetContractAutoS
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.autoSponsorReq
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2043,6 +2043,8 @@ type ApiSetContractSponsorRequest struct {
 	authorization *string
 	address string
 	chain *string
+	gas *string
+	storage *string
 	autoSponsor *bool
 }
 
@@ -2055,6 +2057,18 @@ func (r ApiSetContractSponsorRequest) Authorization(authorization string) ApiSet
 // chain: conflux, conflux_test(default)
 func (r ApiSetContractSponsorRequest) Chain(chain string) ApiSetContractSponsorRequest {
 	r.chain = &chain
+	return r
+}
+
+// gas: default value is 1
+func (r ApiSetContractSponsorRequest) Gas(gas string) ApiSetContractSponsorRequest {
+	r.gas = &gas
+	return r
+}
+
+// storage: default value is by user default setting
+func (r ApiSetContractSponsorRequest) Storage(storage string) ApiSetContractSponsorRequest {
+	r.storage = &storage
 	return r
 }
 
@@ -2111,10 +2125,16 @@ func (a *ContractAPIService) SetContractSponsorExecute(r ApiSetContractSponsorRe
 	}
 
 	if r.chain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "", "")
+	}
+	if r.gas != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "gas", r.gas, "", "")
+	}
+	if r.storage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "storage", r.storage, "", "")
 	}
 	if r.autoSponsor != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "auto_sponsor", r.autoSponsor, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "auto_sponsor", r.autoSponsor, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2133,7 +2153,7 @@ func (a *ContractAPIService) SetContractSponsorExecute(r ApiSetContractSponsorRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2268,7 +2288,7 @@ func (a *ContractAPIService) SetContractTransaferableExecute(r ApiSetContractTra
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2424,7 +2444,7 @@ func (a *ContractAPIService) UpdateContractAdminExecute(r ApiUpdateContractAdmin
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.adminInfo
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)

@@ -32,22 +32,22 @@ type AccountsAPI interface {
 	InsertAccount(ctx context.Context) ApiInsertAccountRequest
 
 	// InsertAccountExecute executes the request
-	//  @return []ModelsAccountDisplayPart
-	InsertAccountExecute(r ApiInsertAccountRequest) ([]ModelsAccountDisplayPart, *http.Response, error)
+	//  @return []ModelsCustodialAccountDisplay
+	InsertAccountExecute(r ApiInsertAccountRequest) ([]ModelsCustodialAccountDisplay, *http.Response, error)
 
 	/*
-	QueryAccount Query web3 account
+	QueryAccounts Query web3 account
 
 	Query web3 account
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiQueryAccountRequest
+	@return ApiQueryAccountsRequest
 	*/
-	QueryAccount(ctx context.Context) ApiQueryAccountRequest
+	QueryAccounts(ctx context.Context) ApiQueryAccountsRequest
 
-	// QueryAccountExecute executes the request
-	//  @return []ModelsAccountDisplayPart
-	QueryAccountExecute(r ApiQueryAccountRequest) ([]ModelsAccountDisplayPart, *http.Response, error)
+	// QueryAccountsExecute executes the request
+	//  @return []ModelsCustodialAccountDisplay
+	QueryAccountsExecute(r ApiQueryAccountsRequest) ([]ModelsCustodialAccountDisplay, *http.Response, error)
 }
 
 // AccountsAPIService AccountsAPI service
@@ -72,7 +72,7 @@ func (r ApiInsertAccountRequest) InsertAccountReq(insertAccountReq ServicesInser
 	return r
 }
 
-func (r ApiInsertAccountRequest) Execute() ([]ModelsAccountDisplayPart, *http.Response, error) {
+func (r ApiInsertAccountRequest) Execute() ([]ModelsCustodialAccountDisplay, *http.Response, error) {
 	return r.ApiService.InsertAccountExecute(r)
 }
 
@@ -92,13 +92,13 @@ func (a *AccountsAPIService) InsertAccount(ctx context.Context) ApiInsertAccount
 }
 
 // Execute executes the request
-//  @return []ModelsAccountDisplayPart
-func (a *AccountsAPIService) InsertAccountExecute(r ApiInsertAccountRequest) ([]ModelsAccountDisplayPart, *http.Response, error) {
+//  @return []ModelsCustodialAccountDisplay
+func (a *AccountsAPIService) InsertAccountExecute(r ApiInsertAccountRequest) ([]ModelsCustodialAccountDisplay, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ModelsAccountDisplayPart
+		localVarReturnValue  []ModelsCustodialAccountDisplay
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.InsertAccount")
@@ -135,7 +135,7 @@ func (a *AccountsAPIService) InsertAccountExecute(r ApiInsertAccountRequest) ([]
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.insertAccountReq
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -196,54 +196,61 @@ func (a *AccountsAPIService) InsertAccountExecute(r ApiInsertAccountRequest) ([]
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiQueryAccountRequest struct {
+type ApiQueryAccountsRequest struct {
 	ctx context.Context
 	ApiService AccountsAPI
 	authorization *string
 	phone *string
+	owned *bool
 }
 
 // Bearer Open_JWT
-func (r ApiQueryAccountRequest) Authorization(authorization string) ApiQueryAccountRequest {
+func (r ApiQueryAccountsRequest) Authorization(authorization string) ApiQueryAccountsRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiQueryAccountRequest) Phone(phone string) ApiQueryAccountRequest {
+func (r ApiQueryAccountsRequest) Phone(phone string) ApiQueryAccountsRequest {
 	r.phone = &phone
 	return r
 }
 
-func (r ApiQueryAccountRequest) Execute() ([]ModelsAccountDisplayPart, *http.Response, error) {
-	return r.ApiService.QueryAccountExecute(r)
+// is created by user
+func (r ApiQueryAccountsRequest) Owned(owned bool) ApiQueryAccountsRequest {
+	r.owned = &owned
+	return r
+}
+
+func (r ApiQueryAccountsRequest) Execute() ([]ModelsCustodialAccountDisplay, *http.Response, error) {
+	return r.ApiService.QueryAccountsExecute(r)
 }
 
 /*
-QueryAccount Query web3 account
+QueryAccounts Query web3 account
 
 Query web3 account
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiQueryAccountRequest
+ @return ApiQueryAccountsRequest
 */
-func (a *AccountsAPIService) QueryAccount(ctx context.Context) ApiQueryAccountRequest {
-	return ApiQueryAccountRequest{
+func (a *AccountsAPIService) QueryAccounts(ctx context.Context) ApiQueryAccountsRequest {
+	return ApiQueryAccountsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []ModelsAccountDisplayPart
-func (a *AccountsAPIService) QueryAccountExecute(r ApiQueryAccountRequest) ([]ModelsAccountDisplayPart, *http.Response, error) {
+//  @return []ModelsCustodialAccountDisplay
+func (a *AccountsAPIService) QueryAccountsExecute(r ApiQueryAccountsRequest) ([]ModelsCustodialAccountDisplay, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ModelsAccountDisplayPart
+		localVarReturnValue  []ModelsCustodialAccountDisplay
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.QueryAccount")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.QueryAccounts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -256,10 +263,14 @@ func (a *AccountsAPIService) QueryAccountExecute(r ApiQueryAccountRequest) ([]Mo
 	if r.authorization == nil {
 		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
 	}
-
-	if r.phone != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "phone", r.phone, "")
+	if r.phone == nil {
+		return localVarReturnValue, nil, reportError("phone is required and must be specified")
 	}
+
+	if r.owned != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "owned", r.owned, "", "")
+	}
+	parameterAddToHeaderOrQuery(localVarQueryParams, "phone", r.phone, "", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -277,7 +288,7 @@ func (a *AccountsAPIService) QueryAccountExecute(r ApiQueryAccountRequest) ([]Mo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

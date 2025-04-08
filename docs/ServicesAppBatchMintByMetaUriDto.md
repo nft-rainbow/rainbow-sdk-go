@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Chain** | **string** |  | 
 **ContractAddress** | **string** |  | 
 **MintItems** | [**[]ServicesMintItemDto**](ServicesMintItemDto.md) |  | 
+**TokenidAutoOrder** | Pointer to **bool** | default is true | [optional] 
 
 ## Methods
 
@@ -86,6 +87,31 @@ and a boolean to check if the value has been set.
 
 SetMintItems sets MintItems field to given value.
 
+
+### GetTokenidAutoOrder
+
+`func (o *ServicesAppBatchMintByMetaUriDto) GetTokenidAutoOrder() bool`
+
+GetTokenidAutoOrder returns the TokenidAutoOrder field if non-nil, zero value otherwise.
+
+### GetTokenidAutoOrderOk
+
+`func (o *ServicesAppBatchMintByMetaUriDto) GetTokenidAutoOrderOk() (*bool, bool)`
+
+GetTokenidAutoOrderOk returns a tuple with the TokenidAutoOrder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenidAutoOrder
+
+`func (o *ServicesAppBatchMintByMetaUriDto) SetTokenidAutoOrder(v bool)`
+
+SetTokenidAutoOrder sets TokenidAutoOrder field to given value.
+
+### HasTokenidAutoOrder
+
+`func (o *ServicesAppBatchMintByMetaUriDto) HasTokenidAutoOrder() bool`
+
+HasTokenidAutoOrder returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

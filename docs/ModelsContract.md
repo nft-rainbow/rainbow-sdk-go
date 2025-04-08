@@ -8,11 +8,12 @@ Name | Type | Description | Notes
 **AppId** | Pointer to **int32** |  | [optional] 
 **AutoSponsor** | Pointer to **bool** |  | [optional] 
 **BaseUri** | Pointer to **string** |  | [optional] 
-**BlockReason** | Pointer to [**EnumsTransactionBlockReason**](EnumsTransactionBlockReason.md) |  | [optional] 
+**BlockReason** | Pointer to [**EnumsTransactionBlockReason**](EnumsTransactionBlockReason.md) | 没有发送到tx engine的原因，比如余额不足或网络错误等 | [optional] 
 **ChainId** | Pointer to **int32** |  | [optional] 
 **ChainType** | Pointer to **int32** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **DeletedAt** | Pointer to [**GormDeletedAt**](GormDeletedAt.md) |  | [optional] 
+**Enumable** | Pointer to **bool** |  | [optional] 
 **Error** | Pointer to **string** |  | [optional] 
 **Hash** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **int32** |  | [optional] 
@@ -272,6 +273,31 @@ SetDeletedAt sets DeletedAt field to given value.
 `func (o *ModelsContract) HasDeletedAt() bool`
 
 HasDeletedAt returns a boolean if a field has been set.
+
+### GetEnumable
+
+`func (o *ModelsContract) GetEnumable() bool`
+
+GetEnumable returns the Enumable field if non-nil, zero value otherwise.
+
+### GetEnumableOk
+
+`func (o *ModelsContract) GetEnumableOk() (*bool, bool)`
+
+GetEnumableOk returns a tuple with the Enumable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnumable
+
+`func (o *ModelsContract) SetEnumable(v bool)`
+
+SetEnumable sets Enumable field to given value.
+
+### HasEnumable
+
+`func (o *ModelsContract) HasEnumable() bool`
+
+HasEnumable returns a boolean if a field has been set.
 
 ### GetError
 

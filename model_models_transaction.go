@@ -19,6 +19,7 @@ var _ MappedNullable = &ModelsTransaction{}
 
 // ModelsTransaction struct for ModelsTransaction
 type ModelsTransaction struct {
+	// 没有发送到tx engine的原因，比如余额不足或网络错误等
 	BlockReason *EnumsTransactionBlockReason `json:"block_reason,omitempty"`
 	ChainId *int32 `json:"chainId,omitempty"`
 	ChainType *int32 `json:"chainType,omitempty"`

@@ -4,12 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Data** | Pointer to **string** |  | [optional] 
 **ErrorMsg** | Pointer to **string** |  | [optional] 
+**From** | Pointer to **string** |  | [optional] 
 **Hash** | Pointer to **string** |  | [optional] 
 **IsFinalized** | Pointer to **bool** |  | [optional] 
 **IsSuccess** | Pointer to **bool** |  | [optional] 
+**Nonce** | Pointer to **int32** |  | [optional] 
 **StateCode** | Pointer to [**ModelsTxState**](ModelsTxState.md) |  | [optional] 
 **StateMsg** | Pointer to **string** |  | [optional] 
+**To** | Pointer to **string** |  | [optional] 
+**Value** | Pointer to **float32** |  | [optional] 
 
 ## Methods
 
@@ -29,6 +34,31 @@ will change when the set of required properties is changed
 NewServicesTxRespWithDefaults instantiates a new ServicesTxResp object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetData
+
+`func (o *ServicesTxResp) GetData() string`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *ServicesTxResp) GetDataOk() (*string, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetData
+
+`func (o *ServicesTxResp) SetData(v string)`
+
+SetData sets Data field to given value.
+
+### HasData
+
+`func (o *ServicesTxResp) HasData() bool`
+
+HasData returns a boolean if a field has been set.
 
 ### GetErrorMsg
 
@@ -54,6 +84,31 @@ SetErrorMsg sets ErrorMsg field to given value.
 `func (o *ServicesTxResp) HasErrorMsg() bool`
 
 HasErrorMsg returns a boolean if a field has been set.
+
+### GetFrom
+
+`func (o *ServicesTxResp) GetFrom() string`
+
+GetFrom returns the From field if non-nil, zero value otherwise.
+
+### GetFromOk
+
+`func (o *ServicesTxResp) GetFromOk() (*string, bool)`
+
+GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrom
+
+`func (o *ServicesTxResp) SetFrom(v string)`
+
+SetFrom sets From field to given value.
+
+### HasFrom
+
+`func (o *ServicesTxResp) HasFrom() bool`
+
+HasFrom returns a boolean if a field has been set.
 
 ### GetHash
 
@@ -130,6 +185,31 @@ SetIsSuccess sets IsSuccess field to given value.
 
 HasIsSuccess returns a boolean if a field has been set.
 
+### GetNonce
+
+`func (o *ServicesTxResp) GetNonce() int32`
+
+GetNonce returns the Nonce field if non-nil, zero value otherwise.
+
+### GetNonceOk
+
+`func (o *ServicesTxResp) GetNonceOk() (*int32, bool)`
+
+GetNonceOk returns a tuple with the Nonce field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNonce
+
+`func (o *ServicesTxResp) SetNonce(v int32)`
+
+SetNonce sets Nonce field to given value.
+
+### HasNonce
+
+`func (o *ServicesTxResp) HasNonce() bool`
+
+HasNonce returns a boolean if a field has been set.
+
 ### GetStateCode
 
 `func (o *ServicesTxResp) GetStateCode() ModelsTxState`
@@ -179,6 +259,56 @@ SetStateMsg sets StateMsg field to given value.
 `func (o *ServicesTxResp) HasStateMsg() bool`
 
 HasStateMsg returns a boolean if a field has been set.
+
+### GetTo
+
+`func (o *ServicesTxResp) GetTo() string`
+
+GetTo returns the To field if non-nil, zero value otherwise.
+
+### GetToOk
+
+`func (o *ServicesTxResp) GetToOk() (*string, bool)`
+
+GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTo
+
+`func (o *ServicesTxResp) SetTo(v string)`
+
+SetTo sets To field to given value.
+
+### HasTo
+
+`func (o *ServicesTxResp) HasTo() bool`
+
+HasTo returns a boolean if a field has been set.
+
+### GetValue
+
+`func (o *ServicesTxResp) GetValue() float32`
+
+GetValue returns the Value field if non-nil, zero value otherwise.
+
+### GetValueOk
+
+`func (o *ServicesTxResp) GetValueOk() (*float32, bool)`
+
+GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValue
+
+`func (o *ServicesTxResp) SetValue(v float32)`
+
+SetValue sets Value field to given value.
+
+### HasValue
+
+`func (o *ServicesTxResp) HasValue() bool`
+
+HasValue returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -52,7 +52,7 @@ func NewServicesEasyMintMetaDtoWithDefaults() *ServicesEasyMintMetaDto {
 
 // GetAnimationUrl returns the AnimationUrl field value if set, zero value otherwise.
 func (o *ServicesEasyMintMetaDto) GetAnimationUrl() string {
-	if o == nil || isNil(o.AnimationUrl) {
+	if o == nil || IsNil(o.AnimationUrl) {
 		var ret string
 		return ret
 	}
@@ -62,7 +62,7 @@ func (o *ServicesEasyMintMetaDto) GetAnimationUrl() string {
 // GetAnimationUrlOk returns a tuple with the AnimationUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaDto) GetAnimationUrlOk() (*string, bool) {
-	if o == nil || isNil(o.AnimationUrl) {
+	if o == nil || IsNil(o.AnimationUrl) {
     return nil, false
 	}
 	return o.AnimationUrl, true
@@ -70,7 +70,7 @@ func (o *ServicesEasyMintMetaDto) GetAnimationUrlOk() (*string, bool) {
 
 // HasAnimationUrl returns a boolean if a field has been set.
 func (o *ServicesEasyMintMetaDto) HasAnimationUrl() bool {
-	if o != nil && !isNil(o.AnimationUrl) {
+	if o != nil && !IsNil(o.AnimationUrl) {
 		return true
 	}
 
@@ -84,7 +84,7 @@ func (o *ServicesEasyMintMetaDto) SetAnimationUrl(v string) {
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *ServicesEasyMintMetaDto) GetAttributes() []ModelsExposedMetadataAttribute {
-	if o == nil || isNil(o.Attributes) {
+	if o == nil || IsNil(o.Attributes) {
 		var ret []ModelsExposedMetadataAttribute
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *ServicesEasyMintMetaDto) GetAttributes() []ModelsExposedMetadataAttribu
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaDto) GetAttributesOk() ([]ModelsExposedMetadataAttribute, bool) {
-	if o == nil || isNil(o.Attributes) {
+	if o == nil || IsNil(o.Attributes) {
     return nil, false
 	}
 	return o.Attributes, true
@@ -102,7 +102,7 @@ func (o *ServicesEasyMintMetaDto) GetAttributesOk() ([]ModelsExposedMetadataAttr
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *ServicesEasyMintMetaDto) HasAttributes() bool {
-	if o != nil && !isNil(o.Attributes) {
+	if o != nil && !IsNil(o.Attributes) {
 		return true
 	}
 
@@ -140,7 +140,7 @@ func (o *ServicesEasyMintMetaDto) SetChain(v string) {
 
 // GetContractAddress returns the ContractAddress field value if set, zero value otherwise.
 func (o *ServicesEasyMintMetaDto) GetContractAddress() string {
-	if o == nil || isNil(o.ContractAddress) {
+	if o == nil || IsNil(o.ContractAddress) {
 		var ret string
 		return ret
 	}
@@ -150,7 +150,7 @@ func (o *ServicesEasyMintMetaDto) GetContractAddress() string {
 // GetContractAddressOk returns a tuple with the ContractAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaDto) GetContractAddressOk() (*string, bool) {
-	if o == nil || isNil(o.ContractAddress) {
+	if o == nil || IsNil(o.ContractAddress) {
     return nil, false
 	}
 	return o.ContractAddress, true
@@ -158,7 +158,7 @@ func (o *ServicesEasyMintMetaDto) GetContractAddressOk() (*string, bool) {
 
 // HasContractAddress returns a boolean if a field has been set.
 func (o *ServicesEasyMintMetaDto) HasContractAddress() bool {
-	if o != nil && !isNil(o.ContractAddress) {
+	if o != nil && !IsNil(o.ContractAddress) {
 		return true
 	}
 
@@ -172,7 +172,7 @@ func (o *ServicesEasyMintMetaDto) SetContractAddress(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ServicesEasyMintMetaDto) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -182,7 +182,7 @@ func (o *ServicesEasyMintMetaDto) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesEasyMintMetaDto) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
     return nil, false
 	}
 	return o.Description, true
@@ -190,7 +190,7 @@ func (o *ServicesEasyMintMetaDto) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ServicesEasyMintMetaDto) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -276,19 +276,19 @@ func (o *ServicesEasyMintMetaDto) SetName(v string) {
 
 func (o ServicesEasyMintMetaDto) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AnimationUrl) {
+	if !IsNil(o.AnimationUrl) {
 		toSerialize["animation_url"] = o.AnimationUrl
 	}
-	if !isNil(o.Attributes) {
+	if !IsNil(o.Attributes) {
 		toSerialize["attributes"] = o.Attributes
 	}
 	if true {
 		toSerialize["chain"] = o.Chain
 	}
-	if !isNil(o.ContractAddress) {
+	if !IsNil(o.ContractAddress) {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
 	if true {

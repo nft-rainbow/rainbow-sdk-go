@@ -5,8 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AutoSponsor** | Pointer to **bool** | default: true | [optional] 
-**BaseUri** | Pointer to **string** |  | [optional] 
+**BaseUri** | Pointer to **string** | base_uri is used be token uri when not set during mint. The token_uri rule is: If TokenUri is set separately during mint, use the TokenUri set during mint, otherwise use base_uri. The scan&#39;s parsing of token_uri follows the erc1155 specification, see https://eips.ethereum.org/EIPS/eip-1155 metadata section. for example: https://token-cdn-domain/{id}.json would be replaced with https://token-cdn-domain/000000000000000000000000000000000000000000000000000000000004cce0.json if the client is referring to token ID 314592/0x4CCE0. | [optional] 
 **Chain** | **string** |  | 
+**Enumable** | Pointer to **bool** | If true, the contract is support enum tokens of users and default is true. | [optional] 
 **IsSponsorForAllUser** | Pointer to **bool** | default: true | [optional] 
 **Name** | **string** |  | 
 **OwnerAddress** | Pointer to **string** |  | [optional] 
@@ -106,6 +107,31 @@ and a boolean to check if the value has been set.
 
 SetChain sets Chain field to given value.
 
+
+### GetEnumable
+
+`func (o *ServicesContractDeployDto) GetEnumable() bool`
+
+GetEnumable returns the Enumable field if non-nil, zero value otherwise.
+
+### GetEnumableOk
+
+`func (o *ServicesContractDeployDto) GetEnumableOk() (*bool, bool)`
+
+GetEnumableOk returns a tuple with the Enumable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnumable
+
+`func (o *ServicesContractDeployDto) SetEnumable(v bool)`
+
+SetEnumable sets Enumable field to given value.
+
+### HasEnumable
+
+`func (o *ServicesContractDeployDto) HasEnumable() bool`
+
+HasEnumable returns a boolean if a field has been set.
 
 ### GetIsSponsorForAllUser
 

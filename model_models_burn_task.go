@@ -21,11 +21,12 @@ var _ MappedNullable = &ModelsBurnTask{}
 type ModelsBurnTask struct {
 	Amount *int32 `json:"amount,omitempty"`
 	AppId *int32 `json:"app_id,omitempty"`
+	// 没有发送到tx engine的原因，比如余额不足或网络错误等
 	BlockReason *EnumsTransactionBlockReason `json:"block_reason,omitempty"`
 	ChainId *int32 `json:"chain_id,omitempty"`
 	ChainType *int32 `json:"chain_type,omitempty"`
 	Contract *string `json:"contract,omitempty"`
-	ContractType *int32 `json:"contract_type,omitempty"`
+	ContractType *string `json:"contract_type,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	DeletedAt *GormDeletedAt `json:"deleted_at,omitempty"`
 	Error *string `json:"error,omitempty"`
@@ -252,9 +253,9 @@ func (o *ModelsBurnTask) SetContract(v string) {
 }
 
 // GetContractType returns the ContractType field value if set, zero value otherwise.
-func (o *ModelsBurnTask) GetContractType() int32 {
+func (o *ModelsBurnTask) GetContractType() string {
 	if o == nil || IsNil(o.ContractType) {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.ContractType
@@ -262,7 +263,7 @@ func (o *ModelsBurnTask) GetContractType() int32 {
 
 // GetContractTypeOk returns a tuple with the ContractType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelsBurnTask) GetContractTypeOk() (*int32, bool) {
+func (o *ModelsBurnTask) GetContractTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.ContractType) {
 		return nil, false
 	}
@@ -278,8 +279,8 @@ func (o *ModelsBurnTask) HasContractType() bool {
 	return false
 }
 
-// SetContractType gets a reference to the given int32 and assigns it to the ContractType field.
-func (o *ModelsBurnTask) SetContractType(v int32) {
+// SetContractType gets a reference to the given string and assigns it to the ContractType field.
+func (o *ModelsBurnTask) SetContractType(v string) {
 	o.ContractType = &v
 }
 

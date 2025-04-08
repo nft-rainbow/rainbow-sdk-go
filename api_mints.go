@@ -259,7 +259,7 @@ func (a *MintsAPIService) AppBatchMintByMetaUriExecute(r ApiAppBatchMintByMetaUr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.batchMintRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -406,7 +406,7 @@ func (a *MintsAPIService) AppBatchMintNFTExecute(r ApiAppBatchMintNFTRequest) ([
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.appBatchMintMetaInfo
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -549,7 +549,7 @@ func (a *MintsAPIService) BatchCustomMintExecute(r ApiBatchCustomMintRequest) ([
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.customMintBatchDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -692,7 +692,7 @@ func (a *MintsAPIService) CustomMintExecute(r ApiCustomMintRequest) (*ModelsMint
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.customMintDto
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -871,11 +871,11 @@ func (a *MintsAPIService) EasyMintByFileExecute(r ApiEasyMintByFileRequest) (*Mo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "chain", r.chain, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "description", r.description, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "mint_to_address", r.mintToAddress, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "chain", r.chain, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "description", r.description, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "mint_to_address", r.mintToAddress, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
 	var fileLocalVarFileBytes    []byte
@@ -1031,7 +1031,7 @@ func (a *MintsAPIService) EasyMintByMetadataExecute(r ApiEasyMintByMetadataReque
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	// body params
 	localVarPostBody = r.easyMintMetaInfo
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1168,7 +1168,7 @@ func (a *MintsAPIService) GetMintDetailExecute(r ApiGetMintDetailRequest) (*Mode
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1378,40 +1378,40 @@ func (a *MintsAPIService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTa
 	}
 
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	if r.contract != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "contract", r.contract, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "contract", r.contract, "", "")
 	}
 	if r.mintTo != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mint_to", r.mintTo, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mint_to", r.mintTo, "", "")
 	}
 	if r.status != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "", "")
 	}
 	if r.chain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "", "")
 	}
 	if r.page2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page2, "", "")
 	}
 	if r.limit2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit2, "", "")
 	}
 	if r.contract2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "contract", r.contract2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "contract", r.contract2, "", "")
 	}
 	if r.mintTo2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mint_to", r.mintTo2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mint_to", r.mintTo2, "", "")
 	}
 	if r.status2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status2, "", "")
 	}
 	if r.chain2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain2, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1430,8 +1430,8 @@ func (a *MintsAPIService) ListMintsExecute(r ApiListMintsRequest) (*ModelsMintTa
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization2, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization2, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1630,40 +1630,40 @@ func (a *MintsAPIService) ListMints_1Execute(r ApiListMints_0Request) (*ModelsMi
 	}
 
 	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	if r.contract != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "contract", r.contract, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "contract", r.contract, "", "")
 	}
 	if r.mintTo != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mint_to", r.mintTo, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mint_to", r.mintTo, "", "")
 	}
 	if r.status != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "", "")
 	}
 	if r.chain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "", "")
 	}
 	if r.page2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page2, "", "")
 	}
 	if r.limit2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit2, "", "")
 	}
 	if r.contract2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "contract", r.contract2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "contract", r.contract2, "", "")
 	}
 	if r.mintTo2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mint_to", r.mintTo2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mint_to", r.mintTo2, "", "")
 	}
 	if r.status2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status2, "", "")
 	}
 	if r.chain2 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain2, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain2, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1682,8 +1682,8 @@ func (a *MintsAPIService) ListMints_1Execute(r ApiListMints_0Request) (*ModelsMi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization2, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization2, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1807,7 +1807,7 @@ func (a *MintsAPIService) ReMintNFTExecute(r ApiReMintNFTRequest) (*ModelsMintTa
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

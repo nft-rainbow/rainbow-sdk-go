@@ -19,12 +19,17 @@ var _ MappedNullable = &ServicesTxResp{}
 
 // ServicesTxResp struct for ServicesTxResp
 type ServicesTxResp struct {
+	Data *string `json:"data,omitempty"`
 	ErrorMsg *string `json:"error_msg,omitempty"`
+	From *string `json:"from,omitempty"`
 	Hash *string `json:"hash,omitempty"`
 	IsFinalized *bool `json:"is_finalized,omitempty"`
 	IsSuccess *bool `json:"is_success,omitempty"`
+	Nonce *int32 `json:"nonce,omitempty"`
 	StateCode *ModelsTxState `json:"state_code,omitempty"`
 	StateMsg *string `json:"state_msg,omitempty"`
+	To *string `json:"to,omitempty"`
+	Value *float32 `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,6 +50,38 @@ func NewServicesTxResp() *ServicesTxResp {
 func NewServicesTxRespWithDefaults() *ServicesTxResp {
 	this := ServicesTxResp{}
 	return &this
+}
+
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *ServicesTxResp) GetData() string {
+	if o == nil || IsNil(o.Data) {
+		var ret string
+		return ret
+	}
+	return *o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesTxResp) GetDataOk() (*string, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *ServicesTxResp) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given string and assigns it to the Data field.
+func (o *ServicesTxResp) SetData(v string) {
+	o.Data = &v
 }
 
 // GetErrorMsg returns the ErrorMsg field value if set, zero value otherwise.
@@ -77,6 +114,38 @@ func (o *ServicesTxResp) HasErrorMsg() bool {
 // SetErrorMsg gets a reference to the given string and assigns it to the ErrorMsg field.
 func (o *ServicesTxResp) SetErrorMsg(v string) {
 	o.ErrorMsg = &v
+}
+
+// GetFrom returns the From field value if set, zero value otherwise.
+func (o *ServicesTxResp) GetFrom() string {
+	if o == nil || IsNil(o.From) {
+		var ret string
+		return ret
+	}
+	return *o.From
+}
+
+// GetFromOk returns a tuple with the From field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesTxResp) GetFromOk() (*string, bool) {
+	if o == nil || IsNil(o.From) {
+		return nil, false
+	}
+	return o.From, true
+}
+
+// HasFrom returns a boolean if a field has been set.
+func (o *ServicesTxResp) HasFrom() bool {
+	if o != nil && !IsNil(o.From) {
+		return true
+	}
+
+	return false
+}
+
+// SetFrom gets a reference to the given string and assigns it to the From field.
+func (o *ServicesTxResp) SetFrom(v string) {
+	o.From = &v
 }
 
 // GetHash returns the Hash field value if set, zero value otherwise.
@@ -175,6 +244,38 @@ func (o *ServicesTxResp) SetIsSuccess(v bool) {
 	o.IsSuccess = &v
 }
 
+// GetNonce returns the Nonce field value if set, zero value otherwise.
+func (o *ServicesTxResp) GetNonce() int32 {
+	if o == nil || IsNil(o.Nonce) {
+		var ret int32
+		return ret
+	}
+	return *o.Nonce
+}
+
+// GetNonceOk returns a tuple with the Nonce field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesTxResp) GetNonceOk() (*int32, bool) {
+	if o == nil || IsNil(o.Nonce) {
+		return nil, false
+	}
+	return o.Nonce, true
+}
+
+// HasNonce returns a boolean if a field has been set.
+func (o *ServicesTxResp) HasNonce() bool {
+	if o != nil && !IsNil(o.Nonce) {
+		return true
+	}
+
+	return false
+}
+
+// SetNonce gets a reference to the given int32 and assigns it to the Nonce field.
+func (o *ServicesTxResp) SetNonce(v int32) {
+	o.Nonce = &v
+}
+
 // GetStateCode returns the StateCode field value if set, zero value otherwise.
 func (o *ServicesTxResp) GetStateCode() ModelsTxState {
 	if o == nil || IsNil(o.StateCode) {
@@ -239,6 +340,70 @@ func (o *ServicesTxResp) SetStateMsg(v string) {
 	o.StateMsg = &v
 }
 
+// GetTo returns the To field value if set, zero value otherwise.
+func (o *ServicesTxResp) GetTo() string {
+	if o == nil || IsNil(o.To) {
+		var ret string
+		return ret
+	}
+	return *o.To
+}
+
+// GetToOk returns a tuple with the To field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesTxResp) GetToOk() (*string, bool) {
+	if o == nil || IsNil(o.To) {
+		return nil, false
+	}
+	return o.To, true
+}
+
+// HasTo returns a boolean if a field has been set.
+func (o *ServicesTxResp) HasTo() bool {
+	if o != nil && !IsNil(o.To) {
+		return true
+	}
+
+	return false
+}
+
+// SetTo gets a reference to the given string and assigns it to the To field.
+func (o *ServicesTxResp) SetTo(v string) {
+	o.To = &v
+}
+
+// GetValue returns the Value field value if set, zero value otherwise.
+func (o *ServicesTxResp) GetValue() float32 {
+	if o == nil || IsNil(o.Value) {
+		var ret float32
+		return ret
+	}
+	return *o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesTxResp) GetValueOk() (*float32, bool) {
+	if o == nil || IsNil(o.Value) {
+		return nil, false
+	}
+	return o.Value, true
+}
+
+// HasValue returns a boolean if a field has been set.
+func (o *ServicesTxResp) HasValue() bool {
+	if o != nil && !IsNil(o.Value) {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given float32 and assigns it to the Value field.
+func (o *ServicesTxResp) SetValue(v float32) {
+	o.Value = &v
+}
+
 func (o ServicesTxResp) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -249,8 +414,14 @@ func (o ServicesTxResp) MarshalJSON() ([]byte, error) {
 
 func (o ServicesTxResp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
+	}
 	if !IsNil(o.ErrorMsg) {
 		toSerialize["error_msg"] = o.ErrorMsg
+	}
+	if !IsNil(o.From) {
+		toSerialize["from"] = o.From
 	}
 	if !IsNil(o.Hash) {
 		toSerialize["hash"] = o.Hash
@@ -261,11 +432,20 @@ func (o ServicesTxResp) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsSuccess) {
 		toSerialize["is_success"] = o.IsSuccess
 	}
+	if !IsNil(o.Nonce) {
+		toSerialize["nonce"] = o.Nonce
+	}
 	if !IsNil(o.StateCode) {
 		toSerialize["state_code"] = o.StateCode
 	}
 	if !IsNil(o.StateMsg) {
 		toSerialize["state_msg"] = o.StateMsg
+	}
+	if !IsNil(o.To) {
+		toSerialize["to"] = o.To
+	}
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -289,12 +469,17 @@ func (o *ServicesTxResp) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
 		delete(additionalProperties, "error_msg")
+		delete(additionalProperties, "from")
 		delete(additionalProperties, "hash")
 		delete(additionalProperties, "is_finalized")
 		delete(additionalProperties, "is_success")
+		delete(additionalProperties, "nonce")
 		delete(additionalProperties, "state_code")
 		delete(additionalProperties, "state_msg")
+		delete(additionalProperties, "to")
+		delete(additionalProperties, "value")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -5,13 +5,13 @@ All URIs are relative to *http://api.nftrainbow.cn*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**InsertAccount**](AccountsAPI.md#InsertAccount) | **Post** /v1/accounts | Insert web3 account
-[**QueryAccount**](AccountsAPI.md#QueryAccount) | **Get** /v1/accounts | Query web3 account
+[**QueryAccounts**](AccountsAPI.md#QueryAccounts) | **Get** /v1/accounts | Query web3 account
 
 
 
 ## InsertAccount
 
-> []ModelsAccountDisplayPart InsertAccount(ctx).Authorization(authorization).InsertAccountReq(insertAccountReq).Execute()
+> []ModelsCustodialAccountDisplay InsertAccount(ctx).Authorization(authorization).InsertAccountReq(insertAccountReq).Execute()
 
 Insert web3 account
 
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountsAPI.InsertAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `InsertAccount`: []ModelsAccountDisplayPart
+	// response from `InsertAccount`: []ModelsCustodialAccountDisplay
 	fmt.Fprintf(os.Stdout, "Response from `AccountsAPI.InsertAccount`: %v\n", resp)
 }
 ```
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]ModelsAccountDisplayPart**](ModelsAccountDisplayPart.md)
+[**[]ModelsCustodialAccountDisplay**](ModelsCustodialAccountDisplay.md)
 
 ### Authorization
 
@@ -77,9 +77,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## QueryAccount
+## QueryAccounts
 
-> []ModelsAccountDisplayPart QueryAccount(ctx).Authorization(authorization).Phone(phone).Execute()
+> []ModelsCustodialAccountDisplay QueryAccounts(ctx).Authorization(authorization).Phone(phone).Owned(owned).Execute()
 
 Query web3 account
 
@@ -99,17 +99,18 @@ import (
 
 func main() {
 	authorization := "authorization_example" // string | Bearer Open_JWT
-	phone := "phone_example" // string |  (optional)
+	phone := "phone_example" // string | 
+	owned := true // bool | is created by user (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsAPI.QueryAccount(context.Background()).Authorization(authorization).Phone(phone).Execute()
+	resp, r, err := apiClient.AccountsAPI.QueryAccounts(context.Background()).Authorization(authorization).Phone(phone).Owned(owned).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AccountsAPI.QueryAccount``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AccountsAPI.QueryAccounts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `QueryAccount`: []ModelsAccountDisplayPart
-	fmt.Fprintf(os.Stdout, "Response from `AccountsAPI.QueryAccount`: %v\n", resp)
+	// response from `QueryAccounts`: []ModelsCustodialAccountDisplay
+	fmt.Fprintf(os.Stdout, "Response from `AccountsAPI.QueryAccounts`: %v\n", resp)
 }
 ```
 
@@ -119,17 +120,18 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiQueryAccountRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiQueryAccountsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** | Bearer Open_JWT | 
  **phone** | **string** |  | 
+ **owned** | **bool** | is created by user | 
 
 ### Return type
 
-[**[]ModelsAccountDisplayPart**](ModelsAccountDisplayPart.md)
+[**[]ModelsCustodialAccountDisplay**](ModelsCustodialAccountDisplay.md)
 
 ### Authorization
 

@@ -27,7 +27,6 @@ type ModelsAutoSponsorContract struct {
 	DeletedAt *GormDeletedAt `json:"deleted_at,omitempty"`
 	Id *int32 `json:"id,omitempty"`
 	StorageRechargeAmount *int32 `json:"storage_recharge_amount,omitempty"`
-	StorageRechargeThreshold *int32 `json:"storage_recharge_threshold,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UserId *int32 `json:"user_id,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -276,38 +275,6 @@ func (o *ModelsAutoSponsorContract) SetStorageRechargeAmount(v int32) {
 	o.StorageRechargeAmount = &v
 }
 
-// GetStorageRechargeThreshold returns the StorageRechargeThreshold field value if set, zero value otherwise.
-func (o *ModelsAutoSponsorContract) GetStorageRechargeThreshold() int32 {
-	if o == nil || IsNil(o.StorageRechargeThreshold) {
-		var ret int32
-		return ret
-	}
-	return *o.StorageRechargeThreshold
-}
-
-// GetStorageRechargeThresholdOk returns a tuple with the StorageRechargeThreshold field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ModelsAutoSponsorContract) GetStorageRechargeThresholdOk() (*int32, bool) {
-	if o == nil || IsNil(o.StorageRechargeThreshold) {
-		return nil, false
-	}
-	return o.StorageRechargeThreshold, true
-}
-
-// HasStorageRechargeThreshold returns a boolean if a field has been set.
-func (o *ModelsAutoSponsorContract) HasStorageRechargeThreshold() bool {
-	if o != nil && !IsNil(o.StorageRechargeThreshold) {
-		return true
-	}
-
-	return false
-}
-
-// SetStorageRechargeThreshold gets a reference to the given int32 and assigns it to the StorageRechargeThreshold field.
-func (o *ModelsAutoSponsorContract) SetStorageRechargeThreshold(v int32) {
-	o.StorageRechargeThreshold = &v
-}
-
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *ModelsAutoSponsorContract) GetUpdatedAt() string {
 	if o == nil || IsNil(o.UpdatedAt) {
@@ -403,9 +370,6 @@ func (o ModelsAutoSponsorContract) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StorageRechargeAmount) {
 		toSerialize["storage_recharge_amount"] = o.StorageRechargeAmount
 	}
-	if !IsNil(o.StorageRechargeThreshold) {
-		toSerialize["storage_recharge_threshold"] = o.StorageRechargeThreshold
-	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
@@ -441,7 +405,6 @@ func (o *ModelsAutoSponsorContract) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "deleted_at")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "storage_recharge_amount")
-		delete(additionalProperties, "storage_recharge_threshold")
 		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "user_id")
 		o.AdditionalProperties = additionalProperties

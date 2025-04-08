@@ -56,7 +56,7 @@ func NewServicesAppBatchMintMetaItemDtoWithDefaults() *ServicesAppBatchMintMetaI
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *ServicesAppBatchMintMetaItemDto) GetAmount() int32 {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
 		var ret int32
 		return ret
 	}
@@ -66,7 +66,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetAmount() int32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesAppBatchMintMetaItemDto) GetAmountOk() (*int32, bool) {
-	if o == nil || isNil(o.Amount) {
+	if o == nil || IsNil(o.Amount) {
     return nil, false
 	}
 	return o.Amount, true
@@ -74,7 +74,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetAmountOk() (*int32, bool) {
 
 // HasAmount returns a boolean if a field has been set.
 func (o *ServicesAppBatchMintMetaItemDto) HasAmount() bool {
-	if o != nil && !isNil(o.Amount) {
+	if o != nil && !IsNil(o.Amount) {
 		return true
 	}
 
@@ -88,7 +88,7 @@ func (o *ServicesAppBatchMintMetaItemDto) SetAmount(v int32) {
 
 // GetAnimationUrl returns the AnimationUrl field value if set, zero value otherwise.
 func (o *ServicesAppBatchMintMetaItemDto) GetAnimationUrl() string {
-	if o == nil || isNil(o.AnimationUrl) {
+	if o == nil || IsNil(o.AnimationUrl) {
 		var ret string
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetAnimationUrl() string {
 // GetAnimationUrlOk returns a tuple with the AnimationUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesAppBatchMintMetaItemDto) GetAnimationUrlOk() (*string, bool) {
-	if o == nil || isNil(o.AnimationUrl) {
+	if o == nil || IsNil(o.AnimationUrl) {
     return nil, false
 	}
 	return o.AnimationUrl, true
@@ -106,7 +106,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetAnimationUrlOk() (*string, bool) {
 
 // HasAnimationUrl returns a boolean if a field has been set.
 func (o *ServicesAppBatchMintMetaItemDto) HasAnimationUrl() bool {
-	if o != nil && !isNil(o.AnimationUrl) {
+	if o != nil && !IsNil(o.AnimationUrl) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *ServicesAppBatchMintMetaItemDto) SetAnimationUrl(v string) {
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *ServicesAppBatchMintMetaItemDto) GetAttributes() []ModelsExposedMetadataAttribute {
-	if o == nil || isNil(o.Attributes) {
+	if o == nil || IsNil(o.Attributes) {
 		var ret []ModelsExposedMetadataAttribute
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetAttributes() []ModelsExposedMetadat
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesAppBatchMintMetaItemDto) GetAttributesOk() ([]ModelsExposedMetadataAttribute, bool) {
-	if o == nil || isNil(o.Attributes) {
+	if o == nil || IsNil(o.Attributes) {
     return nil, false
 	}
 	return o.Attributes, true
@@ -138,7 +138,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetAttributesOk() ([]ModelsExposedMeta
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *ServicesAppBatchMintMetaItemDto) HasAttributes() bool {
-	if o != nil && !isNil(o.Attributes) {
+	if o != nil && !IsNil(o.Attributes) {
 		return true
 	}
 
@@ -176,7 +176,7 @@ func (o *ServicesAppBatchMintMetaItemDto) SetChain(v string) {
 
 // GetContractAddress returns the ContractAddress field value if set, zero value otherwise.
 func (o *ServicesAppBatchMintMetaItemDto) GetContractAddress() string {
-	if o == nil || isNil(o.ContractAddress) {
+	if o == nil || IsNil(o.ContractAddress) {
 		var ret string
 		return ret
 	}
@@ -186,7 +186,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetContractAddress() string {
 // GetContractAddressOk returns a tuple with the ContractAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesAppBatchMintMetaItemDto) GetContractAddressOk() (*string, bool) {
-	if o == nil || isNil(o.ContractAddress) {
+	if o == nil || IsNil(o.ContractAddress) {
     return nil, false
 	}
 	return o.ContractAddress, true
@@ -194,7 +194,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetContractAddressOk() (*string, bool)
 
 // HasContractAddress returns a boolean if a field has been set.
 func (o *ServicesAppBatchMintMetaItemDto) HasContractAddress() bool {
-	if o != nil && !isNil(o.ContractAddress) {
+	if o != nil && !IsNil(o.ContractAddress) {
 		return true
 	}
 
@@ -208,7 +208,7 @@ func (o *ServicesAppBatchMintMetaItemDto) SetContractAddress(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ServicesAppBatchMintMetaItemDto) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -218,7 +218,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesAppBatchMintMetaItemDto) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
     return nil, false
 	}
 	return o.Description, true
@@ -226,7 +226,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ServicesAppBatchMintMetaItemDto) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -312,7 +312,7 @@ func (o *ServicesAppBatchMintMetaItemDto) SetName(v string) {
 
 // GetNumber returns the Number field value if set, zero value otherwise.
 func (o *ServicesAppBatchMintMetaItemDto) GetNumber() int32 {
-	if o == nil || isNil(o.Number) {
+	if o == nil || IsNil(o.Number) {
 		var ret int32
 		return ret
 	}
@@ -322,7 +322,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetNumber() int32 {
 // GetNumberOk returns a tuple with the Number field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesAppBatchMintMetaItemDto) GetNumberOk() (*int32, bool) {
-	if o == nil || isNil(o.Number) {
+	if o == nil || IsNil(o.Number) {
     return nil, false
 	}
 	return o.Number, true
@@ -330,7 +330,7 @@ func (o *ServicesAppBatchMintMetaItemDto) GetNumberOk() (*int32, bool) {
 
 // HasNumber returns a boolean if a field has been set.
 func (o *ServicesAppBatchMintMetaItemDto) HasNumber() bool {
-	if o != nil && !isNil(o.Number) {
+	if o != nil && !IsNil(o.Number) {
 		return true
 	}
 
@@ -344,22 +344,22 @@ func (o *ServicesAppBatchMintMetaItemDto) SetNumber(v int32) {
 
 func (o ServicesAppBatchMintMetaItemDto) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Amount) {
+	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if !isNil(o.AnimationUrl) {
+	if !IsNil(o.AnimationUrl) {
 		toSerialize["animation_url"] = o.AnimationUrl
 	}
-	if !isNil(o.Attributes) {
+	if !IsNil(o.Attributes) {
 		toSerialize["attributes"] = o.Attributes
 	}
 	if true {
 		toSerialize["chain"] = o.Chain
 	}
-	if !isNil(o.ContractAddress) {
+	if !IsNil(o.ContractAddress) {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
-	if !isNil(o.Description) {
+	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
 	if true {
@@ -371,7 +371,7 @@ func (o ServicesAppBatchMintMetaItemDto) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["name"] = o.Name
 	}
-	if !isNil(o.Number) {
+	if !IsNil(o.Number) {
 		toSerialize["number"] = o.Number
 	}
 

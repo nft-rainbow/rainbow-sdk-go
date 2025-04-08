@@ -23,11 +23,13 @@ type ModelsContract struct {
 	AppId *int32 `json:"app_id,omitempty"`
 	AutoSponsor *bool `json:"auto_sponsor,omitempty"`
 	BaseUri *string `json:"base_uri,omitempty"`
+	// 没有发送到tx engine的原因，比如余额不足或网络错误等
 	BlockReason *EnumsTransactionBlockReason `json:"block_reason,omitempty"`
 	ChainId *int32 `json:"chain_id,omitempty"`
 	ChainType *int32 `json:"chain_type,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	DeletedAt *GormDeletedAt `json:"deleted_at,omitempty"`
+	Enumable *bool `json:"enumable,omitempty"`
 	Error *string `json:"error,omitempty"`
 	Hash *string `json:"hash,omitempty"`
 	Id *int32 `json:"id,omitempty"`
@@ -353,6 +355,38 @@ func (o *ModelsContract) HasDeletedAt() bool {
 // SetDeletedAt gets a reference to the given GormDeletedAt and assigns it to the DeletedAt field.
 func (o *ModelsContract) SetDeletedAt(v GormDeletedAt) {
 	o.DeletedAt = &v
+}
+
+// GetEnumable returns the Enumable field value if set, zero value otherwise.
+func (o *ModelsContract) GetEnumable() bool {
+	if o == nil || IsNil(o.Enumable) {
+		var ret bool
+		return ret
+	}
+	return *o.Enumable
+}
+
+// GetEnumableOk returns a tuple with the Enumable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsContract) GetEnumableOk() (*bool, bool) {
+	if o == nil || IsNil(o.Enumable) {
+		return nil, false
+	}
+	return o.Enumable, true
+}
+
+// HasEnumable returns a boolean if a field has been set.
+func (o *ModelsContract) HasEnumable() bool {
+	if o != nil && !IsNil(o.Enumable) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnumable gets a reference to the given bool and assigns it to the Enumable field.
+func (o *ModelsContract) SetEnumable(v bool) {
+	o.Enumable = &v
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
@@ -872,6 +906,9 @@ func (o ModelsContract) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DeletedAt) {
 		toSerialize["deleted_at"] = o.DeletedAt
 	}
+	if !IsNil(o.Enumable) {
+		toSerialize["enumable"] = o.Enumable
+	}
 	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
@@ -948,6 +985,7 @@ func (o *ModelsContract) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "chain_type")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "deleted_at")
+		delete(additionalProperties, "enumable")
 		delete(additionalProperties, "error")
 		delete(additionalProperties, "hash")
 		delete(additionalProperties, "id")

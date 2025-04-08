@@ -23,6 +23,8 @@ type ServicesAppBatchMintByMetaUriDto struct {
 	Chain string `json:"chain"`
 	ContractAddress string `json:"contract_address"`
 	MintItems []ServicesMintItemDto `json:"mint_items"`
+	// default is true
+	TokenidAutoOrder *bool `json:"tokenid_auto_order,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -120,6 +122,38 @@ func (o *ServicesAppBatchMintByMetaUriDto) SetMintItems(v []ServicesMintItemDto)
 	o.MintItems = v
 }
 
+// GetTokenidAutoOrder returns the TokenidAutoOrder field value if set, zero value otherwise.
+func (o *ServicesAppBatchMintByMetaUriDto) GetTokenidAutoOrder() bool {
+	if o == nil || IsNil(o.TokenidAutoOrder) {
+		var ret bool
+		return ret
+	}
+	return *o.TokenidAutoOrder
+}
+
+// GetTokenidAutoOrderOk returns a tuple with the TokenidAutoOrder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesAppBatchMintByMetaUriDto) GetTokenidAutoOrderOk() (*bool, bool) {
+	if o == nil || IsNil(o.TokenidAutoOrder) {
+		return nil, false
+	}
+	return o.TokenidAutoOrder, true
+}
+
+// HasTokenidAutoOrder returns a boolean if a field has been set.
+func (o *ServicesAppBatchMintByMetaUriDto) HasTokenidAutoOrder() bool {
+	if o != nil && !IsNil(o.TokenidAutoOrder) {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenidAutoOrder gets a reference to the given bool and assigns it to the TokenidAutoOrder field.
+func (o *ServicesAppBatchMintByMetaUriDto) SetTokenidAutoOrder(v bool) {
+	o.TokenidAutoOrder = &v
+}
+
 func (o ServicesAppBatchMintByMetaUriDto) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -133,6 +167,9 @@ func (o ServicesAppBatchMintByMetaUriDto) ToMap() (map[string]interface{}, error
 	toSerialize["chain"] = o.Chain
 	toSerialize["contract_address"] = o.ContractAddress
 	toSerialize["mint_items"] = o.MintItems
+	if !IsNil(o.TokenidAutoOrder) {
+		toSerialize["tokenid_auto_order"] = o.TokenidAutoOrder
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -181,6 +218,7 @@ func (o *ServicesAppBatchMintByMetaUriDto) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "chain")
 		delete(additionalProperties, "contract_address")
 		delete(additionalProperties, "mint_items")
+		delete(additionalProperties, "tokenid_auto_order")
 		o.AdditionalProperties = additionalProperties
 	}
 
